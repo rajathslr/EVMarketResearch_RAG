@@ -1,0 +1,131 @@
+https://www.youtube.com/watch?v=yOTEnmLMp48&t=124s
+[00:00:00]  
+### Summary: Introduction to Using Shell Recharge Level 2 Chargers in Michigan  
+The video explains how to use Shell Recharge Level 2 Chargers located at Meijer stores in Michigan, alongside Tesla Superchargers and ChargePoint DC fast chargers. It begins with the general process: open your EV’s charge port, remove dust covers, use a relevant app to find and activate the station, listen for a beep, and then plug in the charger. Successful connection is confirmed via the charger and the vehicle’s display. The presenter emphasizes a step-by-step approach suited for new users.
+
+- **Charging begins with:**  
+  - Opening EV charge port;  
+  - Removing dust cover;  
+  - Using an app to locate and confirm the charging station ID;  
+  - Activating the session on the app;  
+  - Listening for an activation beep;  
+  - Plugging in the charger;  
+  - Verifying charging via charger and car indicators.  
+
+- Apps recommended: **PlugShare**, **Shell Recharge app**, and roaming apps like **ChargePoint**.  
+- The term **“Level 2 Chargers”** refers to stations that provide slower AC charging compared to DC fast chargers.
+
+---
+
+[00:01:13]  
+### Summary: Details of Equipment and Initial Setup at the Charging Station  
+The presenter describes the specific connector being used: the **J1772 plug** (the standard for Level 2 AC charging). The CCS connector pins on the same station are not used here; those are for DC fast charging. The Level 2 chargers are intended mainly for slower charging while shopping or during stops.
+
+- **Charger states and indicators:**  
+  - Green light = available station;  
+  - Blue light = charging active;  
+  - Station screen includes an RFID card reader and QR code with a station ID (used for app activation).  
+
+- Practical advice: Don’t plug in immediately—first, activate the charger via app and listen for confirmation beep.  
+
+---
+
+[00:02:15]  
+### Summary: Activation Process and Pricing Information  
+Using the Shell Recharge app, the user locates the charger by station ID (e.g., **12281 U**) and confirms it is available. Pricing displayed is:  
+- $0 for the first 60 minutes (free hour),  
+- $2 per hour afterward,  
+- Maximum charging rate is 6.4 kW.
+
+The user starts the session and hears a beep, then plugs the J1772 connector into the EV. A physical **tab on the plug** must be engaged to ensure proper connection via an internal limit switch. Upon connection, the station indicator light turns blue, confirming active charging.
+
+---
+
+[00:03:29]  
+### Summary: Confirming Charging Rate and Vehicle Interface Feedback  
+The vehicle (a **Kona EV**) shows charging status with LED indicators: two steady on, one flashing LED indicating charging. However, the presenter notes this initial charging phase starts at a low power level (~1.1 kW), comparable to Level 1 charging, which is slower.
+
+- **Charging rate behavior:**  
+  - Initial rate is low at start (1.1 kW), meaning nearly 10 hours to charge from 77% to 90%;  
+  - Charger ramps up to full 6.4 kW after a short delay;  
+  - Charging time then reduces accordingly (approximate final expected time: 1.5 hours to reach 90%).  
+
+This ramp-up behavior is important to verify in early minutes of charging.
+
+---
+
+[00:04:30]  
+### Summary: App Performance and Real-World Usage Tips  
+- The **Shell Recharge app refreshes slowly** (about every 15 minutes), limiting its usefulness for real-time monitoring.  
+- The vehicle’s own app provides a more accurate and timely charging status, displaying percentage and estimated time to target charge.  
+
+- **Charging cost benefits:**  
+  - First hour of charging is free, aligning with typical shopping trips at Meijer stores;  
+  - After the free hour, a $2/hour fee applies, which is relatively economical.  
+  - This “free hour” acts as a **customer perk**, pairing shopping with free vehicle charging.
+
+- **Etiquette reminder:**  
+  - Return shopping carts to the proper locations;  
+  - After charging, unplug the charger, put the dust cover back on, close the charge port, and hang the charging connector back on the station;  
+  - No need to manually stop the session in the app when unplugging the charger, as the system auto-recognizes disconnection.  
+
+---
+
+[00:05:38]  
+### Summary: Final Charging Results and General Charger Etiquette  
+The charging session ended at about 82% battery, sufficient for the user’s needs (targeted 90% was higher than necessary for their typical driving). The session coincided with around $100 spent on groceries, reflecting the synergy between shopping and EV charging perks.
+
+- User notes that the effective charging rate matched expectations after initial ramp-up.  
+- A key final recommendation is to **move your vehicle after charging**, even if you remain nearby, to allow other EV drivers access to the charger. This helps maintain good **charger etiquette** and communal access.  
+
+---
+
+[00:06:09]  
+### Summary: Closing Remarks and Future Content Preview  
+The presenter thanks viewers and previews upcoming videos that will cover other Level 2 Chargers and DC fast charging stations. The video closes with a mention of arriving home with 80% charge, fitting the user’s optimal charge level for daily use.
+
+---
+
+### Key Insights & Concepts  
+
+- **Shell Recharge Level 2 Chargers** at Meijer stores offer economical EV charging with a **free first hour** and $2/hour thereafter.  
+- **J1772 connector** is standard for Level 2 AC charging; CCS connectors on the station serve DC fast chargers but are not used here.  
+- Charging sessions require app activation, station ID confirmation, and an audible beep before physically connecting the charger.  
+- Initial charging power starts low (~1.1 kW) and ramps up to max rate (~6.4 kW), affecting charging duration estimates.  
+- Vehicle apps generally provide better real-time monitoring than the Shell Recharge app.  
+- Proper charger etiquette includes returning carts, unplugging and storing the charger, and moving the vehicle promptly after charging.  
+- Combining shopping with EV charging creates customer perks and convenience.  
+
+---
+
+### Quantitative Data Table  
+
+| Parameter                | Value                        | Notes                            |
+|-------------------------|------------------------------|---------------------------------|
+| Charging rate (initial)  | $1.1~\text{kW}$              | Low power start, like Level 1   |
+| Charging rate (max)      | $6.4~\text{kW}$              | Level 2 max rate at Shell station |
+| Charging cost            | $0$ for first hour; $2$/hour | Free for shopping duration; economical afterward |
+| Battery percentage start | $77\%$                      | Starting charge before session  |
+| Battery percentage end   | $82\%$                      | Post-charging session level     |
+| Estimated charging time  | $\approx 1.5$ hours to $90\%$ | After ramp-up                    |
+
+---
+
+### Summary Timeline Table  
+
+| Timestamp    | Event Description                                             |
+|--------------|---------------------------------------------------------------|
+| 00:00:00     | Intro to Shell Recharge Level 2 Chargers and apps used        |
+| 00:01:13     | Identifying connectors; J1772 for Level 2; station indicators  |
+| 00:02:15     | App activation process; pricing and finding station ID         |
+| 00:03:29     | Confirming connection and charging rate ramp-up                |
+| 00:04:30     | App update limitations; cost benefits; etiquette overview      |
+| 00:05:38     | Final charging stats; importance of moving vehicle after charge|
+| 00:06:09     | Thank you and future content teaser                            |
+
+---
+
+This summary provides a thorough and accurate account of the charging process using Shell Recharge Level 2 stations in Michigan, suitable for new and experienced EV users seeking practical guidance grounded in the video transcript.
+
+
+How to add home charge point on shell recharge

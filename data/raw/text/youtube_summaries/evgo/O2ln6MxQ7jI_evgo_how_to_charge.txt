@@ -1,0 +1,172 @@
+https://www.youtube.com/watch?v=O2ln6MxQ7jI
+
+[00:00:00]  
+**Introduction and Context**  
+- Host Evan from Gone Electric introduces a video filmed at a new EVgo charging station in Seal Beach, California.  
+- Evan drives a Volkswagen ID.4 **which does not qualify for EVgo's AutoCharge program**.  
+- The video demonstrates charging at EVgo without using the AutoCharge feature.
+
+[00:00:40]  
+**EVgo AutoCharge Program Explanation**  
+- **AutoCharge program:** Enables qualifying EVs to automatically start charging simply by plugging in at any EVgo station, eliminating the need to interact with station menus or the app during charging sessions.  
+- To enable AutoCharge: Open EVgo app → Home menu → Tap Vehicles → Select AutoCharge → Add vehicle by search or VIN. Once set up, users “plug in and walk away.”  
+- Evan’s vehicle (Volkswagen ID.4) does **not** support AutoCharge; hence he manually activates charging via the app in this video.
+
+[00:01:11]  
+**New EVgo Station Overview**  
+- The Seal Beach station is very new with **no plugshare ratings** yet and uncertain reliability.  
+- Location: Almost adjacent to the host’s frequently used Electrify America station.  
+- Station equipment:  
+  - Two **350 kW fast chargers** (one currently offline).  
+  - Multiple **100 kW chargers** located at a corner near the main dispensers.  
+- Vehicle parking and cable reach issues are discussed due to awkward charger positioning relative to EV port location.
+
+[00:02:19]  
+**Preparing to Charge - Setup and Challenges**  
+- Evan attempts to plug in:  
+  - Initial attempt backing in failed as cable couldn’t reach the port; he re-parked nose-first to extend the cable length.  
+  - Cable stretch issues are common across EVgo stations, affecting convenience.  
+- Evan opens the EVgo app to activate charging with GPS location to correctly select the station and charger (specifically dispenser named “Severo”).
+
+[00:03:27]  
+**Starting the Charging Session**  
+- Charger interface shows "plug in" prompt; Evan physically connects the plug (noting the handle is already showing wear despite the station’s newness).  
+- Port light indicator shows white, signaling successful connection initiation.  
+- Dispenser display reads “connecting to vehicle,” confirming communication between charger and EV.
+
+[00:04:52]  
+**Parking and Cable Management Challenges**  
+- Due to cable reach issues and awkward charger placement, parking nose-first was required.  
+- Host remarks this problem with cable length and positioning is a **frequent experience** with EVgo stations, leading to inconvenience.
+
+[00:05:26]  
+**Charging Performance Data and Session Metrics**  
+- Upon successful start, Evan accesses session details on EVgo's app and charger screen, revealing:  
+
+| Parameter                     | Value            | Notes                          |
+|------------------------------|------------------|--------------------------------|
+| Current (Amperage)            | 324 A            | Battery charging current       |
+| Battery Voltage              | 367 V            | Measured voltage               |
+| Charging Power (kW)           | ~118 kW          | Good charge rate at 17% SOC    |
+| Max expected charging rate    | 135 kW           | Rarely achieved above 10% SOC  |
+  
+- The charging started **very fast**, contrasting previous delays experienced at other EVgo stations. Earlier, Evan reported up to 3-minute delays before power delivery.
+
+[00:06:44]  
+**Historical EVgo Experience and Station Deployment Trends**  
+- Evan recounts previous unreliable experiences with EVgo leading to leaving charging sessions early due to poor power delivery.  
+- Recently, successful charges in Long Beach and Santa Barbara suggest improvement or better grid conditions.  
+- New EVgo stations are increasing in urban Southern California (Seal Beach, Long Beach), indicating possible investment/expansion efforts.  
+- EVgo stations typically:  
+  - Are located more “in town” or away from freeway corridors.  
+  - Have fewer chargers per station (typically 2–4), unlike Electrify America which tends to have larger, freeway-adjacent stations.
+
+[00:08:20]  
+**Live Charging Status and Technical Confirmation**  
+- Evan uses a car diagnostic app alongside EVgo data to confirm charging parameters:  
+
+| Parameter                 | Value         | Interpretation                              |
+|--------------------------|---------------|---------------------------------------------|
+| Car requested DC current $I_{\text{requested}}$     | 311 A         | The current requested by the vehicle      |
+| Charging station DC current $I_{\text{delivered}}$    | 311 A         | Actual current supplied matches request   |
+| DC Battery Power $P_{\text{DC}}$                      | 116 kW        | Charging power at that moment               |
+| Battery Voltage $V$                                   | 373 V         | Voltage stable during charge               |
+
+- The exact match of requested and delivered current indicates a healthy, properly functioning charging session.
+
+[00:09:40]  
+**Station Infrastructure and Operational Status**  
+- The exact dispenser used ("Severo") is operational; however, one of the two 350 kW dispensers remains offline despite the station being active for a month.  
+- Nearby Long Beach station is physically built but still wrapped in plastic, showing delays in activation.  
+- Evan criticizes the lack of maintenance and readiness despite investment in new infrastructure.
+
+[00:10:40]  
+**Accessibility and Parking Issues at EVgo Stations**  
+- The “Severo” plug shares a parking spot also designated as **van-accessible handicap parking**, which Evan occupied to charge.  
+- This design causes conflict for wheelchair users who may find the space blocked by non-handicapped EV owners charging.  
+- Evan stresses the importance of non-handicapped users staying close by and moving if needed, to accommodate disabled persons’ needs.
+
+[00:11:43]  
+**EVgo App Interface during Charging**  
+- EVgo app provides comprehensive, **real-time charging progress view:**  
+  - Elapsed time  
+  - Session time limit (60 minutes maximum) – a constraint notable for slower-charging vehicles (like Chevy Bolt and Kia EV line).  
+  - Current state of charge (SOC) as a percentage  
+  - Estimated session cost displayed dynamically ($8.75 at ~65% SOC)  
+  - Visual charging curve showing charge rate decrease over time, reflective of typical battery management protocols to optimize longevity.
+
+[00:12:53]  
+**App’s Technical and User-Friendly Features Highlighted**  
+- Evan praises EVgo app for showing detailed “nerdy” charging data (rates, amperage, voltages) not available in Electrify America’s app.  
+- The adaptive charge rate drop over time is described as **normal behavior** to protect battery health.
+
+[00:13:22]  
+**Stopping the Charging Session – Methods**  
+- Terminating the charging session can be done via:  
+  - Inside the Volkswagen ID.4 infotainment menu (“stop charging” option).  
+  - On the EVgo dispenser touch menu (“stop charge” button).  
+  - Probably also via the EVgo app (*not tested by the presenter*).  
+- At 80% SOC, the car should automatically stop charging and the port light would typically turn white to indicate safe unplugging is possible without user intervention.
+
+[00:14:37]  
+**Charging Session Summary and Metrics**  
+
+| Metric                          | Value                    | Comment                          |
+|--------------------------------|--------------------------|---------------------------------|
+| Initial SOC                     | ~15%                     | Starting charge level            |
+| Final SOC                      | 80%                      | Ending charge level              |
+| Total charging time             | ~33 minutes              | Duration of the session          |
+| Energy dispensed                | 48 kWh                   | Total energy transferred        |
+| Final charging rate             | 60 kW                    | Lower at end of session          |
+| Final current                  | 153 A                    | Decreased as battery approaches 80% |
+| Final voltage                 | 395 V                    | Slight voltage increase          |
+| Estimated session cost          | $1 (using credit card)   | Very affordable rate for full charge |
+
+- The 33-minute fill from 15% to 80% A SOC at an average rate of roughly 100 kW is deemed **efficient and satisfactory** by Evan.
+
+[00:15:10]  
+**Unplugging Experience and Post-Session App Data**  
+- Unplugging was physically easier than plugging in, which required two hands due to the cable stiffness and position.  
+- The EVgo app’s post-session interface is relatively minimalistic:  
+  - Shows “charge complete” notification  
+  - Lists session location, final energy delivered, cost ($1), and session duration.  
+  - Does **not** provide a detailed charging summary or graph like Electrify America.  
+- Evan notes a minor issue where battery SOC state in the app sometimes lags behind actual vehicle state.
+
+[00:16:22]  
+**Conclusions and Future Outlook**  
+- Evan’s **charging luck at EVgo appears to be improving**, achieving the third successful charge in a row.  
+- The expansion of new EVgo stations in urban areas is a positive development, making chargers more accessible closer to homes and daily activities than freeway-centric Electrify America stations.  
+- While challenges remain (cable length, charger positioning, outages, parking design), new infrastructure investments indicate potential improvement in EVgo’s service quality.  
+- The video ends with a call to action for viewers to like, share, and subscribe for more EV charging content.
+
+---
+
+### **Key Insights**  
+- **EVgo’s AutoCharge program** streamlines charging for compatible vehicles but is currently unavailable for Volkswagen ID.4.  
+- New EVgo stations are emerging in urban Southern California but suffer early-stage operational and maintenance issues (offline chargers, cable reach problems).  
+- EVgo stations are located more in urban in-fill locations rather than along freeways, offering different use case advantages compared to Electrify America.  
+- Charging session performance can vary, but recent sessions show efficient power delivery at about 100–120 kW for the ID.4.  
+- EVgo's app provides extensive real-time charging data preferred by some users over Electrify America’s app, though post-session summaries are limited.  
+- Parking layout, especially regarding handicap spots, can pose conflicts for EV users and disabled drivers, underscoring the need for considerate station design.  
+- Charging session limits (60 minutes max) may impact slower-charging vehicles.
+
+---
+
+### **Abbreviations & Terms**  
+| Term                    | Explanation                               |  
+|-------------------------|-------------------------------------------|  
+| EVgo                    | Electric vehicle charging network         |  
+| AutoCharge              | EVgo's automatic charger activation program |  
+| kW                      | Kilowatt, unit of power                    |  
+| SOC                     | State of Charge, battery percentage       |  
+| VIN                     | Vehicle Identification Number              |  
+| DC                      | Direct Current, used in fast charging      |  
+| Amps (A)                | Unit of electric current                    |  
+| Electrify America (EA)  | EV charging network, freeway-adjacent     |
+
+---
+
+This detailed summary is fully grounded in the original video transcript, preserving specific data points, operational details, and user experience commentary.
+
+What is the EVGo app

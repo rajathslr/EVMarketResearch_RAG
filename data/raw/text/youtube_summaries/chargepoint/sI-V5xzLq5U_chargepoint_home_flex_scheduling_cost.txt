@@ -1,0 +1,103 @@
+https://www.youtube.com/watch?v=sI-V5xzLq5U
+[00:00:16] This segment introduces the topic concerning the use of a **home Flex charger** for electric vehicles (EVs), specifically focusing on **time-of-day electricity rates** implemented by the power company. The speaker has installed a home Flex charger about a year ago to charge a **2023 Chevy Bolt EV**, which charges at up to **48 amps** and approximately **11.5 kW maximum power**. The device performs reliably and suits the vehicle's charging capabilities.
+
+- The home Flex charger is a **Level 2 charger**.
+- It supports up to around **11.5 kW power output** for the Chevy Bolt EV.
+- The charger was installed independently by the user.
+
+[00:00:52] The speaker also mentions adding a **Tesla Model 3** from his son in March of the same year. Both EVs are charged routinely with this Level 2 charger, often utilizing clean energy generated through **solar panels** on their property. Using solar and EVs results in **significant savings on gasoline and general driving hassle**. The convenience of plugging in at home is emphasized as a major benefit.
+
+- Electricity usage for EV charging is complemented by on-site solar panels.
+- This combination leads to **cost savings and environmental benefits**.
+- The household owns two EVs: a 2023 Chevy Bolt and a Tesla Model 3.
+
+[00:01:32] The focus shifts to describe the **time-of-day electricity rates** established by the **Blue Ridge Electric Co-op** starting November 1st for the winter period:
+
+- **Peak period:** 6:00 AM to 9:00 AM.
+- Regular flat rate electricity was reduced from approximately **15.25 cents/kWh** to **13.9 cents/kWh**.
+- An **additional peak charge of $0.13 per kWh** applies during the peak period.
+- Because the EV charger can pull up to about **11.5 kW**, charging during this peak window can become **costly very quickly**.
+
+**Key implication:** Charging during peak hours significantly increases electricity bills due to extra per kilowatt-hour charges, raising the cost of charging the EVs if not managed properly.
+
+[00:02:15] To avoid excessive costs, the speaker discovered that the **ChargePoint home Flex charger supports programmable charging schedules**. Using the ChargePoint app, a user can:
+
+- Set charging schedules separately for **weekdays and weekends**.
+- Prevent the charger from operating during peak time windows.
+- The speaker configured the schedule to **disable charging between 5:30 AM and 9:30 AM**, a little wider than the 6–9 AM peak, providing extra safety.
+
+This proactive charging scheduling has worked well and prevented peak-hour charging costs.
+
+[00:03:42] An incident occurred where the speaker moved the charging cord from charging the Tesla Model 3 “Vault” (presumably a garage or another charging location) to charge the Tesla in the main location around **9:15 AM**, which should be outside the scheduled charge window.
+
+- Unexpectedly, the charger was still charging despite the scheduled block.
+- This could have resulted in unexpected peak-time charges.
+
+[00:04:21] On contacting **ChargePoint customer service** for an explanation, the speaker learned about a particular **"double bump" feature** on the ChargePoint charger:
+
+- The "double bump" occurs if the charging cable is unplugged and replugged quickly (within about 5 seconds).
+- This action **overrides or disables the scheduled charging controls temporarily**.
+- The feature allows emergency or manual charging even without a phone or app control.
+
+In this case, moving the cord quickly triggered the double bump, causing the charger to ignore the set schedule and start charging during the peak rate period.
+
+[00:05:01] The customer service representative explained that to **restore the normal scheduled charging function**, the user needs to:
+
+- Unplug the charging cord from the vehicle.
+- Wait about **10 seconds**.
+- Plug it back in again.
+
+This resets the schedule and re-enables the programmed charging restrictions, avoiding unintended charging during peak rates.
+
+[00:05:41] The speaker emphasizes the **importance of knowing this feature** to avoid unexpected high electricity bills, especially when time-of-day rates are involved. He notes that he was unaware of this "double bump" functionality before the incident and warns other users to be cautious about it.
+
+- This "double bump" override is specific to ChargePoint chargers; behavior on other charger brands is *Not specified/Uncertain*.
+- The speaker highly recommends understanding your charger’s specific behaviors under time-of-day pricing to manage costs effectively.
+
+[00:06:18] The final remarks highlight the speaker’s **positive overall experience with owning EVs and the ChargePoint home Flex charger**, emphasizing how this has helped reduce reliance on gasoline and improve convenience. They encourage viewers to:
+
+- Be aware of time-of-day pricing details and charger-specific features.
+- Like, subscribe, and check other content for more EV and charging-related tips.
+
+---
+
+### Summary Table of Electrical Costs and Charging Parameters
+
+| Parameter                        | Value                            | Notes                                 |
+|---------------------------------|---------------------------------|---------------------------------------|
+| Charger type                    | Home Flex (ChargePoint)          | Level 2 charger                      |
+| Chevy Bolt EV max charging power | $\approx 11.5$ kW                | Charging up to ~48 amps              |
+| Tesla Model 3                  | Not specified for max charging rate | Uses same Level 2 charger          |
+| Normal electricity rate (off-peak) | $0.139$ USD/kWh (13.9 cents)   | Reduced from 15.25 cents/kWh         |
+| Peak electricity additional rate | $0.13$ USD/kWh                 | Applies from 6:00 AM to 9:00 AM winter season |
+| Total peak rate per kWh          | $0.269$ USD/kWh (13.9 + 13 cents) | More than double off-peak rate      |
+| Charger schedule block           | 5:30 AM – 9:30 AM               | Set to avoid peak window with margin  |
+
+---
+
+### Key Insights
+
+- **Time-of-day rates can significantly increase EV charging costs** if charging occurs during peak windows.
+- The **ChargePoint app allows users to schedule charging windows** to avoid high-cost periods automatically.
+- The **"double bump" feature disables scheduled charging temporarily if the plug is removed and reinserted quickly**, allowing manual override.
+- Care must be taken to **reset the charger by unplugging and waiting 10 seconds** before reconnecting to re-enable the schedule.
+- Understanding charger-specific behavior is **critical under dynamic electricity pricing models** to avoid unintended billing spikes.
+- Solar panels can provide substantial cost savings when integrated with home EV charging, reducing reliance on grid electricity, especially during peak pricing.
+
+---
+
+### Recommendations for EV Owners on Time-of-Day Rates
+
+- **Verify your electric utility’s time-of-day rate schedules carefully.**
+- Use **charger scheduling features to avoid charging during peak-cost windows.**
+- Learn about unique behaviors and override features such as the **ChargePoint "double bump"** to prevent accidental high-cost charging.
+- If possible, **align EV charging times with periods of solar production or off-peak electricity.**
+- Contact your charger’s customer support for clarifications on feature sets to manage charging behavior effectively.
+
+---
+
+This detailed summary accurately captures all relevant points in the transcript regarding home EV charging with time-of-use rates, scheduling, and charger-specific features, providing a valuable resource for EV owners encountering similar scenarios.
+
+
+-------------------------------------------------------
+ChargePoint Home Flex leel 2 charger: Month review

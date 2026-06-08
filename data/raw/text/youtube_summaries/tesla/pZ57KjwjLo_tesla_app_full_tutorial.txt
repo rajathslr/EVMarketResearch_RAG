@@ -1,0 +1,185 @@
+https://www.youtube.com/watch?v=-pZ57KjwjLo&t=2s
+
+[00:00:00]  
+**Introduction and Overview of the Tesla App**  
+- Host Mike Seuss introduces a complete walkthrough of the **Tesla app**, explaining how to maximize its use with tips, tricks, and hidden features.  
+- The video is sponsored by **Sentry Pro**, a security-enhancing Tesla-related app to be detailed later.  
+- The Tesla app serves as a centralized portal to:  
+  - Control the Tesla vehicle and its charging settings  
+  - View vehicle statistics and data  
+  - Manage multiple drivers  
+  - Schedule services and roadside assistance  
+  - Track location and schedule trips  
+  - Activate paid upgrades and buy Tesla merchandise  
+  - Earn rewards toward free gear and vehicle upgrades  
+- Available on **Apple iOS and Android** platforms, the Tesla app is described as an essential tool for Tesla owners.  
+
+[00:00:28]  
+**Downloading and Setting Up the Tesla App**  
+- Users can find the app by searching **“Tesla”** in either the Apple App Store or Google Play Store.  
+- The official Tesla app is the first result and is **free to download**.  
+- Upon opening the app, users must either **sign in** or **create a new Tesla account**.  
+- Account creation requires filling in necessary information followed by enabling **notifications**, which are essential for receiving alerts from the app.  
+- To add your Tesla to the app:  
+  - Tap the **person icon** in the top right, then select **add products**  
+  - Required for setup: the Tesla’s **VIN**, internet access (Wi-Fi or LTE), **driver’s license**, and **proof of ownership or business documents** for company-owned vehicles  
+  - Adding the car to the app may take **3 to 5 days** but sometimes happens instantly.  
+
+[00:01:30]  
+**Setting Up Phone Key and Initial Connectivity**  
+- Users can set up their phone as a **wireless key** enabling them to unlock and drive their Tesla without pulling out the physical key card.  
+- Process involves:  
+  - Selecting **setup phone key** from the main menu  
+  - Allowing Tesla access to device location  
+  - Pairing by placing the physical key card on the Tesla’s center console  
+- Once paired, the phone key enables **automatic unlocking on approach** and **automatic locking upon departure**.  
+
+[00:02:29]  
+**Main Screen Layout and Primary Features**  
+- At the top left of the app’s main screen:  
+  - Your Tesla’s **customizable name** (hold down to rename)  
+  - **Battery percentage** and current **car status**  
+  - When charging, it shows the **remaining time** for charge completion  
+- Top right displays a **message button** with notifications.  
+- A drop-down menu provides:  
+  - Access to the **Tesla Shop**  
+  - Options to manage **other electric vehicles in the Supercharger network**  
+  - **Payment management** for charging and services (Apple Pay, credit/debit cards)  
+- Payment options need to be added for using Tesla Superchargers and buying upgrades, accessible via **charging > manage payment**.  
+
+[00:02:56]  
+**Quick Controls and Charging Information**  
+- Directly beneath the car info, a **row of customizable quick controls** allows fast access to frequently used functions.  
+- The app offers a hidden feature allowing more than the default 4 quick controls—in this example, 5 controls have been set.  
+- While charging, a box appears below quick controls showing:  
+  - **Current power (kW), energy delivered (kWh)**  
+  - **Charging amps and voltage**  
+  - A **slider to set charge limit**  
+  - Buttons to **stop charging** and **unlock the charge port**.  
+
+[00:03:28]  
+**Control and Climate Sections**  
+- **Control section**:  
+  - Opens a remote control interface to interact with the Tesla from afar.  
+  - Includes access to **tire pressure monitoring** via an icon.  
+- **Climate control section**:  
+  - Displays current interior climate information.  
+  - Enables remote control of:  
+    - Interior temperature setting  
+    - Window venting  
+    - Seat and steering wheel heaters  
+    - Defrost function  
+    - Activating **Camp Mode** and **Dog Mode**  
+  - Offers **cabin overheating protection** which automatically cools the interior if it becomes excessively hot.  
+- Additional videos about Camp and Dog Modes are recommended on the host’s channel.  
+
+[00:04:30]  
+**Location and Navigation Features**  
+- The **location tab** shows the Tesla’s current location on a map interface.  
+- Four icons on the right allow:  
+  1. Sending directions to the Tesla using the device’s default map app  
+  2. Displaying the car’s exact location  
+  3. Switching between map and satellite views  
+  4. Displaying nearby **Tesla Supercharger stations** and a list of their locations  
+- Users can input an address in the app, which will send optimized navigation directions directly to the Tesla, including **necessary charging stops and charging time**, unlike general map apps.  
+- Upon entering the vehicle, navigation starts automatically with the sent directions.  
+
+[00:04:57]  
+**Scheduling and Charging Optimization**  
+- The **schedule tab** lets users plan:  
+  - **Charging schedules at home** to finish charging by a chosen departure time  
+  - **Preconditioning** of the battery before using Superchargers to optimize charging speed and battery health  
+  - **Off-peak charging** option to reduce energy costs by using electricity during cheaper periods  
+- The host references another video covering Supercharger usage in depth.  
+
+[00:06:00]  
+**Security and Driving Management**  
+- The **security and driving tab** offers options to:  
+  - Manage phone keys and add additional drivers  
+  - Set up **Bluetooth audio connections**  
+  - Enable security features like:  
+    - **PIN code for Tesla access**  
+    - **Speed limit** for added drivers  
+    - **Valet mode** restricting vehicle capabilities and access during valet parking  
+    - **Sentry Mode**, Tesla’s security system using exterior cameras to record suspicious activity and alert owners  
+- The app allows viewing a **live feed of exterior cameras** and remotely speaking to someone near the vehicle using the external speaker if equipped.  
+- When Sentry Mode records an event, the Tesla app notifies the owner upon vehicle return and shows recorded footage, but **does not provide immediate real-time alerts**.
+
+[00:06:32]  
+**Sponsorship Segment: Sentry Pro App**  
+- **Sentry Pro** is introduced as a complementary app to Tesla’s official app, offering:  
+  - **Instant, real-time notifications** when Sentry Mode detects activity or incidents  
+  - Peace of mind with 24/7 vigilant protection from anywhere  
+  - The ability to quickly respond by sounding the horn or flashing lights directly through Sentry Pro, which then directs users to the Tesla app video feed  
+  - High security with **direct authentication** from Tesla servers and **no personal data collection**  
+- A **one-week free trial** of Sentry Pro is available for Android and Apple devices via a link in the description.
+
+[00:07:02]  
+**Charge Stats Screen: Usage and Savings Overview**  
+- Provides detailed charging history and statistics, including:  
+  - Daily, monthly, and yearly total charging time  
+  - Energy expenses and **gasoline savings** by using electric charging  
+- The screen offers **charging tips** and an option to input your energy provider to calculate more accurate charging costs.  
+- Many Tesla owners may be surprised by the savings they accumulate after regularly checking this section.  
+
+[00:07:31]  
+**Upgrade Section: Feature and Warranty Extensions**  
+- Users can purchase software upgrades for their Tesla, such as:  
+  - **Enhanced Autopilot**  
+  - **Full Self-Driving capability**  
+- Purchase options include full payment or monthly installments. Upgrades become **immediately enabled** after purchase.  
+- The upgrade section also offers **extended service agreements** covering two years or an additional 25,000 miles beyond the original warranty—whichever comes first. This plan activates after expiration of the basic limited warranty.  
+- Tesla accessories (e.g., interior/exterior add-ons) can be purchased here, with a recommendation to watch a separate video demonstrating official Tesla accessories.
+
+[00:08:05]  
+**Service Menu: Remote Support and Repair Scheduling**  
+- Users can request Tesla service directly from the app when issues arise. Features include:  
+  - Selecting a service topic and describing issues  
+  - Uploading photos to assist diagnosis  
+  - Submitting the request for Tesla’s service team review  
+- The service team can provide remote diagnostics and communication via the app.  
+- If remote repair is insufficient, users can schedule an **on-site service appointment** (free if under warranty), where the Tesla Service advisor can come to the user’s location.
+
+[00:09:03]  
+**Roadside Assistance Menu**  
+- Functions similarly to the service menu, allowing users to request help for:  
+  - Breakdown situations  
+  - Flat tires  
+  - Lockouts  
+  - Dead batteries  
+  - Additional coverage options  
+- The app provides access to the Tesla roadside assistance policy and relevant educational content.  
+
+[00:09:33]  
+**Additional Vehicle Details and Referral Program**  
+- Scrolling to the bottom of the main screen reveals:  
+  - Tesla trim level  
+  - Odometer mileage  
+  - Vehicle Identification Number ($VIN$)  
+  - Current software version  
+  - Link to **software release notes** for the latest Tesla updates  
+  - Quick access to **manage drivers**  
+- At the top of the main screen, the **Refer and Earn** section enables users to participate in Tesla’s referral program by sharing a referral link to promote Tesla vehicles or products like the Powerwall.  
+- Referral rewards include points redeemable for:  
+  - Upgrades  
+  - Supercharger miles  
+  - Accessories and clothing  
+  - Entry into raffles and awards  
+- Buyers using the referral link may receive special discounts or free upgrades.  
+- The host reminds new Tesla buyers to use his referral link in the description to gain benefits.
+
+[00:10:05]  
+**Conclusion and Call to Action**  
+- The walkthrough is summarized as a thorough guide to operating the Tesla app like a pro.  
+- Viewers are encouraged to like the video and subscribe to the channel for more Tesla-related content.  
+- Additional recommended videos on dog and camp modes, Supercharger usage, and Tesla accessories are mentioned for deeper dives into specific features.
+
+---
+
+This comprehensive summary outlines the Tesla app’s functionalities, from initial account creation and phone key setup to advanced features such as security management, charging optimization, service scheduling, and referral benefits. The integration with the **Sentry Pro** app enhances Tesla’s native security by providing real-time alerts. The Tesla app emerges as a multifaceted tool vital for Tesla owners to seamlessly interact with and optimize their vehicle experience.
+
+
+
+
+
+

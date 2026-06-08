@@ -1,0 +1,49 @@
+https://www.youtube.com/watch?v=Pde2u76ewws
+[00:00:01] **Introduction and Overview**  
+- The video tutorial demonstrates **how to add a home charge point** to your account using the Shell Recharge application.  
+- A brief call to action encourages viewers to **subscribe to the creator's channel**, promising a future video revealing detailed YouTube revenue statistics and growth strategies upon reaching 100,000 subscribers.  
+- The process begins by instructing users to open the Shell Recharge app on their phone.
+
+[00:00:34] **Step-by-Step Instructions for Adding a Home Charge Point**  
+- In the app, users should:  
+  - Locate and click the **"Charge Point" button** found at the bottom of the app interface.  
+  - Select the **"Connectivity"** option related to the home charge point.  
+- Users must then enter the **serial number** of their home charge point to activate it:  
+  - The serial number can be found physically on the right side of the charge point device.  
+  - Enter the serial number into the input box labeled **"Enter Serial Number"** located in the middle of the app screen.  
+  - After typing in the serial number, press the **"Add Charge Point"** button at the bottom of the page.
+
+[00:01:14] **Final Outcome and User Interface Update**  
+- Upon successful addition, the home charge point will appear in the designated section of the app.  
+- This allows users to **easily locate and manage their home charge point** within the Shell Recharge app.  
+- The video concludes with a brief farewell and encouragement to watch further content.
+
+### Key Insights  
+- **Adding a home charge point** requires the exact serial number which is device-specific and must be entered correctly.  
+- The process is entirely straightforward and managed through the **Shell Recharge mobile application interface**.  
+- The serial number's location on the device is clearly indicated as being on the **right side** of the charge point.  
+- The UI elements relevant for this action include the **Charge Point button**, **Connectivity option**, **Enter Serial Number box**, and the **Add Charge Point button**.
+
+### Summary Table of Steps
+
+| Step No. | Action                                   | Location in App                  | Additional Details                          |
+|----------|------------------------------------------|--------------------------------|---------------------------------------------|
+| 1        | Open Shell Recharge app                   | User’s smartphone              | -                                           |
+| 2        | Tap on "Charge Point" button              | Bottom of app screen           | -                                           |
+| 3        | Select "Connectivity"                      | Home charge point section      | -                                           |
+| 4        | Locate serial number                       | Physically on right of device  | Essential for activation                      |
+| 5        | Enter serial number into input box        | Center screen, "Enter Serial Number" box | Must be exact match                      |
+| 6        | Press "Add Charge Point" button           | Bottom of page                 | Confirms addition and activation             |
+| 7        | Confirm home charge point appears in list | Relevant section in app        | Ensures easy future access                     |
+
+### Keywords  
+- Shell Recharge App  
+- Home Charge Point  
+- Serial Number  
+- Connectivity  
+- Add Charge Point  
+
+### Conclusion  
+This video offers a concise tutorial on managing home charging infrastructure by linking a home charge point device to the user’s Shell Recharge app account. Correct serial number entry is critical for successful activation, and the app interface provides clear steps and controls to accomplish this task without complications. This content is practical for EV owners using Shell Recharge seeking to integrate their home charging station for seamless access and management.
+
+Tesla App beginners Guide

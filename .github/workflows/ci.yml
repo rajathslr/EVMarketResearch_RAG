@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main, dev]
+  push:
+    branches: [dev]
+
+jobs:
+  lint-and-check:
+    name: Lint & syntax check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install flake8 pyflakes
+          # Install only lightweight deps needed for import checks
+          pip install streamlit pyyaml python-dotenv bcrypt psycopg2-binary
+
+      - name: Flake8 — syntax errors and undefined names
+        run: |
+          # Stop build on syntax errors (E9), undefined names (F821),
+          # undefined local (F823). Ignore line-length (E501) and style.
+          flake8 . \
+            --count \
+            --select=E9,F821,F822,F823 \
+            --exclude=.venv,__pycache__,data \
+            --show-source \
+            --statistics
+
+      - name: Check Python files compile cleanly
+        run: |
+          find . -name "*.py" \
+            -not -path "./.venv/*" \
+            -not -path "./data/*" \
+            -not -path "./__pycache__/*" \
+            | xargs python -m py_compile && echo "All files compile OK"
+
+      - name: Verify key imports
+        run: |
+          python -c "import streamlit; import yaml; import psycopg2; import bcrypt; print('Core imports OK')"

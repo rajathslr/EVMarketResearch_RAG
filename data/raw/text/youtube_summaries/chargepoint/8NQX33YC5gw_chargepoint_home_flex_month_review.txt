@@ -1,0 +1,98 @@
+https://www.youtube.com/watch?v=8NQX33YC5gw
+
+[00:00:00] Summary of Product and Purchase Context  
+- The video reviews the **ChargePoint Home Flex Level 2 EV Charger**, operating at 240 volts with a 23-foot long cable.  
+- The reviewer used a **OneAC adapter cable** to connect to a non-matching wall outlet, explaining that the adapter was necessary due to incompatibility with the outlet at their home.  
+- Purchased from Amazon at a **substantial discount (~$500 CAD)**, combined with a local rebate made the final price around **$150 CAD**, emphasizing the financial value of the purchase.  
+- The adapter cable includes a **quick disconnect feature**, allowing easy switching between the EV charger and other 240-volt equipment (e.g., a welder), demonstrating practical flexibility.
+
+[00:00:38] Device Compatibility and Vehicle Integration  
+- The charger is being used in a garage with a **Kia EV9 Land All-Wheel Drive Premium Edition 2025** electric vehicle.  
+- The user notes the charger works **seamlessly** with this vehicle model without any issues, highlighting good product compatibility.  
+- The unit is **UL certified** and the brand, ChargePoint, has been established since **2007**, positioning it as a credible, longstanding company in the EV charging market.  
+- ChargePoint reportedly has around **260,000 chargers installed in North America**, indicating wide adoption.
+
+[00:01:09] Charging Capacity and Electrical Setup  
+- The charger supports up to **50 amps max current**, though the user's unit is configured to **38 amps** to avoid tripping the household 40-amp breaker.  
+- The user installed **thicker gauge cable** and consulted an electrician, finding 38 amps a safe and effective setting with no issues after 11 months of ownership (2 months active use).  
+- The charger features **indicator lights**, including a Wi-Fi status light that remained stable and active even though the Wi-Fi router is approximately **65 feet away in a crawl space**, demonstrating good wireless connectivity.  
+- **Wi-Fi performance has been "rock solid"**, supporting reliable smart features.
+
+[00:02:19] Usability and Charging Procedure  
+- Operation is straightforward: the charger has a **large button on the connector** for easy engagement.  
+- The connector supports **CCS (Combined Charging System)** standard.  
+- The user demonstrates the charge process:  
+  - Place the charger cable, press the car's charge button, open the charge port.  
+  - Plug connector into the car; the status LED pulses blue indicating active charging.  
+- The reviewer highlights the simplistic interaction and user-friendly design without difficulties.
+
+[00:02:54] Software, App, and Scheduling Features  
+- ChargePoint offers a **mobile app** providing:  
+  - Customizable settings for vehicle type and charging capacity.  
+  - Scheduling capabilities allow users to take advantage of **time-of-use electricity rates or incentives**, optimizing costs.  
+- The reviewer notes that while many EVs (like the Kia EV9) also have in-car scheduling, the charger’s scheduling can operate independently, allowing differentiated control between home and public charging environments.  
+- This redundancy provides an additional convenience layer and potentially prevents overlapping or conflicting charging schedules.
+
+[00:03:59] Purchase Motivation and Market Position  
+- The primary attraction was **cost-effectiveness due to sale and rebates**, making the purchase a "no-brainer" despite the charger not being the newest model.  
+- ChargePoint’s reputation as an established company since 2007 adds confidence in product longevity.  
+- Rebates from the local electric utility made the price approximately **$100 CAD net**, an appealing value for home resale or EV readiness.  
+- The reviewer considered the purchase sound even before owning an EV due to anticipated future use.
+
+[00:04:30] Aesthetic and Competitive Comparison  
+- The reviewer finds the charger’s design **functional but not aesthetically outstanding**; it pulses blue during charging but lacks visual appeal compared to some competitors.  
+- Mentioned competitors with more stylish or feature-rich designs include:  
+  - Autel  
+  - Wolf Block  
+  - Grizzly  
+- However, these alternatives are **not eligible for local rebates (e.g., BC Hydro electric program), making ChargePoint more viable for consumers prioritizing financial incentives**.  
+- Overall, rebate availability was a decisive factor in the purchase decision over design or extra features.
+
+[00:05:34] Installation and Configuration Recommendations  
+- The charger’s **connector type differed from the existing wall outlet**, necessitating an adapter cable, which posed an initial installation challenge but was resolved successfully.  
+- The adapter’s 45° cable twist allowed enhanced **flexibility of placement** and made the installation user-friendly, both practically and in terms of maintaining electrical code compliance.  
+- The mounting height (~6 feet off the ground) was considered situationally optimal to avoid code violations and ergonomic issues.  
+- These installation decisions balanced regulatory compliance, ease of use, and personal preference for cable management.
+
+[00:06:03] Overall Recommendation and Reliability  
+- The reviewer **strongly recommends this ChargePoint Home Flex charger** from a reliability and functionality perspective.  
+- Indicates openness to considering other products if rebates are not an influencing factor or if aesthetic preferences demand it.  
+- States that after nearly a year of ownership, usage has been **consistently trouble-free and reliable**, underscoring product quality.  
+- Final sentiment: **positive endorsement focused on value, ease of use, and reliable performance.**
+
+---
+
+### Key Information Table
+
+| Feature / Aspect               | Details                                                |
+|-------------------------------|--------------------------------------------------------|
+| Charger Model                 | ChargePoint Home Flex Level 2                         |
+| Voltage                      | 240 V                                                  |
+| Cable Length                 | 23 feet                                               |
+| Max Charging Current          | 50 A max (configured to 38 A)                          |
+| Certifications               | UL Certified                                          |
+| Established Brand Since      | 2007                                                  |
+| Number of Chargers in NA      | ~260,000                                             |
+| Wi-Fi Connectivity Distance  | ~65 feet from router, stable connection               |
+| Compatible Vehicle           | Kia EV9 Land AWD Premium 2025                          |
+| Adapter Cable Feature         | OneAC, quick disconnect, 45° twist                     |
+| Purchase Price               | ~$500 CAD, net ~$150 CAD after rebate                  |
+| Scheduling Capability        | Via ChargePoint app, allows time-of-day charging       |
+| Competitor Brands Mentioned  | Autel, Wolf Block, Grizzly                             |
+| Installation Height          | ~6 feet off ground, code compliant                      |
+
+---
+
+### Key Insights  
+- **Affordability enhanced by rebates is a significant driver for purchase decisions.**  
+- **Robust Wi-Fi performance at a non-trivial distance shows solid product networking quality.**  
+- **Simple user interface and straightforward cable handling contribute to positive user experience.**  
+- **Device scheduling offers flexibility both independently and complementary to EV onboard systems.**  
+- **Reliability and brand history build confidence over flashier aesthetics or additional features.**
+
+---
+
+### Summary Conclusion  
+The ChargePoint Home Flex Level 2 EV charger offers a **dependable, easy-to-use, and financially advantageous solution** for home EV charging. Despite modest aesthetics and the requirement for an adapter cable to accommodate local outlets, the unit demonstrated **uninterrupted Wi-Fi connectivity, consistent charging performance, and straightforward installation**. The user's decision was heavily influenced by significant rebate incentives, underscoring the importance of local energy programs in EV infrastructure adoption. The product is highly recommended for consumers prioritizing reliability and cost-effectiveness in Level 2 charging equipment.
+
+HERE how to charge at EVGo

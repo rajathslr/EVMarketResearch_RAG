@@ -1,0 +1,21 @@
+credentials:
+  usernames:
+    admin:
+      name: Admin
+      password: $2b$12$7zWXa3y0ycWkPhXt8.NyiuFLrGDdCYGLSrIALbfUT03tCisa0.wu2
+      role: superadmin
+
+    user1:
+      name: User1
+      password: $2b$12$ZEtHi3yQ7J0wVbKCIAGCCuZtCzxKOrkrIh/Efxs0hQ2UyT8HeFMmK
+      role: superuser
+
+    user2:
+      name: User2
+      password: $2b$12$w5HipfgPmE1GQj5/vQz6o.qUvYNHqYYo8km8/2XGlD6.jy2ELjXZW
+      role: user
+
+cookie:
+  name: ev_research_auth
+  key: ev_research_s3cr3t_k3y_ch4nge_th1s_pl34se
+  expiry_days: 30

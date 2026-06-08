@@ -1,0 +1,129 @@
+https://www.youtube.com/watch?v=JsCW--sgeYI
+[00:00:00]  
+**Introduction to Tesla App Features**  
+- The Tesla app provides convenient remote control of Tesla vehicles.  
+- Designed especially for new or potential Tesla owners to understand the app’s functionality.  
+- Upon opening the app, users see their car’s customized name at the top, along with a chat icon and menu options.  
+
+[00:00:26]  
+**Communication and Tesla Updates**  
+- Chat icon allows receiving company updates, feedback requests, and service reminders.  
+- Menu drop-down supports managing multiple Tesla vehicles or other Tesla products in one account.  
+- Profile section allows the user to edit personal details and account settings.  
+
+[00:00:56]  
+**Charging Features**  
+- Important to add a charging payment method (credit card) in the app for supercharging convenience.  
+- When using Tesla Superchargers, payment is automatic through the app on plug-in.  
+- Charge history records all Supercharger visits, visible in the app for easy tracking.  
+- A separate section exists for adding other EVs eligible to charge at Tesla Superchargers (if applicable).  
+
+[00:01:24]  
+**Tesla Insurance and Product Management**  
+- Tesla insurance policy and payment management available directly in the app for insured Tesla owners.  
+- Users without Tesla insurance can ignore this tab.  
+- Product management tab shows all Tesla products owned, including vehicles and solar panels.  
+- Functions include adding/removing drivers and editing vehicle details.  
+
+[00:01:50]  
+**Referral and Loyalty Programs**  
+- The app features an active referral program; users can copy and share referral links for benefits if the referred person buys a Tesla or Tesla product.  
+- Loyalty benefits exist for current Tesla owners purchasing additional Teslas, including monetary discounts or other incentives.  
+
+[00:02:16]  
+**Tesla Shop and Additional Services**  
+- Mobile access to Tesla's official shop for accessories, charging gear, apparel, etc.  
+- Discover tab provides access to Tesla shop items and vehicle ordering options.  
+- Energy products like Powerwall included in the app’s menu for management and learning.  
+- Supports charging of non-Tesla EVs compatible with Tesla chargers, though this feature is *Not specified/Uncertain* in terms of usability by the narrator.  
+
+[00:03:13]  
+**Quick Controls and Entertainment**  
+- Row of customizable quick control icons on the home screen allows access to favorite vehicle functions.  
+- Example: “Fart mode” icon can be added for instant activation.  
+- Music controls include playing, pausing, skipping, and volume adjustment within the app interface.  
+
+[00:03:40]  
+**Notifications and Vehicle Controls**  
+- Notifications include software updates and upcoming service appointments.  
+- “Controls” tab allows remote operation of car features:
+  - Open frunk (front trunk), trunk, unlock/lock vehicle, open charge port.  
+  - Tire pressure (PSI) monitoring visible via an icon.  
+
+[00:04:07]  
+**Climate Control Features**  
+- Users can remotely set HVAC system temperature, toggle seat coolers/heaters, steering wheel heating.  
+- Options include venting windows remotely.  
+- Features special modes such as:
+  - Defrost for windshield and windows.  
+  - Camp Mode and Dog Mode to keep climate controlled while parked.  
+  - Cabin Overheat Protection maintains interior temperature within set limits (e.g., 95°F), using AC or fan as preferred.  
+- Battery consumption considerations: recommending turning off cabin cooling when parked to save battery; preconditioning climate before entering the vehicle is advised.  
+
+[00:05:38]  
+**Location and Navigation Features**  
+- App shows current vehicle location and provides directions to the parked vehicle if forgotten.  
+- Map display can toggle between satellite and map views.  
+- Charging icon filters nearby chargers by speed:
+  - Three lightning bolts: Tesla Superchargers (fast chargers).  
+  - One lightning bolt: slower Destination Chargers such as hotels or overnight parking.  
+
+[00:06:07]  
+**Scheduling Features**  
+- Schedule tab allows programming multiple automatic actions:
+  - Climate preconditioning at scheduled times (such as 8:45 a.m. before work, repeated weekdays).  
+  - Battery preconditioning to warm or cool the battery for optimal performance.  
+  - Scheduled charging to use off-peak electricity rates (e.g., midnight to 6 a.m.).  
+  - Light Show scheduling with timing and volume adjustment—a unique, entertaining feature.  
+
+[00:07:10]  
+**Security and Driver Management**  
+- Sentry Mode controls and review are available:
+  - Dashcam clips and saved video can be viewed remotely via the app.  
+  - Live camera feed accessible on demand.  
+  - Sentry Mode can be toggled on/off remotely.  
+- Drivers can be added by sending invitations through the app, allowing others to control and drive the Tesla without a separate Tesla account.  
+
+[00:08:34]  
+**Charge Statistics and Cost Savings**  
+- The Charge Stats tab provides a breakdown of energy usage and cost savings compared to gas vehicle operation.  
+- Users can view overall charging expenses by month or year, including home charging and supercharger use separately.  
+- Calculations factor in local average gasoline prices for accurate savings estimates.  
+- Users can input exact home electricity rates (e.g., $0.14 per kWh) for more accurate charging cost calculation.  
+
+[00:09:34]  
+**Software Updates and Upgrades**  
+- Software upgrades can be managed from the app, including:  
+  - Full Self-Driving subscription or purchase.  
+  - Acceleration boost.  
+  - Premium connectivity subscription.  
+- Accessories are accessible via the Tesla shop link.  
+- Service plans such as windshield protection, wheel and tire coverage, and extended service agreements can be viewed and purchased.  
+- Installable upgrades available for purchase and installation coordination.  
+
+[00:10:03]  
+**Insurance Safety Score**  
+- Tesla Insurance customers can view their safety score in the app, which directly affects insurance rates.  
+- Safety scores are based on driving behavior metrics provided in the app.  
+- Improving driving habits can help reduce insurance premiums.  
+
+[00:10:29]  
+**Roadside Assistance Feature**  
+- Roadside assistance can be requested through the app.  
+- Specific issues like flat tires are selectable; app access to real-time tire pressure data confirms actual status.  
+- Other roadside issues can also be addressed (details *Not specified/Uncertain*).  
+
+[00:10:56]  
+**Vehicle Information and Warranty**  
+- The app displays key vehicle details including model, mileage, VIN, software version, specs, and warranty status.  
+- This tab mirrors information from the purchase documentation and service records.  
+
+[00:11:23]  
+**Driver Management and Summary**  
+- Reiterates driver adding feature for allowing authorized users to operate the Tesla via app.  
+- Provides a comprehensive walkthrough concluding that the Tesla app is straightforward yet packed with useful, convenient features for Tesla owners.  
+
+**Summary:**  
+This video offers a detailed walkthrough of the Tesla app, illustrating its comprehensive suite of remote controls, scheduling, charging management, security, and upgrade features. Through the app, Tesla owners can remotely operate multiple vehicle functions, manage payments and charging, schedule climate and charging, review detailed statistics, handle insurance and roadside assistance, and add authorized drivers—all designed to enhance the ownership experience. The app also integrates Tesla’s branding ecosystem including referrals, shopping, and loyalty programs. This tutorial is particularly valuable for new Tesla owners seeking to maximize their app usage for convenience, efficiency, and cost savings.
+
+Ultimate Guide to the TEsla app(2026)

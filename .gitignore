@@ -1,0 +1,52 @@
+# ── Credentials & secrets — NEVER commit ─────────────────────────────────
+config/.env
+*.env
+infrastructure/terraform/terraform.tfvars
+*.pem
+*.key
+
+# ── Terraform state ───────────────────────────────────────────────────────
+infrastructure/terraform/.terraform/
+infrastructure/terraform/.terraform.lock.hcl
+infrastructure/terraform/terraform.tfstate
+infrastructure/terraform/terraform.tfstate.backup
+
+# ── Python ────────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# ── Scraped bulk data (re-runnable — excluded to keep repo lean) ──────────
+data/raw/text/google_play/
+data/raw/text/app_store/
+data/raw/text/news/
+data/raw/text/reddit/
+data/raw/metadata/
+# Manually-curated data IS tracked:
+#   data/raw/text/youtube_summaries/
+#   data/raw/text/youtube/
+#   data/raw/text/web_pages/
+
+# ── Claude Code session files ─────────────────────────────────────────────
+.claude/
+
+# ── Temp / scratch files ──────────────────────────────────────────────────
+tmp_*.py
+*.tmp
+*.bak
+*.log
+
+# ── OS & IDE ──────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# ── Node ──────────────────────────────────────────────────────────────────
+node_modules/

@@ -1,0 +1,108 @@
+https://www.youtube.com/watch?v=k48fqdaP_Hg
+[00:00:00]  
+**Overview of the ChargePoint Home Flex Charger and Scheduling Expectations**  
+- The video opens with the creator sharing their experience buying the ChargePoint Home Flex Level 2 EV charger primarily for its **scheduled charging feature**.  
+- Despite many reviews praising this feature, the creator reveals important issues, hinting that the **actual scheduling functionality is problematic**.  
+- The creator emphasizes that if they had known about these problems beforehand, they would have saved their money.  
+- The purpose of the video is to **provide an honest and detailed view of what you really need to know before purchasing the ChargePoint Home Flex**.
+
+[00:00:29]  
+**Background: Problems with Toyota Rav4 Prime’s Internal Charging Schedule**  
+- The creator owns a **Toyota Rav4 Prime**, which has a **poor internal scheduling system for charging** compared to most other electric vehicles.  
+- Most EVs allow users to set specific charging windows according to time-of-use electricity rates, but Toyota’s system deviates and is considered unsatisfactory.  
+- The creator planned on bypassing this unreliable internal system by purchasing a **reliable charger with scheduling from a known brand** (ChargePoint), avoiding cheaper, less safe chargers.  
+- ChargePoint was selected for its reputation as a leading EV charger manufacturer and was expected to have a solid scheduling feature despite unclear demonstrations in other reviews.
+
+[00:01:01]  
+**Setting the Schedule via the ChargePoint App: Basic but Limited**  
+- The ChargePoint app allows users to **easily set one charging window**, even importing schedules based on the user’s local utility provider (in this case, PG&E California).  
+- However, only **one single charging window can be set**; **multiple charging windows are not supported**.  
+- This basic scheduling function is **comparable to the creator’s previous Kia Rondo (KERO) plug-in hybrid’s scheduling system**.  
+- The creator hoped to plug in the Rav4 Prime anytime and have it charge automatically only in off-peak hours, but this expectation was **proven incorrect in practice**.
+
+[00:02:09]  
+**Unreliable Schedule Enforcement: ChargePoint Home Flex Ignores Scheduling**  
+- In actual use, the **Home Flex charger randomly ignores the set schedule**.  
+- This malfunction is not caused by user error or improper charging behaviors like repeated unplugging and plugging.  
+- It’s a **software-related issue replicable by other users**, verifiable through online user reports.  
+- The charger sometimes starts charging immediately upon plugging in, **even during expensive peak hours**, negating the financial benefits of scheduled charging.
+
+[00:02:43]  
+**Impacts of Charging at Peak Hours**  
+- California’s electricity rates are significantly higher during peak hours.  
+- Charging at peak times can increase the electric vehicle fueling cost to be **comparable or even more expensive than fueling a gasoline car, eliminating expected savings**.  
+- Scheduled charging during off-peak hours is a major incentive for EV owners to reduce energy costs.  
+- Because of this, the **unreliability of ChargePoint’s schedule management undermines one of the primary financial reasons for buying an EV charger with scheduling features**.
+
+[00:03:57]  
+**Potential Workarounds and Limitations**  
+- Two common solutions from internet forums and the community are:  
+  1. **Reboot the charger via the app**: This temporarily restores proper schedule adherence, but the issue returns unpredictably, requiring frequent reboots indefinitely unless ChargePoint patches the bug.  
+  2. **Rely on the vehicle’s internal scheduling system**, but this may also be unreliable, especially with some EV brands (including the Rav4 Prime). This unpredictability affects multiple EV brands as reported online.  
+- The creator had previously used a simpler Level 2 charger with a **manual onboard delay function** to work around schedule issues, which was reliable but inconvenient.
+
+[00:04:58]  
+**Practical Advice: Constant Vigilance Required**  
+- Users need to be vigilant: open the ChargePoint app **each time the car is plugged in** to ensure charging does not start outside the scheduled window.  
+- If charging starts unexpectedly, users must manually stop it via the app to avoid peak hour charging costs.  
+- It is rare—*not confirmed by the creator*—that charging would randomly start hours after plugging in rather than immediately.  
+- This approach turns scheduled charging into a **manual monitoring task rather than a hands-off automated process**.
+
+[00:06:26]  
+**Positive Features of the ChargePoint App**  
+- Despite the scheduling flaws, the app offers two **valuable conveniences**:  
+  - **Remote start and stop charging control from the smartphone** without having to physically interact with the vehicle.  
+  - **Charging activity logs**, which provide detailed information about when and how much charging occurs, useful for tracking energy usage and integrating with solar power systems.  
+- These benefits, however, **depend on stable Wi-Fi connectivity**, and some users report Wi-Fi failures with the Home Flex post warranty.
+
+[00:07:20]  
+**Request for Community Input on Reliable Chargers**  
+- The creator openly requests suggestions and feedback from viewers, admitting to limited experience with Level 2 chargers.  
+- They seek **recommendations of chargers that reliably support scheduling every time without failure**.  
+- This reflects a broader consumer need for dependable scheduling functions in EV chargers, which remain difficult to find.
+
+[00:07:51]  
+**Alternative Solution: Primecom Charger with Built-in Delay**  
+- The creator’s **most reliable charging experience came from a Primecom charger** with a built-in delay function, used previously for two years without failure.  
+- The Primecom device is relatively inexpensive and less well-known but has never failed to start charging after the delay period.  
+- However, its interface is described as **clunky and frustrating** due to invisible buttons, no tactile feedback, and a tiny screen that shows little information.  
+- The delay settings offer only **3 options: 2, 4, or 6 hours delay**, limiting precise control over charging start times.
+
+| Delay Time Options (hours) | Usability Notes                        |
+|----------------------------|-------------------------------------|
+| 2, 4, 6                    | Hard-to-press invisible buttons; no physical feedback; requires careful button manipulation to change settings |
+
+[00:09:33]  
+**Cable Length Comparison: Primecom vs. ChargePoint Home Flex**  
+- Cable length is another practical consideration impacting charger usability:  
+
+| Charger Model            | Cable Length | Effect on Use                           |
+|-------------------------|--------------|---------------------------------------|
+| Primecom                | 30 ft        | Allows plugging in without repositioning the car; more flexibility but cable tangles more easily |
+| ChargePoint Home Flex   | 23 ft        | Requires backing the car into position to reach; less flexible |
+
+- The longer cable of the Primecom charger is seen as a significant advantage for convenience and accessibility, despite the clunky controls.
+
+[00:10:48]  
+**Current Status and Final Recommendations**  
+- For now, the creator continues to use the **ChargePoint Home Flex**, accepting the necessity to closely monitor charging activities.  
+- They reiterate the call for recommendations about **other reliable EV chargers with faultless scheduling features**.  
+- The video closes with an encouragement to comment and subscribe, emphasizing the goal to **“keep it simple”** when selecting charging solutions.
+
+---
+
+### Key Insights and Summary  
+
+- **ChargePoint Home Flex is easy to install and basic scheduling setup is straightforward**, but it supports only one charging window and **will randomly ignore schedule settings.**  
+- This unpredictability results in potentially expensive peak hour charges, **negating EV ownership savings.**  
+- Community-suggested workarounds include rebooting the charger regularly or relying on vehicle scheduling, both of which have reliability issues.  
+- **Vigilance is key:** users must manually verify charging status every time they plug in.  
+- The ChargePoint app offers useful remote control and charging log features, contingent on stable Wi-Fi.  
+- Primecom charger with delay function has proven 100% reliable in scheduling but has a poor user interface and limited delay options.  
+- Cable length impacts usability; Primecom’s longer cable provides more flexibility than ChargePoint Home Flex.  
+- The creator invites experienced EV owners to share **reliable charger recommendations** with dependable scheduling.  
+
+This review provides a valuable perspective on the **trade-offs between brand reliability, scheduling robustness, ease of use, and practical deployment for home EV charging solutions.**
+
+------------------------------------------
+ChargePoint home flex feature that is great but can cost you a lot more

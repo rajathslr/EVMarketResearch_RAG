@@ -1,0 +1,60 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:        # allow manual trigger from GitHub UI
+
+jobs:
+  deploy:
+    name: Deploy → DigitalOcean Droplet
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # ── Copy changed files to server ─────────────────────────────────────
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DO_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy via git pull
+        run: |
+          ssh -i ~/.ssh/deploy_key ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'REMOTE'
+            set -e
+            cd /opt/ev-research
+
+            echo "--- Pulling latest from main ---"
+            git fetch origin main
+            git reset --hard origin/main
+
+            echo "--- Installing any new Python deps ---"
+            source /opt/ev-research/.venv/bin/activate
+            pip install -q -r requirements.txt
+
+            echo "--- Restarting service ---"
+            systemctl restart ev-research
+            sleep 4
+            systemctl is-active ev-research && echo "✅ Service is running" || (echo "❌ Service failed to start"; journalctl -u ev-research -n 20; exit 1)
+          REMOTE
+
+      # ── Health check ─────────────────────────────────────────────────────
+      - name: Health check
+        run: |
+          sleep 5
+          STATUS=$(curl -sk -o /dev/null -w "%{http_code}" https://${{ secrets.SERVER_HOST }} --max-time 15 || echo "000")
+          echo "HTTP status: $STATUS"
+          if [ "$STATUS" = "200" ] || [ "$STATUS" = "302" ]; then
+            echo "✅ Health check passed"
+          else
+            echo "⚠️  Unexpected status $STATUS — check server logs"
+          fi
+
+      # ── Notify on failure ─────────────────────────────────────────────────
+      - name: Notify on failure
+        if: failure()
+        run: echo "::error::Deployment failed — check logs above"

@@ -1,0 +1,298 @@
+https://www.youtube.com/watch?v=sBTxLK1QC6M
+[00:00:00]  
+This video focuses on helping electric vehicle (EV) owners choose high-quality charging equipment for 2025, emphasizing durability, smart features, and value. The presenter highlights the importance of investing in reliable chargers rather than low-cost, low-quality options and introduces a rigorous testing approach done in the "State of Charge" garage, which houses a large variety of EV chargers for comprehensive evaluation. The presenter also encourages viewers to use the new YouTube "Hype" feature on mobile devices to support smaller creators.
+
+[00:01:29]  
+The video presents the **top electric vehicle chargers for 2025** without ranking them strictly but rather recommending multiple excellent options so buyers can choose what fits their needs best. The first charger reviewed is the **ChargePoint Home Flex**, a long-standing model in the EV charging market known for durable, high-quality components and design.
+
+- **ChargePoint Home Flex** is noted for:
+  - A **custom-made connector** with a rubberized grip, considered one of the best on the market.
+  - The **best cold weather cable tested**, remaining flexible down to -15°F.
+  - Design features such as a **swivel head with backlit LED**, aiding ease of use in the dark.
+  - A removable front plastic cover that users can paint to match their surroundings.
+
+Key specifications include:
+
+| Feature                 | Specification                  |
+|------------------------|-------------------------------|
+| Price                  | $584 (hardwired), $599 (NEMA 1450 plug), $639 (NEMA 650 plug) |
+| Dimensions             | 12.6 in x 9 in x 3.44 in      |
+| Maximum Current        | 50 amps                       |
+| Maximum Power          | 12 kW                        |
+| Adjustable Current Range| 16 to 50 amps                |
+| Cable Length           | 23 ft                        |
+| Connector Options      | J1772 or North American Charging Standard (NACS) |
+| Enclosure Rating       | NEMA 3                       |
+| Operating Temperature  | -22°F to 122°F               |
+| Connectivity           | Wi-Fi (paired with ChargePoint app) |
+| Certification          | UL, Energy Star               |
+| Warranty               | 3 years                     |
+| Manufacturing Location | Mexico                      |
+
+Additional unique features:
+- The cable can be swapped between J1772 and NACS connectors easily by owners without electrician help, costing $199.
+- Available as hardwired or plug-in with different NEMA plug options, including the less common NEMA 650.
+
+Limitations:
+- Only supports pairing **one unit per ChargePoint app account**, unlike most competitors who allow multiple devices per app.
+- Lacks advanced smart charging features such as **dynamic load management** and **power-sharing between multiple chargers** on the same circuit.
+
+Performance summary on Charger Raider rating system:
+
+| Category           | Points (out of max) |
+|--------------------|---------------------|
+| Cost & Value       | 19                  |
+| Power & Construction| 27                  |
+| Testing            | 22                  |
+| Intelligence       | 18                  |
+| **Total**          | 86                  |
+| **Star Rating**    | 4.3 / 5              |
+
+[00:08:34]  
+Next, the **Emporia Pro 48 amp charger** is introduced as a new 2025 model with advanced smart features and competitive pricing.
+
+Key advantages of Emporia Pro include:
+- **Intelligent load management** built-in, enabling homes with limited electrical service panels (e.g., 100-150 amps total) to use a high-power charger efficiently without costly panel upgrades.
+- Automatically adjusts charging power depending on household electrical load (air conditioning, stove usage, etc.).
+- Ability to **share power between multiple chargers** on the same circuit.
+- Supports **solar-powered charging**, enabling EVs to charge using excess solar energy from residential arrays.
+- Lightweight, thin, and maneuverable cable for user convenience.
+
+Specifications:
+
+| Feature                 | Specification                 |
+|------------------------|------------------------------|
+| Price                  | $599                         |
+| Dimensions             | 11.5 in x 8 in x 3.1 in      |
+| Maximum Current        | 48 amps                      |
+| Maximum Power          | 11.5 kW                      |
+| Current Range          | 12 to 48 amps                |
+| Cable Length           | 25 ft                        |
+| Connector Options      | J1772 or NACS                |
+| Enclosure Rating       | NEMA 4                       |
+| Operating Temperature  | -22°F to 122°F               |
+| Connectivity           | Wi-Fi (Emporia app)          |
+| Certification          | UL, Energy Star              |
+| Warranty               | 3 years                     |
+| Manufacturing Location | India                        |
+
+Limitations:
+- The connector holster is noted to be thin and flimsy, suggesting third-party holsters for better durability and ease of use.
+
+Charger Raider scoring for Emporia Pro:
+
+| Category           | Points |
+|--------------------|--------|
+| Cost & Value       | 19     |
+| Power & Construction| 24     |
+| Testing            | 21     |
+| Intelligence       | 23     |
+| **Total**          | 87     |
+| **Star Rating**    | 4.35 / 5|
+
+Honorable mention is given to the **Emporia Classic** (retailing at $429), praised for solid quality but without the smart features of the Pro model.
+
+[00:16:04]  
+The **Grizzley Ultimate 48 amp charger** is another new 2025 offering, featuring robust construction and competitive pricing.
+
+Highlights:
+- Durable **cast aluminum case** ideal for outdoor installations.
+- IP67 rated enclosure, providing excellent weatherproofing.
+- Thin, easy-to-manage 25 ft cable.
+- Available with either J1772 or NACS connectors.
+- Optional remote connector holster for wall placement flexibility.
+- Price: $479 (very competitive for quality and power).
+
+Specifications:
+
+| Feature                 | Specification                 |
+|------------------------|------------------------------|
+| Price                  | $479                         |
+| Dimensions             | 10.25 in x 6.25 in x 3.75 in |
+| Maximum Current        | 48 amps                      |
+| Maximum Power          | 11.5 kW                      |
+| Current Range          | 16 to 48 amps                |
+| Cable Length           | 25 ft                        |
+| Connector Options      | J1772 or NACS                |
+| Enclosure Rating       | IP67                         |
+| Operating Temperature  | -22°F to 122°F               |
+| Connectivity           | Wi-Fi (Grizzley app)         |
+| Certification          | UL (CSA)                    |
+| Warranty               | 3 years (extendable 2 years for $100) |
+| Manufacturing Location | Canada                       |
+
+Negatives:
+- Lacks smart charging features such as **intelligent load management** and **power sharing**.
+- The Grizzley app is limited in features compared to competitors’ apps.
+
+Charger Raider scoring for Grizzley Ultimate 48:
+
+| Category           | Points |
+|--------------------|--------|
+| Cost & Value       | 21     |
+| Power & Construction| 25     |
+| Testing            | 20     |
+| Intelligence       | 22     |
+| **Total**          | 88     |
+| **Star Rating**    | 4.4 / 5|
+
+Honorable mention: **Grizzley Classic 40 amp charger** ($349) with J1772 connector, available in multiple colors including camo.
+
+[00:20:34]  
+The **EVCO EV Power 2 48 amp charger** is praised for affordability and quality, with improvements in design and cable.
+
+Key points:
+- Price: $430 for NACS version, $470 for J1772 version.
+- Excellent cold weather performance on cable, second only to ChargePoint Home Flex.
+- Heavy-duty, well-made connector with a **metal locking tab** (better durability than typical plastic tabs).
+- Connector holster includes a swivel and now features **fluorescent paint** on the holster rim for easier use in darkness.
+
+Specifications:
+
+| Feature                 | Specification                 |
+|------------------------|------------------------------|
+| Price (NACS)            | $430                         |
+| Price (J1772)           | $470                         |
+| Dimensions             | 9.45 in x 9.45 in x 4 in     |
+| Maximum Current        | 48 amps                      |
+| Maximum Power          | 11.5 kW                      |
+| Current Range          | 6 to 48 amps                 |
+| Cable Length           | 25 ft                        |
+| Connector Options      | J1772 or NACS                |
+| Enclosure Rating       | IP66 (NEMA 4 equivalent)     |
+| Operating Temperature  | -22°F to 122°F               |
+| Connectivity           | Wi-Fi (EVCO app)             |
+| Certification          | ETL, Energy Star             |
+| Warranty               | 3 years                     |
+| Manufacturing Location | China and Thailand           |
+
+Limitations:
+- App currently lacks advanced features such as intelligent load management, power sharing, and solar charging.
+- These features could increase price but are recognized as important for many users.
+
+Charger Raider scoring for EVCO EV Power 2:
+
+| Category           | Points |
+|--------------------|--------|
+| Cost & Value       | 22     |
+| Power & Construction| 28     |
+| Testing            | 21     |
+| Intelligence       | 17     |
+| **Total**          | 88     |
+| **Star Rating**    | 4.4 / 5|
+
+[00:25:27]  
+The **Tesla Wall Connector** and **Tesla Universal Wall Connector** are reviewed last.
+
+Key differentiator:
+- The **Universal Wall Connector** includes an **integrated adapter** to charge both NACS (Tesla standard) and J1772 EVs, uniquely convenient in the North American market.
+- The standard Tesla Wall Connector only includes the NACS connector.
+
+Context:
+- Tesla uses the NACS connector, while most other EVs use J1772; the industry is transitioning towards NACS.
+- The Tesla Universal Wall Connector simplifies mixed-vehicle households without needing external adapters.
+- Price difference: $600 for Universal Wall Connector, $450 for standard Tesla Wall Connector.
+
+Specifications for both units:
+
+| Feature                 | Specification                 |
+|------------------------|------------------------------|
+| Price                  | $450 (Tesla Wall Connector), $600 (Universal) |
+| Dimensions             | 13.75 in x 6 in x 5.75 in    |
+| Maximum Current        | 48 amps                      |
+| Maximum Power          | 11.5 kW                      |
+| Current Range          | 12 to 48 amps                |
+| Cable Length           | 24 ft                        |
+| Connector Options      | Universal: NACS and J1772; Tesla: NACS only |
+| Enclosure Rating       | NEMA 3                       |
+| Operating Temperature  | -22°F to 122°F               |
+| Connectivity           | Wi-Fi (Tesla app)            |
+| Certification          | ETL                          |
+| Warranty               | 4 years                     |
+| Manufacturing Location | Taiwan                      |
+
+Additional features:
+- The charger supports **power sharing** among like units (Gen 3 only).
+- It is possible to implement **dynamic load management** through an add-on power meter (Nurio) but setup is complicated, involving certified installers and a specialized Tesla 1 app.
+- The sidemounted holster design may be an issue in tight garage spaces.
+
+Performance on Charger Raider:
+
+| Unit                    | Cost & Value | Power & Construction | Testing | Intelligence | Total | Stars   |
+|-------------------------|--------------|----------------------|---------|--------------|-------|---------|
+| Tesla Universal Wall Connector | 19           | 27                   | 21      | 22           | 89    | 4.45/5  |
+| Tesla Wall Connector     | 23           | 25                   | 21      | 22           | 91    | 4.55/5  |
+
+[00:34:46]  
+**Industry context and bonus recommendation:**
+
+- The industry has standardized around **48-50 amp chargers**, matching most vehicles’ onboard chargers which accept about **11.5 kW**.
+- While some vehicles (e.g., Ford F-150 Lightning) have 80 amp onboard chargers, 80 amp EV chargers are expensive (usually > $1,000).
+- The presenter recommends the **Grizzley Ultimate 80** charger at $899 as a relatively affordable, high-quality 80 amp charger for those needing higher power.
+
+[00:36:27]  
+**Installation recommendations and safety warnings:**
+
+- Hardwired charger installations are strongly recommended over plug-in units due to safety concerns.
+- Many plug-in chargers lack temperature sensors in the plug, and low-quality NEMA 1450 outlets (often installed cheaply) have melted under continuous EV charging loads, leading to potential fire hazards.
+- High-quality industrial-grade NEMA 1450 outlets cost $50-$60 and should be used by licensed electricians.
+- The presenter has documented multiple user issues via the "Recharge Rescue" video series primarily caused by inferior outlet installations.
+- Homeowners should always hire licensed electricians, pull permits, and have installations inspected to ensure safety and reliability.
+
+[00:37:58]  
+**Advice on buying chargers:**
+
+- Avoid the cheapest EV chargers on platforms like Amazon that are often from unknown manufacturers and may lack proper safety certifications despite claims.
+- These inferior products can cause safety issues and manufacturers may disappear when problems arise.
+- The chargers presented in this video represent the **highest quality EV chargers available at reasonable prices**, balancing performance, durability, and smart features.
+
+[00:38:53]  
+**Closing remarks:**
+
+- Viewers are encouraged to subscribe and use the "Hype" feature on mobile to support the channel.
+- Links to all chargers reviewed are provided in the video description for easy purchasing.
+- The video aims to clarify key considerations for buying an EV charger in 2025, helping consumers make safe, cost-effective, and future-proof choices.
+
+---
+
+### Summary Table of Top Recommended EV Chargers for 2025
+
+| Charger                   | Max Current (A) | Max Power (kW) | Price Range         | Smart Features                       | Connector Types      | Warranty          | Made In          | Key Strength                        |
+|---------------------------|-----------------|----------------|---------------------|------------------------------------|---------------------|-------------------|------------------|-----------------------------------|
+| ChargePoint Home Flex      | 50              | 12             | $584 - $639         | None (no load management/power share) | J1772, NACS         | 3 years           | Mexico           | Durable cable & connector; cold weather performance |
+| Emporia Pro               | 48              | 11.5           | $599                | Intelligent load mgmt, power share, solar charging | J1772, NACS         | 3 years           | India            | Advanced smart features at good price |
+| Grizzley Ultimate 48       | 48              | 11.5           | $479                | Limited smart features             | J1772, NACS         | 3 years (+2 optional) | Canada           | Durable cast aluminum, excellent price |
+| EVCO EV Power 2            | 48              | 11.5           | $430 - $470         | Basic smart features, app could improve | J1772, NACS         | 3 years           | China/Thailand   | Excellent cable, durable connector, very affordable |
+| Tesla Wall Connector       | 48              | 11.5           | $450 (standard), $600 (universal) | Power sharing, optional dynamic load mgmt (complex setup) | NACS or Universal (NACS + J1772) | 4 years           | Taiwan           | Integrated adapter (universal); high durability & brand support |
+| Grizzley Ultimate 80       | 80              | *Not specified (likely ~19 kW)* | $899                | None (like Ultimate 48)            | J1772, NACS         | 3 years + optional 2 | Canada           | Affordable 80A charger for high-power EVs |
+
+---
+
+### Key Insights
+
+- **Choosing a charger depends heavily on power needs, smart charging features, quality of build, and certification.**  
+- Chargers with **intelligent load management** (e.g., Emporia Pro) offer significant advantages for homes with limited electrical capacity, preventing expensive upgrades.  
+- **Charging cable and connector quality and weather performance** (cold flexibility, grip, durability) are crucial for daily ease of use and reliability.  
+- **Hardwired installations are safest**; cheap plug-in outlets can cause fires if not carefully selected and installed.  
+- The **Tesla Universal Wall Connector is unique** for its integrated multi-connector adapter, easing charging for households with multiple EV types.
+- The industry standard for fast home charging is now **48-50 amps**, with 80 amp units being niche and expensive.
+- **Beware of cheap, uncertified chargers** on open marketplaces—prioritize safety certifications and proven brands.
+
+---
+
+### Final Recommendations
+
+- Opt for **hardwired chargers** installed by licensed electricians with permit and inspection.  
+- Choose chargers with **certification such as UL, ETL, Energy Star**.  
+- Consider your home electrical panel capacity; if limited, prefer chargers with **dynamic load management** features (e.g., Emporia Pro).  
+- For mixed EV households, **Tesla Universal Wall Connector** simplifies charging both Tesla and non-Tesla vehicles.  
+- Avoid bargain chargers lacking transparent safety certifications as they risk safety and reliability.  
+- The chargers reviewed here are likely to provide **years of trouble-free charging** and are among the **best value and quality available in 2025**.
+
+---
+
+This summary distills professional, practical information on leading 2025 EV chargers based strictly on the video content, enabling informed buying decisions for safe, efficient, and future-ready EV charging.
+
+
+
+SHell recharge app and Porche charging tutorial

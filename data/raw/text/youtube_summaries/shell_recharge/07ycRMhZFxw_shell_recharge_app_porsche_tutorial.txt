@@ -1,0 +1,149 @@
+https://www.youtube.com/watch?v=07ycRMhZFxw
+[00:00:00]  
+The video begins with a warm welcome and introduction to the tutorial content focused on the **Shell Recharge app** and its usage at a **Porsche Supercharger**, which is part of the Shell charging network. The host intends to demonstrate app setup, show the user interface, and then provide an on-site practical charging demonstration at a Porsche Supercharger location.
+
+---
+
+[00:00:50]  
+The presenter switches to the **Shell Recharge app**, downloadable on **Android** and **Apple stores**. Key setup steps include:  
+
+- Registering and setting up a user profile.  
+- Attaching a **charging card**, for example, the Shell card linked with an Onto subscription, which can offer **free charging** in this case.  
+- Alternatively, users may attach any **credit or debit card** for payment.  
+
+The app is described as **comprehensive**, supporting:  
+
+- Profile management  
+- Charge card linking  
+- Charging history and data review  
+- Billing details and invoices  
+- Rewards program integration  
+
+---
+
+[00:01:40]  
+Specific features highlighted:  
+
+- The **rewards program** currently offers **30% off rapid charging** when using a promo code via the **Shell Go+ app**.  
+- Users can add vehicle information to their profiles for tailored support.  
+- FAQs and help sections are included to assist users.  
+
+---
+
+[00:02:24]  
+The app’s **map feature** helps locate chargers on the Shell network, including the Porsche Supercharger. It displays:  
+
+- Charger type and network affiliation (e.g., Porsche).  
+- Charger availability status.  
+- Option to start charging remotely through the app by selecting the connector.  
+
+---
+
+[00:03:13]  
+A notable pricing detail:  
+
+- Porsche Superchargers charge **per minute** in addition to per kilowatt-hour.  
+- Current pricing details as of the video's date:  
+  - Price per kWh: **£0.30**  
+  - Price per minute: **£0.44**  
+- Combined cost per minute and per kWh effectively equals **£0.74** per unit of charge/time, which can be **expensive for long charges**.  
+- This pricing structure is, however, **comparable to other supercharging networks** currently.  
+
+Estimated charging rate: The presenter notes about **8 minutes** of charging provides roughly a **100-mile range** for their Porsche Taycan. The app provides **estimated costs for 100 miles**, adding convenience for users when planning charging sessions.
+
+---
+
+[00:04:37]  
+Payment and start options for charging include:  
+
+- Tapping the **charge card** physically on the RFID reader at the charger.  
+- Starting the charge session remotely via the **mobile app**.  
+
+The presenter states intention to demonstrate starting via the app at a local Porsche Supercharger.
+
+---
+
+[00:05:22]  
+At the **Porsche HQ Supercharger**, two 350 kW chargers are available. Demonstration steps include:  
+
+- Approaching the charger and using the app to initiate the session.  
+- The app authenticates and confirms readiness by displaying “plug-in to start.”  
+- Once plugged in, the charge session begins, and the user can monitor charging status.  
+
+---
+
+[00:06:48]  
+After finishing and disconnecting, the app provides:  
+
+- Detailed **charge history**, including session duration and energy delivered.  
+- **Total cost of charging session**, even for very short demo sessions like five minutes.  
+- Additional metric: **CO2 emissions saved** compared to conventional fuel usage.  
+
+The app’s multi-network support enables usage across a large partner base:  
+
+| Feature                          | Details                     |
+|---------------------------------|-----------------------------|
+| Number of Partner Networks       | 395 different companies      |
+| Notable Partners Mentioned       | Merionity, Osprey, New Motion, GeniePoint |
+| Benefit                         | Access to multiple chargers across networks |
+
+This makes the **Shell Recharge card** a versatile tool for EV users, especially for those traveling to different locations or using various networks.
+
+---
+
+[00:07:39]  
+The tutorial concludes with future plans for additional videos, including a review of the **BP Polar network**. The host invites viewers to:  
+
+- Subscribe to the channel.  
+- Like the video.  
+- Enable notifications to stay updated on new content.  
+
+The presenter closes with well-wishes for **safe and enjoyable driving**.
+
+---
+
+### **Key Insights and Summary**  
+
+- The **Shell Recharge app** is a comprehensive EV charging platform enabling account setup, payment management, charge session control, rewards, and real-time charger availability.  
+- **Porsche Superchargers** on the Shell network use a unique pricing model charging **per kWh and per minute**, making charging potentially expensive for longer sessions. The current combined rate is around **£0.74 per unit time and energy**.  
+- The app provides **estimated charging costs and range data**, enhancing trip planning.  
+- Payment options are flexible: use of a **physical RFID charge card** or **app-based session start**.  
+- Post-charge metrics include detailed session **cost breakdown** and **CO2 savings**, supporting environmentally conscious decisions.  
+- The Shell Recharge network integrates with **395 partner networks**, offering broad interoperability for EV users.  
+- The video offers practical, hands-on guidance for new EV drivers, especially those interested in Shell and Porsche charging networks.
+
+---
+
+### **Terminology and Definitions**  
+
+| Term                 | Definition                                                                                   |
+|----------------------|----------------------------------------------------------------------------------------------|
+| Shell Recharge app   | Mobile application for EV charging on the Shell network and affiliated partners                |
+| Porsche Supercharger | High-power charging station supporting Porsche vehicles, part of the Shell Recharge network   |
+| Charge card          | RFID card or linked payment card used to authenticate and pay for EV charging sessions       |
+| kWh (kilowatt-hour)  | Unit of energy representing the amount of power used or delivered during charging             |
+| Per-minute charging  | Charging cost model accounting for total session duration, charged on a time basis            |
+| CO2 saved            | Estimation of carbon dioxide emission avoided by using electric charging over fossil fuels   |
+
+---
+
+### **FAQ**  
+
+**Q: Can I use the Shell Recharge app for charging other EV brands?**  
+A: Yes, the app works with chargers from 395 partners beyond Porsche, including Ionity, Osprey, New Motion, and GeniePoint.  
+
+**Q: Is Porsche’s per-minute charging standard for all chargers?**  
+A: This per-minute charge is specific to Porsche Superchargers on the Shell network and might differ on other networks.  
+
+**Q: Can I start a charge session without a physical card?**  
+A: Yes, you can initiate charging remotely via the app, which offers a convenient alternative to using an RFID card.  
+
+**Q: Does the app provide cost estimates before charging?**  
+A: Yes, the app estimates cost based on planned charge duration or range needed, aiding in budgeting and trip planning.  
+
+---
+
+This detailed, app-focused tutorial provides valuable insights into the practical use and cost considerations of charging a Porsche EV within the Shell Recharge ecosystem, making it a relevant resource for new and current electric vehicle owners.
+
+
+EV Basics Shell Recharge Level 2 charging
