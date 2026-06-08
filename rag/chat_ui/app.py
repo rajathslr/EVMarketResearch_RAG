@@ -5,6 +5,7 @@ Features: login, per-user persistent chat history, new chat, source/app filters.
 Run:  streamlit run rag/chat_ui/app.py
 """
 import sys
+import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parents[2]))
@@ -24,11 +25,13 @@ from rag.chat_ui.session_db import (
     ensure_table, create_session, list_sessions,
     load_messages, save_messages, delete_session,
 )
+from rag.chat_ui.obs_db import ensure_obs_tables, log_query
 
 # ---------------------------------------------------------------------------
 # One-time DB setup
 # ---------------------------------------------------------------------------
 ensure_table()
+ensure_obs_tables()
 
 # ---------------------------------------------------------------------------
 # Page config — must be first Streamlit call
@@ -1011,24 +1014,44 @@ if prompt:
         st.markdown(prompt)
 
     with st.chat_message("assistant"):
+        _q_error     = None
+        _retrieve_ms = 0
+        _generate_ms = 0
+
         status = st.status("Searching knowledge base...", expanded=False)
         with status:
-            if comparison_mode:
-                st.write(f"Comparison mode — {n_per_app} chunks × 9 apps...")
-                chunks = retrieve_per_app(prompt, n_per_app=n_per_app)
-            elif source_filter:
-                st.write(f"Filtering to source: {source_filter}...")
-                chunks = retrieve_by_source(prompt, source=source_filter, top_k=top_k)
-            else:
-                st.write("Running similarity search...")
-                chunks = retrieve(prompt, app_filter, top_k)
+            _t0 = time.perf_counter()
+            try:
+                if comparison_mode:
+                    st.write(f"Comparison mode — {n_per_app} chunks × 9 apps...")
+                    chunks = retrieve_per_app(prompt, n_per_app=n_per_app)
+                elif source_filter:
+                    st.write(f"Filtering to source: {source_filter}...")
+                    chunks = retrieve_by_source(prompt, source=source_filter, top_k=top_k)
+                else:
+                    st.write("Running similarity search...")
+                    chunks = retrieve(prompt, app_filter, top_k)
+            except Exception as exc:
+                _q_error = f"Retrieval error: {exc}"
+                chunks   = []
+            _retrieve_ms = int((time.perf_counter() - _t0) * 1000)
             st.write(f"Retrieved {len(chunks)} chunks. Generating answer...")
 
-        if not chunks:
+        if not chunks and not _q_error:
             answer = "No relevant documents found. Try rephrasing or adjusting the filters."
             sources, usage = [], {}
+        elif _q_error:
+            answer = "⚠️ An error occurred while searching the knowledge base. Please try again."
+            sources, usage = [], {}
         else:
-            answer, usage = generate_answer(prompt, chunks)
+            _t1 = time.perf_counter()
+            try:
+                answer, usage = generate_answer(prompt, chunks)
+            except Exception as exc:
+                _q_error = (_q_error or "") + f"Generation error: {exc}"
+                answer   = "⚠️ An error occurred while generating the answer. Please try again."
+                usage    = {}
+            _generate_ms = int((time.perf_counter() - _t1) * 1000)
             sources = [
                 {
                     "app_name": c["app_name"],
@@ -1038,6 +1061,25 @@ if prompt:
                 }
                 for c in chunks
             ]
+
+        # ── Observability: log every query ────────────────────────────────
+        _scores = [float(c["score"]) for c in chunks] if chunks else []
+        log_query(
+            username        = username,
+            session_id      = st.session_state.get("current_session_id", ""),
+            question        = prompt,
+            app_filter      = app_filter if not comparison_mode else None,
+            comparison_mode = comparison_mode,
+            source_filter   = source_filter if not comparison_mode else None,
+            chunks_returned = len(chunks),
+            top_score       = max(_scores)              if _scores else None,
+            avg_score       = sum(_scores)/len(_scores) if _scores else None,
+            retrieve_ms     = _retrieve_ms,
+            generate_ms     = _generate_ms,
+            input_tokens    = usage.get("input_tokens",  0),
+            output_tokens   = usage.get("output_tokens", 0),
+            error           = _q_error,
+        )
 
         status.update(label="Done", state="complete")
         st.markdown(answer)
