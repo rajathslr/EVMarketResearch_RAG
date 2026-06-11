@@ -24,6 +24,28 @@ log = logging.getLogger(__name__)
 DATA_DIR = Path(__file__).parents[1] / "data"
 EMBED_BATCH = 128  # chunks to embed + upsert at once
 
+APP_CATEGORIES: dict[str, str] = {
+    # EV Charging
+    "chargepoint":       "ev_charging",
+    "evgo":              "ev_charging",
+    "blink":             "ev_charging",
+    "plugshare":         "ev_charging",
+    "electrify_america": "ev_charging",
+    "flo":               "ev_charging",
+    "evcs":              "ev_charging",
+    "shell_recharge":    "ev_charging",
+    "tesla":             "ev_charging",
+    # Prosumer / Home Energy
+    "tesla_powerwall":   "prosumer",
+    "enphase":           "prosumer",
+    "solaredge":         "prosumer",
+    "emporia":           "prosumer",
+    "sense":             "prosumer",
+    "sunpower":          "prosumer",
+    "generac":           "prosumer",
+    "span":              "prosumer",
+}
+
 
 # ---------------------------------------------------------------------------
 # Source readers  (one function per scraper type)
@@ -45,9 +67,10 @@ def read_google_play(app_filter: str | None = None) -> list[dict]:
             if not content:
                 continue
             docs.append({
-                "source":   "google_play",
-                "app_name": app_dir.name,
-                "content":  content,
+                "source":    "google_play",
+                "app_name":  app_dir.name,
+                "category":  APP_CATEGORIES.get(app_dir.name, "ev_charging"),
+                "content":   content,
                 "metadata": {
                     "score":      r.get("score"),
                     "date":       r.get("at"),
@@ -77,9 +100,10 @@ def read_app_store(app_filter: str | None = None) -> list[dict]:
             if not text:
                 continue
             docs.append({
-                "source":   "app_store",
-                "app_name": app_dir.name,
-                "content":  text,
+                "source":    "app_store",
+                "app_name":  app_dir.name,
+                "category":  APP_CATEGORIES.get(app_dir.name, "ev_charging"),
+                "content":   text,
                 "metadata": {
                     "score":     r.get("score"),
                     "date":      r.get("date"),
@@ -134,9 +158,10 @@ def read_youtube(app_filter: str | None = None) -> list[dict]:
 
             body = "\n".join(lines[body_start:]).strip() or raw
             docs.append({
-                "source":   "youtube",
-                "app_name": app_dir.name,
-                "content":  body,
+                "source":    "youtube",
+                "app_name":  app_dir.name,
+                "category":  APP_CATEGORIES.get(app_dir.name, "ev_charging"),
+                "content":   body,
                 "metadata": {
                     "title":    meta.get("title", ""),
                     "video_id": meta.get("video_id", ""),
@@ -167,9 +192,10 @@ def read_news(app_filter: str | None = None) -> list[dict]:
             if not text:
                 continue
             docs.append({
-                "source":   "news",
-                "app_name": app_dir.name,
-                "content":  text,
+                "source":    "news",
+                "app_name":  app_dir.name,
+                "category":  APP_CATEGORIES.get(app_dir.name, "ev_charging"),
+                "content":   text,
                 "metadata": {
                     "source_name": a.get("source"),
                     "published":   a.get("published"),
@@ -200,9 +226,10 @@ def read_web_pages(app_filter: str | None = None) -> list[dict]:
             if not content:
                 continue
             docs.append({
-                "source":   "web_pages",
-                "app_name": app_dir.name,
-                "content":  content,
+                "source":    "web_pages",
+                "app_name":  app_dir.name,
+                "category":  APP_CATEGORIES.get(app_dir.name, "ev_charging"),
+                "content":   content,
                 "metadata": {
                     "url":         p.get("url"),
                     "title":       p.get("title"),
@@ -233,10 +260,11 @@ def process_docs(docs: list[dict]) -> None:
     for doc in docs:
         for chunk_text_val in chunk_text(doc["content"]):
             all_chunks.append({
-                "source":   doc["source"],
-                "app_name": doc["app_name"],
-                "content":  chunk_text_val,
-                "metadata": json.dumps(doc["metadata"]),
+                "source":    doc["source"],
+                "app_name":  doc["app_name"],
+                "category":  doc.get("category", "ev_charging"),
+                "content":   chunk_text_val,
+                "metadata":  json.dumps(doc["metadata"]),
                 "embedding": None,
             })
 

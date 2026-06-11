@@ -168,14 +168,24 @@ All 5 sources are wired. youtube reads from `data/raw/text/youtube/*/transcripts
 - Background scheduler thread: fires overdue weekly pipeline jobs every 30 min
 - YouTube upload: upload .txt summary file → triggers pipeline_bg("youtube")
 
+## 🚀 NEXT: Release 2.0 — Prosumer App Expansion
+
+**Full implementation plan in `RELEASE_2_0_PLAN.md` — read that file first.**
+
+Summary: Expand from EV-only to dual-category (ev_charging + prosumer).
+New apps: Tesla Powerwall, Enphase, SolarEdge, Emporia, Sense, SunPower, Generac PWRview, Span.
+Backend is unchanged — one DB column, updated SYSTEM_PROMPT, category filter in UI (Option A).
+
+Branch: `feature/prosumer-expansion` off `dev` → `release/v2.0.0` → `main` → tag `v2.0.0`
+
 ## Pending / next session ideas
 
-- [ ] **Add more YouTube content** — Blink, FLO, EVCS still have zero video coverage. Add `.txt` files to `data/raw/text/youtube_summaries/<app>/`, then `python pipeline/run_pipeline.py --source youtube`
-- [ ] **Better web page coverage** — Firecrawl returned near-empty content for EVgo (246 chars) and PlugShare (133 chars). Retry with `wait_for` parameter or different URLs
-- [ ] **HTTPS / custom domain** — self-signed cert on bare IP (168.144.26.72) is live; full cert needs a domain
-- [ ] **Export / report** — export RAG conversation answers as formatted PDF/DOCX report
-- [ ] **Cost optimization** — token usage visible per query; could experiment with prompt compression or system prompt caching
-- [ ] **Email delivery** — wire up SMTP so "Share Credentials" in Users tab sends the password email directly
+- [ ] **Release 2.0** — see `RELEASE_2_0_PLAN.md` for full step-by-step plan
+- [ ] **Add more YouTube content** — Blink, FLO, EVCS still have zero video coverage
+- [ ] **Better web page coverage** — EVgo (246 chars) and PlugShare (133 chars) near-empty; retry with `wait_for`
+- [ ] **HTTPS / custom domain** — self-signed cert live; full cert needs a domain
+- [ ] **Export / report** — export RAG answers as PDF/DOCX
+- [ ] **Email delivery** — wire SMTP for "Share Credentials" in Users tab
 
 ---
 

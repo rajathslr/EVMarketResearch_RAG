@@ -5,6 +5,8 @@ Model is downloaded once and cached by sentence-transformers.
 import logging
 from functools import lru_cache
 
+from sentence_transformers import SentenceTransformer  # must load before psycopg2
+
 log = logging.getLogger(__name__)
 
 MODEL_NAME = "BAAI/bge-small-en-v1.5"
@@ -13,7 +15,6 @@ BATCH_SIZE = 64
 
 @lru_cache(maxsize=1)
 def _get_model():
-    from sentence_transformers import SentenceTransformer
     log.info("Loading embedding model %s (first run downloads ~130MB)...", MODEL_NAME)
     model = SentenceTransformer(MODEL_NAME)
     log.info("Model loaded.")

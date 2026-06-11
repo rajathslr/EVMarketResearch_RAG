@@ -28,6 +28,7 @@ log = logging.getLogger(__name__)
 # Config
 # ---------------------------------------------------------------------------
 APP_QUERIES = {
+    # EV Charging
     "chargepoint":       ["ChargePoint EV charging app", "ChargePoint station"],
     "evgo":              ["EVgo fast charging", "EVgo EV charger"],
     "blink":             ["Blink Charging EV", "Blink charger network"],
@@ -37,6 +38,15 @@ APP_QUERIES = {
     "evcs":              ["EVCS electric vehicle charging"],
     "shell_recharge":    ["Shell Recharge EV", "Greenlots charging"],
     "tesla":             ["Tesla app charging", "Tesla supercharger network"],
+    # Prosumer / Home Energy
+    "tesla_powerwall":   ["Tesla Powerwall app", "Tesla Powerwall home battery"],
+    "enphase":           ["Enphase Enlighten app", "Enphase home energy"],
+    "solaredge":         ["SolarEdge mySolarEdge app", "SolarEdge monitoring"],
+    "emporia":           ["Emporia Energy app", "Emporia smart home energy"],
+    "sense":             ["Sense energy monitor app", "Sense home energy"],
+    "sunpower":          ["SunPower solar app", "SunPower home solar"],
+    "generac":           ["Generac PWRview app", "Generac home battery"],
+    "span":              ["Span smart panel app", "Span home energy management"],
 }
 
 # General EV market queries for broader context

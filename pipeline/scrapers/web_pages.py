@@ -71,6 +71,40 @@ APP_URLS: dict[str, list[str]] = {
         "https://www.tesla.com/support/charging",
         "https://www.tesla.com/support/car-apps",
     ],
+    # Prosumer / Home Energy
+    "tesla_powerwall": [
+        "https://www.tesla.com/powerwall",
+        "https://www.tesla.com/support/energy/powerwall",
+    ],
+    "enphase": [
+        "https://enphase.com/homeowners",
+        "https://enphase.com/homeowners/enlighten",
+        "https://enphase.com/homeowners/storage",
+    ],
+    "solaredge": [
+        "https://www.solaredge.com/us/products/monitoring",
+        "https://www.solaredge.com/us/products/battery",
+    ],
+    "emporia": [
+        "https://www.emporiaenergy.com/",
+        "https://www.emporiaenergy.com/emporia-vue/",
+    ],
+    "sense": [
+        "https://sense.com/",
+        "https://sense.com/features/",
+    ],
+    "sunpower": [
+        "https://us.sunpower.com/solar-panels",
+        "https://us.sunpower.com/home-solar/solar-battery-storage",
+    ],
+    "generac": [
+        "https://www.generac.com/clean-energy/pwrcell",
+        "https://www.generac.com/clean-energy/pwrview",
+    ],
+    "span": [
+        "https://www.span.io/",
+        "https://www.span.io/panel",
+    ],
 }
 
 SLEEP_SECS = 1.0
