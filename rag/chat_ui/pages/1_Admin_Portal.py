@@ -26,6 +26,7 @@ load_dotenv(Path(__file__).parents[3] / "config" / ".env", override=True)
 
 import streamlit as st
 
+from rag.chat_ui.ragas_eval import start_ragas_scheduler
 from rag.chat_ui.pipeline_db import (
     ensure_pipeline_tables,
     get_source_chunk_counts,
@@ -153,6 +154,7 @@ def _start_scheduler():
                              name="ev-pipeline-scheduler").start()
 
 _start_scheduler()
+start_ragas_scheduler()   # RAGAs async quality evaluator
 
 
 # ── User management helpers ───────────────────────────────────────────────────

@@ -1062,12 +1062,19 @@ if prompt:
                 for c in chunks
             ]
 
-        # ── Observability: log every query ────────────────────────────────
-        _scores = [float(c["score"]) for c in chunks] if chunks else []
+        # ── Observability: log every query (with context for RAGAs eval) ──
+        _scores   = [float(c["score"]) for c in chunks] if chunks else []
+        _ctx_snap = [
+            {"source": c["source"], "app_name": c["app_name"],
+             "content": c["content"][:800], "score": float(c["score"])}
+            for c in chunks
+        ] if chunks else None
         log_query(
             username        = username,
             session_id      = st.session_state.get("current_session_id", ""),
             question        = prompt,
+            answer_text     = answer if not _q_error else None,
+            context_chunks  = _ctx_snap,
             app_filter      = app_filter if not comparison_mode else None,
             comparison_mode = comparison_mode,
             source_filter   = source_filter if not comparison_mode else None,
