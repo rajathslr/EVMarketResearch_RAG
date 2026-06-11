@@ -28,8 +28,8 @@ def upsert_chunks(chunks: list[dict]) -> int:
         return 0
 
     sql = """
-        INSERT INTO document_chunks (source, app_name, content, metadata, embedding)
-        SELECT %(source)s, %(app_name)s, %(content)s, %(metadata)s::jsonb, %(embedding)s::vector
+        INSERT INTO document_chunks (source, app_name, category, content, metadata, embedding)
+        SELECT %(source)s, %(app_name)s, %(category)s, %(content)s, %(metadata)s::jsonb, %(embedding)s::vector
         WHERE NOT EXISTS (
             SELECT 1 FROM document_chunks
             WHERE source = %(source)s

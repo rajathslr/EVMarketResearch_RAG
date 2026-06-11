@@ -58,8 +58,14 @@ YOUTUBE_SUMMARIES_DIR = PROJECT_ROOT / "data" / "raw" / "text" / "youtube_summar
 CONFIG_PATH           = PROJECT_ROOT / "config" / "users.yaml"
 
 APPS = [
+    # EV Charging
     "chargepoint", "evgo", "blink", "plugshare", "electrify_america",
-    "flo", "evcs", "shell_recharge", "tesla", "general",
+    "flo", "evcs", "shell_recharge", "tesla",
+    # Prosumer / Home Energy
+    "tesla_powerwall", "enphase", "solaredge", "emporia",
+    "sense", "sunpower", "generac", "span",
+    # General
+    "general",
 ]
 
 SOURCE_META = {
