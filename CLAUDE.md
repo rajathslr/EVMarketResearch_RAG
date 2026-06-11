@@ -1,4 +1,4 @@
-# EV Market Research — RAG System
+# Smart Energy App Research — RAG System (v2.0)
 ## Project brief for Claude Code
 
 Read this entire file before doing anything.
@@ -7,13 +7,15 @@ Read this entire file before doing anything.
 
 ## What this project is
 
-A RAG knowledge base for competitive research on **EV charging apps in the North American market**. Collects data from multiple sources, embeds with a local model, stores vectors in pgvector on DigitalOcean Postgres, and exposes a Streamlit chat interface backed by Claude.
+A RAG knowledge base for competitive research on **EV charging and prosumer/home energy apps in the North American market**. Dual-category system (ev_charging + prosumer). Collects data from multiple sources, embeds with a local model, stores vectors in pgvector on DigitalOcean Postgres, and exposes a Streamlit chat interface backed by Claude.
 
 ---
 
 ## Target apps
 
-ChargePoint, EVgo, Blink, PlugShare, Electrify America, FLO, EVCS, Shell Recharge, Tesla
+**EV Charging:** ChargePoint, EVgo, Blink, PlugShare, Electrify America, FLO, EVCS, Shell Recharge, Tesla
+
+**Prosumer / Home Energy:** Tesla Powerwall, Enphase Enlighten, SolarEdge mySolarEdge, Emporia Energy, Sense, SunPower, Generac PWRview, Span
 
 ---
 
@@ -24,10 +26,10 @@ ChargePoint, EVgo, Blink, PlugShare, Electrify America, FLO, EVCS, Shell Recharg
 | Cloud | DigitalOcean |
 | Droplet | NONE — pipeline runs locally on Windows |
 | Data lake | Local disk C:\EVMarketResearch\data\ |
-| Vector DB | pgvector on DO Managed Postgres (blr1) |
+| Vector DB | pgvector on DO Managed Postgres (blr1) — `category` column added v2.0 |
 | Embedding | BAAI/bge-small-en-v1.5 (local, 384 dims, already downloaded) |
 | LLM | claude-sonnet-4-6 via Anthropic API |
-| Chat UI | Streamlit |
+| Chat UI | Streamlit — dual-category filter (ev_charging / prosumer) |
 
 ---
 
@@ -46,16 +48,20 @@ Opens at http://localhost:8501
 - Restart app: `systemctl restart ev-research`
 - View logs: `journalctl -u ev-research -n 50`
 
-**Postgres: 11,322 chunks live** (blr1, ev-research-db cluster)
+**Postgres: 17,642 chunks live** (blr1, ev-research-db cluster)
 
-| source | chunks |
-|---|---|
-| google_play | 5,973 |
-| app_store | 3,687 |
-| news | 1,443 |
-| youtube | 107 |
-| web_pages | 112 |
-| **TOTAL** | **11,322** |
+| category | source | chunks |
+|---|---|---|
+| ev_charging | google_play | 5,973 |
+| ev_charging | app_store | 3,687 |
+| ev_charging | news | 1,443 |
+| ev_charging | web_pages | 112 |
+| ev_charging | youtube | 66 |
+| prosumer | google_play | 2,500 |
+| prosumer | app_store | 2,885 |
+| prosumer | news | 864 |
+| prosumer | web_pages | 112 |
+| **TOTAL** | | **17,642** |
 
 ---
 
@@ -104,8 +110,8 @@ C:\EVMarketResearch\
 
 ## Streamlit UI features
 
-- Sidebar: app filter dropdown (All / specific app), **Comparison mode** toggle, chunks-per-app slider
-- **Comparison mode**: fetches N chunks (default 3) per app across all 9 apps — use for cross-app questions
+- Sidebar: **Category** selector (All / EV Charging / Prosumer) → **App** selector → **Source** filter, **Comparison mode** toggle, chunks-per-app slider
+- **Comparison mode**: fetches N chunks (default 3) per app — respects category filter, scales to 9 or 17 apps
 - Live KB chunk count queried from Postgres (cached 5 min)
 - Chat history, expandable source citations with score
 - Example question buttons on empty state
@@ -129,6 +135,8 @@ C:\EVMarketResearch\
 5. **Do NOT re-run** any already-done scrapers or `setup_db.py` / `update_schema.py` — data is live.
 
 6. **Do NOT change** embedding model or vector dimensions — 384-dim is baked into all existing chunks.
+
+7. **sentence-transformers must load before psycopg2 on Windows** — a DLL conflict between PyTorch and psycopg2 causes a hard segfault if psycopg2 is imported first. Fixed by: (a) pinning `sentence-transformers==3.0.1` in requirements.txt, (b) making the import eager at the top of `embedder.py`, (c) reordering imports in `retriever.py` so embedder is imported before psycopg2.
 
 ---
 
