@@ -6,36 +6,43 @@ import sys
 from pathlib import Path
 from typing import Optional
 
-import anthropic
-import psycopg2
-import psycopg2.extras
 from dotenv import load_dotenv
 
 load_dotenv(Path(__file__).parents[1] / "config" / ".env", override=True)
 
+# sentence_transformers must load before psycopg2 on Windows (DLL conflict)
 sys.path.insert(0, str(Path(__file__).parents[1] / "pipeline"))
 from processing.embedder import embed_texts
+
+import anthropic
+import psycopg2
+import psycopg2.extras
 
 _anthropic = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 MODEL  = os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-4-6")
 TOP_K  = int(os.environ.get("TOP_K", 12))
 
 SYSTEM_PROMPT = """\
-You are a competitive intelligence analyst for an EV charging app research team.
-Your knowledge base contains content from FIVE source types for North American EV charging apps
-(ChargePoint, EVgo, Blink, PlugShare, Electrify America, FLO, EVCS, Shell Recharge, Tesla):
+You are a competitive intelligence analyst for a smart energy app research team.
+Your knowledge base covers two categories of North American apps:
 
-- google_play   : Google Play Store user reviews
-- app_store     : Apple App Store user reviews
-- news          : news articles and press coverage
-- web_pages     : official company website content
-- youtube       : YouTube video summaries and transcripts (tutorials, demos, reviews)
+EV CHARGING APPS (category: ev_charging):
+  ChargePoint, EVgo, Blink, PlugShare, Electrify America, FLO, EVCS, Shell Recharge, Tesla
+
+PROSUMER / HOME ENERGY APPS (category: prosumer):
+  Tesla Powerwall, Enphase Enlighten, SolarEdge mySolarEdge, Emporia Energy,
+  Sense, SunPower, Generac PWRview, Span
+
+Content sources per app:
+  - google_play / app_store : user reviews
+  - news                    : press coverage and articles
+  - web_pages               : official website content
+  - youtube                 : video summaries and tutorials
 
 Answer questions using ONLY the provided context chunks.
-Each chunk is tagged with its source type and app name — distinguish between
-what users say in reviews versus what the company claims on its website versus
-what video creators demonstrate in tutorials.
-Be specific, cite apps by name, highlight comparisons when relevant.
+Each chunk is tagged with source type, app name, and category.
+Distinguish between user sentiment (reviews), company claims (web), and demonstrations (video).
+Be specific, cite apps by name, highlight cross-app and cross-category comparisons when relevant.
 If the context is insufficient, say so rather than guessing."""
 
 
@@ -43,16 +50,24 @@ def _get_conn():
     return psycopg2.connect(os.environ["DATABASE_URL"])
 
 
-ALL_APPS = [
+ALL_EV_APPS = [
     "chargepoint", "evgo", "blink", "plugshare",
     "electrify_america", "flo", "evcs", "shell_recharge", "tesla",
 ]
+
+ALL_PROSUMER_APPS = [
+    "tesla_powerwall", "enphase", "solaredge", "emporia",
+    "sense", "sunpower", "generac", "span",
+]
+
+ALL_APPS = ALL_EV_APPS + ALL_PROSUMER_APPS
 
 
 _YT_KEYWORDS = {"youtube", "transcript", "video", "tutorial", "demo", "watch"}
 
 
-def retrieve(question: str, app_filter: Optional[str] = None, top_k: int = TOP_K, min_youtube: int = 2) -> list[dict]:
+def retrieve(question: str, app_filter: Optional[str] = None, top_k: int = TOP_K,
+             category_filter: Optional[str] = None, min_youtube: int = 2) -> list[dict]:
     """Embed question, run cosine similarity search, return top_k chunk dicts.
 
     YouTube guarantee logic:
@@ -63,7 +78,6 @@ def retrieve(question: str, app_filter: Optional[str] = None, top_k: int = TOP_K
       rich video summaries below short reviews even when they are highly relevant.
     - No YouTube boost is applied when the user has already filtered to a specific app.
     """
-    # Auto-detect YouTube-focused queries and guarantee more chunks
     q_words = set(question.lower().split())
     if q_words & _YT_KEYWORDS and not app_filter:
         min_youtube = max(min_youtube, 6)
@@ -80,16 +94,25 @@ def retrieve(question: str, app_filter: Optional[str] = None, top_k: int = TOP_K
             # --- Main similarity search ---
             if app_filter:
                 cur.execute("""
-                    SELECT source, app_name, content, metadata,
+                    SELECT source, app_name, category, content, metadata,
                            1 - (embedding <=> %s::vector) AS score
                     FROM document_chunks
                     WHERE app_name = %s
                     ORDER BY embedding <=> %s::vector
                     LIMIT %s
                 """, (vec_str, app_filter, vec_str, top_k))
+            elif category_filter:
+                cur.execute("""
+                    SELECT source, app_name, category, content, metadata,
+                           1 - (embedding <=> %s::vector) AS score
+                    FROM document_chunks
+                    WHERE category = %s
+                    ORDER BY embedding <=> %s::vector
+                    LIMIT %s
+                """, (vec_str, category_filter, vec_str, top_k))
             else:
                 cur.execute("""
-                    SELECT source, app_name, content, metadata,
+                    SELECT source, app_name, category, content, metadata,
                            1 - (embedding <=> %s::vector) AS score
                     FROM document_chunks
                     ORDER BY embedding <=> %s::vector
@@ -104,14 +127,19 @@ def retrieve(question: str, app_filter: Optional[str] = None, top_k: int = TOP_K
                 shortfall = min_youtube - yt_count
                 if shortfall > 0:
                     existing_contents = {r["content"] for r in results}
-                    cur.execute("""
-                        SELECT source, app_name, content, metadata,
+                    yt_where = "WHERE source = 'youtube'"
+                    yt_params = [vec_str, vec_str, shortfall + 6]
+                    if category_filter:
+                        yt_where += " AND category = %s"
+                        yt_params.insert(2, category_filter)
+                    cur.execute(f"""
+                        SELECT source, app_name, category, content, metadata,
                                1 - (embedding <=> %s::vector) AS score
                         FROM document_chunks
-                        WHERE source = 'youtube'
+                        {yt_where}
                         ORDER BY embedding <=> %s::vector
                         LIMIT %s
-                    """, (vec_str, vec_str, shortfall + 6))
+                    """, yt_params)
                     yt_extras = [
                         dict(r) for r in cur.fetchall()
                         if r["content"] not in existing_contents
@@ -119,7 +147,6 @@ def retrieve(question: str, app_filter: Optional[str] = None, top_k: int = TOP_K
                     ][:shortfall]
                     results = results + yt_extras
 
-            # Sort final set by score descending
             results.sort(key=lambda r: r["score"], reverse=True)
             return results
 
@@ -136,7 +163,7 @@ def retrieve_by_source(question: str, source: str, top_k: int = TOP_K) -> list[d
     try:
         with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
             cur.execute("""
-                SELECT source, app_name, content, metadata,
+                SELECT source, app_name, category, content, metadata,
                        1 - (embedding <=> %s::vector) AS score
                 FROM document_chunks
                 WHERE source = %s
@@ -148,14 +175,28 @@ def retrieve_by_source(question: str, source: str, top_k: int = TOP_K) -> list[d
         conn.close()
 
 
-def retrieve_per_app(question: str, n_per_app: int = 3) -> list[dict]:
+def retrieve_per_app(question: str, n_per_app: int = 3,
+                     app_list: Optional[list] = None,
+                     category_filter: Optional[str] = None) -> list[dict]:
     """Fetch the top n_per_app chunks from EACH app — guarantees all-app coverage.
-    Used for comparison queries where global top-K would miss some apps entirely."""
+    Used for comparison queries where global top-K would miss some apps entirely.
+
+    app_list overrides ALL_APPS when provided.
+    category_filter restricts which apps are iterated when app_list is None.
+    """
+    if app_list is None:
+        if category_filter == "ev_charging":
+            app_list = ALL_EV_APPS
+        elif category_filter == "prosumer":
+            app_list = ALL_PROSUMER_APPS
+        else:
+            app_list = ALL_APPS
+
     vec = embed_texts([question])[0]
     vec_str = "[" + ",".join(str(v) for v in vec) + "]"
 
     sql = """
-        SELECT source, app_name, content, metadata,
+        SELECT source, app_name, category, content, metadata,
                1 - (embedding <=> %s::vector) AS score
         FROM document_chunks
         WHERE app_name = %s
@@ -167,13 +208,12 @@ def retrieve_per_app(question: str, n_per_app: int = 3) -> list[dict]:
     conn = _get_conn()
     try:
         with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
-            for app in ALL_APPS:
+            for app in app_list:
                 cur.execute(sql, (vec_str, app, vec_str, n_per_app))
                 all_chunks.extend(dict(r) for r in cur.fetchall())
     finally:
         conn.close()
 
-    # Sort combined results by score descending so the best evidence leads
     all_chunks.sort(key=lambda c: c["score"], reverse=True)
     return all_chunks
 

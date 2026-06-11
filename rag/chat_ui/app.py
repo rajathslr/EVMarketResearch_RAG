@@ -20,7 +20,10 @@ import psycopg2
 import streamlit_authenticator as stauth
 from yaml.loader import SafeLoader
 
-from rag.retriever import MODEL, generate_answer, retrieve, retrieve_by_source, retrieve_per_app
+from rag.retriever import (
+    MODEL, generate_answer, retrieve, retrieve_by_source, retrieve_per_app,
+    ALL_EV_APPS, ALL_PROSUMER_APPS,
+)
 from rag.chat_ui.session_db import (
     ensure_table, create_session, list_sessions,
     load_messages, save_messages, delete_session,
@@ -795,10 +798,12 @@ def _get_kb_counts() -> int:
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
-APPS = [
-    "All apps", "chargepoint", "evgo", "blink", "plugshare",
-    "electrify_america", "flo", "evcs", "shell_recharge", "tesla",
-]
+CATEGORY_OPTIONS = ["All categories", "EV Charging", "Prosumer"]
+
+CATEGORY_MAP = {
+    "EV Charging": "ev_charging",
+    "Prosumer":    "prosumer",
+}
 
 SOURCE_LABELS = {
     "google_play": "Google Play",
@@ -811,8 +816,8 @@ SOURCE_LABELS = {
 EXAMPLE_QUESTIONS = [
     "What are the most common complaints about ChargePoint?",
     "How does EVgo compare to Electrify America on reliability?",
-    "What features does PlugShare offer that others don't?",
-    "What do YouTube videos say about the Tesla app?",
+    "How does Enphase compare to SolarEdge on battery management UX?",
+    "Which prosumer apps have the best solar monitoring experience?",
 ]
 
 # ---------------------------------------------------------------------------
@@ -823,8 +828,8 @@ with st.sidebar:
     # ── Branding ───────────────────────────────────────────────────────────
     st.markdown("""
     <div class="sb-brand">
-        <p class="sb-brand-title">⚡ EV Research</p>
-        <p class="sb-brand-sub">Competitive intelligence platform</p>
+        <p class="sb-brand-title">⚡ Smart Energy Research</p>
+        <p class="sb-brand-sub">EV Charging &amp; Prosumer Apps</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -883,14 +888,29 @@ with st.sidebar:
             value=False,
             help="Fetches top chunks from every app — best for cross-app questions.",
         )
+
+        category_choice = st.selectbox("Category", CATEGORY_OPTIONS, key="category_choice")
+        category_filter = CATEGORY_MAP.get(category_choice)  # None = all
+
         if comparison_mode:
             app_filter    = None
             source_filter = None
             top_k         = None
+            if category_filter == "ev_charging":
+                _app_pool = ALL_EV_APPS
+            elif category_filter == "prosumer":
+                _app_pool = ALL_PROSUMER_APPS
+            else:
+                _app_pool = ALL_EV_APPS + ALL_PROSUMER_APPS
             n_per_app = st.slider("Chunks per app", min_value=2, max_value=5, value=3)
-            st.caption(f"{n_per_app} chunks × 9 apps = {n_per_app * 9} total")
+            st.caption(f"{n_per_app} chunks × {len(_app_pool)} apps = {n_per_app * len(_app_pool)} total")
         else:
-            app_choice = st.selectbox("App", APPS)
+            _app_pool = (
+                ALL_EV_APPS if category_filter == "ev_charging"
+                else ALL_PROSUMER_APPS if category_filter == "prosumer"
+                else ALL_EV_APPS + ALL_PROSUMER_APPS
+            )
+            app_choice = st.selectbox("App", ["All apps"] + _app_pool, key="app_choice")
             app_filter = None if app_choice == "All apps" else app_choice
 
             source_choice = st.selectbox(
@@ -901,6 +921,7 @@ with st.sidebar:
             source_filter = None if source_choice == "All sources" else source_choice
             top_k     = st.slider("Chunks to retrieve", min_value=4, max_value=25, value=12)
             n_per_app = None
+            _app_pool = None
 
     # ── User block ────────────────────────────────────────────────────────
     st.markdown(f"""
@@ -919,10 +940,9 @@ topbar_left, topbar_right = st.columns([6, 1])
 with topbar_left:
     st.markdown("""
     <div class="ev-topbar">
-        <span class="ev-topbar-title">⚡ EV Charging App Research</span>
+        <span class="ev-topbar-title">⚡ Smart Energy App Research</span>
         <span class="ev-topbar-sub">
-            ChargePoint · EVgo · Blink · PlugShare · Electrify America
-            · FLO · EVCS · Shell Recharge · Tesla
+            EV Charging · Prosumer &amp; Home Energy Apps
         </span>
     </div>
     """, unsafe_allow_html=True)
@@ -964,8 +984,8 @@ if not st.session_state.messages:
     st.markdown("""
     <div class="empty-header">
         <div class="empty-icon">💬</div>
-        <p class="empty-title">Ask anything about EV charging apps</p>
-        <p class="empty-sub">Reviews · News · Videos · Website content across 9 apps</p>
+        <p class="empty-title">Ask anything about smart energy apps</p>
+        <p class="empty-sub">Reviews · News · Videos · Website content across EV &amp; Prosumer apps</p>
         <p class="empty-label">Try one of these</p>
     </div>
     """, unsafe_allow_html=True)
@@ -1006,7 +1026,7 @@ for msg in st.session_state.messages:
 
 # Chat input
 prefill = st.session_state.pop("prefill", None)
-prompt  = st.chat_input("Ask a question about EV charging apps...") or prefill
+prompt  = st.chat_input("Ask a question about EV charging or prosumer apps...") or prefill
 
 if prompt:
     st.session_state.messages.append({"role": "user", "content": prompt})
@@ -1023,14 +1043,17 @@ if prompt:
             _t0 = time.perf_counter()
             try:
                 if comparison_mode:
-                    st.write(f"Comparison mode — {n_per_app} chunks × 9 apps...")
-                    chunks = retrieve_per_app(prompt, n_per_app=n_per_app)
+                    n_apps = len(_app_pool) if _app_pool else len(ALL_EV_APPS + ALL_PROSUMER_APPS)
+                    st.write(f"Comparison mode — {n_per_app} chunks × {n_apps} apps...")
+                    chunks = retrieve_per_app(prompt, n_per_app=n_per_app,
+                                              category_filter=category_filter)
                 elif source_filter:
                     st.write(f"Filtering to source: {source_filter}...")
                     chunks = retrieve_by_source(prompt, source=source_filter, top_k=top_k)
                 else:
                     st.write("Running similarity search...")
-                    chunks = retrieve(prompt, app_filter, top_k)
+                    chunks = retrieve(prompt, app_filter, top_k,
+                                      category_filter=category_filter if not app_filter else None)
             except Exception as exc:
                 _q_error = f"Retrieval error: {exc}"
                 chunks   = []

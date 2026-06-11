@@ -31,16 +31,20 @@ log = logging.getLogger(__name__)
 # Target apps  (app_id = Google Play package name)
 # ---------------------------------------------------------------------------
 APPS = {
-    "chargepoint":  "com.coulombtech",
-    "evgo":         "com.driivz.mobile.android.evgo.driver",
-    "blink":        "com.blinknetwork.mobile2",
-    "plugshare":    "com.xatori.Plugshare",
-    "evcs":         "org.evcs.android",
-    "shell_recharge": "com.shell.sitibv.motorist.america",  # Greenlots acquired by Shell
-    "tesla":        "com.teslamotors.tesla",
-    # electrify_america: not on US Play Store (iOS only)
-    # flo: not on US Play Store (Canada only)
-    # sema_connect: merged into ChargePoint
+    # EV Charging
+    "chargepoint":    "com.coulombtech",
+    "evgo":           "com.driivz.mobile.android.evgo.driver",
+    "blink":          "com.blinknetwork.mobile2",
+    "plugshare":      "com.xatori.Plugshare",
+    "evcs":           "org.evcs.android",
+    "shell_recharge": "com.shell.sitibv.motorist.america",
+    "tesla":          "com.teslamotors.tesla",
+    # Prosumer / Home Energy
+    "tesla_powerwall": "com.teslamotors.tesla",      # same Tesla app covers Powerwall
+    "solaredge":       "com.solaredge.homeowner",
+    "sense":           "com.sense.androidclient",    # Sense Home
+    "span":            "io.span.android.homeowner",  # SPAN Home
+    # enphase, emporia, sunpower, generac: not on US Play Store — App Store only
 }
 
 MAX_REVIEWS   = 1000   # per app

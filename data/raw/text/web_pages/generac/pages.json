@@ -1,0 +1,21 @@
+{
+  "app": "generac",
+  "count": 2,
+  "scraped_at": "2026-06-11T19:20:43.378678+00:00",
+  "pages": [
+    {
+      "url": "https://www.generac.com/clean-energy/pwrcell",
+      "title": "Page Not Found | Generac",
+      "description": "Oops we're sorry. This page is no longer available.",
+      "content": "[Skip to main content](https://www.generac.com/not-found/#main-content)\n\n# 404\n\n## Page not found\n\nSorry!  The page you're looking for cannot be found.\n\n[Back to Homepage](https://www.generac.com/ \"click or tap to view\")\n\na18161453912.cdn.optimizely.com\n\n# a18161453912.cdn.optimizely.com is blocked\n\nThis page has been blocked by an extension\n\n- Try disabling your extensions.\n\nERR\\_BLOCKED\\_BY\\_CLIENT\n\nReload\n\n\nThis page has been blocked by an extension\n\n![](<Base64-Image-Removed>)![](<Base64-Image-Removed>)",
+      "chars": 512
+    },
+    {
+      "url": "https://www.generac.com/clean-energy/pwrview",
+      "title": "Page Not Found | Generac",
+      "description": "Oops we're sorry. This page is no longer available.",
+      "content": "[Skip to main content](https://www.generac.com/not-found/#main-content)\n\n# 404\n\n## Page not found\n\nSorry!  The page you're looking for cannot be found.\n\n[Back to Homepage](https://www.generac.com/ \"click or tap to view\")\n\na18161453912.cdn.optimizely.com\n\n# a18161453912.cdn.optimizely.com is blocked\n\nThis page has been blocked by an extension\n\n- Try disabling your extensions.\n\nERR\\_BLOCKED\\_BY\\_CLIENT\n\nReload\n\n\nThis page has been blocked by an extension\n\n![](<Base64-Image-Removed>)![](<Base64-Image-Removed>)",
+      "chars": 512
+    }
+  ]
+}

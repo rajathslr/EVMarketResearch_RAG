@@ -27,6 +27,7 @@ log = logging.getLogger(__name__)
 # Target apps  (iTunes app ID)
 # ---------------------------------------------------------------------------
 APPS = {
+    # EV Charging
     "chargepoint":       356866743,
     "evgo":              1281660968,
     "blink":             1612678852,
@@ -36,6 +37,15 @@ APPS = {
     "evcs":              1643179789,
     "shell_recharge":    1410234033,
     "tesla":             582007913,
+    # Prosumer / Home Energy
+    "tesla_powerwall":   582007913,   # Tesla app (covers Powerwall)
+    "enphase":           787415770,   # Enphase Enlighten
+    "solaredge":         1473952773,  # mySolarEdge
+    "emporia":           1449205453,  # Emporia Energy
+    "sense":             1024626982,  # Sense Home
+    "sunpower":          1504718150,  # SunStrong Connect (SunPower rebranded)
+    "generac":           1470592171,  # Generac PWRview
+    "span":              1501617838,  # SPAN Home
 }
 
 COUNTRY      = "us"
