@@ -1,0 +1,105 @@
+Title:    How to create and edit site layout using SolarEdge’s Mapper app
+Video ID: W8TAz2nYgFU
+URL:      https://www.youtube.com/watch?v=W8TAz2nYgFU
+App:      solaredge
+
+**Introduction to Site Layout Creation and Editing in the Mapper App**
+- This video tutorial demonstrates how to create and edit a **site layout** using the Mapper app.
+- The **site layout** serves as a virtual map of a photovoltaic (PV) site and is used in the monitoring platform for **remote diagnostics**.
+- In the **site list**, there are two categories of sites:
+- **On-device sites**: Sites opened and saved locally on the device.
+- **Online sites**: Sites saved on the server, accessible remotely.
+- To begin creating a site layout, users need to:
+- Tap on the relevant site.
+- The layout screen will initially be empty.
+- Tap the **plus (+) button** to start adding system components.
+
+**Adding System Components to the Site Layout**
+- Users can add components by tapping:
+- **Inverter**:
+- Add a single inverter or multiple inverters simultaneously.
+- When adding multiple inverters, specify:
+- The **number of inverters**.
+- Their **orientation**.
+- After selection, tap **Done**.
+- **Module group**:
+- Add one or more module groups according to the site’s design.
+- For each module group, specify:
+- Number of **modules per column** and **per row**.
+- Module **orientation**: Landscape or vertical.
+- Module **tilt** and **azimuth** angles.
+- Tap **Done** when finished.
+- If the PV site comprises multiple facets or several module groups, continue adding module groups accordingly.
+- Positioning modules:
+- Drag and drop module groups to the correct location on the layout.
+
+**Editing and Managing Layout Elements**
+- To **delete an element** (e.g., inverter or module group):
+- Long press the element and drag it to the trash bin icon.
+- To **edit module groups**:
+- Double tap on the group.
+- Change parameters like **tilt**, **azimuth**, and **orientation**.
+- Tap **Done** to save changes.
+- For sites with **obstacles**:
+- Use the **hide/show** feature.
+- Tap the edit icon, select modules to hide, then tap **Done**.
+- To unhide modules, repeat the process selecting modules to unhide.
+- An **undo/redo** function is available for convenience during editing.
+
+**Layout Display and Customization Options**
+- Use the **fit to screen icon** to scale the entire layout to fit the device screen for better visualization.
+- Change the layout’s background through the **settings icon**:
+- Switch between **dark mode** and **light mode**.
+- Change the background to **satellite view** to assist in precise navigation and placement of components on the site.
+- Optionally, show **roof edges** if previously drawn in the **SolarEdge Designer** software, allowing clearer outline of the site roof.
+- **All changes made in the layout are automatically saved as a draft** in the monitoring platform.
+
+**Summary and Saving**
+- When the site layout visually matches the physical installation, the user is done with the editing process.
+- The draft state means edits are saved online automatically without requiring manual saving actions.
+- The video emphasizes smooth integration between the Mapper app and the SolarEdge monitoring platform for **efficient remote site management**.
+
+---
+
+### **Key Concepts and Features Highlighted**
+| Feature                    | Description                                                                                          |
+|----------------------------|--------------------------------------------------------------------------------------------------|
+| Site Layout                | A virtual map representing a PV site’s components for remote monitoring and diagnostics.         |
+| System Components           | Includes inverters and module groups that can be customized in quantity, orientation, tilt, azimuth. |
+| Multi-module group support  | Accommodates sites with complex designs involving multiple module groups or facets.                |
+| Hide/Show Modules           | Allows hiding modules obstructed by obstacles to improve clarity in the layout.                    |
+| Undo/Redo                   | Supports reversal or reapplication of recent edits for easier manipulation.                        |
+| Background customization    | Switch between light/dark modes and satellite view for better visualization and accuracy.          |
+| Roof edges display          | Overlay of roof outlines imported from SolarEdge Designer enhances the layout’s clarity.           |
+| Automatic draft saving      | Changes to the layout are saved automatically to avoid data loss and allow continued editing.      |
+
+---
+
+### **Stepwise Workflow for Creating and Editing Site Layouts**
+
+| Step No. | Action                                              | Details                                                                        |
+|----------|-----------------------------------------------------|--------------------------------------------------------------------------------|
+| 1        | Access the Mapper app site list                      | Choose on-device or online site to work on                                    |
+| 2        | Tap the site and open layout screen                  | Initial layout will be empty                                                  |
+| 3        | Tap **+** to add system components                   | Add inverters (single or multiple), add module groups                         |
+| 4        | Configure components’ parameters                      | Specify quantity, orientation, tilt, azimuth, module group layout              |
+| 5        | Position components on layout                         | Drag module groups to correct locations                                       |
+| 6        | Edit elements if necessary                            | Double tap modules, adjust tilt, azimuth; long press and drag to delete       |
+| 7        | Use hide/show for obstacles                           | Edit and select modules to hide/unhide                                       |
+| 8        | Customize layout view                                 | Fit to screen, switch modes, enable satellite view, show roof edges            |
+| 9        | Save work                                            | Changes auto-saved as draft on the platform                                  |
+
+---
+
+### **Highlighted Terminology**
+- **PV site**: Photovoltaic solar power installation.
+- **Inverter**: Device converting DC electricity from solar panels to AC electricity.
+- **Module group**: Grouped solar modules arranged in specific rows and columns.
+- **Tilt**: Angle of solar modules relative to the horizontal plane.
+- **Azimuth**: Compass direction the modules face relative to true north.
+- **SolarEdge Designer**: Software used to draft site outlines and roof edges used in the layout.
+- **Monitoring platform**: The online system that visualizes and diagnoses PV sites remotely.
+
+---
+
+**In conclusion**, the Mapper app provides a **comprehensive and user-friendly interface** to create, customize, and maintain PV site layouts conveniently. It supports detailed input of system components and environmental factors, visual aids like satellite views and roof outlines, and seamless integration with the SolarEdge monitoring platform, enabling **efficient remote diagnostics and management** of solar installations.

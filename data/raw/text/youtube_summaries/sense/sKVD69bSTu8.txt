@@ -1,0 +1,137 @@
+Title:    Sense Energy monitor Unboxing, install, app review and recap
+Video ID: sKVD69bSTu8
+URL:      https://www.youtube.com/watch?v=sKVD69bSTu8
+App:      sense
+
+**Introduction and Initial Experience with Sense Energy Monitor**
+- Joe from Dissecting DIY introduces the Sense Energy Monitor, emphasizing he has two units because the first was a returned, damaged solar version from Amazon.
+- The first unit was unusable due to modifications made by the previous owner (cut wiring).
+- Joe contacted Sense via Facebook; the company provided **excellent customer service** with fast responses and shipped a replacement in two days.
+- Sense directed Joe to their **active community forum**, which is a rich resource for troubleshooting and user support.
+
+**Sense Solar Version and Smart Meter Limitations**
+- The solar version has a **solar connector for real-time solar power monitoring**.
+- Most utility companies, including Eversource and National Grid, don’t provide real-time monitoring despite having smart meters (called Metro meters), resulting in slow or no updates through official channels.
+- The private sector, represented by Sense, offers **much better real-time energy monitoring solutions**.
+
+**Unboxing of Non-Solar Sense Version and Components Overview**
+- The non-solar Sense package includes:
+- Sense monitor device
+- Wall decals for labeling
+- Mounting hardware for the electrical panel
+- Instructions
+- Key device features:
+- An **antenna port** for Wi-Fi communication
+- Sensors that clamp around each phase wire (usually black and red wires for a 240V system) to measure voltage and amperage
+- A white neutral wire that connects to the neutral busbar
+- Optional external wall mounting plate for panels with limited internal space
+- Proper clamping around wires is critical; clamping all lines together results in no readings (cancelling currents).
+
+**Installation Preparation and Electrical Requirements**
+- Installation requires:
+- A **240V breaker** (usually a 20A breaker is adequate)
+- Basic electrical panel knowledge or professional electrician assistance
+- Red and black wires from the Sense device connect to the breaker poles; the white wire connects to the neutral busbar.
+- Joe strongly advises **those unfamiliar with electrical panels avoid DIY installation** due to safety risks (shock, injury, or death).
+
+**Panel Inspection and Installation Setup**
+- Joe’s panel was messy due to previous electrician work and the presence of a switch, which complicated the installation.
+- Joe planned an **external mount** due to lack of internal space, particularly because of generator lines restricting space inside the panel.
+- Important safety step: shutting off the main breaker before installation to cut power.
+
+**Wiring and Mounting Details**
+- Installed a 240V breaker to power the Sense monitor.
+- Red and black wires inserted into the breaker, white wire connected to the neutral busbar.
+- Mounted the Sense externally due to panel constraints, adding cable supports and zip ties for securing wiring and antenna positioning towards Wi-Fi signal.
+- Small inconvenience but functional external setup, antenna oriented for optimal wireless communication.
+
+**Sense App Overview and Initial Use**
+- The app’s **initial screen shows real-time whole-house energy usage in watts**.
+- Usage fluctuates visibly when devices turn on/off—ideal for tracking consumption dynamically.
+- The app requires **24-48 hours to begin identifying individual devices** using "bubbles" (a detection and learning feature).
+- Real-time tracking validates device power consumption claims, e.g.:
+- Joe measured his basement LED can lights at about 7.7 watts each, consistent with manufacturer ratings.
+- Additional app features include:
+- Historical **usage trends by day, week, month, and year**
+- Cost estimations based on user-input electricity rates
+- Identification of peak usage events like laundry day
+
+| Parameter                     | Joe’s Values                                | Notes                                      |
+|------------------------------|--------------------------------------------|--------------------------------------------|
+| Average Electricity Cost      | $0.094/kWh (base rate)                     | ~ $0.19/kWh including delivery charges     |
+| Laundry Day Usage             | 27.9 kWh                                   | Moderate compared to an average 48 kWh/day |
+| LED Bulb Power Usage          | ~7.7 watts per bulb                        | Confirmed manufacturer rating              |
+
+**Device Identification and Learning Limitations**
+- The Sense monitor has a **learning curve** and can struggle to consistently identify certain devices.
+- Successfully identified devices include:
+- Boiler (merged with circulator pump for accuracy)
+- Coffee maker
+- Dryer
+- Oven
+- Several heat devices (labeled Heat 3, 4, 5) remain unidentified despite testing various heat sources.
+- Merging related devices (e.g., boiler and circulator pump) may improve recognition and simplify monitoring but may lose some granularity if separate data is desired.
+- Joe found some **detection inconsistencies and finickiness** in the app, particularly with intermittent or less consistent devices.
+
+**Sense Company Development and User Feedback**
+- Sense is actively building their **device identification database**, improving accuracy over time.
+- Many users on Amazon and other forums express frustration about slow or incomplete device detection.
+- Joe advises that if device-level identification is a primary goal, patience and engagement with the learning process are needed.
+- For general real-time whole-house energy monitoring and consumption reduction, Sense is **highly recommended and highly effective**.
+
+**Plans for Additional Energy Monitoring Solutions**
+- Joe plans to release a follow-up video on alternative or complementary energy monitoring approaches:
+- Smart outlets for device-specific power monitoring
+- Other real-time measurement devices
+- Sense has editing features to manually categorize devices and add metadata (model numbers, device names), implying a semi-supervised learning system assisting the AI.
+
+**Safety Reminder and Installation Caution**
+- Installation inside electrical panels requires full attention and expertise due to high risk.
+- Joe recommends relying on Sense’s official installation video for detailed guidance.
+- Modification such as external mounting, if necessary, should be planned carefully ahead of time to avoid last-minute compromises.
+- Joe reiterates **DIY electrical work is undertaken at one’s own risk and is only recommended for qualified individuals.**
+
+**Summary of Installation Requirements and Process**
+- Key hardware:
+- A **20A 240V breaker** (or lowest available 240V breaker)
+- Red and black power wires attach to breaker poles
+- White neutral wire connects to neutral busbar
+- Two clamping sensors around mains feed wires
+- Installation challenges: limited panel space, external mount as workaround
+- Setup generally straightforward once the plan is in place
+- Initial app setup delivers whole-house monitoring immediately, device learning takes longer.
+
+**Overall Impression of Sense Energy Monitor**
+- Joe strongly recommends Sense for:
+- Real-time, **whole-house energy usage monitoring**
+- Monitoring changes when turning devices on/off
+- Validating utility billing and achieving energy savings
+- Sense is still evolving; device recognition can be inconsistent but improves over time.
+- Joe appreciates the app interface and ability to monitor energy use dynamically, including during energy retrofits and efficiency checks.
+
+**Critique of Utility Company Smart Metering**
+- Major utilities like Eversource and National Grid have **not innovated much in customer-facing smart metering**.
+- Their meters serve the utilities’ billing purposes but provide poor or no real-time consumer data access.
+- Sense bridges this gap by providing **transparent and actionable usage data** directly to consumers via app.
+
+**Additional Energy Monitoring Devices Overview**
+- Joe compares Sense with other device-specific monitoring tools:
+
+| Device Type                                    | Description                                     | Price Range      | Advantages                          | Limitations                       |
+|-----------------------------------------------|------------------------------------------------|------------------|-----------------------------------|---------------------------------|
+| Sense Energy Monitor                           | Whole-house real-time monitoring with app      | *Not specified*  | Smart device identification; app-based; long-term data trends | Learning curve; finicky identifications |
+| Etekcity Smart Outlet                          | Plugs into device; monitors power; app control | ~$15-20          | Real-time monitoring per device; scheduling; app integration | Requires device plugging; smartphone needed |
+| Kilowatt Meter (Basic Plug-in Meter)           | Measures voltage, amperage, wattage; no data if unplugged | Low cost          | Simple, instant readings; portable | No data retention after unplugging; no smart features |
+
+- Joe shares a personal experience where the kilowatt meter tripped a breaker during use with a PlayStation 3, noting safety or compatibility concerns with some devices.
+- The Sense monitor is identified as the most advanced and cohesive product for whole-house monitoring, while smart plugs provide useful appliance-level insights.
+
+**Final Recommendations and Conclusion**
+- The Sense Energy Monitor is **highly recommended for anyone wanting real-time energy consumption data and improved awareness.**
+- Manual intervention and patience are needed for device detection improvements.
+- Sense’s real-time usage capabilities far exceed typical utility smart meters, offering actionable intelligence for energy management and cost savings.
+- Joe encourages viewers to consider their comfort level with electrical work and to hire professionals if unsure.
+- Future videos will cover complementary technologies for energy monitoring at more granular levels.
+
+**Presenter: Joel, Dissecting DIY**
+**Overall:** Detailed unboxing, installation, and review of the Sense monitor highlight it as a solid real-time home energy monitoring system with learning-based device identification, strong customer support, and useful app features, though with limitations in device recognition speed and installation challenges.

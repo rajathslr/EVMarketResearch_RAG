@@ -1,0 +1,134 @@
+Title:    Tesla Powerwall 3 - Commissioning
+Video ID: 7AjjGeIhylQ
+URL:      https://www.youtube.com/watch?v=7AjjGeIhylQ
+App:      tesla_powerwall
+
+**Summary of Powerwall 3 Commissioning Process – Initial Setup**
+- Begin commissioning by turning on the breaker for Powerwall 3 and enabling the switch.
+- Two LEDs turn green; once the LED turns light blue, Powerwall 3 is ready for commissioning.
+- LED illumination can take up to 5 minutes.
+- If the Powerwall switch is turned on but system is idle, the logo LED blinks for 10 minutes, then turns off—indicating the system enters a **sleep state**.
+- To wake from sleep, toggle the Powerwall switch off for 3 seconds, then back on until the light blue LED appears.
+
+**Connecting and Configuring Powerwall 3 Using Tesla 1 App**
+- Installers use the *Tesla 1 app* to connect to the Tesla Asset Controller within Powerwall 3.
+- Log in or create an account, update the app if prompted for best functionality.
+- Scan the QR code located on the black plastic piece below the Taco (do **not** scan QR codes on the side of Powerwall 3 or inside Backup Gateway).
+- Alternatively, SSID and password on the sticker can be manually entered if scanning is not possible.
+- Grant permission for Tesla 1 to access local network devices—mandatory to connect to Powerwall 3.
+- After successful connection, app opens to Powerwall 3 landing page.
+
+**Power Flow & Main Control Tiles Overview**
+- The top of the landing page visually displays the electrical power flow in the home; initially no flow as system is off.
+- Key tiles for navigation and commissioning:
+- **System:** Shows all devices including Powerwall and Backup Switch/Gateway.
+- **Settings:** Configure grid code (voltage/frequency), import/export limits.
+- **Networking:** Manage internet connection setups.
+- **System Tests:** Allows grid outage simulation.
+- **Registration:** Customer information entry to enable Tesla app visibility.
+- **Software:** Device update status.
+- **Summary:** Provides serial numbers and an overview of installation and operational settings.
+- Tiles show a green check mark (no action needed), or red/yellow exclamation marks (attention required).
+- Alerts tray at the page bottom helps prioritize tasks.
+
+**Networking Requirements and Internet Connectivity**
+- Internet connection required for full warranty benefits.
+- Powerwall 3 is factory configured to connect via cellular.
+- Cellular signal strength depends on location and region.
+- For best reliability, connect to customer Wi-Fi or use Ethernet cable to router.
+- Wi-Fi connection status may take up to 1 minute to show as green check mark.
+- Test internet connection before proceeding.
+
+**Software Updates and Sideloading Feature**
+- Software tile shows if updates are required, recommended, or up to date.
+- Use the *sideloading* feature to download updates to the commissioning phone first, then transfer to Powerwall 3:
+- This method is often faster and more reliable than using Powerwall 3’s cellular modem or customer Wi-Fi directly.
+- After update, LED should turn light blue before continuing commissioning.
+
+**Essential Configuration Settings: Grid Code & Solar Installation Type**
+- The first critical setting on the Settings tile is the **grid code**, defining grid voltage and frequency based on regional utility requirements — mandatory for operation.
+- Set **solar installation type** for site with either solar panels or Tesla solar roofs to ensure proper functionality and correct Tesla app visuals.
+- Select the relevant solar option (solar panels or solar roof) and confirm.
+- Import/export power limits must be entered if required for compliance.
+- After proper entry, the red exclamation mark in Settings changes to green check mark.
+
+**System Metering and Device Configuration**
+- System tile has two tabs: **Devices** and **Metering**.
+- Metering tab displays all connected meters and summarizes their measurement scopes.
+- For sites with Backup Switch, both **Current Transformers (CTs) 1 and 2** must be set to *site*.
+- For Gateway installations, configure the integrated meter CT settings based on site metering setup: *site* or *none*.
+- If Gateway 2 CTs are plugged into Meter Y, configuration can be done here.
+- To pair a Tesla Remote Energy Meter:
+- Use “Detect wired meter” if connected via RS485 cable.
+- Use QR code scan or manual SSID/password entry for Wi-Fi meters; allow network join permissions.
+- Power cycle remote meter if the network SSID is not broadcasting.
+- After pairing, assign each CT port as *site* or *solar* depending on what it measures.
+
+**Device Tab & Powerwall Settings**
+- Lists all detected Tesla equipment including Backup Switch, Gateway, additional Powerwall 3 or expansion units.
+- If a device is missing, check power status and CAN communication wires (high and low) for issues.
+- Backup Switch or Gateway tiles show current state and vitals.
+- On Powerwall 3 tile, installers can set the **maximum current output** using a dropdown menu.
+- **Important:** Max current output setting is adjustable only once during installation. For changes, Tesla support must be contacted.
+
+**Starting the System & Self-Tests**
+- After configuring tiles with green checks, tap “Start System” from landing page to power on.
+- This triggers automatic self-tests and device firmware updates:
+- Progress visible on Devices page for Powerwall updates.
+- Metering page shows updates for Tesla remote meters.
+- Power flow diagram remains inactive (no solar or battery display) until self-tests complete.
+
+**Verifying Meter Installation and Backup Tests**
+- Once self-tests complete, select Powerwall 3 on Devices tab to view solar production and system performance values.
+- Review all meters on Metering tab to confirm CT installation and configuration correctness.
+- Alerts for incorrectly installed CTs indicate troubleshooting is needed.
+- Conduct **Backup Test** from System Tests tile:
+- Choose backup type—either whole home or partial home backup.
+- Begins a grid outage simulation to verify system operation off-grid.
+- Monitor system during test; when complete, select “Reconnect to Grid” to conclude.
+- Successful completion returns installer to landing page.
+
+**Customer Registration and Finalization**
+- Customer registration is the final commissioning step; without it, the customer cannot view their system in Tesla App.
+- Complete installer information page, then continue.
+- Options for entering customer information:
+- Show QR code or send a text for the customer to enter their info.
+- If customer unavailable, complete registration on their behalf.
+- Summary page consolidates serial numbers and operational overview.
+- Commissioning is complete when system is on and no alerts appear on landing page.
+
+**Customer Handoff and Tesla App Demonstration**
+- Advise customer to open Tesla app and confirm visibility of Powerwall 3 system.
+- Tesla vehicle owners can swipe on home screen to view Powerwall 3 details.
+- Demonstrate app capabilities: power consumption monitoring, system status review, and adjustment of basic settings.
+
+---
+
+### Key Insights and Conclusions
+- **Powerwall 3 commissioning involves a systematic hardware and software configuration using Tesla 1 app with clearly defined setup tiles.**
+- **Correct QR code scanning and network permissions are critical for establishing connection with Powerwall 3.**
+- **Grid code and solar installation type must be configured precisely to meet regional requirements and activate features.**
+- **Metering setup requires precise CT configuration and pairing of remote meters if applicable.**
+- **Max current output setting on Powerwall 3 is a one-time, critical installer configuration.**
+- **Self-tests and backup tests validate installation quality and operational reliability before customer handover.**
+- **Customer registration activates app visibility, enabling users to monitor and control the system remotely.**
+- **Internet connectivity (cellular, Wi-Fi, or Ethernet) is mandatory for warranty and system management functions.**
+- **Tesla app plays a central role for installers during commissioning and is the primary interface for customers post-installation.**
+
+---
+
+### Terminology Table
+
+| Term                     | Definition                                                    |
+|--------------------------|---------------------------------------------------------------|
+| Powerwall 3              | Tesla’s advanced home battery system for energy storage.      |
+| Asset Controller         | Internal control module in Powerwall for system management.   |
+| QR Code                  | Unique identifier used to connect Tesla 1 app to Powerwall 3. |
+| Current Transformer (CT) | Device clamped on electrical conductors to measure current.   |
+| Backup Switch            | Device allowing islanding of home circuits during grid outage.|
+| Gateway                  | Communication device integrating metering and control features.|
+| Sideloading              | Method to transfer updates via phone to Powerwall.            |
+
+---
+
+This summary is strictly based on the provided transcript content with no extrapolation beyond the source.

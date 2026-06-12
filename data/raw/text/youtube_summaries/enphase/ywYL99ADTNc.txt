@@ -1,0 +1,95 @@
+Title:    Enphase installer app commissioning process
+Video ID: ywYL99ADTNc
+URL:      https://www.youtube.com/watch?v=ywYL99ADTNc
+App:      enphase
+
+**Introduction to nFace System Commissioning Using Installed Toolkit**
+- The video demonstrates the process of commissioning an nFace solar plant system with the **nFace Installed Toolkit application**.
+- The app is available for both **Android and iOS platforms**; users should ensure they have the **latest app version**.
+- Initial step: **log in** via registered email and password.
+- Permissions needed: **allow location access** and **enable auto download** of updates.
+- To begin commissioning: tap the **plus (+) sign** to add a new system.
+
+**System Details Setup and Device Configuration**
+- Users must complete all commissioning steps sequentially:
+- Access **System Details** and fill out the required fields, then **save**.
+- A unique **System ID** is generated upon successful creation.
+- Proceed to the **Devices and Array** section:
+- Specify the number of devices installed:
+- **IQ Gateways**
+- **IQ Microinverters**
+- **IQ Relays**
+- Confirm by clicking **Continue**.
+- Begin device identification:
+- **Scan the IQ Gateway serial number** found on the device label.
+- Choose the **default grid profile** for the system.
+
+**Microinverter Scanning and Array Creation**
+- Scan each **IQ microinverter serial number** individually to register devices in the app.
+- After completing scans, click **Proceed to create the array**:
+- Add a new array by clicking the **plus sign (+)**.
+- Assign an **array name**.
+- Define the array’s **dimensions**: number of **rows** and **columns**.
+- Specify the **PV panel orientation** (e.g., portrait or landscape).
+- Add the array to the system.
+- For each PV panel in the array:
+- Select the panel, then click **Assign** and select the corresponding **microinverter serial number** from the list.
+- Repeat this association for all microinverters within the array.
+- Save the finalized array setup.
+- Next, scan the **IQ Relay barcode** and confirm by clicking **Done**.
+
+**Connecting Phone to IQ Gateway using Access Point (AP) Mode**
+- The connection process involves linking the commissioning phone to the IQ Gateway via **AP mode**:
+- Activate AP mode by pressing the **AP mode button** on the IQ Gateway; a green light indicates active AP mode.
+- On the phone, **disable cellular data** and enable **Wi-Fi**.
+- Connect to the Wi-Fi network named with the **last six digits of the IQ Gateway serial number**.
+- Upon connecting to this network, return to the **IQ Gateway connectivity page** in the app where the device connection is confirmed.
+
+**Internet Configuration for IQ Gateway**
+- Select the local **Wi-Fi network** to be used by IQ Gateway.
+- Enter the Wi-Fi **password** for network access.
+- Alternatively, an **Ethernet cable** can be directly connected to the IQ Gateway to provide internet access.
+- After setting up internet, click **Start provisioning devices**:
+- The system begins **uploading the grid profile** to the IQ microinverters and IQ relay.
+- Upon successful configuration, click **Continue**.
+
+**Production and Consumption Meter Setup**
+- Set up the **Production Meter**:
+- Select the number of **phases** relevant to the system.
+- Follow guided steps to enable and configure the production meter.
+- Set up the **Consumption Meter**:
+- Choose the consumption meter type and location.
+- Enable the consumption meter and complete the corresponding setup process.
+- Once meters are configured, enable consumption monitoring.
+
+**Final Steps and System Summary**
+- View the **IQ Gateway summary** for an overview of all system statuses.
+- Turn off Wi-Fi on the mobile device and reactivate **cellular data**.
+- Perform a **homeowner walkthrough** using the app to verify all commissioning points.
+- On successful verification, the **nFace system is fully commissioned**.
+- The system can now be handed over by granting **system access to the homeowner**.
+
+**Summary of Key Processes**
+| Step                         | Action                                                                       | Notes                                      |
+|------------------------------|------------------------------------------------------------------------------|--------------------------------------------|
+| System Setup                 | Login, fill system details, save system ID                                   | Ensures unique system identification       |
+| Devices Configuration        | Select devices, scan serial numbers (Gateway, microinverters, relay)        | Accurate device mapping critical            |
+| Array Creation               | Define array size, orientation; assign microinverters to panels              | Precisely links each panel to its inverter  |
+| IQ Gateway Connection        | Connect phone to IQ Gateway via AP mode Wi-Fi                               | Required to provision devices               |
+| Internet Setup               | Wi-Fi or Ethernet configuration for IQ Gateway                              | Provides communication with cloud services |
+| Device Provisioning          | Upload grid profile to devices                                               | Synchronizes system parameters              |
+| Meter Setup                  | Configure production and consumption meters                                 | Enables energy monitoring                    |
+| Final Validation and Handover| Homeowner walkthrough and system access assignment                          | Complete commissioning                      |
+
+**Highlighted Key Terminology**
+- **nFace Installed Toolkit**: Commissioning application available on Android/iOS.
+- **IQ Gateway**: Central communication device for monitoring and controlling the solar system.
+- **IQ Microinverter**: Converts solar panel DC output to AC, individually monitored.
+- **IQ Relay**: Controls energy flow and system safety parameters.
+- **AP Mode**: Access Point mode enabling direct Wi-Fi connection between phone and IQ Gateway.
+- **Grid Profile**: Settings aligned with the local electricity grid for safe operation.
+
+**Conclusions**
+- The video provides a **step-by-step commissioning process** for nFace solar systems using the mobile app, emphasizing a **secured and systematic setup** encompassing device scanning, array configuration, network connection, and meter installation.
+- Completing these steps ensures reliable system communication, device provisioning, and energy monitoring, enabling **efficient management of solar energy production and consumption**.
+- The final walkthrough and homeowner access facilitate a smooth handover, signaling the system’s readiness for operation.

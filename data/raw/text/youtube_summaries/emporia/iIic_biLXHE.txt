@@ -1,0 +1,211 @@
+Title:    Meet The Emporia Pro: One Of The Best EV Chargers You Can Buy Today
+Video ID: iIic_biLXHE
+URL:      https://www.youtube.com/watch?v=iIic_biLXHE&t=1255s
+App:      emporia
+
+**Summary: Introduction and Background**
+The video begins with a review of the **Emporia Pro, the second-generation EV charger from Emporia**. The host highlights his previous positive experience with Emporia’s original charger, which scored highly on the Charger Raider rating system and was considered an excellent value. The new generation Emporia Pro charger introduces several enhancements, including a new feature called **Power Smart**—an intelligent load-balancing system designed to prevent overdraw on home electrical services, enabling installation even on lower-capacity electrical panels.
+
+---
+
+**Summary: Unboxing and Physical Features**
+The Emporia Pro comes with:
+- A sleek new design with LED indicator lights on the front.
+- A 25 ft thin and flexible charging cable, approximately 14.3 mm in diameter, comparable to Tesla Wall Connector cables.
+- The version reviewed includes a **NEMA 14-50 plug** (40 amp output mode) instead of hardwiring (which would support 48 amps).
+- An attached mounting bracket, removable by two screws.
+- The charging connector is a **Vollex connector**, which the reviewer finds serviceable but not ideal due to a small plastic locking tab (non-metal).
+- A **remote connector holster** replacing the first generation’s poor holster design, which exposed connector pins; this new holster mounts separately on the wall and better protects the connector.
+- Installation hardware including screws and drywall anchors.
+- Included is the **Emporia View smart home energy monitoring system**, essential for utilizing the Power Smart feature to dynamically manage electrical load and enable high-power charging on homes with limited service capacity.
+
+---
+
+**Summary: Power Smart Feature and Its Importance**
+The **Power Smart system**, enabled by the Emporia View monitor, allows the charger to dynamically adapt its charging power based on the home's total electrical load, preventing overload in houses with 100 or 150 amp services where a 48 amp charger would otherwise be disallowed by load calculations. This system can reduce the charger’s output temporarily when the home's electrical demand is high, avoiding expensive service panel upgrades. This intelligent load management is a key innovative feature that distinguishes the Emporia Pro from many other chargers on the market, including Emporia’s own classic model.
+
+---
+
+**Summary: Key Specifications and Pricing**
+
+| Feature                      | Specification                        |
+|------------------------------|------------------------------------|
+| Price                        | $599 (includes Emporia View system)|
+| Dimensions                   | 11.5 in x 8 in x 3.1 in            |
+| Maximum Current              | 48 amps (full power); 40 amps for plug-in NEMA 14-50 version |
+| Maximum Power Output         | 11.5 kW (48 amps), 9.6 kW (40 amps)|
+| Cable Length                 | 25 ft                             |
+| Connector Type               | J1772 (Knack connector pending Q4 release) |
+| Enclosure Rating             | NEMA 4 (suitable for outdoor use)  |
+| Operating Temperature Range  | -22°F to 122°F                     |
+| Warranty                    | 3 years                           |
+| Safety Certification          | UL Listed                         |
+| Country of Manufacture       | India                             |
+
+---
+
+**Summary: Installation Details**
+- The unit ships with the mounting bracket factory-attached; removal requires unscrewing two bottom screws.
+- Plug-in versions with NEMA 14-50 connectors require no internal wiring — just plug into a matching outlet.
+- Hardwired versions require removing covers: an outer cover (two screws) and an inner weatherproof cover (10 screws with a number 3 Allen key).
+- The unit supports wiring through the back to avoid exposed conduit, resulting in a cleaner installation.
+- Terminal screws must not be torqued beyond $1.2 \text{ N·m}$ (10.6 in-lb).
+- The reviewer strongly recommends hiring a licensed electrician for installation to ensure safety and compliance.
+
+---
+
+**Summary: Power Adjustment Method**
+- The charger’s output power is **adjusted solely through the Emporia app**—there is **no internal hardwired dip switch** to set maximum power, which is a drawback from a safety and inspection standpoint.
+- Users must manually configure the maximum allowed current in the app, e.g., 40 amps for a 50 amp circuit with a NEMA 14-50 outlet.
+- Misconfiguration can potentially lead to overloading circuits or violating electrical codes.
+- The app requires a four-digit passcode to prevent unauthorized or accidental adjustment of power limits, providing some security.
+
+---
+
+**Summary: Extreme Heat Test**
+- The Emporia Pro was heat-stressed for 2 hours under a heat lamp, holding the case at around 120°F to simulate hot climates like Arizona or Texas summers.
+- After 3 hours of charging a Porsche Macan at full 40 amps under these conditions, the charger continued functioning reliably without shutting down or derating.
+- The case temperature rose further to around 166.5°F due to charging, indicating robust thermal performance.
+- **Result: Passed extreme heat test.**
+
+---
+
+**Summary: Automatic Restart Test**
+- Simulated a power outage by cutting power to the charger during a charging session.
+- Upon restoring power, the charger successfully resumed charging the vehicle without manual intervention.
+- **Result: Passed automatic restart test,** critical to avoid interrupted charging after outages.
+
+---
+
+**Summary: Cold Weather Testing**
+- The charger was frozen in a deep freezer at around -12°F for over 30 hours.
+- Key tests included cable flexibility, connector drop test (5 drops), and cold startup.
+- The thin cable performed exceptionally well, remaining flexible and easy to handle despite frost accumulation.
+- The connector sustained five drops without any visible damage.
+- The charger powered up normally in cold conditions and successfully initiated charging.
+- **Result: Passed all cold weather tests with excellent scores for cable pliability and connector durability.**
+
+---
+
+**Summary: App and Smart Features**
+- The Emporia Pro connects via Wi-Fi and uses the **Emporia app**, which is considered one of the better charging apps on the market due to its robust energy management ecosystem.
+- The app supports multiple chargers on one user account (unlike some competitors requiring separate accounts for each unit).
+- Key app features include:
+- Setting and adjusting power limits (initial setup required).
+- **Access control** (enable/disable charging remotely to prevent unauthorized usage).
+- Detailed charging history logs (displaying kWh usage or monetary cost).
+- Scheduling charging sessions to optimize usage with time-of-use electricity rates.
+- Solar charging mode that uses only excess solar energy for EV charging, maximizing renewable energy use and reducing grid draw.
+- Utility incentive discovery by inputting zip codes for regional EV programs.
+- Integration with other Emporia smart home energy devices for comprehensive home energy optimization.
+- The reviewer notes some points of caution regarding the lack of physical hard limits on the unit and the reliance on app configuration for safety.
+
+---
+
+**Summary: User Experience and Cable/Connector Impressions**
+- The 25 ft cable suits all vehicle types, including long trucks like the Ford F-150 Lightning. Its thin design contributes to excellent cold weather flexibility.
+- The Vollex connector is functional but lacks the premium feel and robustness of some competitors (plastic locking tab versus metal).
+- The connector holster shows improvement over the first generation but still protrudes about 9-10 inches from the wall and lacks design finesse (compared to a preferred “upward” insertion style which minimizes obstruction).
+- Available colors are only black or white.
+- The **Knack connector option is not yet available**, expected by the end of the year: a downside for drivers planning future EVs with Knack ports.
+- Power sharing between multiple chargers is currently unavailable but is planned via an over-the-air update about a month after the video date.
+
+---
+
+**Summary: Intelligent Load Management (Power Smart) Explained**
+- Definition: **Intelligent load management** allows the charger to dynamically reduce output to avoid exceeding the electrical panel’s capacity.
+- This feature enables installation on homes with limited service capacity (e.g., 100 or 150 amp service) without expensive service upgrades.
+- The Emporia Pro with the Vue system monitors total household load and adjusts EV charging current accordingly.
+- Example scenario:
+- Home with 100 amp service; only 20 amps are available for EV charging without overload.
+- The charger manages power such that it stays within this limit during peak appliance use, but increases charging rate when home load lowers, e.g., after cooking is finished.
+- This flexibility reduces the need for costly electrical service upgrades often required to install high-powered EV chargers.
+- The reviewer could not personally test this due to a 400 amp service at his home, which exceeds typical residential service loads.
+
+---
+
+**Summary: Comparison Against Emporia Classic Charger**
+| Model           | Price  | Intelligent Load Management | Similar Features                         |
+|-----------------|--------|-----------------------------|-----------------------------------------|
+| Emporia Pro     | $599   | Yes                         | Solar charging, Power Smart system app integration, thin cable, 3-year warranty |
+| Emporia Classic | $429   | No                          | Quality charger, same app ecosystem, robust performance              |
+
+- The Pro is recommended if you need **intelligent load management**.
+- The Classic is suitable for those with adequate electrical capacity and a lower budget.
+- Both units remain top-rated chargers with solid build quality and feature sets.
+
+---
+
+**Summary: Charger Raider Scores**
+- The Charger Raider scoring system was recently overhauled to be stricter, reflecting improvements in chargers generally.
+- **Emporia Classic scored 99 in previous system** (tied for best ever).
+- **Emporia Pro scored 86 points**, translating to **4.3 out of 5 stars**, which is considered excellent under the new tougher criteria.
+- The reviewer personally rates the Emporia Pro at 4.5 stars, praising its comprehensive feature set and value.
+
+---
+
+**Summary: Detailed Charger Raider Category Scores**
+
+| Category              | Subcategory                  | Points Received | Notes                                                              |
+|-----------------------|------------------------------|-----------------|--------------------------------------------------------------------|
+| Cost & Value          | Cost (≤ $600)                | 0               | Max points for ≤ $600                                              |
+|                       | Warranty (3 years)           | 3               |                                                                    |
+|                       | Value                       | 2               | Assigned "Excellent" value                                         |
+|                       | **Total (Cost & Value)**     | **20**          |                                                                    |
+| Power & Construction  | Max Charging Power (48A)     | 0               | No points given due to max power only                             |
+|                       | Adjustable Power (app only)  | 1               | No internal dip switch for power limiting                         |
+|                       | Cable Length (25 ft)         | 2               |                                                                    |
+|                       | Connector                   | 3 (out of 5)    | Average rating due to connector feel and locking tab               |
+|                       | Connector Holster            | 3 (out of 5)    | Improved but not ideal design                                     |
+|                       | **Total (Power & Construction)** | **24**      |                                                                    |
+| Testing               | Extreme Cold Testing          | 4 (out of 5)    | Excellent cable and unit behavior                                 |
+|                       | Extreme Heat Testing          | Full points     | No issues found                                                  |
+|                       | Automatic Restart            | 1               | Passed                                                             |
+|                       | Safety Certification           | 0               | UL listed, no extra points                                         |
+|                       | Energy Star Certification     | 1               |                                                                    |
+|                       | **Total (Testing)**           | **21**          |                                                                    |
+| Intelligence          | Smart Charger App             | 2               | Emporia app only, no third-party app support                      |
+|                       | Power Sharing (future OTA)     | 0               | Pending OTA update planned shortly                               |
+|                       | Intelligent Load Management    | 3               | Key feature                                                     |
+|                       | Solar Charging Capability      | 2               | Charge from excess solar                                          |
+|                       | Access Control                 | 1               | App-based enable/disable charging                                 |
+|                       | Open Charge Point Protocol (OCPP) Support | -2      | No third-party app compatibility                                |
+|                       | **Total (Intelligence)**        | **21**          |                                                                    |
+| **Grand Total**       |                              | **86 Points**   |                                                                    |
+
+---
+
+**Summary: Final Hits and Misses**
+
+- **Hits:**
+- Intelligent load management system enabling high-power charging on limited residential service capacity.
+- Thin, long, and highly flexible cable performing superbly in cold weather.
+- Ability to charge exclusively from excess solar generation, a still-rare feature.
+- Robust Emporia app integration with excellent energy management ecosystem.
+
+- **Misses:**
+- No physical, internal power limit switch (reliant entirely on app configuration).
+- Connector and holster design are average—functional but could be improved in feel, robustness, and mounting ergonomics.
+- Lacks immediate availability of Knack connector option (expected by end of the year).
+
+---
+
+**Summary: Closing Remarks**
+The review wraps up emphasizing the thoroughness of the coverage, acknowledging the review’s length and the availability of a more concise "quick charge" version for viewers who prefer a shorter summary. Viewers are encouraged to subscribe for more electric vehicle news and reviews. The reviewer reiterates the high quality and value of both Emporia chargers, with special praise for the Emporia Pro due to its intelligent load management—a feature increasingly important for modern home installations.
+
+---
+
+**Overall Key Insights:**
+- The **Emporia Pro excels primarily due to its intelligent load management (Power Smart) enabled by the Emporia View monitor**, allowing installation on homes with limited electrical service capacity without expensive panel upgrades.
+- It is a **versatile, high-power (up to 48 amps) charger** with adjustable output controlled via a well-designed app.
+- The charger features **excellent thermal management**, passing extreme cold and heat tests, ensuring reliability in varied climates.
+- The 25 ft thin cable provides excellent usability and cold weather flexibility.
+- The **lack of an internal hardwired power limit switch** is a notable safety and inspection downside; adjustment requires app use secured by a passcode.
+- The connector is functional but unremarkable; the holster improved over the first generation but is still not ideal ergonomically.
+- Currently only available with the **J1772 connector**, with Knack planned for future release.
+- The integration with Emporia’s broader **home energy ecosystem** adds value through solar charging and energy usage insights.
+- Priced at $599 (including the Emporia View system), the Emporia Pro offers **excellent overall value** compared to competitors and the older Emporia Classic model.
+
+---
+
+This detailed and data-driven review establishes the Emporia Pro as a **top-tier residential EV charging solution**, especially for users seeking advanced power management without costly home electrical upgrades.
