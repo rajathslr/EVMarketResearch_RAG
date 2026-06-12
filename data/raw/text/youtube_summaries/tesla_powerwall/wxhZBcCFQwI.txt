@@ -1,0 +1,112 @@
+Title:    Tesla Powerwall App Walkthrough 2026 | Complete Powerwall 3 Guide & Settings Explained
+Video ID: wxhZBcCFQwI
+URL:      https://www.youtube.com/watch?v=wxhZBcCFQwI
+App:      tesla_powerwall
+
+**Introduction to Tesla Powerwall 3 Mobile App**
+- The video introduces the Tesla Powerwall 3 mobile application and its functionalities.
+- Common user questions targeted include:
+- How the mobile phone app works
+- Setting up off-peak time-of-use tariffs
+- Utilizing “Stormwatch” feature
+- Going off-grid mode
+- Understanding the app’s various graphs and data
+- The goal is to explain all essential features to maximize the Powerwall 3 usage through the app interface.
+
+**Powerwall 3 Mobile App Home Screen Overview**
+- The home screen shows a live infographic of solar generation and power flows:
+- Example displayed: 0.7 kW solar generation, with 0.5 kW charging the Powerwall 3 battery and 0.2 kW powering the home demand.
+- The flow graph dynamically changes based on loads and solar setup, e.g., multiple Powerwalls or expansion packs are displayed with labels like "Powerwall x 2" or "x 3."
+- If a Tesla Wall Connector is present and a Tesla car is plugged in, the infographic updates to show the car’s charging status.
+- The Tesla app integrates both Powerwall and Tesla vehicle data within the same application, allowing users to swipe and view car information seamlessly.
+
+**Off-Grid Mode Feature**
+- A rarely used but notable feature is the ability to go off-grid manually from the app.
+- When off-grid mode is activated (typically with local connection), the Powerwall disconnects from the grid supply and powers the home solely with battery storage and solar energy.
+- Users often activate this to:
+- Prepare for known outages by testing off-grid functionality
+- Demonstrate system capabilities to visitors
+- Continuous off-grid operation is possible but generally recommended only for testing or outages.
+
+**Energy Graph and Usage Analytics**
+- The "Energy" tab displays detailed consumption and source breakdown by day:
+- Example values include 21.1 kWh usage yesterday (noting EV charger consumption).
+- Current day data shows demand peaks and drops in near real-time.
+- Energy sources are shown in percentage contributions, such as:
+| Source             | Percentage (%) | Comment                             |
+|--------------------|----------------|-----------------------------------|
+| Powerwall 3         | 36             | Battery storage contribution      |
+| Direct Solar        | 44             | Most efficient source when active |
+| Grid                | 20             | Purchased grid electricity        |
+- Users can swipe through days or select different time ranges (day, month, year, lifetime, or custom) to analyze historical data trends.
+
+**Powerwall Activity and Charging Behavior**
+- Activity tab illustrates charging and discharging cycles:
+- Example shows Powerwall charging from the grid overnight using an off-peak tariff.
+- During the day, the Powerwall partly charges from solar production and then discharges to meet home demand.
+- The app also displays real-time state of charge and how the battery interacts with solar and grid.
+- This insight helps understand battery optimization strategies and cost savings.
+
+**Solar Generation Insights**
+- Solar tab graphically represents solar panel output throughout the day:
+- Peak production typically occurs midday, tapering off towards evening.
+- This serves as a performance check to ensure solar panels operate correctly.
+- Monitoring solar flow aids in maximizing onsite solar consumption.
+
+**Grid Interaction and Off-Peak Tariff Optimization**
+- The grid tab details Powerwall’s import/export activity and tariff usage:
+- Example highlights grid import during off-peak hours, aligned with an EV tariff (Octopus Go).
+- The Powerwall autonomously forecasts weather (weather forecast, solar output, battery state) to decide how much grid energy to import overnight.
+- Users can access a menu (three dots) at top right to download data for further analysis or reporting—useful for EV expense reimbursement or ROI calculations.
+
+**Environmental and Usage Impact Overview**
+- Impact tab summarizes annual or custom-period performance:
+- Example percentages: 20% solar, 36% battery use.
+- It separates peak vs off-peak consumption and shows cost savings or expenditures.
+- Provides insights on export credits and overall energy footprint.
+- Importantly, this page logs backup events:
+- Indicates when the home has been supplied by the Powerwall during a grid outage.
+- Example: 32 minutes backup power on 26th March, useful for monitoring power reliability.
+
+**Settings and Customizations (Core Functionalities)**
+- This section contains vital controls for optimizing Powerwall use:
+
+| Setting                      | Description                                                                                                   | Notes / Recommendations                                                          |
+|------------------------------|---------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| Backup Reserve Level         | Adjustable percentage (0%-100%) of battery capacity set aside for backup power in outages                     | Recommended 20% if frequent outages; full saving if outages rare                 |
+| Operational Modes            | - Self-Powered: battery prioritizes solar, no grid draw<br>- Time-Based Control: blends solar, grid, tariffs  | Time-Based Control is used to automate charging based on tariffs and export rates |
+| Utility Rate Plan Setup      | Define peak/off-peak/mid-peak/super off-peak time periods, prices for each                                        | Supports complex tariff schemes including seasonality if applicable              |
+| Permission to Export         | Enables export of electricity and associated credits                                                            | Must be enabled to sell excess solar power                                      |
+| Grid Charging Enable/Disable | Allows or disallows Powerwall charging from grid power                                                           | Disabling prevents Powerwall from charging on cheap grid rates                   |
+| Storm Watch                  | Connects to Met Office weather warnings (yellow/red)                                                           | Automatically charges Powerwall preemptively for outages and sends push notifications|
+| Manage Users                | Add or remove access for multiple users                                                                          | Supports household or facility sharing                                           |
+| Support and Manuals         | Access to tutorials, manuals, and troubleshooting resources                                                      | Provides additional help for users                                              |
+
+- Users can precisely configure off-peak schedules and prices; example: Octopus Go with 5 hours off-peak at a discounted rate.
+- *Important Note*: Powerwall 3 cannot detect complex time-of-use plans such as Octopus Go Intelligent's cheap charging slots without third-party integrations (e.g., Home Assistant or Net Zero app).
+
+**User Interface and App Indicators**
+- The Powerwall home infographic dynamically updates to display current state:
+- Example given shows Powerwall meeting home demand at 2.3 kW.
+- If off-grid mode is activated, a red cross appears on the incoming grid supply icon to indicate disconnection.
+- Clear visual communication helps users understand power status at a glance.
+
+**Conclusion and Recommendations**
+- This detailed overview demystifies many common questions regarding the Tesla Powerwall 3 app.
+- Users are encouraged to explore settings especially around tariffs, backup reserves, and storm watch to optimize usage and cost savings.
+- The video invites viewers to subscribe for further in-depth tutorials on Tesla Powerwall 3 operations.
+- Ideal for new owners to maximize their investment and system performance.
+
+---
+
+### Key Highlights and Summary:
+- **Powerwall 3 app consolidates solar, battery, grid, and Tesla car data in one dashboard.**
+- **Customizable off-peak tariff settings allow time-based control to reduce energy costs.**
+- **Off-grid mode can be manually activated for testing or outages, using Powerwall and solar only.**
+- **Storm Watch leverages weather warnings to pre-charge battery for power outages.**
+- **Backup reserve level is adjustable to balance energy availability and usage.**
+- **Comprehensive visualization of energy flows and historical usage aids user understanding and optimization.**
+- ** Powerwall cannot natively manage complex tariff plans like Octopus Go Intelligent’s variable slots without add-on software.**
+- **User support and data export capabilities enhance management and reporting.**
+
+This video serves as a comprehensive guide to understand and fully leverage all essential Tesla Powerwall 3 mobile app features.

@@ -387,7 +387,7 @@ def main():
         path = save_video_txt(app_name, video_id, title, url, cleaned)
         seen_ids[app_name].add(video_id)
         saved[app_name] = saved.get(app_name, 0) + 1
-        print(f"  [saved] {app_name} — {title[:60]} → {path.name}")
+        print(f"  [saved] {app_name} - {title[:60]} -> {path.name}")
 
     # Summary
     print("\n=== SUMMARY ===")

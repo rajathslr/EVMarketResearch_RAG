@@ -47,7 +47,7 @@ from rag.chat_ui.pipeline_db import (
 
 # ── Page config ───────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="Admin Portal — EV Research",
+    page_title="Admin Portal — Home Energy & EV Research",
     page_icon="⚙️",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -668,7 +668,7 @@ with tab_users:
             # Shareable credentials block
             with st.expander("📋 Copy shareable credentials", expanded=False):
                 share_text = (
-                    f"EV Research Assistant — Login Credentials\n"
+                    f"Home Energy & EV App Research — Login Credentials\n"
                     f"{'─'*45}\n"
                     f"URL:      https://168.144.26.72\n"
                     f"Username: {st.session_state.get('nu_uname', '').strip() or '<email>'}\n"
@@ -834,7 +834,7 @@ with tab_users:
                 st.code(reset_pw, language=None)
                 with st.expander("📋 Copy shareable credentials", expanded=False):
                     share_text = (
-                        f"EV Research Assistant — Updated Credentials\n"
+                        f"Home Energy & EV App Research — Updated Credentials\n"
                         f"{'─'*45}\n"
                         f"URL:      https://168.144.26.72\n"
                         f"Username: {uname}\n"

@@ -1,0 +1,154 @@
+Title:    Sense vs Emporia Vue Energy Monitor Comparison
+Video ID: ydKBHj9Wyws
+URL:      https://www.youtube.com/watch?v=ydKBHj9Wyws
+App:      emporia
+
+**Introduction and Context:**
+Nate Adams, known as "Nate the House Whisperer," introduces a comparative review between two popular home energy monitoring systems: **Sense Energy Monitor** and **Emporia Vue Energy Monitor**. He aims to clarify the differences by demonstrating both devices using their web applications (not phone apps), noting that while both apps are generally good, he personally prefers Emporia Vue despite Sense having certain app advantages.
+
+Key points:
+- Sense app has cool, refined features like zooming in/out on energy data.
+- Emporia Vue is favored by Nate largely for functionality and price.
+- Price point roughly: **Sense ≈ $300**, **Emporia Vue ≈ $150**.
+
+---
+
+**Multi-House Monitoring and Panel Setup:**
+Nate explains that he uses Emporia Vue monitors in three different houses, which can be easily switched between within the Emporia app/web interface. He notes this feature is unclear or not existing in Sense. The three locations include:
+- Mountain Escape (Nate’s current house in West Virginia)
+- River House (outside Cleveland, Ohio)
+- Game House (an Airbnb property).
+
+He highlights that at the River House, both Sense and Emporia Vue monitors are installed simultaneously, enabling a direct side-by-side comparison. Additionally:
+- For his barn, which has a 100-amp panel, he mentions the option of installing two Emporia Vue monitors to cover the full electrical load.
+
+---
+
+**Energy Usage Agreement and Voltage Monitoring:**
+At the River House, Emporia Vue reports about **1180 watts**, Sense shows **1200 watts** at the same time, showing small discrepancies (~2%). Nate suspects that **Sense likely has better voltage monitoring accuracy**—a point in Sense’s favor.
+
+However, Nate’s **primary criticism of Sense is its poor detection of variable electrical loads**, critical in modern electrification with items like **variable speed heat pumps**. He states the Sense monitor has missed these loads repeatedly over years, diminishing its utility for full load insight.
+
+---
+
+**Limitations in Sense Device Detection:**
+Nate illustrates with examples, such as his Chevy Volt EV charging sessions, where Sense failed to detect the charging about half the time—despite clear power draw patterns. This problem also extends to variable speed heat pumps, which Sense does not individually identify or track accurately.
+
+Technical detail:
+- Sense uses just **two current clamps** on the main power inputs ("two mains").
+- Emporia Vue installs clamps on mains plus allows monitoring of **up to 8 or even 16 individual circuit loads** with additional clamps.
+
+This circuit-level granularity is a major advantage for Emporia in understanding exact load origins.
+
+---
+
+**Reporting and Data Granularity:**
+Sense’s app excels in providing detailed, zoomable timeline data, allowing users to trace power usage over seconds to months, useful for detecting event-specific usage patterns.
+
+Emporia, by contrast, deletes granular second- and minute-level data within a few days, making such detailed time travel impossible in their current app/web interface.
+
+---
+
+**Sense App Features and Issues:**
+The Sense app’s visualization – such as its “bubbles” for devices – is praised for its slick interface and ease of seeing device power draws. However, Nate reports Sense sometimes misattributes devices (e.g., detecting nine or ten window air conditioners when only three exist), and he found device naming refinement tedious.
+
+Nate also points out **frequent connectivity/reliability problems with Sense**, which sometimes stops working for weeks. This is despite the Sense monitor being installed near the internet router, but embedded inside a panel box which likely reduces antenna effectiveness.
+
+In contrast, Emporia has maintained a **stable connection with no noted signal drops** in the same locations.
+
+---
+
+**User Experience and Device Detection Challenges:**
+Sense’s timeline reveals the turning on/off of appliances and HVAC systems, which can be valuable in quiet homes with fewer devices. Nate shares that Sense works okay for one client with minimal devices, but even here Sense fails to detect the heat pump load.
+
+Sense offers a feature that compares your home's energy usage against other homes, which Emporia currently does not provide.
+
+---
+
+**Emporia Data Gaps and Limitations:**
+Emporia Vue has experienced some significant connectivity/data gaps, such as missing nearly all of March’s data in the monitored house. Nate finds this frustrating though notes that overall, connectivity seems better than Sense.
+
+Emporia’s zoom-out abilities allow easy toggling between detailed 15-minute increments to weekly or monthly views, but zooming into seconds level is not supported, unlike Sense.
+
+---
+
+**Sense Device List and Charge Monitoring:**
+Sense’s device detection shows multiple entities for seemingly identical appliances (e.g., 15 separate AC entries for 3 actual AC units), requiring manual merging by the user, which Nate found tedious.
+
+Reviewing Sense data for Chevy Volt charging sessions reveals inconsistencies and missed events, confirming that Sense detection for certain EV charging loads is unreliable. This undermines confidence in its accuracy for variable loads.
+
+---
+
+**Emporia Circuit-Level Monitoring:**
+Emporia Vue permits granular monitoring of individual circuits through its multiple CT clamps, allowing monitoring of specific rooms or devices such as resistance baseboard heaters in different rooms.
+
+Smart plugs integrate with Emporia and can measure device-level power consumption remotely, enabling control and scheduling, a feature Nate values especially in his Airbnb setups.
+
+This granular monitoring enables Nate to track heating contributions by individual thermostats/rooms—an insight that is difficult or impossible to attain with Sense.
+
+---
+
+**Energy Usage Examples from Emporia:**
+- Office air conditioner and heating loads.
+- Resistance oil heaters using significant electricity (~813 kWh over certain periods).
+- Dehumidifier usage linked with air filtration.
+- Refrigerator energy use is surprisingly high, roughly twice that of the heat pump water heater, demonstrating value in granular appliance tracking.
+
+Nate highlights how Emporia quantifies detailed energy breakdowns over monthly and yearly spans, illustrating how individual appliances and circuits contribute to overall energy consumption.
+
+---
+
+**Sense Energy Usage Insights:**
+Sense also tracks devices like refrigerators, providing annual and monthly energy use numbers. Nate mentions an old basement fridge costing about $90/year in electricity. However, Sense's data is sometimes fragmented due to connectivity drops.
+
+Despite these flaws, Sense’s detailed analytics and power quality info (e.g., voltage variation) are attractive features, which Emporia does not currently fully match.
+
+---
+
+**Comparisons on Variable Loads and User Control:**
+Emporia tracks variable and complex loads better, including induction stove use and water pump cycling, whereas Sense often misses or inaccurately measures such devices, particularly when load power fluctuates.
+
+Emporia’s higher circuit count and smart plug ecosystem provide **better visibility and control over where and how energy is consumed**, an important asset for users aiming to optimize or monitor multifaceted loads.
+
+---
+
+**Nate’s Final Evaluation and Recommendations:**
+Nate has monitored both products over years and draws these **key conclusions**:
+- **Emporia Vue offers greater visibility and detailed circuit-level monitoring for about half the price of Sense.**
+- Sense provides an excellent app experience with features like long-term zoom and home comparison but falls short on device detection accuracy and connectivity reliability.
+- Sense struggles to detect critical variable loads such as heat pumps and EV chargers.
+- Emporia’s ecosystem includes affordable smart plugs and additional electrification products (smart outlets, car chargers, batteries) expanding usability beyond monitoring.
+- Sense has options for extra clamps (such as for solar or heat pump monitoring), but these add cost and still offer fewer monitored circuits than Emporia.
+
+Nate's recommendation:
+> **If you only get one monitor and want practical, reliable, and detailed energy monitoring, Emporia Vue is the better choice.**
+> Sense might appeal to tech enthusiasts who want advanced app features and can tolerate detection/connectivity issues.
+
+---
+
+**Closing Remarks:**
+Nate encourages viewers to watch for Emporia’s expanding product line, which includes smart charging and battery storage solutions, suggesting a promising future for integrated home electrification management.
+
+He closes by reaffirming his preference for Emporia for most users, despite liking some of Sense's app features, wishing everyone well.
+
+---
+
+### Summary Table: Key Points Comparison
+
+| Feature                          | Sense Energy Monitor                      | Emporia Vue Energy Monitor                  |
+|---------------------------------|------------------------------------------|---------------------------------------------|
+| Price                           | ~$300                                   | ~$150                                      |
+| Number of Monitored Circuits     | 2 (main mains clamps only)               | 8 or 16 with additional CT clamps          |
+| Device Detection                | Detects some devices but misses many, especially variable loads (e.g. heat pumps, EV charger) | Good visibility on individual circuits/devices via multiple clamps and smart plugs |
+| App Features                   | Advanced zoom (seconds to months), device naming, home comparisons | Basic zoom (no detailed second-level), no home usage comparison |
+| Data Granularity               | Detailed second/minute level lasting months | Second/minute data deleted after few days  |
+| Connectivity Reliability         | Frequent dropouts, unreliable signal in some installations | Stable, reliable connectivity               |
+| Voltage Monitoring             | Better voltage monitoring capability      | Some voltage monitoring, but less refined   |
+| Smart Plugs & Ecosystem           | No or limited smart plug integration       | Supports smart plugs, on/off control, schedules |
+| Solar/Extra Clamp Option          | Optional (increases cost, max 4 clamps)  | More CT clamps included                      |
+| User Experience                 | Sleek app, fun device discovery but tedious device management | Practical detailed usage, easy circuit labeling |
+| Overall Recommendation          | Good for tech enthusiasts with simple loads | Best for detailed monitoring and diverse loads at lower cost |
+
+---
+
+This detailed synthesis provides a credible and comprehensive overview of the Sense vs. Emporia Vue home energy monitors based strictly on Nate Adams’ video content.

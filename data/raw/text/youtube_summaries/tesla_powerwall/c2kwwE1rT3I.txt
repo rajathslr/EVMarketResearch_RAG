@@ -1,0 +1,118 @@
+Title:    Powerwalll 3 Tesla App Walkthrough & Tariff Set Up | Apex Doma
+Video ID: c2kwwE1rT3I
+URL:      https://www.youtube.com/watch?v=c2kwwE1rT3I
+App:      tesla_powerwall
+
+### Overview of Tesla Powerwall Mobile App Interface
+- The app begins by displaying the **property description** (example given: Apex Doma office, location in Wils).
+- Shows **real-time solar power generation**; example given is a low output of 0.1 kW on a gloomy day.
+- Displays current **total home energy consumption**; example cited is 5.8 kW due to fully electric heating.
+- Indicates **electric vehicle (EV) charging status**; example shows an electric van drawing 7.2 kW while preparing for a day's solar installation.
+- The **Powerwall itself** is shown with capacity and discharge limits:
+- Older Powerwall 2 model discharges up to 5 kW.
+- Newer Powerwall 3 model discharges up to 11 kW (most common scenario).
+- Displays **grid input power**; example is drawing 7.2 kW from the National Grid.
+
+### Energy Monitoring and Historical Usage
+- App shows whether **wall connector** (EV charging hardware) is online; in example, offline for maintenance.
+- Displays **daily energy usage**; example today usage: 8.4 kW.
+- Enables swiping left/right to review **historical data** for previous days or months.
+- Monthly consumption examples:
+| Month     | Energy Used (kWh) | Breakdown (kWh)                              |
+|-----------|-------------------|---------------------------------------------|
+| November  | 563               | Powerwall discharge 242, solar 140, grid 432|
+| October   | 800+              | *Not specified in detail*                    |
+- Breakdown highlights heavy use of **electric vehicle charging** as a major grid energy draw.
+
+### Energy Source Breakdown and Visualization
+- For a day in November:
+- Powerwall discharge: 30% (full 13.5 kWh capacity).
+- Solar contribution: 11%.
+- Grid energy usage: 59%.
+- App’s navigation includes:
+- **EV charging overview**—shows when vehicles charged (e.g., overnight).
+- **Powerwall charging and discharging graph**—illustrates charge cycles, including cheap nighttime charging and daytime solar top-up.
+- **Solar generation data**—e.g., 7.4 kWh solar generation on a sample day.
+- **Grid draw amounts**—aligned with tariff periods to show costs.
+
+### Cost and Tariff-Based Analytics
+- App uses **time-scale filters** (day, week, month) to view energy use and costs.
+- Costs are calculated dynamically based on **user’s utility tariff**.
+- The app tracks whether the **whole home backup** has been engaged (if power outages occur).
+- Graphs visualize costs offset by solar generation and Powerwall discharge to maximize self-consumption.
+
+### Powerwall Settings and Backup Reserve
+- Users can set a **Powerwall backup reserve percentage** (example: 20%).
+- The backup portion is reserved to maintain power in case of an outage.
+- The remainder (e.g., 80%) is available for everyday use.
+- Users can adjust the reserve anywhere between 0% to 100%, balancing backup reliability vs. usable capacity.
+
+### Operational Modes
+| Mode            | Description                                                                                             | Best For                                   |
+|-----------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------|
+| Self-Powered    | Powerwall does not draw energy from the grid; solely uses solar and stored energy.                    | Users without cheap night rates; solar maximizers.|
+| Time-Based Control | Powerwall follows utility rates to charge during cheap off-peak hours and discharge during peak rates.| Users with cheap night tariffs or EV charging schedules.|
+
+- Most users prefer **time-based control** to optimize costs by leveraging low tariff windows.
+
+### Utility Rate Plan Configuration
+- Users can select and customize their **utility provider and rate plans** in the app.
+- Example given: Octopus Go tariff with a 5-hour cheap night period.
+- Supports entering **seasonal tariffs** allowing multiple rate windows annually (e.g., switching between EV and heat pump plans in different seasons).
+- Customizable daytime and nighttime tariff periods with draggable sliders for fine-tuning.
+
+### Powerwall Algorithm and Learning Capabilities
+- Powerwall undergoes a **2–3 month learning phase** adapting to household usage patterns.
+- The system predicts events like heavy usage days (e.g., baking or family visits) and pre-charges accordingly during cheap rates.
+- Optimizes charge/discharge around expected solar conditions, weather forecasts, and tariff schedules to minimize costs.
+
+### Pricing and Selling Energy Back to Grid
+- Users can input exact values for:
+- Off-peak purchase price (example: 16p commercial, modified to 8p domestic rate).
+- Sell-back price (e.g., 0.8p/kWh).
+- Peak rates (example: 21p/kWh).
+- The Powerwall can **purchase energy in advance** to avoid super-peak periods by slightly overpaying earlier during cheaper but still off-peak hours.
+- Settings must be saved manually after editing rates.
+
+### Additional Settings and Features
+- **Grid charging toggle:** Enables or disables Powerwall charging from the grid during low tariff periods.
+- **Vehicle charging settings:** For those with installed Tesla Wall Connectors; scheduling options described (detailed setup to be covered in a separate video).
+- **Storm Watch feature:**
+- Monitors UK’s Met Office weather warnings (yellow or red alerts).
+- Automatically charges the Powerwall battery to full before severe weather to ensure maximum energy backup.
+- Requires correct property location input for accurate weather forecasting.
+- Users can enable/disable or manually schedule storm watch events.
+
+### User Interface and Connectivity Options
+- The app supports:
+- Linking multiple mobile phones via phone pairing.
+- Wi-Fi configuration for communication with Tesla servers.
+- Sharing access with other users if desired.
+- **Go off-grid option:**
+- Allows manual switch to off-grid mode where the home is powered entirely by Powerwall energy.
+- Limited to maximum Powerwall discharge capacity (e.g., 5 kW for Powerwall 2; 11 kW for Powerwall 3).
+- Suitable in low consumption scenarios or certain months (e.g., April to October) to maximize renewable energy use.
+
+### Visual Feedback and Support Resources
+- The app displays a **dynamic garage view** showing plugged-in Tesla vehicles with corresponding icons.
+- Number of wall connectors installed influences the app’s garage interface size and visuals.
+- Contains embedded **tutorials, support contact methods, and owner manuals** for troubleshooting and guidance.
+
+### Final Notes
+- The video provides a comprehensive walkthrough of the **Tesla Powerwall 3 mobile app**, focusing on monitoring, control, and optimization features.
+- Users seeking assistance can contact the **Apex Doma team** for further help with the Tesla app or Powerwall system.
+- The walkthrough covers configuration, tariff management, backup settings, storm preparation, and power consumption visualization.
+
+---
+
+### **Key Insights:**
+- The Powerwall app offers **real-time energy monitoring** across solar generation, home consumption, EV charging, and grid usage.
+- **Backup reserve management** is crucial to maintaining power during outages, configurable between 0–100%.
+- **Time-based control mode** optimizes battery use based on tariff schedules, beneficial for users with cheap night rates or EV charging needs.
+- The Powerwall **learns household consumption patterns** over months to improve cost efficiency dynamically.
+- **Storm Watch** enhances resilience by proactively charging the battery ahead of forecasted severe weather.
+- The app supports **detailed tariff customization**, including multiple seasonal plans and tariff periods to maximize savings.
+- Users can **go off-grid** manually with the Powerwall capacity, enabling continuous solar-powered operation during certain times.
+- Visual and user experience features like the garage view and EV charging status improve usability for Tesla customers.
+
+This detailed summary reflects all features and functionalities discussed in the provided transcript, strictly adhering to the source content without inferring or assuming additional details.
