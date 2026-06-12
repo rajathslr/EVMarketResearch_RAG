@@ -131,7 +131,7 @@ def retrieve(question: str, app_filter: Optional[str] = None, top_k: int = TOP_K
                     yt_params = [vec_str, vec_str, shortfall + 6]
                     if category_filter:
                         yt_where += " AND category = %s"
-                        yt_params.insert(2, category_filter)
+                        yt_params.insert(1, category_filter)  # slot 1: after score-calc vec, before ORDER BY vec
                     cur.execute(f"""
                         SELECT source, app_name, category, content, metadata,
                                1 - (embedding <=> %s::vector) AS score
