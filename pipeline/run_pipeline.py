@@ -188,7 +188,12 @@ def read_news(app_filter: str | None = None) -> list[dict]:
         for a in data.get("articles", []):
             title = (a.get("title") or "").strip()
             desc  = (a.get("description") or "").strip()
-            text  = f"{title}. {desc}".strip(". ") if desc else title
+            body  = (a.get("body") or "").strip()
+            # Prefer full body (v2 scraper); fall back to title+description (legacy)
+            if len(body) > 200:
+                text = body
+            else:
+                text = f"{title}. {desc}".strip(". ") if desc else title
             if not text:
                 continue
             docs.append({
@@ -224,6 +229,26 @@ def read_web_pages(app_filter: str | None = None) -> list[dict]:
         for p in data.get("pages", []):
             content = (p.get("content") or "").strip()
             if not content:
+                continue
+            # Strip common cookie-consent / nav boilerplate that Firecrawl captures
+            # before the actual page content (e.g. Blink, Shell Recharge sites).
+            _BOILERPLATE_PREFIXES = (
+                "we value your privacy",
+                "this site uses cookies",
+                "by clicking",
+                "skip to main content",
+                "skip to content",
+                "![revisit consent",
+            )
+            cl = content.lower()
+            for bp in _BOILERPLATE_PREFIXES:
+                if cl.startswith(bp):
+                    # Find the first real paragraph (2+ newlines after the boilerplate)
+                    cut = content.find("\n\n", 300)
+                    if cut > 0:
+                        content = content[cut:].strip()
+                    break
+            if len(content) < 100:   # skip pages that are essentially empty after cleaning
                 continue
             docs.append({
                 "source":    "web_pages",

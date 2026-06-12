@@ -1,23 +1,30 @@
 """
 parse_transcripts.py
 
-Parses AllYoutubeTranscripts.txt into per-app transcripts.json files.
-Merges with existing files (deduplicates by video_id).
+Parses a multi-section transcript file into per-app .txt files under
+data/raw/text/youtube_summaries/<app_name>/.
+
+Each section in the input file must be separated by a line of 5+ dashes (-----).
+The first non-blank, non-URL, non-timestamp line is treated as the title.
+App is auto-detected from the title keywords.
+
+Usage:
+    python pipeline/scrapers/parse_transcripts.py
+    python pipeline/scrapers/parse_transcripts.py --file "C:\\path\\to\\file.txt"
 """
 
+import argparse
 import re
-import json
 import hashlib
-import os
 from datetime import datetime
 from pathlib import Path
 
 # ---------------------------------------------------------------------------
 # Paths
 # ---------------------------------------------------------------------------
-INPUT_FILE = Path(r"C:\Users\Admin\Downloads\AllYoutubeTranscripts.txt")
-OUTPUT_BASE = Path(r"C:\EVMarketResearch\data\raw\text\youtube")
-SCRAPED_AT = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+DEFAULT_INPUT = Path(r"C:\Users\Admin\Downloads\AllYoutubeTranscripts.txt")
+OUTPUT_BASE   = Path(__file__).parents[2] / "data" / "raw" / "text" / "youtube_summaries"
+SCRAPED_AT    = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
 
 # ---------------------------------------------------------------------------
 # App-name mapping rules (checked in order against the section title)
@@ -38,6 +45,7 @@ def classify_title(title: str) -> str | None:
         return None
 
     # Mappings
+    # EV Charging
     if "chargepoint" in t or "charge point" in t or "charge-point" in t:
         return "chargepoint"
     if "evgo" in t or "ev go" in t or "ev-go" in t:
@@ -48,14 +56,31 @@ def classify_title(title: str) -> str | None:
         return "plugshare"
     if "shell recharge" in t or "shell-recharge" in t:
         return "shell_recharge"
-    if "flo" in t:
+    if "flo" in t and "enphase" not in t:
         return "flo"
     if "evcs" in t:
         return "evcs"
-    if "tesla" in t:
-        return "tesla"
     if "blink" in t:
         return "blink"
+    # Prosumer — check before generic "tesla" to avoid mis-routing
+    if "powerwall" in t:
+        return "tesla_powerwall"
+    if "tesla" in t:
+        return "tesla"
+    if "enphase" in t or "enlighten" in t:
+        return "enphase"
+    if "solaredge" in t or "solar edge" in t or "mysolar" in t:
+        return "solaredge"
+    if "emporia" in t:
+        return "emporia"
+    if "sense" in t and ("energy" in t or "monitor" in t or "home" in t):
+        return "sense"
+    if "sunpower" in t or "sun power" in t or "sunstrong" in t:
+        return "sunpower"
+    if "generac" in t or "pwrview" in t or "pwr view" in t:
+        return "generac"
+    if "span" in t and ("panel" in t or "smart" in t or "home" in t or "energy" in t):
+        return "span"
 
     return None  # unknown / skip
 
@@ -242,157 +267,142 @@ def parse_section(section: str) -> tuple[str, str, str]:
 
 
 # ---------------------------------------------------------------------------
-# Load / save helpers
+# Save helpers  — writes one .txt per video to youtube_summaries/<app>/
 # ---------------------------------------------------------------------------
-def load_existing(app_name: str) -> dict:
-    path = OUTPUT_BASE / app_name / "transcripts.json"
-    if path.exists():
-        with open(path, encoding="utf-8") as f:
-            return json.load(f)
-    return {
-        "app": app_name,
-        "query": "manually added transcripts",
-        "count": 0,
-        "scraped_at": SCRAPED_AT,
-        "transcripts": [],
-    }
+def existing_video_ids(app_name: str) -> set[str]:
+    """Return video_ids already saved as .txt files for this app."""
+    folder = OUTPUT_BASE / app_name
+    if not folder.exists():
+        return set()
+    ids = set()
+    for f in folder.glob("*.txt"):
+        for line in f.read_text(encoding="utf-8").splitlines():
+            if line.startswith("Video ID:"):
+                ids.add(line.split(":", 1)[1].strip())
+                break
+    return ids
 
 
-def save_app_data(app_name: str, data: dict):
+def save_video_txt(app_name: str, video_id: str, title: str, url: str, body: str) -> Path:
+    """Write one .txt summary file in the format read_youtube() expects."""
     folder = OUTPUT_BASE / app_name
     folder.mkdir(parents=True, exist_ok=True)
-    data["count"] = len(data["transcripts"])
-    data["scraped_at"] = SCRAPED_AT
-    path = folder / "transcripts.json"
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+    safe_id = re.sub(r'[^\w\-]', '_', video_id)[:40]
+    path = folder / f"{safe_id}.txt"
+    content = (
+        f"Title:    {title}\n"
+        f"Video ID: {video_id}\n"
+        f"URL:      {url or ''}\n"
+        f"App:      {app_name}\n"
+        f"\n"
+        f"{body}\n"
+    )
+    path.write_text(content, encoding="utf-8")
+    return path
 
 
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 def main():
-    raw = INPUT_FILE.read_text(encoding="utf-8")
+    parser = argparse.ArgumentParser(description="Parse multi-section transcript file into per-app .txt files")
+    parser.add_argument("--file", type=Path, default=DEFAULT_INPUT,
+                        help="Path to the input transcript file (default: %(default)s)")
+    args = parser.parse_args()
+
+    input_file: Path = args.file
+    if not input_file.exists():
+        print(f"ERROR: Input file not found: {input_file}")
+        return
+
+    raw = input_file.read_text(encoding="utf-8")
     sections = split_sections(raw)
 
-    # Accumulate results per app_name
-    app_data: dict[str, dict] = {}
+    saved:   dict[str, int] = {}  # app_name -> count saved this run
     skipped: list[str] = []
 
-    # Track if we're inside the EVCS playlist block to skip it entirely
+    # Pre-load existing video IDs per app to deduplicate
+    seen_ids: dict[str, set] = {}
+
     in_evcs_playlist = False
 
-    for sec_idx, section in enumerate(sections):
+    for section in sections:
         section = section.strip()
         if not section:
             continue
 
         title, url, raw_transcript = parse_section(section)
 
-        # ----------------------------------------------------------------
-        # EVCS playlist block detection — once we hit it, skip until end
-        # ----------------------------------------------------------------
+        # EVCS playlist block detection
         if "evcs tutorial" in title.lower() and ("playlist" in title.lower() or "entier" in title.lower() or "entire" in title.lower()):
             in_evcs_playlist = True
             skipped.append(f"{title} (European hardware brand EVCS, entire playlist)")
             continue
 
         if in_evcs_playlist:
-            # Check if this section looks like a new real section (has a recognisable app title)
-            # The EVCS playlist ends at line 7381 (next section is Tesla)
-            # The last entry in the EVCS block is numbered playlist items — they have no standalone title
-            # So: if the section has a title that maps to a real app or skip, we're out
             test_app = classify_title(title) if title else None
             if title and (test_app is not None or "pod point" in title.lower()):
                 in_evcs_playlist = False
-                # Fall through to process this section
             else:
-                # Still inside EVCS playlist block
                 continue
 
-        # ----------------------------------------------------------------
-        # Classify the section
-        # ----------------------------------------------------------------
+        # Classify
         if not title and not url:
-            # Section with no title and no URL  → Shell Recharge payment method video
-            # (lines 5073-5129 per spec)
             app_name = "shell_recharge"
             title = "(Shell Recharge - add payment method)"
         elif not title and url:
-            app_name = None
             skipped.append(f"(no title, url={url})")
+            continue
         else:
             app_name = classify_title(title)
 
         if app_name is None:
-            reason = ""
             tl = title.lower()
-            if "not for apps" in tl:
-                reason = "not an app review"
-            elif "pod point" in tl or "pod-point" in tl:
-                reason = "UK brand"
-            elif "evcs tutorial" in tl:
-                reason = "European hardware brand"
-            else:
-                reason = "no matching app"
+            if "not for apps" in tl:        reason = "not an app review"
+            elif "pod point" in tl:          reason = "UK brand"
+            elif "evcs tutorial" in tl:      reason = "European hardware brand"
+            else:                            reason = "no matching app"
             skipped.append(f"{title or '(no title)'} ({reason})")
             continue
 
-        # ----------------------------------------------------------------
-        # Clean the transcript
-        # ----------------------------------------------------------------
+        # Clean
         cleaned = clean_transcript(raw_transcript)
-
-        # Skip sections that are effectively empty after cleaning
         if len(cleaned.strip()) < 50:
             skipped.append(f"{title} (too little content after cleaning)")
             continue
 
-        # ----------------------------------------------------------------
-        # Build transcript entry
-        # ----------------------------------------------------------------
+        # Deduplicate
         video_id = extract_video_id(url) if url else ""
         if not video_id:
             video_id = make_id_from_title(title)
 
-        entry = {
-            "video_id": video_id,
-            "title": title,
-            "channel": "",
-            "published_at": "",
-            "description": "",
-            "transcript": cleaned,
-            "transcript_chars": len(cleaned),
-        }
+        if app_name not in seen_ids:
+            seen_ids[app_name] = existing_video_ids(app_name)
 
-        # ----------------------------------------------------------------
-        # Merge into app data (deduplicate by video_id)
-        # ----------------------------------------------------------------
-        if app_name not in app_data:
-            app_data[app_name] = load_existing(app_name)
-
-        existing_ids = {t["video_id"] for t in app_data[app_name]["transcripts"]}
-        if video_id not in existing_ids:
-            app_data[app_name]["transcripts"].append(entry)
-        else:
+        if video_id in seen_ids[app_name]:
             print(f"  [skip duplicate] {title} (video_id={video_id})")
+            continue
 
-    # ----------------------------------------------------------------
-    # Save all app data
-    # ----------------------------------------------------------------
-    for app_name, data in app_data.items():
-        save_app_data(app_name, data)
+        # Save
+        path = save_video_txt(app_name, video_id, title, url, cleaned)
+        seen_ids[app_name].add(video_id)
+        saved[app_name] = saved.get(app_name, 0) + 1
+        print(f"  [saved] {app_name} — {title[:60]} → {path.name}")
 
-    # ----------------------------------------------------------------
     # Summary
-    # ----------------------------------------------------------------
     print("\n=== SUMMARY ===")
-    for app_name in sorted(app_data.keys()):
-        count = len(app_data[app_name]["transcripts"])
-        print(f"{app_name}: {count} transcript{'s' if count != 1 else ''} saved")
+    for app_name in sorted(saved.keys()):
+        print(f"  {app_name}: {saved[app_name]} new file(s)")
+    if not saved:
+        print("  (nothing new saved)")
+    print(f"\nSkipped: {len(skipped)}")
+    for s in skipped:
+        print(f"  SKIP: {s}")
 
-    for skip_msg in skipped:
-        print(f"SKIPPED: {skip_msg}")
+    if saved:
+        print("\nNext step — ingest into DB:")
+        for app_name in sorted(saved.keys()):
+            print(f"  python pipeline/run_pipeline.py --source youtube --app {app_name}")
 
 
 if __name__ == "__main__":
