@@ -1,5 +1,5 @@
 """
-Streamlit chat UI — EV charging app research assistant.
+Streamlit chat UI — Home Energy & EV App Research assistant.
 Features: login, per-user persistent chat history, new chat, source/app filters.
 
 Run:  streamlit run rag/chat_ui/app.py
@@ -40,7 +40,7 @@ ensure_obs_tables()
 # Page config — must be first Streamlit call
 # ---------------------------------------------------------------------------
 st.set_page_config(
-    page_title="EV Research Assistant",
+    page_title="Home Energy & EV App Research",
     page_icon="⚡",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -733,9 +733,9 @@ if not st.session_state.get("authentication_status"):
         st.markdown("""
         <div class="login-card">
             <div class="login-icon">⚡</div>
-            <h2 class="login-title">EV Research Assistant</h2>
+            <h2 class="login-title">Home Energy &amp; EV App Research</h2>
             <p class="login-sub">
-                Competitive intelligence on<br>North American EV charging apps
+                Competitive intelligence on<br>North American home energy &amp; EV apps
             </p>
         </div>
         """, unsafe_allow_html=True)
@@ -828,7 +828,7 @@ with st.sidebar:
     # ── Branding ───────────────────────────────────────────────────────────
     st.markdown("""
     <div class="sb-brand">
-        <p class="sb-brand-title">⚡ Smart Energy Research</p>
+        <p class="sb-brand-title">⚡ Home Energy &amp; EV Research</p>
         <p class="sb-brand-sub">EV Charging &amp; Prosumer Apps</p>
     </div>
     """, unsafe_allow_html=True)
@@ -940,7 +940,7 @@ topbar_left, topbar_right = st.columns([6, 1])
 with topbar_left:
     st.markdown("""
     <div class="ev-topbar">
-        <span class="ev-topbar-title">⚡ Smart Energy App Research</span>
+        <span class="ev-topbar-title">⚡ Home Energy &amp; EV App Research</span>
         <span class="ev-topbar-sub">
             EV Charging · Prosumer &amp; Home Energy Apps
         </span>
