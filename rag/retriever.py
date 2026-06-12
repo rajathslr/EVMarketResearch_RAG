@@ -67,16 +67,19 @@ _YT_KEYWORDS = {"youtube", "transcript", "video", "tutorial", "demo", "watch"}
 
 
 def retrieve(question: str, app_filter: Optional[str] = None, top_k: int = TOP_K,
-             category_filter: Optional[str] = None, min_youtube: int = 2) -> list[dict]:
+             category_filter: Optional[str] = None, min_youtube: int = 2,
+             min_news: int = 2, min_web: int = 2) -> list[dict]:
     """Embed question, run cosine similarity search, return top_k chunk dicts.
 
-    YouTube guarantee logic:
-    - Queries that explicitly mention youtube/video/transcript/tutorial bump
-      min_youtube to 6 so the intent is always honoured.
-    - Fallback YouTube chunks are included if their score >= YT_MIN_SCORE (0.50).
-      Threshold is intentionally low because the embedding model often scores
-      rich video summaries below short reviews even when they are highly relevant.
-    - No YouTube boost is applied when the user has already filtered to a specific app.
+    Source diversity guarantees:
+    - YouTube (min_youtube=2): queries mentioning youtube/video/tutorial bump to 6.
+      Fallback score threshold: 0.50.  Skipped when app_filter is set.
+    - News (min_news=2): always ensures at least min_news news chunks appear.
+      No score threshold — news chunks are short (headline-only until re-scraped)
+      and score low vs reviews; any relevant news headline is worth surfacing.
+    - Web pages (min_web=2): always ensures at least min_web web_pages chunks.
+      No score threshold — official website content should always be represented.
+    Both news and web guarantees respect app_filter and category_filter when set.
     """
     q_words = set(question.lower().split())
     if q_words & _YT_KEYWORDS and not app_filter:
@@ -146,6 +149,69 @@ def retrieve(question: str, app_filter: Optional[str] = None, top_k: int = TOP_K
                         and float(r["score"]) >= YT_MIN_SCORE
                     ][:shortfall]
                     results = results + yt_extras
+
+            # --- Guarantee news representation ---
+            # News chunks are short (RSS headlines only until re-scraped) and score
+            # poorly against reviews. Force at least min_news in — any threshold
+            # would often exclude them entirely.  Runs even when app_filter is set
+            # so app-specific queries still surface relevant press coverage.
+            if min_news > 0:
+                news_count = sum(1 for r in results if r["source"] == "news")
+                shortfall = min_news - news_count
+                if shortfall > 0:
+                    news_seen = {r["content"] for r in results}
+                    news_where = "WHERE source = 'news'"
+                    news_params = [vec_str, vec_str, shortfall + 6]
+                    if app_filter:
+                        news_where += " AND app_name = %s"
+                        news_params.insert(1, app_filter)
+                    elif category_filter:
+                        news_where += " AND category = %s"
+                        news_params.insert(1, category_filter)
+                    cur.execute(f"""
+                        SELECT source, app_name, category, content, metadata,
+                               1 - (embedding <=> %s::vector) AS score
+                        FROM document_chunks
+                        {news_where}
+                        ORDER BY embedding <=> %s::vector
+                        LIMIT %s
+                    """, news_params)
+                    news_extras = [
+                        dict(r) for r in cur.fetchall()
+                        if r["content"] not in news_seen
+                    ][:shortfall]
+                    results = results + news_extras
+
+            # --- Guarantee web_pages representation ---
+            # Official website content (avg 1,700 chars, rich detail) is consistently
+            # outranked by the sheer volume of reviews.  Force at least min_web chunks
+            # in so every answer includes authoritative product/feature information.
+            if min_web > 0:
+                web_count = sum(1 for r in results if r["source"] == "web_pages")
+                shortfall = min_web - web_count
+                if shortfall > 0:
+                    web_seen = {r["content"] for r in results}
+                    web_where = "WHERE source = 'web_pages'"
+                    web_params = [vec_str, vec_str, shortfall + 4]
+                    if app_filter:
+                        web_where += " AND app_name = %s"
+                        web_params.insert(1, app_filter)
+                    elif category_filter:
+                        web_where += " AND category = %s"
+                        web_params.insert(1, category_filter)
+                    cur.execute(f"""
+                        SELECT source, app_name, category, content, metadata,
+                               1 - (embedding <=> %s::vector) AS score
+                        FROM document_chunks
+                        {web_where}
+                        ORDER BY embedding <=> %s::vector
+                        LIMIT %s
+                    """, web_params)
+                    web_extras = [
+                        dict(r) for r in cur.fetchall()
+                        if r["content"] not in web_seen
+                    ][:shortfall]
+                    results = results + web_extras
 
             results.sort(key=lambda r: r["score"], reverse=True)
             return results
