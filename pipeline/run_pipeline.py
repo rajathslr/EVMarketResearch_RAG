@@ -17,6 +17,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from processing.chunker import chunk_text
 from processing.embedder import embed_texts
 from ingestion.upsert import upsert_chunks
+from ingestion.upsert_raw import upsert_raw_docs
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
@@ -44,6 +45,10 @@ APP_CATEGORIES: dict[str, str] = {
     "sunpower":          "prosumer",
     "generac":           "prosumer",
     "span":              "prosumer",
+    # News category buckets (produced by news_rss.py v3)
+    "_ev_general":       "ev_charging",
+    "_prosumer_general": "prosumer",
+    "_general":          "ev_charging",
 }
 
 
@@ -202,6 +207,9 @@ def read_news(app_filter: str | None = None) -> list[dict]:
                 "category":  APP_CATEGORIES.get(app_dir.name, "ev_charging"),
                 "content":   text,
                 "metadata": {
+                    "title":       title,
+                    "description": desc,
+                    "body":        body,
                     "source_name": a.get("source"),
                     "published":   a.get("published"),
                     "link":        a.get("link"),
@@ -335,6 +343,9 @@ def main() -> None:
     if not all_docs:
         log.warning("No documents found. Check that scrapers have been run.")
         return
+
+    log.info("Saving %d raw documents to raw_documents table...", len(all_docs))
+    upsert_raw_docs(all_docs)
 
     log.info("Processing %d total documents...", len(all_docs))
     process_docs(all_docs)
