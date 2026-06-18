@@ -29,12 +29,14 @@ from rag.chat_ui.session_db import (
     load_messages, save_messages, delete_session,
 )
 from rag.chat_ui.obs_db import ensure_obs_tables, log_query
+from rag.chat_ui.feedback_db import ensure_feedback_table, save_feedback, load_session_feedback
 
 # ---------------------------------------------------------------------------
 # One-time DB setup
 # ---------------------------------------------------------------------------
 ensure_table()
 ensure_obs_tables()
+ensure_feedback_table()
 
 # ---------------------------------------------------------------------------
 # Page config — must be first Streamlit call
@@ -43,7 +45,7 @@ st.set_page_config(
     page_title="Home Energy & EV App Research",
     page_icon="⚡",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="auto",  # collapses on mobile automatically
 )
 
 # ---------------------------------------------------------------------------
@@ -55,21 +57,19 @@ st.markdown("""
    DESIGN TOKENS
    ════════════════════════════════════════════════════════════════════ */
 :root {
-    /* Sidebar — stays dark */
-    --sb-bg:        #111827;
-    --sb-bg-hover:  #1f2937;
-    --sb-bg-active: #1e2a3a;
-    --sb-border:    #1f2937;
-    --sb-text:      #d1d5db;
-    --sb-text-dim:  #6b7280;
-    --sb-text-muted:#374151;
+    /* Sidebar — dark */
+    --sb-bg:        #0f172a;
+    --sb-bg-hover:  #1e293b;
+    --sb-bg-active: #1e3a5f;
+    --sb-border:    #1e293b;
+    --sb-text:      #cbd5e1;
+    --sb-text-dim:  #64748b;
 
-    /* Main area — bright */
+    /* Main area */
     --bg:           #ffffff;
     --bg-surface:   #f8fafc;
     --bg-card:      #f1f5f9;
     --border:       #e2e8f0;
-    --border-focus: #4f46e5;
 
     /* Text */
     --text:         #0f172a;
@@ -81,34 +81,32 @@ st.markdown("""
     --accent-hover: #4338ca;
     --accent-soft:  #eef2ff;
 
-    /* Chat */
-    --user-bubble:  #eef2ff;
-    --user-border:  #c7d2fe;
-    --assistant-bg: #ffffff;
+    /* Bubbles */
+    --user-bubble:  #4f46e5;
+    --user-text:    #ffffff;
+    --ai-bubble:    #f1f5f9;
+    --ai-text:      #0f172a;
 }
 
 /* ════════════════════════════════════════════════════════════════════
-   GLOBAL RESET / BASE
+   GLOBAL BASE
    ════════════════════════════════════════════════════════════════════ */
 html, body, [class*="css"] {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                  "Helvetica Neue", Arial, sans-serif !important;
 }
+html, body, .stApp,
+[data-testid="stAppViewContainer"],
+[data-testid="stMain"],
+section.main, .block-container { background: var(--bg) !important; }
 
-/* Force light backgrounds everywhere in the main area */
-html, body                               { background: var(--bg) !important; }
-.stApp                                   { background: var(--bg) !important; }
-[data-testid="stAppViewContainer"]       { background: var(--bg) !important; }
-[data-testid="stMain"]                   { background: var(--bg) !important; }
-section.main                             { background: var(--bg) !important; }
-.block-container                         { background: var(--bg) !important; }
-
-/* Remove default padding/max-width */
 .block-container {
-    padding-top:    0      !important;
-    padding-bottom: 5rem   !important;
-    max-width:      860px  !important;
+    padding-top:    0.5rem !important;
+    padding-bottom: 6rem   !important;
+    max-width:      780px  !important;
     margin:         0 auto !important;
+    padding-left:   1.25rem !important;
+    padding-right:  1.25rem !important;
 }
 
 /* Hide Streamlit chrome */
@@ -122,557 +120,349 @@ section.main                             { background: var(--bg) !important; }
    ════════════════════════════════════════════════════════════════════ */
 [data-testid="stSidebar"] {
     background-color: var(--sb-bg) !important;
-    border-right: 1px solid #1f2937 !important;
-    min-width: 255px !important;
-    max-width: 255px !important;
+    border-right: 1px solid #1e293b !important;
+    min-width: 260px !important;
+    max-width: 260px !important;
 }
-[data-testid="stSidebar"] > div:first-child {
-    padding: 0 0 1rem 0 !important;
-}
+[data-testid="stSidebar"] > div:first-child { padding: 0 0 1rem 0 !important; }
 
-/* All sidebar text */
 [data-testid="stSidebar"] p,
 [data-testid="stSidebar"] span,
 [data-testid="stSidebar"] li,
 [data-testid="stSidebar"] small,
-[data-testid="stSidebar"] div {
-    color: var(--sb-text) !important;
-    font-size: 0.83rem !important;
-}
+[data-testid="stSidebar"] div { color: var(--sb-text) !important; font-size: 0.82rem !important; }
+
 [data-testid="stSidebar"] a { color: #818cf8 !important; }
 
-/* Section labels */
 [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p strong {
-    color: var(--sb-text-dim) !important;
-    font-size: 0.68rem !important;
+    color: #e2e8f0 !important;
+    font-size: 0.75rem !important;
     font-weight: 700 !important;
     text-transform: uppercase;
-    letter-spacing: 0.09em;
+    letter-spacing: 0.07em;
 }
-[data-testid="stSidebar"] hr {
-    border-color: #1f2937 !important;
-    margin: 0.5rem 0 !important;
-}
+[data-testid="stSidebar"] hr { border-color: #1e293b !important; margin: 0.5rem 0 !important; }
 
-/* Sidebar buttons */
-[data-testid="stSidebar"] button {
-    border-radius: 7px !important;
-    font-size: 0.83rem !important;
-    transition: background 0.15s ease !important;
-}
+[data-testid="stSidebar"] button { border-radius: 8px !important; font-size: 0.82rem !important; transition: background 0.15s !important; }
 [data-testid="stSidebar"] button[kind="secondary"] {
-    background: transparent !important;
-    border: none !important;
-    color: #9ca3af !important;
-    text-align: left !important;
-    padding: 0.38rem 0.65rem !important;
+    background: transparent !important; border: none !important;
+    color: #cbd5e1 !important; text-align: left !important; padding: 0.4rem 0.7rem !important;
+    font-weight: 500 !important;
 }
-[data-testid="stSidebar"] button[kind="secondary"]:hover {
-    background: var(--sb-bg-hover) !important;
-    color: #f3f4f6 !important;
-}
+[data-testid="stSidebar"] button[kind="secondary"]:hover { background: var(--sb-bg-hover) !important; color: #f1f5f9 !important; }
 [data-testid="stSidebar"] button[kind="primary"] {
-    background: var(--sb-bg-active) !important;
-    border: 1px solid #2d3748 !important;
-    color: #e2e8f0 !important;
+    background: var(--sb-bg-active) !important; border: 1px solid #2d4a6e !important; color: #e2e8f0 !important;
 }
-[data-testid="stSidebar"] button[kind="primary"]:hover {
-    background: #243044 !important;
-    border-color: #4f46e5 !important;
-}
+[data-testid="stSidebar"] button[kind="primary"]:hover { background: #1e4a7a !important; border-color: #4f46e5 !important; }
 
-/* Sidebar labels */
 [data-testid="stSidebar"] .stSelectbox label,
 [data-testid="stSidebar"] .stSlider label,
-[data-testid="stSidebar"] .stToggle label {
-    color: #9ca3af !important;
-    font-size: 0.79rem !important;
-}
+[data-testid="stSidebar"] .stToggle label { color: #cbd5e1 !important; font-size: 0.8rem !important; font-weight: 600 !important; }
 
-/* Sidebar selectbox */
-[data-testid="stSidebar"] [data-baseweb="select"] > div {
-    background-color: #1f2937 !important;
-    border-color: #374151 !important;
-}
+[data-testid="stSidebar"] [data-baseweb="select"] > div { background-color: #1e293b !important; border-color: #334155 !important; }
 [data-testid="stSidebar"] [data-baseweb="select"] span,
-[data-testid="stSidebar"] [data-baseweb="select"] div {
-    color: #e2e8f0 !important;
-}
+[data-testid="stSidebar"] [data-baseweb="select"] div { color: #e2e8f0 !important; }
 
-/* Sidebar expander */
 [data-testid="stSidebar"] .streamlit-expanderHeader {
-    background: transparent !important;
-    color: var(--sb-text-dim) !important;
-    font-size: 0.68rem !important;
-    font-weight: 700 !important;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
-    padding: 0.45rem 0 !important;
-    border: none !important;
+    background: transparent !important; color: #e2e8f0 !important;
+    font-size: 0.78rem !important; font-weight: 700 !important;
+    text-transform: uppercase; letter-spacing: 0.07em;
+    padding: 0.45rem 0 !important; border: none !important;
 }
-[data-testid="stSidebar"] .streamlit-expanderContent {
-    background: transparent !important;
-    border: none !important;
-    padding: 0.25rem 0 !important;
-}
-
-/* Sidebar slider track */
-[data-testid="stSidebar"] [data-testid="stSlider"] {
-    color: #9ca3af !important;
-}
-[data-testid="stSidebar"] .stSlider [data-baseweb="slider"] div[role="slider"] {
-    background: #4f46e5 !important;
-    border-color: #4f46e5 !important;
-}
+[data-testid="stSidebar"] .streamlit-expanderContent { background: transparent !important; border: none !important; padding: 0.2rem 0 !important; }
+[data-testid="stSidebar"] .stSlider [data-baseweb="slider"] div[role="slider"] { background: #4f46e5 !important; border-color: #4f46e5 !important; }
 
 /* ════════════════════════════════════════════════════════════════════
-   SIDEBAR COMPONENTS (HTML)
+   SIDEBAR HTML COMPONENTS
    ════════════════════════════════════════════════════════════════════ */
 .sb-brand {
-    padding: 1rem 1rem 0.8rem 1rem;
-    border-bottom: 1px solid #1f2937;
+    padding: 1.1rem 1rem 0.9rem 1rem;
+    border-bottom: 1px solid #1e293b;
     margin-bottom: 0.5rem;
 }
-.sb-brand-title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #f1f5f9 !important;
-    margin: 0;
-}
-.sb-brand-sub {
-    font-size: 0.71rem;
-    color: #6b7280 !important;
-    margin: 0.15rem 0 0 0;
-}
+.sb-brand-title { font-size: 0.97rem; font-weight: 700; color: #f1f5f9 !important; margin: 0; }
+.sb-brand-sub   { font-size: 0.7rem; color: #64748b !important; margin: 0.15rem 0 0 0; }
 .sb-user {
     padding: 0.7rem 1rem;
-    border-top: 1px solid #1f2937;
+    border-top: 1px solid #1e293b;
     margin-top: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.55rem;
+    display: flex; align-items: center; gap: 0.6rem;
 }
 .sb-user-avatar {
-    width: 30px; height: 30px;
+    width: 28px; height: 28px;
     background: linear-gradient(135deg, #4f46e5, #7c3aed);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    font-size: 0.8rem; color: #fff; font-weight: 700;
-    flex-shrink: 0;
+    font-size: 0.75rem; color: #fff; font-weight: 700; flex-shrink: 0;
 }
-.sb-user-name {
-    font-size: 0.83rem;
-    font-weight: 500;
-    color: #d1d5db !important;
-}
+.sb-user-name { font-size: 0.82rem; font-weight: 500; color: #cbd5e1 !important; }
 
 /* ════════════════════════════════════════════════════════════════════
    TOPBAR
    ════════════════════════════════════════════════════════════════════ */
 .ev-topbar {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.85rem 0 0.7rem 0;
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.9rem 0 0.75rem 0;
     border-bottom: 1px solid var(--border);
-    margin-bottom: 1.2rem;
-    background: var(--bg);
+    margin-bottom: 1rem;
 }
-.ev-topbar-title {
-    font-size: 0.97rem;
-    font-weight: 600;
-    color: var(--text);
-    margin: 0;
-    white-space: nowrap;
-}
+.ev-topbar-icon { font-size: 1.15rem; flex-shrink: 0; }
+.ev-topbar-title { font-size: 1.15rem; font-weight: 700; color: var(--text); margin: 0; }
 .ev-topbar-sub {
-    font-size: 0.72rem;
-    color: var(--text-3);
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: 0.71rem; color: var(--text-3); margin: 0;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.ev-topbar-badge {
+    font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.07em; padding: 0.15rem 0.45rem; border-radius: 999px;
+    background: var(--accent-soft); color: var(--accent); border: 1px solid #c7d2fe;
+    white-space: nowrap; flex-shrink: 0;
 }
 
 /* ════════════════════════════════════════════════════════════════════
    THREE-DOT POPOVER
    ════════════════════════════════════════════════════════════════════ */
 [data-testid="stPopover"] button {
-    background: var(--bg) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: 8px !important;
-    color: var(--text-2) !important;
-    font-size: 1.05rem !important;
-    font-weight: 700 !important;
-    padding: 0.2rem 0.65rem !important;
-    line-height: 1 !important;
-    letter-spacing: 0.06em !important;
-    min-height: unset !important;
+    background: var(--bg) !important; border: 1px solid var(--border) !important;
+    border-radius: 8px !important; color: var(--text-2) !important;
+    font-size: 1.05rem !important; font-weight: 700 !important;
+    padding: 0.2rem 0.65rem !important; line-height: 1 !important;
+    letter-spacing: 0.06em !important; min-height: unset !important;
     box-shadow: 0 1px 2px rgba(0,0,0,0.06) !important;
 }
-[data-testid="stPopover"] button:hover {
-    background: var(--bg-surface) !important;
-    border-color: #cbd5e1 !important;
-    color: var(--text) !important;
-}
+[data-testid="stPopover"] button:hover { background: var(--bg-surface) !important; border-color: #cbd5e1 !important; color: var(--text) !important; }
+
 [data-testid="stPopoverBody"] {
-    background: var(--bg) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: 10px !important;
-    min-width: 195px !important;
-    padding: 0.55rem 0.8rem !important;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
+    background: var(--bg) !important; border: 1px solid var(--border) !important;
+    border-radius: 10px !important; min-width: 195px !important;
+    padding: 0.55rem 0.8rem !important; box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
 }
 [data-testid="stPopoverBody"] p,
 [data-testid="stPopoverBody"] span,
-[data-testid="stPopoverBody"] div {
-    color: var(--text) !important;
-}
+[data-testid="stPopoverBody"] div { color: var(--text) !important; }
 [data-testid="stPopoverBody"] button {
-    font-size: 0.84rem !important;
-    color: var(--text-2) !important;
-    background: transparent !important;
-    border: none !important;
-    text-align: left !important;
-    padding: 0.35rem 0.4rem !important;
-    width: 100% !important;
-    border-radius: 6px !important;
+    font-size: 0.84rem !important; color: var(--text-2) !important;
+    background: transparent !important; border: none !important;
+    text-align: left !important; padding: 0.35rem 0.4rem !important;
+    width: 100% !important; border-radius: 6px !important;
 }
-[data-testid="stPopoverBody"] button:hover {
-    background: var(--bg-surface) !important;
-    color: var(--text) !important;
-}
-[data-testid="stPopoverBody"] hr {
-    border-color: var(--border) !important;
-    margin: 0.5rem 0 !important;
-}
+[data-testid="stPopoverBody"] button:hover { background: var(--bg-surface) !important; color: var(--text) !important; }
+[data-testid="stPopoverBody"] hr { border-color: var(--border) !important; margin: 0.5rem 0 !important; }
 
 /* ════════════════════════════════════════════════════════════════════
-   CHAT MESSAGES
+   CHAT MESSAGES — BUBBLE STYLE
    ════════════════════════════════════════════════════════════════════ */
 
-/* Container */
+/* Base reset */
 [data-testid="stChatMessage"] {
-    background: var(--assistant-bg) !important;
+    background: transparent !important;
     border: none !important;
+    padding: 0.1rem 0 !important;
+    gap: 0.6rem !important;
+    align-items: flex-end !important;
 }
 
-/* All paragraph text */
-[data-testid="stChatMessage"] [data-testid="stMarkdownContainer"] p,
-[data-testid="stChatMessage"] p {
+/* ── USER bubble: right-aligned with accent background ── */
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) {
+    flex-direction: row-reverse !important;
+}
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"])
+[data-testid="stChatMessageContent"] {
+    background: var(--user-bubble) !important;
+    border-radius: 20px 4px 20px 20px !important;
+    padding: 0.65rem 1rem !important;
+    max-width: 82% !important;
+    box-shadow: 0 1px 3px rgba(79,70,229,0.18) !important;
+}
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) p,
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) li,
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) span {
+    color: var(--user-text) !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+}
+
+/* ── ASSISTANT bubble: light card, left-aligned ── */
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"])
+[data-testid="stChatMessageContent"] {
+    background: var(--ai-bubble) !important;
+    border-radius: 4px 20px 20px 20px !important;
+    padding: 0.75rem 1.1rem !important;
+    max-width: 92% !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.07) !important;
+}
+
+/* Assistant text */
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"])
+[data-testid="stMarkdownContainer"] p,
+[data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"]) p {
     font-size: 0.94rem !important;
     line-height: 1.75 !important;
     color: var(--text) !important;
 }
+[data-testid="stChatMessage"] strong { color: var(--text) !important; font-weight: 600 !important; }
+[data-testid="stChatMessage"] em     { color: var(--text-2) !important; }
 
-/* Inline formatting */
-[data-testid="stChatMessage"] strong {
-    color: var(--text)   !important;
-    font-weight: 600     !important;
-}
-[data-testid="stChatMessage"] em {
-    color: var(--text-2) !important;
-}
-
-/* Headings — readable scale, dark color */
+/* Headings inside assistant messages */
 [data-testid="stChatMessage"] h1 {
-    font-size: 1.15rem   !important;
-    font-weight: 700     !important;
-    color: var(--text)   !important;
-    margin: 1.2rem 0 0.5rem 0 !important;
-    padding-bottom: 0.35rem;
-    border-bottom: 2px solid var(--border);
+    font-size: 1.1rem !important; font-weight: 700 !important; color: var(--text) !important;
+    margin: 1.1rem 0 0.45rem 0 !important; padding-bottom: 0.3rem; border-bottom: 2px solid var(--border);
 }
-[data-testid="stChatMessage"] h2 {
-    font-size: 1.0rem    !important;
-    font-weight: 600     !important;
-    color: var(--text)   !important;
-    margin: 1rem 0 0.35rem 0 !important;
-}
-[data-testid="stChatMessage"] h3 {
-    font-size: 0.93rem   !important;
-    font-weight: 600     !important;
-    color: var(--text-2) !important;
-    margin: 0.8rem 0 0.3rem 0 !important;
-}
+[data-testid="stChatMessage"] h2 { font-size: 0.98rem !important; font-weight: 600 !important; color: var(--text) !important; margin: 0.9rem 0 0.3rem 0 !important; }
+[data-testid="stChatMessage"] h3 { font-size: 0.91rem !important; font-weight: 600 !important; color: var(--text-2) !important; margin: 0.75rem 0 0.25rem 0 !important; }
 
 /* Lists */
 [data-testid="stChatMessage"] ul,
-[data-testid="stChatMessage"] ol {
-    font-size: 0.94rem  !important;
-    line-height: 1.8    !important;
-    padding-left: 1.3rem !important;
-    color: var(--text)  !important;
-}
-[data-testid="stChatMessage"] li {
-    color: var(--text)  !important;
-    margin-bottom: 0.15rem !important;
-}
+[data-testid="stChatMessage"] ol { font-size: 0.94rem !important; line-height: 1.8 !important; padding-left: 1.2rem !important; color: var(--text) !important; }
+[data-testid="stChatMessage"] li { color: var(--text) !important; margin-bottom: 0.12rem !important; }
 
-/* Tables — scrollable on mobile */
+/* Tables */
 [data-testid="stChatMessage"] table {
-    font-size: 0.85rem   !important;
-    width: 100%;
-    border-collapse: collapse;
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    margin: 0.75rem 0;
+    font-size: 0.84rem !important; width: 100%; border-collapse: collapse;
+    display: block; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--border); border-radius: 8px; margin: 0.7rem 0;
 }
 [data-testid="stChatMessage"] th {
-    background: var(--bg-card) !important;
-    font-weight: 600;
-    padding: 0.5rem 0.85rem;
-    text-align: left;
-    color: var(--text)   !important;
-    border-bottom: 2px solid var(--border);
-    white-space: nowrap;
+    background: var(--bg-card) !important; font-weight: 600; padding: 0.48rem 0.8rem;
+    text-align: left; color: var(--text) !important; border-bottom: 2px solid var(--border); white-space: nowrap;
 }
-[data-testid="stChatMessage"] td {
-    padding: 0.42rem 0.85rem;
-    border-bottom: 1px solid var(--border);
-    color: var(--text)   !important;
-}
-[data-testid="stChatMessage"] tr:last-child td {
-    border-bottom: none;
-}
-[data-testid="stChatMessage"] tr:hover td {
-    background: var(--bg-surface) !important;
-}
+[data-testid="stChatMessage"] td { padding: 0.4rem 0.8rem; border-bottom: 1px solid var(--border); color: var(--text) !important; }
+[data-testid="stChatMessage"] tr:last-child td { border-bottom: none; }
+[data-testid="stChatMessage"] tr:hover td { background: var(--bg-surface) !important; }
 
 /* Inline code */
 [data-testid="stChatMessage"] code {
-    background: var(--bg-card) !important;
-    color: #7c3aed          !important;
-    font-size: 0.83rem      !important;
-    padding: 0.15rem 0.4rem;
-    border-radius: 4px;
-    border: 1px solid var(--border);
+    background: var(--bg-card) !important; color: #7c3aed !important;
+    font-size: 0.82rem !important; padding: 0.12rem 0.38rem;
+    border-radius: 4px; border: 1px solid var(--border);
 }
-/* Code blocks */
 [data-testid="stChatMessage"] pre {
-    background: var(--bg-surface) !important;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.85rem 1rem;
-    overflow-x: auto;
+    background: var(--bg-surface) !important; border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.8rem 1rem; overflow-x: auto;
 }
-[data-testid="stChatMessage"] pre code {
-    background: transparent !important;
-    border: none !important;
-    color: var(--text) !important;
-}
-
-/* Blockquote */
-[data-testid="stChatMessage"] blockquote {
-    border-left: 3px solid #c7d2fe;
-    padding-left: 0.9rem;
-    margin: 0.5rem 0;
-    color: var(--text-2) !important;
-}
+[data-testid="stChatMessage"] pre code { background: transparent !important; border: none !important; color: var(--text) !important; }
+[data-testid="stChatMessage"] blockquote { border-left: 3px solid #c7d2fe; padding-left: 0.85rem; margin: 0.45rem 0; color: var(--text-2) !important; }
 
 /* ════════════════════════════════════════════════════════════════════
    TOKEN INFO
    ════════════════════════════════════════════════════════════════════ */
 .token-info {
-    font-size: 0.71rem;
-    color: var(--text-3);
-    margin-top: 0.4rem;
-    line-height: 1.5;
+    font-size: 0.69rem; color: var(--text-3);
+    margin-top: 0.35rem; line-height: 1.5;
+    padding: 0 0.1rem;
 }
 
 /* ════════════════════════════════════════════════════════════════════
-   SOURCE EXPANDER (citations)
+   SOURCE EXPANDER
    ════════════════════════════════════════════════════════════════════ */
 .streamlit-expanderHeader {
-    background: var(--bg-surface) !important;
-    color: var(--text-2) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: 8px !important;
-    font-size: 0.8rem !important;
-    font-weight: 500 !important;
+    background: var(--bg-surface) !important; color: var(--text-2) !important;
+    border: 1px solid var(--border) !important; border-radius: 8px !important;
+    font-size: 0.79rem !important; font-weight: 500 !important;
 }
 .streamlit-expanderContent {
-    background: var(--bg-surface) !important;
-    border: 1px solid var(--border) !important;
-    border-top: none !important;
-    border-radius: 0 0 8px 8px !important;
-    padding: 0.25rem 0 !important;
+    background: var(--bg-surface) !important; border: 1px solid var(--border) !important;
+    border-top: none !important; border-radius: 0 0 8px 8px !important; padding: 0.2rem 0 !important;
 }
 .streamlit-expanderContent p,
-.streamlit-expanderContent span {
-    color: var(--text-2) !important;
-    font-size: 0.81rem  !important;
-}
+.streamlit-expanderContent span { color: var(--text-2) !important; font-size: 0.8rem !important; }
 
 /* ════════════════════════════════════════════════════════════════════
    EXAMPLE QUESTION PILLS
    ════════════════════════════════════════════════════════════════════ */
 .stButton button[data-testid="baseButton-secondary"] {
-    font-size: 0.83rem    !important;
-    padding: 0.55rem 0.75rem !important;
-    border-radius: 10px   !important;
+    font-size: 0.84rem !important;
+    padding: 0.6rem 0.85rem !important;
+    border-radius: 12px !important;
     background: var(--bg-surface) !important;
     border: 1px solid var(--border) !important;
-    color: var(--text-2)  !important;
-    white-space: normal   !important;
-    text-align: left      !important;
-    line-height: 1.45     !important;
-    height: auto          !important;
-    width: 100%           !important;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
-    transition: all 0.15s !important;
+    color: var(--text-2) !important;
+    white-space: normal !important;
+    text-align: left !important;
+    line-height: 1.5 !important;
+    height: auto !important;
+    width: 100% !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06) !important;
+    transition: all 0.15s ease !important;
 }
 .stButton button[data-testid="baseButton-secondary"]:hover {
     background: var(--accent-soft) !important;
     border-color: #c7d2fe !important;
-    color: #3730a3        !important;
-    box-shadow: 0 2px 6px rgba(79,70,229,0.12) !important;
+    color: #3730a3 !important;
+    box-shadow: 0 2px 8px rgba(79,70,229,0.14) !important;
+    transform: translateY(-1px) !important;
 }
 
 /* ════════════════════════════════════════════════════════════════════
-   CHAT INPUT
+   CHAT INPUT — sticky bottom feel
    ════════════════════════════════════════════════════════════════════ */
 [data-testid="stChatInput"] {
-    border-radius: 12px          !important;
+    border-radius: 14px !important;
     border: 1.5px solid var(--border) !important;
-    background: var(--bg)        !important;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.07) !important;
+    background: var(--bg) !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
 }
 [data-testid="stChatInput"]:focus-within {
-    border-color: var(--accent)  !important;
-    box-shadow: 0 0 0 3px rgba(79,70,229,0.12) !important;
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(79,70,229,0.12), 0 2px 8px rgba(0,0,0,0.08) !important;
 }
 [data-testid="stChatInput"] textarea {
-    background: transparent      !important;
-    color: var(--text)           !important;
-    font-size: 0.94rem           !important;
+    background: transparent !important; color: var(--text) !important; font-size: 0.95rem !important;
 }
-[data-testid="stChatInput"] textarea::placeholder {
-    color: var(--text-3)         !important;
-}
-
-/* Send button inside chat input */
-[data-testid="stChatInput"] button {
-    background: var(--accent)    !important;
-    border-radius: 8px           !important;
-    color: #fff                  !important;
-}
-[data-testid="stChatInput"] button:hover {
-    background: var(--accent-hover) !important;
-}
+[data-testid="stChatInput"] textarea::placeholder { color: var(--text-3) !important; }
+[data-testid="stChatInput"] button { background: var(--accent) !important; border-radius: 10px !important; color: #fff !important; }
+[data-testid="stChatInput"] button:hover { background: var(--accent-hover) !important; }
 
 /* ════════════════════════════════════════════════════════════════════
    STATUS WIDGET
    ════════════════════════════════════════════════════════════════════ */
 [data-testid="stStatusWidget"],
 [data-testid="stStatusWidget"] > div {
-    background: var(--bg-surface) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: 8px !important;
+    background: var(--bg-surface) !important; border: 1px solid var(--border) !important; border-radius: 8px !important;
 }
 [data-testid="stStatusWidget"] p,
-[data-testid="stStatusWidget"] span {
-    color: var(--text-2) !important;
-    font-size: 0.83rem   !important;
-}
+[data-testid="stStatusWidget"] span { color: var(--text-2) !important; font-size: 0.82rem !important; }
 
 /* ════════════════════════════════════════════════════════════════════
    LOGIN PAGE
    ════════════════════════════════════════════════════════════════════ */
-.login-outer {
-    display: flex;
-    justify-content: center;
-    margin-top: 8vh;
-}
 .login-card {
-    width: 100%;
-    max-width: 380px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2.5rem 2rem 2rem 2rem;
-    box-shadow: 0 4px 32px rgba(0,0,0,0.08);
-    text-align: center;
+    width: 100%; max-width: 380px;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 18px; padding: 2.5rem 2rem 2rem 2rem;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.09); text-align: center;
+    margin: 0 auto;
 }
-.login-icon  { font-size: 2.6rem; margin-bottom: 0.6rem; }
-.login-title {
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: var(--text);
-    margin: 0 0 0.3rem 0;
-}
-.login-sub {
-    font-size: 0.84rem;
-    color: var(--text-3);
-    margin: 0 0 1.8rem 0;
-}
+.login-icon  { font-size: 2.4rem; margin-bottom: 0.6rem; display: block; }
+.login-title { font-size: 1.3rem; font-weight: 700; color: var(--text); margin: 0 0 0.3rem 0; }
+.login-sub   { font-size: 0.83rem; color: var(--text-3); margin: 0 0 1.8rem 0; }
 
-/* Login form fields */
-[data-testid="stForm"] label {
-    color: var(--text-2) !important;
-    font-size: 0.84rem   !important;
-    font-weight: 500     !important;
-}
+[data-testid="stForm"] label { color: var(--text-2) !important; font-size: 0.84rem !important; font-weight: 500 !important; }
 [data-testid="stForm"] input {
-    background: var(--bg-surface) !important;
-    border: 1.5px solid var(--border) !important;
-    color: var(--text) !important;
-    border-radius: 8px !important;
-    font-size: 0.93rem !important;
+    background: var(--bg-surface) !important; border: 1.5px solid var(--border) !important;
+    color: var(--text) !important; border-radius: 10px !important; font-size: 0.93rem !important;
 }
-[data-testid="stForm"] input:focus {
-    border-color: var(--accent) !important;
-    box-shadow: 0 0 0 3px rgba(79,70,229,0.1) !important;
-}
-[data-testid="stForm"] input::placeholder {
-    color: var(--text-3) !important;
-}
+[data-testid="stForm"] input:focus { border-color: var(--accent) !important; box-shadow: 0 0 0 3px rgba(79,70,229,0.1) !important; }
+[data-testid="stForm"] input::placeholder { color: var(--text-3) !important; }
 [data-testid="stForm"] button[kind="primaryFormSubmit"],
 [data-testid="stForm"] button[kind="primary"] {
-    background: var(--accent)      !important;
-    border: none                   !important;
-    border-radius: 8px             !important;
-    color: #fff                    !important;
-    font-weight: 600               !important;
-    font-size: 0.93rem             !important;
-    padding: 0.6rem 1rem           !important;
-    width: 100%                    !important;
-    transition: background 0.15s   !important;
+    background: var(--accent) !important; border: none !important; border-radius: 10px !important;
+    color: #fff !important; font-weight: 600 !important; font-size: 0.93rem !important;
+    padding: 0.65rem 1rem !important; width: 100% !important; transition: background 0.15s !important;
 }
 [data-testid="stForm"] button[kind="primaryFormSubmit"]:hover,
-[data-testid="stForm"] button[kind="primary"]:hover {
-    background: var(--accent-hover) !important;
-}
+[data-testid="stForm"] button[kind="primary"]:hover { background: var(--accent-hover) !important; }
 
 /* ════════════════════════════════════════════════════════════════════
    EMPTY STATE
    ════════════════════════════════════════════════════════════════════ */
-.empty-header {
-    text-align: center;
-    padding: 2.5rem 0 1.2rem 0;
-}
-.empty-icon  { font-size: 2.4rem; margin-bottom: 0.65rem; }
-.empty-title {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--text);
-    margin: 0 0 0.35rem 0;
-}
-.empty-sub {
-    font-size: 0.84rem;
-    color: var(--text-3);
-    margin: 0 0 1.6rem 0;
-}
-.empty-label {
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: var(--text-3);
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    margin-bottom: 0.5rem;
+.empty-header { text-align: center; padding: 3rem 1rem 1.5rem 1rem; }
+.empty-icon   { font-size: 2.6rem; margin-bottom: 0.7rem; display: block; }
+.empty-title  { font-size: 1.2rem; font-weight: 700; color: var(--text); margin: 0 0 0.4rem 0; }
+.empty-sub    { font-size: 0.85rem; color: var(--text-3); margin: 0 0 1.8rem 0; line-height: 1.55; }
+.empty-label  {
+    font-size: 0.73rem; font-weight: 700; color: var(--text-3);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.6rem;
 }
 
 /* ════════════════════════════════════════════════════════════════════
@@ -680,30 +470,110 @@ section.main                             { background: var(--bg) !important; }
    ════════════════════════════════════════════════════════════════════ */
 @media (max-width: 640px) {
     .block-container {
-        padding-left:  0.85rem !important;
-        padding-right: 0.85rem !important;
+        padding-left:  0.75rem !important;
+        padding-right: 0.75rem !important;
+        padding-bottom: 5rem   !important;
         max-width: 100%        !important;
     }
-    /* Hide app list subtitle */
-    .ev-topbar-sub { display: none !important; }
-    /* Compact topbar */
-    .ev-topbar { padding: 0.6rem 0 0.5rem 0 !important; margin-bottom: 0.9rem !important; }
-    /* Larger readable text on mobile */
+
+    /* Sidebar collapses by default via initial_sidebar_state="auto" */
+    [data-testid="stSidebar"] {
+        min-width: 85vw !important;
+        max-width: 85vw !important;
+    }
+
+    /* Compact topbar on mobile */
+    .ev-topbar { padding: 0.65rem 0 0.55rem 0 !important; margin-bottom: 0.75rem !important; }
+    .ev-topbar-sub, .ev-topbar-badge { display: none !important; }
+    .ev-topbar-title { font-size: 1.05rem !important; }
+
+    /* Chat bubbles — max-width wider on small screens */
+    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"])
+    [data-testid="stChatMessageContent"] { max-width: 90% !important; }
+    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-assistant"])
+    [data-testid="stChatMessageContent"] { max-width: 97% !important; }
+
+    /* Readable text sizes */
     [data-testid="stChatMessage"] p,
-    [data-testid="stChatMessage"] li { font-size: 0.97rem !important; }
-    /* Comfortable chat input tap target */
-    [data-testid="stChatInput"] textarea {
-        font-size: 1rem    !important;
-        min-height: 46px   !important;
-    }
-    /* Token line wraps gracefully */
-    .token-info { font-size: 0.67rem !important; }
-    /* Full-width login card */
-    .login-card {
-        margin-top: 3vh;
-        border-radius: 12px;
-        padding: 2rem 1.25rem 1.5rem 1.25rem;
-    }
+    [data-testid="stChatMessage"] li { font-size: 0.97rem !important; line-height: 1.7 !important; }
+    [data-testid="stChatMessage"]:has([data-testid="chatAvatarIcon-user"]) p { font-size: 0.97rem !important; }
+
+    /* Chat input — bigger tap target */
+    [data-testid="stChatInput"] textarea { font-size: 1rem !important; min-height: 48px !important; }
+
+    /* Token info — compact */
+    .token-info { font-size: 0.65rem !important; }
+
+    /* Empty state — single column example questions */
+    .empty-header { padding: 2rem 0.5rem 1.2rem 0.5rem !important; }
+    .empty-title  { font-size: 1.05rem !important; }
+
+    /* Login card — full-width */
+    .login-card { border-radius: 14px; padding: 2rem 1.25rem 1.5rem 1.25rem; }
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   TABLET  ( 641 – 900 px )
+   ════════════════════════════════════════════════════════════════════ */
+@media (min-width: 641px) and (max-width: 900px) {
+    .block-container { max-width: 100% !important; padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
+    .ev-topbar-badge { display: none !important; }
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   FEEDBACK BAR
+   ════════════════════════════════════════════════════════════════════ */
+.fb-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.35rem 0 0.1rem 0.05rem;
+}
+
+/* All buttons inside the feedback bar wrapper */
+div[data-testid="stHorizontalBlock"].fb-row > div[data-testid="column"] button {
+    padding: 0.22rem 0.55rem    !important;
+    font-size: 0.88rem          !important;
+    line-height: 1              !important;
+    min-height: unset           !important;
+    height: auto                !important;
+    border-radius: 999px        !important;
+    border: 1px solid var(--border) !important;
+    background: transparent     !important;
+    color: var(--text-2)        !important;
+    box-shadow: none            !important;
+    transition: all 0.12s ease  !important;
+    width: auto                 !important;
+}
+div[data-testid="stHorizontalBlock"].fb-row > div[data-testid="column"] button:hover {
+    background: var(--bg-surface) !important;
+    border-color: #cbd5e1         !important;
+    transform: scale(1.08)        !important;
+}
+/* Active / selected reaction */
+div[data-testid="stHorizontalBlock"].fb-row > div[data-testid="column"] button[kind="primary"] {
+    background: var(--accent-soft) !important;
+    border-color: #a5b4fc          !important;
+    color: var(--accent)           !important;
+}
+
+/* Comment text input */
+.fb-comment input {
+    font-size: 0.82rem          !important;
+    padding: 0.3rem 0.65rem     !important;
+    border-radius: 8px          !important;
+    border: 1px solid var(--border) !important;
+    background: var(--bg-surface)   !important;
+    color: var(--text)              !important;
+}
+.fb-comment input:focus {
+    border-color: var(--accent)  !important;
+    box-shadow: 0 0 0 2px rgba(79,70,229,0.1) !important;
+}
+.fb-saved {
+    font-size: 0.72rem;
+    color: #22c55e;
+    padding: 0.15rem 0;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -728,17 +598,17 @@ authenticator = stauth.Authenticate(
 # Login gate
 # ---------------------------------------------------------------------------
 if not st.session_state.get("authentication_status"):
-    _, col, _ = st.columns([1, 1.4, 1])
-    with col:
-        st.markdown("""
+    st.markdown("""
+    <div style="display:flex;justify-content:center;align-items:flex-start;min-height:40vh;padding-top:8vh;">
         <div class="login-card">
-            <div class="login-icon">⚡</div>
-            <h2 class="login-title">Home Energy &amp; EV App Research</h2>
-            <p class="login-sub">
-                Competitive intelligence on<br>North American home energy &amp; EV apps
-            </p>
+            <span class="login-icon">⚡</span>
+            <h2 class="login-title">Home Energy &amp; EV Research</h2>
+            <p class="login-sub">Competitive intelligence on North American<br>home energy &amp; EV charging apps</p>
         </div>
-        """, unsafe_allow_html=True)
+    </div>
+    """, unsafe_allow_html=True)
+    _, col, _ = st.columns([1, 1.6, 1])
+    with col:
         authenticator.login(location="main", key="login_form")
         if st.session_state.get("authentication_status") is False:
             st.error("Incorrect username or password.")
@@ -762,12 +632,15 @@ role: str = st.session_state["role"]
 def switch_to_session(session_id: str):
     st.session_state.current_session_id = session_id
     st.session_state.messages = load_messages(session_id)
+    # Load saved feedback for this session
+    st.session_state.fb = load_session_feedback(session_id)
 
 
 def start_new_chat():
     session_id = create_session(username)
     st.session_state.current_session_id = session_id
     st.session_state.messages = []
+    st.session_state.fb = {}
 
 
 if "current_session_id" not in st.session_state:
@@ -779,6 +652,9 @@ if "current_session_id" not in st.session_state:
 
 if "messages" not in st.session_state:
     st.session_state.messages = load_messages(st.session_state.current_session_id)
+
+if "fb" not in st.session_state:
+    st.session_state.fb = load_session_feedback(st.session_state.current_session_id)
 
 # ---------------------------------------------------------------------------
 # KB count (cached 5 min)
@@ -819,6 +695,80 @@ EXAMPLE_QUESTIONS = [
     "How does Enphase compare to SolarEdge on battery management UX?",
     "Which prosumer apps have the best solar monitoring experience?",
 ]
+
+# ---------------------------------------------------------------------------
+# Feedback bar
+# ---------------------------------------------------------------------------
+def render_feedback_bar(msg_idx: int):
+    """Render 👍 👎 ❤️ 💬 reaction bar for an assistant message."""
+    sid  = st.session_state.current_session_id
+    fb   = st.session_state.fb.get(msg_idx, {})
+    cur  = fb.get("reaction")
+    show = fb.get("show_comment", False)
+
+    # Pill buttons row — wrapped so CSS selector .fb-row can target them
+    st.markdown('<div class="fb-wrap">', unsafe_allow_html=True)
+    st.markdown(
+        '<div data-testid="stHorizontalBlock" class="fb-row" style="display:contents">',
+        unsafe_allow_html=True,
+    )
+    c1, c2, c3, c4, _spacer = st.columns([1, 1, 1, 1, 12])
+
+    def _toggle(reaction: str):
+        new_r = None if cur == reaction else reaction
+        st.session_state.fb[msg_idx] = {
+            **st.session_state.fb.get(msg_idx, {}),
+            "reaction": new_r,
+        }
+        save_feedback(sid, msg_idx, username, new_r,
+                      st.session_state.fb[msg_idx].get("comment", ""))
+        st.rerun()
+
+    with c1:
+        kind = "primary" if cur == "up" else "secondary"
+        if st.button("👍", key=f"fb_up_{sid}_{msg_idx}", type=kind, help="Helpful"):
+            _toggle("up")
+    with c2:
+        kind = "primary" if cur == "down" else "secondary"
+        if st.button("👎", key=f"fb_dn_{sid}_{msg_idx}", type=kind, help="Not helpful"):
+            _toggle("down")
+    with c3:
+        kind = "primary" if cur == "love" else "secondary"
+        if st.button("❤️", key=f"fb_lv_{sid}_{msg_idx}", type=kind, help="Love this"):
+            _toggle("love")
+    with c4:
+        kind = "primary" if show else "secondary"
+        if st.button("💬", key=f"fb_cm_{sid}_{msg_idx}", type=kind, help="Add comment"):
+            st.session_state.fb[msg_idx] = {
+                **st.session_state.fb.get(msg_idx, {}),
+                "show_comment": not show,
+            }
+            st.rerun()
+
+    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    # Comment box — shown when 💬 is toggled on
+    if show:
+        existing = fb.get("comment", "")
+        st.markdown('<div class="fb-comment">', unsafe_allow_html=True)
+        comment = st.text_input(
+            "",
+            value=existing,
+            max_chars=100,
+            placeholder="Add a comment… (100 chars max)",
+            key=f"fb_txt_{sid}_{msg_idx}",
+            label_visibility="collapsed",
+        )
+        st.markdown('</div>', unsafe_allow_html=True)
+        if comment != existing:
+            st.session_state.fb[msg_idx] = {
+                **st.session_state.fb.get(msg_idx, {}),
+                "comment": comment,
+            }
+            save_feedback(sid, msg_idx, username, cur, comment)
+            st.markdown('<p class="fb-saved">✓ Saved</p>', unsafe_allow_html=True)
+
 
 # ---------------------------------------------------------------------------
 # SIDEBAR
@@ -940,10 +890,10 @@ topbar_left, topbar_right = st.columns([6, 1])
 with topbar_left:
     st.markdown("""
     <div class="ev-topbar">
-        <span class="ev-topbar-title">⚡ Home Energy &amp; EV App Research</span>
-        <span class="ev-topbar-sub">
-            EV Charging · Prosumer &amp; Home Energy Apps
-        </span>
+        <span class="ev-topbar-icon">⚡</span>
+        <span class="ev-topbar-title">Home Energy &amp; EV Research</span>
+        <span class="ev-topbar-sub">EV Charging · Prosumer Apps</span>
+        <span class="ev-topbar-badge">AI Research</span>
     </div>
     """, unsafe_allow_html=True)
 
@@ -989,15 +939,13 @@ if not st.session_state.messages:
         <p class="empty-label">Try one of these</p>
     </div>
     """, unsafe_allow_html=True)
-    c1, c2 = st.columns(2)
     for i, q in enumerate(EXAMPLE_QUESTIONS):
-        col = c1 if i % 2 == 0 else c2
-        if col.button(q, use_container_width=True, key=f"eq_{i}"):
+        if st.button(q, use_container_width=True, key=f"eq_{i}"):
             st.session_state.prefill = q
             st.rerun()
 
 # Replay history
-for msg in st.session_state.messages:
+for msg_idx, msg in enumerate(st.session_state.messages):
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
         if msg["role"] == "assistant":
@@ -1023,6 +971,7 @@ for msg in st.session_state.messages:
                         )
                         st.caption(s["content"])
                         st.divider()
+            render_feedback_bar(msg_idx)
 
 # Chat input
 prefill = st.session_state.pop("prefill", None)
@@ -1136,6 +1085,10 @@ if prompt:
                     )
                     st.caption(s["content"])
                     st.divider()
+
+        # new message index = current length (user msg already appended, assistant not yet)
+        new_msg_idx = len(st.session_state.messages)
+        render_feedback_bar(new_msg_idx)
 
     assistant_msg = {
         "role": "assistant", "content": answer,
