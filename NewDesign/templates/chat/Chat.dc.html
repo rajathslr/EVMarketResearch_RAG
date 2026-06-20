@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Main Chat" description="Two-panel research chat: dark sidebar with search settings + RAG chat with markdown answers, source citations and feedback." -->
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<script src="./ds-base.js"></script>
+<style>
+  html, body { margin: 0; height: 100%; }
+  *::-webkit-scrollbar { width: 9px; height: 9px; }
+  *::-webkit-scrollbar-thumb { background: rgba(100,116,139,.4); border-radius: 9px; }
+  .on-dark *::-webkit-scrollbar-thumb { background: rgba(148,163,184,.3); }
+  @keyframes voltdot { 0%,100% { opacity:.25; } 50% { opacity:1; } }
+</style>
+</helmet>
+
+<div data-accent="{{ accent }}" data-font="{{ font }}" data-density="{{ density }}" data-screen-label="Main Chat" data-chat-width="{{ chatWidthAttr }}"
+     style="display:flex; height:100vh; overflow:hidden; font-family:var(--font-sans); color:var(--text); background:var(--bg); font-size:14px;">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="on-dark" style="width:260px; flex:none; background:var(--sidebar-bg); color:var(--sidebar-text); display:flex; flex-direction:column; border-right:1px solid var(--sidebar-border);">
+
+    <!-- Branding -->
+    <div style="display:flex; align-items:center; gap:10px; padding:18px 16px 14px;">
+      <div style="width:34px; height:34px; flex:none; border-radius:9px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-size:18px;">⚡</div>
+      <div style="min-width:0;">
+        <div style="font-weight:700; font-size:14px; line-height:1.2;">Home Energy &amp; EV</div>
+        <div style="font-size:11px; color:var(--sidebar-muted); line-height:1.3;">Competitive intelligence</div>
+      </div>
+    </div>
+
+    <!-- New chat -->
+    <div style="padding:0 16px 12px;">
+      <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Button" variant="primary" block="{{ true }}" icon="＋" onClick="{{ newChat }}" hint-size="100%,38px">New Chat</x-import>
+    </div>
+
+    <!-- Recent chats -->
+    <div style="flex:1; overflow-y:auto; padding:4px 10px 10px;">
+      <div style="font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--sidebar-muted); padding:8px 6px 6px;">Recent</div>
+      <div style="display:flex; flex-direction:column; gap:2px;">
+        <sc-for list="{{ sessions }}" as="s" hint-placeholder-count="4">
+          <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.NavItem" title="{{ s.title }}" active="{{ s.active }}" onClick="{{ s.onSelect }}" onDelete="{{ s.onDelete }}" hint-size="100%,34px"></x-import>
+        </sc-for>
+      </div>
+
+      <!-- Knowledge base -->
+      <button onClick="{{ toggleKb }}" style="display:flex; align-items:center; gap:6px; width:100%; background:none; border:none; cursor:pointer; color:var(--sidebar-muted); font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; padding:14px 6px 6px;">
+<sc-if value="{{ kbOpen }}" hint-placeholder-val="{{ true }}"><span style="display:inline-block;">▾</span></sc-if><sc-if value="{{ kbClosed }}" hint-placeholder-val="{{ false }}"><span style="display:inline-block;">▸</span></sc-if> Knowledge Base
+      </button>
+      <sc-if value="{{ kbOpen }}" hint-placeholder-val="{{ true }}">
+        <div style="padding:2px 6px 6px; font-size:12px; color:var(--sidebar-muted); line-height:1.7;">
+          <div style="display:flex; justify-content:space-between;"><span>Total chunks</span><b style="color:var(--sidebar-text);">17,204</b></div>
+          <div style="display:flex; justify-content:space-between;"><span>Apps tracked</span><b style="color:var(--sidebar-text);">17</b></div>
+        </div>
+      </sc-if>
+
+      <!-- Search settings -->
+      <button onClick="{{ toggleSettings }}" style="display:flex; align-items:center; gap:6px; width:100%; background:none; border:none; cursor:pointer; color:var(--sidebar-muted); font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; padding:14px 6px 6px;">
+<sc-if value="{{ settingsOpen }}" hint-placeholder-val="{{ true }}"><span style="display:inline-block;">▾</span></sc-if><sc-if value="{{ settingsClosed }}" hint-placeholder-val="{{ false }}"><span style="display:inline-block;">▸</span></sc-if> Search Settings
+      </button>
+      <sc-if value="{{ settingsOpen }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex; flex-direction:column; gap:14px; padding:6px 6px 4px;">
+          <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Toggle" checked="{{ compareMode }}" onChange="{{ toggleCompare }}" label="Comparison mode" hint-size="100%,22px"></x-import>
+          <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Select" label="Category" value="{{ category }}" options="{{ categoryOptions }}" onChange="{{ setCategory }}" hint-size="100%,56px"></x-import>
+          <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Select" label="App" value="{{ app }}" options="{{ appOptions }}" onChange="{{ setApp }}" hint-size="100%,56px"></x-import>
+          <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Select" label="Source" value="{{ source }}" options="{{ sourceOptions }}" onChange="{{ setSource }}" hint-size="100%,56px"></x-import>
+          <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Slider" label="Chunks to retrieve" value="{{ topK }}" min="4" max="25" onChange="{{ setTopK }}" format="{{ chunkFmt }}" hint-size="100%,40px"></x-import>
+          <sc-if value="{{ compareMode }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Slider" label="Chunks per app" value="{{ perApp }}" min="2" max="5" onChange="{{ setPerApp }}" format="{{ perAppFmt }}" hint-size="100%,40px"></x-import>
+              <div style="font-size:11px; color:var(--sidebar-muted);">{{ comparisonInfo }}</div>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+    </div>
+
+    <!-- User block -->
+    <div style="display:flex; align-items:center; gap:10px; padding:12px 16px; border-top:1px solid var(--sidebar-border);">
+      <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Avatar" name="Jordan Lee" hint-size="32px,32px"></x-import>
+      <div style="min-width:0; flex:1;">
+        <div style="font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Jordan Lee</div>
+        <div style="font-size:11px; color:var(--sidebar-muted);">jordan@grid.io</div>
+      </div>
+      <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Badge" role="superuser" hint-size="62px,18px"></x-import>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN ================= -->
+  <main style="flex:1; display:flex; flex-direction:column; min-width:0;">
+
+    <!-- Topbar -->
+    <header style="display:flex; align-items:center; gap:12px; padding:14px 22px; border-bottom:1px solid var(--border); position:relative;">
+      <div style="width:30px; height:30px; flex:none; border-radius:8px; background:var(--accent-soft); display:flex; align-items:center; justify-content:center; font-size:16px;">⚡</div>
+      <div style="min-width:0; flex:1;">
+        <div style="display:flex; align-items:center; gap:9px;">
+          <span style="font-weight:700; font-size:16px;">Home Energy &amp; EV Research</span>
+          <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Pill" hint-size="96px,22px">AI Research</x-import>
+        </div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">15,045 app reviews · 2,307 news articles · 224 web pages · 21 videos · 17 apps</div>
+      </div>
+      <button onClick="{{ toggleMenu }}" style="width:34px; height:34px; flex:none; border:1px solid var(--border); border-radius:8px; background:var(--bg); cursor:pointer; color:var(--text-secondary); font-size:17px; line-height:1;">⋯</button>
+      <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute; top:56px; right:22px; width:200px; background:var(--bg); border:1px solid var(--border); border-radius:10px; box-shadow:var(--shadow-lg); padding:6px; z-index:20;">
+          <div style="padding:8px 10px;">
+            <div style="font-size:13px; font-weight:600;">Jordan Lee</div>
+            <div style="font-size:12px; color:var(--text-muted);">Superuser</div>
+          </div>
+          <div style="height:1px; background:var(--border); margin:4px 0;"></div>
+          <button style="display:block; width:100%; text-align:left; padding:8px 10px; border:none; background:none; cursor:pointer; font-size:13px; color:var(--danger); border-radius:6px;">Sign Out</button>
+        </div>
+      </sc-if>
+    </header>
+
+    <!-- Chat scroll area -->
+    <div style="flex:1; overflow-y:auto;">
+      <div style="max-width:var(--chat-max); margin:0 auto; padding:26px 22px 12px; display:flex; flex-direction:column; gap:20px;">
+
+        <!-- Empty state -->
+        <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center; padding:48px 12px 24px;">
+            <div style="width:56px; height:56px; margin:0 auto 16px; border-radius:14px; background:var(--accent-soft); display:flex; align-items:center; justify-content:center; font-size:28px;">⚡</div>
+            <h2 style="margin:0 0 6px; font-size:22px; font-weight:700;">Ask anything about smart energy apps</h2>
+            <p style="margin:0 auto; max-width:420px; color:var(--text-secondary); font-size:14px;">Query 17,000+ chunks from reviews, news, web pages and videos across 17 EV charging &amp; prosumer apps.</p>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; max-width:560px; margin:24px auto 0;">
+              <sc-for list="{{ examples }}" as="ex" hint-placeholder-count="4">
+                <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.ExamplePill" onClick="{{ ex.onClick }}" hint-size="100%,46px">{{ ex.text }}</x-import>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- Messages -->
+        <sc-for list="{{ messages }}" as="m" hint-placeholder-count="2">
+          <sc-if value="{{ m.isUser }}" hint-placeholder-val="{{ true }}">
+            <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.ChatBubble" role="user" name="Jordan Lee" hint-size="100%,56px">{{ m.text }}</x-import>
+          </sc-if>
+          <sc-if value="{{ m.isAssistant }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.ChatBubble" role="assistant" hint-size="100%,140px">{{ m.text }}</x-import>
+              <div style="padding-left:42px; display:flex; flex-direction:column; gap:10px;">
+                <sc-if value="{{ m.hasSources }}" hint-placeholder-val="{{ true }}">
+                  <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Expander" title="{{ m.sourcesLabel }}" hint-size="100%,40px">
+                    <sc-for list="{{ m.sources }}" as="c" hint-placeholder-count="3">
+                      <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.SourceChunk" app="{{ c.app }}" source="{{ c.source }}" score="{{ c.score }}" text="{{ c.text }}" hint-size="100%,76px"></x-import>
+                    </sc-for>
+                  </x-import>
+                </sc-if>
+                <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.FeedbackBar" tokens="{{ m.tokens }}" active="{{ m.reactions }}" onReact="{{ m.onReact }}" comment="{{ m.comment }}" onComment="{{ m.onComment }}" hint-size="100%,30px"></x-import>
+              </div>
+            </div>
+          </sc-if>
+        </sc-for>
+
+        <!-- Loading -->
+        <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; gap:10px; align-items:flex-start;">
+            <span style="width:32px; height:32px; flex:none; border-radius:999px; background:var(--text); color:#fff; display:flex; align-items:center; justify-content:center; font-size:15px;">⚡</span>
+            <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; border-bottom-left-radius:6px; padding:14px 16px; font-size:14px; color:var(--text-secondary); display:flex; align-items:center; gap:8px;">
+              Searching knowledge base
+              <span style="display:inline-flex; gap:3px;">
+                <span style="width:5px; height:5px; border-radius:50%; background:var(--accent); animation:voltdot 1s infinite;"></span>
+                <span style="width:5px; height:5px; border-radius:50%; background:var(--accent); animation:voltdot 1s infinite .2s;"></span>
+                <span style="width:5px; height:5px; border-radius:50%; background:var(--accent); animation:voltdot 1s infinite .4s;"></span>
+              </span>
+            </div>
+          </div>
+        </sc-if>
+
+      </div>
+    </div>
+
+    <!-- Input bar -->
+    <div style="border-top:1px solid var(--border); padding:14px 22px 18px; background:var(--bg);">
+      <div style="max-width:var(--chat-max); margin:0 auto; display:flex; gap:10px; align-items:flex-end;">
+        <textarea value="{{ input }}" onInput="{{ onInput }}" onKeyDown="{{ onKeyDown }}" rows="1" placeholder="Ask about smart energy apps…"
+          style="flex:1; resize:none; font-family:var(--font-sans); font-size:15px; line-height:1.5; color:var(--text); background:var(--bg); border:1px solid var(--border-strong); border-radius:12px; padding:12px 14px; min-height:48px; max-height:160px; outline:none;"></textarea>
+        <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Button" variant="primary" onClick="{{ send }}" hint-size="80px,48px" style="height:48px;">Send ↑</x-import>
+      </div>
+    </div>
+
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: &quot;100%&quot;, &quot;height&quot;: 760 },
+  &quot;accent&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;indigo&quot;, &quot;violet&quot;, &quot;teal&quot;, &quot;blue&quot;, &quot;emerald&quot;, &quot;amber&quot;], &quot;default&quot;: &quot;indigo&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;font&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;system&quot;, &quot;plex&quot;, &quot;source&quot;], &quot;default&quot;: &quot;system&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;density&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;comfortable&quot;, &quot;compact&quot;], &quot;default&quot;: &quot;comfortable&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;chatWidth&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;centered&quot;, &quot;wide&quot;], &quot;default&quot;: &quot;centered&quot;, &quot;tsType&quot;: &quot;string&quot; }
+}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this._id = 100;
+    const firstId = this.nid();
+    this.state = {
+      sessions: [
+        { id: "s1", title: "Reliable real-time availability" },
+        { id: "s2", title: "Prosumer battery management apps" },
+        { id: "s3", title: "Top complaints in news coverage" },
+      ],
+      activeSession: "s1",
+      messages: this.seedConversation(firstId),
+      input: "",
+      loading: false,
+      reactions: { [firstId]: ["up"] },
+      comments: {},
+      compareMode: false,
+      category: "all",
+      app: "all",
+      source: "all",
+      topK: 12,
+      perApp: 3,
+      kbOpen: true,
+      settingsOpen: true,
+      menuOpen: false,
+    };
+  }
+
+  nid() { this._id += 1; return "m" + this._id; }
+
+  seedConversation(aid) {
+    return [
+      { id: "m99", role: "user", text: "Which EV charging apps have the most reliable real-time availability?" },
+      {
+        id: aid, role: "assistant",
+        text: "### Most reliable availability data\nThree apps lead on **real-time accuracy** in the reviews and news we indexed:\n\n1. *VoltGo* — users repeatedly note availability matches reality\n2. *ChargeMate* — fastest session-start, minimal phantom \"in use\" states\n3. *GridFlow* — strongest live route + availability planning\n\n| App | Avg. rating | Mentions |\n|---|---|---|\n| VoltGo | 4.6 | 1,204 |\n| ChargeMate | 4.4 | 980 |\n| GridFlow | 4.3 | 742 |\n\n> \"Plug in and it already knows you're there.\" — Google Play review",
+        tokens: { in: 5051, out: 486, total: 5537, model: "claude-sonnet-4-6" },
+        sources: [
+          { app: "VoltGo", source: "google_play", score: 0.91, text: "The app instantly detected my car at the station and started the session without me tapping anything. Availability is dead accurate." },
+          { app: "ChargeMate", source: "app_store", score: 0.87, text: "Session start is near-instant compared to competitors I've used over the past year. Rarely shows a charger as free when it isn't." },
+          { app: "GridFlow", source: "news", score: 0.82, text: "GridFlow's latest update overhauls route planning with live charger availability pulled directly from network operators." },
+        ],
+      },
+    ];
+  }
+
+  buildAnswer(id, q) {
+    return {
+      id, role: "assistant",
+      text: "Based on the retrieved chunks, here's what stands out for **\u201C" + q + "\u201D**:\n\n- The strongest signal comes from recent app-store reviews and news coverage\n- Sentiment is largely positive, with reliability and pricing as the recurring themes\n- Cross-app, *VoltGo* and *GridFlow* surface most often\n\nAsk a follow-up to drill into a specific app or source.",
+      tokens: { in: 4210 + Math.floor(Math.random() * 900), out: 320 + Math.floor(Math.random() * 200), total: 4600 + Math.floor(Math.random() * 1100), model: "claude-sonnet-4-6" },
+      sources: [
+        { app: "VoltGo", source: "google_play", score: 0.88, text: "Relevant excerpt retrieved from the knowledge base for this query, truncated for display in the citation card." },
+        { app: "GridFlow", source: "youtube", score: 0.79, text: "Transcript segment discussing the topic raised in the question, surfaced by semantic similarity." },
+      ],
+    };
+  }
+
+  sendText(q) {
+    q = (q || "").trim();
+    if (!q || this.state.loading) return;
+    const uid = this.nid();
+    this.setState((s) => ({ input: "", loading: true, messages: [...s.messages, { id: uid, role: "user", text: q }] }));
+    setTimeout(() => {
+      const aid = this.nid();
+      this.setState((s) => ({ loading: false, messages: [...s.messages, this.buildAnswer(aid, q)] }));
+    }, 750);
+  }
+
+  toggleReaction(id, key) {
+    this.setState((s) => {
+      const cur = s.reactions[id] || [];
+      const next = cur.includes(key) ? cur.filter((k) => k !== key) : [...cur, key];
+      return { reactions: { ...s.reactions, [id]: next } };
+    });
+  }
+  setComment(id, t) { this.setState((s) => ({ comments: { ...s.comments, [id]: t } })); }
+
+  selectSession(id) { this.setState({ activeSession: id, menuOpen: false }); }
+  deleteSession(id) {
+    this.setState((s) => {
+      const sessions = s.sessions.filter((x) => x.id !== id);
+      const activeSession = s.activeSession === id ? (sessions[0] && sessions[0].id) : s.activeSession;
+      return { sessions, activeSession };
+    });
+  }
+
+  renderVals() {
+    const accent = this.props.accent || "indigo";
+    const font = this.props.font || "system";
+    const density = this.props.density || "comfortable";
+    const chatWidthAttr = (this.props.chatWidth === "wide") ? "wide" : "centered";
+
+    const sessions = this.state.sessions.map((s) => ({
+      ...s,
+      active: s.id === this.state.activeSession,
+      onSelect: () => this.selectSession(s.id),
+      onDelete: () => this.deleteSession(s.id),
+    }));
+
+    const messages = this.state.messages.map((m) => {
+      if (m.role === "assistant") {
+        const reactions = this.state.reactions[m.id] || [];
+        return {
+          ...m,
+          isUser: false, isAssistant: true,
+          hasSources: !!(m.sources && m.sources.length),
+          sourcesLabel: "View " + ((m.sources && m.sources.length) || 0) + " source chunks",
+          reactions,
+          comment: this.state.comments[m.id] || "",
+          onReact: (k) => this.toggleReaction(m.id, k),
+          onComment: (t) => this.setComment(m.id, t),
+        };
+      }
+      return { ...m, isUser: true, isAssistant: false };
+    });
+
+    const exampleQs = [
+      "Which apps have the most reliable real-time availability?",
+      "Compare prosumer apps on battery management",
+      "What do users complain about most in 2025?",
+      "How is pricing perceived across EV charging apps?",
+    ];
+    const examples = exampleQs.map((text) => ({ text, onClick: () => this.sendText(text) }));
+
+    const perTotal = this.state.perApp * 17;
+
+    return {
+      accent, font, density, chatWidthAttr,
+      sessions, messages,
+      isEmpty: messages.length === 0 && !this.state.loading,
+      loading: this.state.loading,
+      input: this.state.input,
+      compareMode: this.state.compareMode,
+      category: this.state.category, app: this.state.app, source: this.state.source,
+      topK: this.state.topK, perApp: this.state.perApp,
+      kbOpen: this.state.kbOpen, settingsOpen: this.state.settingsOpen, menuOpen: this.state.menuOpen,
+      kbClosed: !this.state.kbOpen, settingsClosed: !this.state.settingsOpen,
+      comparisonInfo: this.state.perApp + " chunks \u00D7 17 apps = " + perTotal + " total",
+      categoryOptions: [
+        { value: "all", label: "All categories" },
+        { value: "ev", label: "EV Charging" },
+        { value: "pro", label: "Prosumer" },
+      ],
+      appOptions: [
+        { value: "all", label: "All apps" },
+        { value: "voltgo", label: "VoltGo" },
+        { value: "chargemate", label: "ChargeMate" },
+        { value: "gridflow", label: "GridFlow" },
+      ],
+      sourceOptions: [
+        { value: "all", label: "All sources" },
+        { value: "gp", label: "Google Play" },
+        { value: "as", label: "App Store" },
+        { value: "news", label: "News" },
+        { value: "web", label: "Website" },
+        { value: "yt", label: "YouTube" },
+      ],
+      chunkFmt: (v) => v + " chunks",
+      perAppFmt: (v) => v + " / app",
+      newChat: () => this.setState({ messages: [], input: "", menuOpen: false }),
+      send: () => this.sendText(this.state.input),
+      onInput: (e) => this.setState({ input: e.target.value }),
+      onKeyDown: (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); this.sendText(this.state.input); } },
+      toggleCompare: (v) => this.setState({ compareMode: v }),
+      setCategory: (v) => this.setState({ category: v }),
+      setApp: (v) => this.setState({ app: v }),
+      setSource: (v) => this.setState({ source: v }),
+      setTopK: (v) => this.setState({ topK: v }),
+      setPerApp: (v) => this.setState({ perApp: v }),
+      toggleKb: () => this.setState((s) => ({ kbOpen: !s.kbOpen })),
+      toggleSettings: () => this.setState((s) => ({ settingsOpen: !s.settingsOpen })),
+      toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
+    };
+  }
+}
+</script>
+</body>
+</html>

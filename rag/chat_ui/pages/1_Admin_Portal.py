@@ -53,6 +53,10 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+from rag.chat_ui._sidebar_nav import render_sidebar_nav
+with st.sidebar:
+    render_sidebar_nav()
+
 PROJECT_ROOT          = Path(__file__).parents[3]
 YOUTUBE_SUMMARIES_DIR = PROJECT_ROOT / "data" / "raw" / "text" / "youtube_summaries"
 CONFIG_PATH           = PROJECT_ROOT / "config" / "users.yaml"
@@ -97,7 +101,12 @@ display_name = st.session_state["name"]
 with open(CONFIG_PATH) as f:
     _auth_cfg = yaml.load(f, Loader=SafeLoader)
 
-role = _auth_cfg["credentials"]["usernames"].get(username, {}).get("role", "user")
+# stauth 0.4.2 lowercases usernames; do case-insensitive lookup
+_users_cfg = _auth_cfg["credentials"]["usernames"]
+role = next(
+    (v.get("role", "user") for k, v in _users_cfg.items() if k.lower() == username),
+    "user",
+)
 
 if role == "user":
     st.error("⛔ Access denied. Admin Portal requires Superadmin or Superuser access.")
@@ -686,13 +695,13 @@ with tab_users:
             if st.button("✅  Create User", type="primary", key="nu_save",
                          disabled=not nu_pw, use_container_width=True):
                 name_val  = st.session_state.get("nu_name", "").strip()
-                uname_val = st.session_state.get("nu_uname", "").strip()
+                uname_val = st.session_state.get("nu_uname", "").strip().lower()
                 role_val  = st.session_state.get("nu_role", "user")
                 if not name_val:
                     st.error("Display name is required.")
                 elif not uname_val:
                     st.error("Email / username is required.")
-                elif uname_val in users_dict:
+                elif uname_val in {k.lower() for k in users_dict}:
                     st.error(f"Username '{uname_val}' already exists.")
                 else:
                     cfg["credentials"]["usernames"][uname_val] = {
@@ -733,7 +742,7 @@ with tab_users:
     for uname, udata in list(users_dict.items()):
         uname_display = udata.get("name", uname)
         u_role        = udata.get("role", "user")
-        is_self       = (uname == username)
+        is_self       = (uname.lower() == username.lower())
         av_grad, _, _ = ROLE_COLORS.get(u_role, ROLE_COLORS["user"])
 
         av_col, nm_col, em_col, rl_col, ac_col = st.columns([0.4, 2.2, 3.2, 2, 1.8])

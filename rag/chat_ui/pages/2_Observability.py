@@ -1,7 +1,7 @@
 """
 Observability Dashboard — RAG inference & pipeline metrics.
 
-Access: superadmin (full) / superuser (read-only same view) / user (blocked)
+Access: superadmin (read-only) / superuser (read-only) / user (blocked)
 """
 import sys
 from pathlib import Path
@@ -46,6 +46,10 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+from rag.chat_ui._sidebar_nav import render_sidebar_nav
+with st.sidebar:
+    render_sidebar_nav()
+
 CONFIG_PATH = Path(__file__).parents[3] / "config" / "users.yaml"
 
 SOURCE_META = {
@@ -67,7 +71,12 @@ display_name = st.session_state["name"]
 
 with open(CONFIG_PATH) as f:
     _auth_cfg = yaml.load(f, Loader=SafeLoader)
-role = _auth_cfg["credentials"]["usernames"].get(username, {}).get("role", "user")
+# stauth 0.4.2 lowercases usernames; do case-insensitive lookup
+_obs_users = _auth_cfg["credentials"]["usernames"]
+role = next(
+    (v.get("role", "user") for k, v in _obs_users.items() if k.lower() == username),
+    "user",
+)
 
 if role == "user":
     st.error("⛔ Access denied. Observability requires Superadmin or Superuser access.")
@@ -250,8 +259,8 @@ with tab_ragas:
     </div>
     """, unsafe_allow_html=True)
 
-    # ── Manual trigger ────────────────────────────────────────────────────
-    is_superadmin_here = (role == "superadmin")
+    # ── Manual trigger — Observability is read-only for all roles ─────────
+    is_superadmin_here = False  # action buttons live in Admin Portal, not here
     trig_col, status_col = st.columns([2, 5])
     with trig_col:
         if is_superadmin_here:

@@ -16,14 +16,17 @@ load_dotenv(Path(__file__).parents[2] / "config" / ".env", override=True)
 import os
 import yaml
 import streamlit as st
-import psycopg2
 import streamlit_authenticator as stauth
 from yaml.loader import SafeLoader
 
+# sentence-transformers (PyTorch) MUST load before psycopg2 on Windows — DLL conflict causes segfault.
+# retriever.py imports embedder first, so importing retriever here fixes the order for the whole app.
 from rag.retriever import (
     MODEL, generate_answer, retrieve, retrieve_by_source, retrieve_per_app,
     ALL_EV_APPS, ALL_PROSUMER_APPS,
 )
+import psycopg2  # safe now — sentence-transformers/PyTorch already initialised above
+import streamlit.components.v1 as components
 from rag.chat_ui.session_db import (
     ensure_table, create_session, list_sessions,
     load_messages, save_messages, delete_session,
@@ -49,7 +52,13 @@ st.set_page_config(
 )
 
 # ---------------------------------------------------------------------------
-# Global CSS  —  bright light theme, dark sidebar, mobile-first
+# Volt design system CSS  (tokens + component classes)
+# ---------------------------------------------------------------------------
+_volt_css = (Path(__file__).parents[2] / "NewDesign" / "styles.css").read_text(encoding="utf-8")
+st.markdown(f"<style>{_volt_css}</style>", unsafe_allow_html=True)
+
+# ---------------------------------------------------------------------------
+# Global CSS  —  Streamlit-specific overrides (dark sidebar, bubble layout…)
 # ---------------------------------------------------------------------------
 st.markdown("""
 <style>
@@ -113,7 +122,11 @@ section.main, .block-container { background: var(--bg) !important; }
 [data-testid="stToolbar"],
 [data-testid="stDeployButton"],
 [data-testid="stDecoration"],
+[data-testid="stSidebarNav"],
 #MainMenu, footer, header { display: none !important; }
+
+/* Remove the top gap Streamlit leaves when nav is hidden */
+[data-testid="stSidebar"] > div:first-child { padding-top: 0 !important; }
 
 /* ════════════════════════════════════════════════════════════════════
    SIDEBAR
@@ -173,50 +186,132 @@ section.main, .block-container { background: var(--bg) !important; }
 [data-testid="stSidebar"] .stSlider [data-baseweb="slider"] div[role="slider"] { background: #4f46e5 !important; border-color: #4f46e5 !important; }
 
 /* ════════════════════════════════════════════════════════════════════
-   SIDEBAR HTML COMPONENTS
+   SIDEBAR — Volt-style section headers + widget overrides
    ════════════════════════════════════════════════════════════════════ */
-.sb-brand {
-    padding: 1.1rem 1rem 0.9rem 1rem;
-    border-bottom: 1px solid #1e293b;
-    margin-bottom: 0.5rem;
+
+/* Collapsible section buttons (KB / Search Settings) */
+.sb-section-btn {
+    display: flex; align-items: center; gap: 6px;
+    width: 100%; background: none; border: none; cursor: pointer;
+    color: var(--sidebar-muted);
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 14px 6px 6px; text-align: left;
+    font-family: var(--font-sans);
+    transition: color 0.12s ease;
 }
+.sb-section-btn:hover { color: var(--sidebar-text); }
+
+/* Toggle: dark-sidebar variant */
+[data-testid="stSidebar"] [data-testid="stToggle"] label {
+    color: var(--sidebar-text) !important;
+    font-size: 13px !important; font-weight: 400 !important;
+    gap: 10px !important;
+}
+[data-testid="stSidebar"] [data-testid="stToggle"] [role="switch"] {
+    background-color: var(--sidebar-border) !important;
+    border: none !important;
+    width: 38px !important; min-width: 38px !important;
+    height: 22px !important; border-radius: 999px !important;
+}
+[data-testid="stSidebar"] [data-testid="stToggle"] [role="switch"][aria-checked="true"] {
+    background-color: var(--accent) !important;
+}
+
+/* Select: dark-sidebar variant — label uppercase like Volt */
+[data-testid="stSidebar"] .stSelectbox label {
+    color: var(--sidebar-muted) !important;
+    font-size: 11px !important; font-weight: 600 !important;
+    text-transform: uppercase; letter-spacing: 0.05em !important;
+}
+
+/* Slider: dark-sidebar variant */
+[data-testid="stSidebar"] .stSlider label {
+    color: var(--sidebar-muted) !important;
+    font-size: 11px !important; font-weight: 600 !important;
+    text-transform: uppercase; letter-spacing: 0.05em !important;
+}
+[data-testid="stSidebar"] [data-baseweb="slider"] [data-testid="stThumbValue"] {
+    color: var(--accent) !important; font-weight: 600 !important; font-size: 13px !important;
+}
+[data-testid="stSidebar"] [data-baseweb="slider"] div[role="slider"] {
+    background: var(--accent) !important; border-color: var(--accent) !important;
+    width: 16px !important; height: 16px !important;
+}
+
+/* Page links (Admin Portal / Observability) — Volt nav-item style */
+[data-testid="stPageLink"] {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+[data-testid="stPageLink"] a,
+[data-testid="stPageLink"] p a {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 7px 10px !important;
+    border-radius: var(--r-md) !important;
+    color: var(--sidebar-muted) !important;
+    text-decoration: none !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    transition: background .12s ease, color .12s ease !important;
+}
+[data-testid="stPageLink"] a:hover,
+[data-testid="stPageLink"] p a:hover {
+    background: var(--sidebar-surface) !important;
+    color: var(--sidebar-text) !important;
+}
+[data-testid="stPageLink"] p { margin: 0 !important; }
+/* HTML anchor nav links (replace st.page_link which fights theme CSS) */
+.volt-nav-link {
+    display: block;
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: var(--sidebar-muted) !important;
+    text-decoration: none !important;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background .12s ease, color .12s ease;
+}
+.volt-nav-link:hover {
+    background: var(--sidebar-surface);
+    color: var(--sidebar-text) !important;
+}
+
+/* Legacy sb-* classes (fallback) */
 .sb-brand-title { font-size: 0.97rem; font-weight: 700; color: #f1f5f9 !important; margin: 0; }
 .sb-brand-sub   { font-size: 0.7rem; color: #64748b !important; margin: 0.15rem 0 0 0; }
-.sb-user {
-    padding: 0.7rem 1rem;
-    border-top: 1px solid #1e293b;
-    margin-top: 0.5rem;
-    display: flex; align-items: center; gap: 0.6rem;
-}
-.sb-user-avatar {
-    width: 28px; height: 28px;
-    background: linear-gradient(135deg, #4f46e5, #7c3aed);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.75rem; color: #fff; font-weight: 700; flex-shrink: 0;
-}
-.sb-user-name { font-size: 0.82rem; font-weight: 500; color: #cbd5e1 !important; }
+.sb-user-name   { font-size: 0.82rem; font-weight: 500; color: #cbd5e1 !important; }
 
 /* ════════════════════════════════════════════════════════════════════
    TOPBAR
    ════════════════════════════════════════════════════════════════════ */
 .ev-topbar {
-    display: flex; align-items: center; gap: 0.5rem;
+    display: flex; align-items: flex-start; gap: 0.55rem;
     padding: 0.9rem 0 0.75rem 0;
     border-bottom: 1px solid var(--border);
     margin-bottom: 1rem;
 }
-.ev-topbar-icon { font-size: 1.15rem; flex-shrink: 0; }
+.ev-topbar-icon { font-size: 1.15rem; flex-shrink: 0; padding-top: 0.1rem; }
+.ev-topbar-body { flex: 1; min-width: 0; }
+.ev-topbar-row1 { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 .ev-topbar-title { font-size: 1.15rem; font-weight: 700; color: var(--text); margin: 0; }
-.ev-topbar-sub {
-    font-size: 0.71rem; color: var(--text-3); margin: 0;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
 .ev-topbar-badge {
     font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
     letter-spacing: 0.07em; padding: 0.15rem 0.45rem; border-radius: 999px;
     background: var(--accent-soft); color: var(--accent); border: 1px solid #c7d2fe;
     white-space: nowrap; flex-shrink: 0;
+}
+.ev-topbar-stats {
+    font-size: 0.68rem; color: var(--text-3); margin: 0.18rem 0 0 0;
+    line-height: 1.5;
+}
+.ev-topbar-stats b { color: var(--text-2); font-weight: 600; }
+.ev-topbar-sub {
+    font-size: 0.71rem; color: var(--text-3); margin: 0;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 
 /* ════════════════════════════════════════════════════════════════════
@@ -521,60 +616,13 @@ section.main, .block-container { background: var(--bg) !important; }
 }
 
 /* ════════════════════════════════════════════════════════════════════
-   FEEDBACK BAR
+   FEEDBACK — iframe (components.html) needs no extra CSS.
+   Comment-saved confirmation text.
    ════════════════════════════════════════════════════════════════════ */
-.fb-wrap {
-    display: flex;
-    align-items: center;
-    gap: 0.2rem;
-    padding: 0.35rem 0 0.1rem 0.05rem;
-}
+.fb-saved { font-size: 0.68rem; color: #22c55e; margin: 0.05rem 0 0 0; }
 
-/* All buttons inside the feedback bar wrapper */
-div[data-testid="stHorizontalBlock"].fb-row > div[data-testid="column"] button {
-    padding: 0.22rem 0.55rem    !important;
-    font-size: 0.88rem          !important;
-    line-height: 1              !important;
-    min-height: unset           !important;
-    height: auto                !important;
-    border-radius: 999px        !important;
-    border: 1px solid var(--border) !important;
-    background: transparent     !important;
-    color: var(--text-2)        !important;
-    box-shadow: none            !important;
-    transition: all 0.12s ease  !important;
-    width: auto                 !important;
-}
-div[data-testid="stHorizontalBlock"].fb-row > div[data-testid="column"] button:hover {
-    background: var(--bg-surface) !important;
-    border-color: #cbd5e1         !important;
-    transform: scale(1.08)        !important;
-}
-/* Active / selected reaction */
-div[data-testid="stHorizontalBlock"].fb-row > div[data-testid="column"] button[kind="primary"] {
-    background: var(--accent-soft) !important;
-    border-color: #a5b4fc          !important;
-    color: var(--accent)           !important;
-}
-
-/* Comment text input */
-.fb-comment input {
-    font-size: 0.82rem          !important;
-    padding: 0.3rem 0.65rem     !important;
-    border-radius: 8px          !important;
-    border: 1px solid var(--border) !important;
-    background: var(--bg-surface)   !important;
-    color: var(--text)              !important;
-}
-.fb-comment input:focus {
-    border-color: var(--accent)  !important;
-    box-shadow: 0 0 0 2px rgba(79,70,229,0.1) !important;
-}
-.fb-saved {
-    font-size: 0.72rem;
-    color: #22c55e;
-    padding: 0.15rem 0;
-}
+/* Remove the default iframe border that Streamlit adds */
+[data-testid="stIFrame"] { border: none !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -600,10 +648,10 @@ authenticator = stauth.Authenticate(
 if not st.session_state.get("authentication_status"):
     st.markdown("""
     <div style="display:flex;justify-content:center;align-items:flex-start;min-height:40vh;padding-top:8vh;">
-        <div class="login-card">
-            <span class="login-icon">⚡</span>
-            <h2 class="login-title">Home Energy &amp; EV Research</h2>
-            <p class="login-sub">Competitive intelligence on North American<br>home energy &amp; EV charging apps</p>
+        <div class="card card--pad-lg card--shadow" style="max-width:380px;width:100%;text-align:center;">
+            <div style="width:56px;height:56px;margin:0 auto 14px;border-radius:14px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:28px;">⚡</div>
+            <h2 style="margin:0 0 6px;font-size:22px;font-weight:700;color:var(--text);">Home Energy &amp; EV Research</h2>
+            <p style="margin:0 0 8px;font-size:13px;color:var(--text-muted);">Competitive intelligence on North American<br>home energy &amp; EV charging apps</p>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -620,9 +668,14 @@ if not st.session_state.get("authentication_status"):
 username: str     = st.session_state["username"]
 display_name: str = st.session_state["name"]
 
-# Resolve role from config and cache in session_state
+# Resolve role from config and cache in session_state.
+# stauth 0.4.2 lowercases usernames in session_state; do case-insensitive lookup.
 if "role" not in st.session_state:
-    _role = auth_config["credentials"]["usernames"].get(username, {}).get("role", "user")
+    _users = auth_config["credentials"]["usernames"]
+    _role = next(
+        (v.get("role", "user") for k, v in _users.items() if k.lower() == username),
+        "user",
+    )
     st.session_state["role"] = _role
 role: str = st.session_state["role"]
 
@@ -655,6 +708,45 @@ if "messages" not in st.session_state:
 
 if "fb" not in st.session_state:
     st.session_state.fb = load_session_feedback(st.session_state.current_session_id)
+
+# ---------------------------------------------------------------------------
+# Query-param feedback handler
+# Clicks in the components.html iframe set window.parent.location.search
+# e.g. ?fb_r=up&fb_i=3  or  ?fb_c=3  — processed here on each rerun.
+# ---------------------------------------------------------------------------
+_qp = st.query_params
+if "fb_r" in _qp and "fb_i" in _qp:
+    try:
+        _idx   = int(_qp["fb_i"])
+        _r     = _qp["fb_r"]
+        _fb    = st.session_state.fb.get(_idx, {})
+        _new_r = None if _fb.get("reaction") == _r else _r
+        st.session_state.fb[_idx] = {**_fb, "reaction": _new_r}
+        save_feedback(
+            st.session_state.current_session_id, _idx,
+            username, _new_r, _fb.get("comment", ""),
+        )
+    except Exception:
+        pass
+    st.query_params.clear()
+    st.rerun()
+elif "fb_c" in _qp:
+    try:
+        _idx = int(_qp["fb_c"])
+        _fb  = st.session_state.fb.get(_idx, {})
+        st.session_state.fb[_idx] = {**_fb, "show_comment": not _fb.get("show_comment", False)}
+    except Exception:
+        pass
+    st.query_params.clear()
+    st.rerun()
+elif "sb" in _qp:
+    _sb = _qp["sb"]
+    if _sb == "kb":
+        st.session_state.kb_open = not st.session_state.get("kb_open", False)
+    elif _sb == "settings":
+        st.session_state.settings_open = not st.session_state.get("settings_open", True)
+    st.query_params.clear()
+    st.rerun()
 
 # ---------------------------------------------------------------------------
 # KB count (cached 5 min)
@@ -697,77 +789,118 @@ EXAMPLE_QUESTIONS = [
 ]
 
 # ---------------------------------------------------------------------------
-# Feedback bar
+# Source chunks — Volt .chunk card layout
 # ---------------------------------------------------------------------------
-def render_feedback_bar(msg_idx: int):
-    """Render 👍 👎 ❤️ 💬 reaction bar for an assistant message."""
-    sid  = st.session_state.current_session_id
+_SOURCE_BADGE = {
+    "google_play": "badge--neutral",
+    "app_store":   "badge--neutral",
+    "news":        "badge--indigo",
+    "web_pages":   "badge--neutral",
+    "youtube":     "badge--warning",
+}
+
+def render_source_chunks(sources: list):
+    parts = []
+    for s in sources:
+        label     = SOURCE_LABELS.get(s["source"], s["source"])
+        badge_cls = _SOURCE_BADGE.get(s["source"], "badge--neutral")
+        content   = s["content"].replace("<", "&lt;").replace(">", "&gt;")
+        parts.append(f"""
+<div class="chunk" style="margin-bottom:8px;">
+  <div class="chunk__head">
+    <span class="chunk__app">{s['app_name']}</span>
+    <span class="badge {badge_cls}">{label}</span>
+    <span class="chunk__score">{s['score']:.3f}</span>
+  </div>
+  <div class="chunk__text">{content}</div>
+</div>""")
+    st.markdown("\n".join(parts), unsafe_allow_html=True)
+
+
+# ---------------------------------------------------------------------------
+# Feedback bar — inline token+icons via components.html (iframe, JS works)
+# ---------------------------------------------------------------------------
+def render_token_feedback_row(msg_idx: int, usage: dict):
+    """Token info + 👍👎❤️💬 on one line inside the chat bubble.
+    Uses components.v1.html so JS can set window.parent.location.search
+    without being stripped by Streamlit's DOMPurify sanitiser."""
     fb   = st.session_state.fb.get(msg_idx, {})
     cur  = fb.get("reaction")
     show = fb.get("show_comment", False)
 
-    # Pill buttons row — wrapped so CSS selector .fb-row can target them
-    st.markdown('<div class="fb-wrap">', unsafe_allow_html=True)
-    st.markdown(
-        '<div data-testid="stHorizontalBlock" class="fb-row" style="display:contents">',
-        unsafe_allow_html=True,
+    cache_read = usage.get("cache_read_input_tokens", 0)
+    cache_str  = f" · cache read {cache_read:,}" if cache_read else ""
+    token_str  = (
+        f"Tokens — in {usage.get('input_tokens', 0):,} · "
+        f"out {usage.get('output_tokens', 0):,} · "
+        f"total {usage.get('total_tokens', 0):,}{cache_str} · {MODEL}"
     )
-    c1, c2, c3, c4, _spacer = st.columns([1, 1, 1, 1, 12])
 
-    def _toggle(reaction: str):
-        new_r = None if cur == reaction else reaction
-        st.session_state.fb[msg_idx] = {
-            **st.session_state.fb.get(msg_idx, {}),
-            "reaction": new_r,
-        }
-        save_feedback(sid, msg_idx, username, new_r,
-                      st.session_state.fb[msg_idx].get("comment", ""))
-        st.rerun()
-
-    with c1:
-        kind = "primary" if cur == "up" else "secondary"
-        if st.button("👍", key=f"fb_up_{sid}_{msg_idx}", type=kind, help="Helpful"):
-            _toggle("up")
-    with c2:
-        kind = "primary" if cur == "down" else "secondary"
-        if st.button("👎", key=f"fb_dn_{sid}_{msg_idx}", type=kind, help="Not helpful"):
-            _toggle("down")
-    with c3:
-        kind = "primary" if cur == "love" else "secondary"
-        if st.button("❤️", key=f"fb_lv_{sid}_{msg_idx}", type=kind, help="Love this"):
-            _toggle("love")
-    with c4:
-        kind = "primary" if show else "secondary"
-        if st.button("💬", key=f"fb_cm_{sid}_{msg_idx}", type=kind, help="Add comment"):
-            st.session_state.fb[msg_idx] = {
-                **st.session_state.fb.get(msg_idx, {}),
-                "show_comment": not show,
-            }
-            st.rerun()
-
-    st.markdown('</div>', unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
-
-    # Comment box — shown when 💬 is toggled on
-    if show:
-        existing = fb.get("comment", "")
-        st.markdown('<div class="fb-comment">', unsafe_allow_html=True)
-        comment = st.text_input(
-            "",
-            value=existing,
-            max_chars=100,
-            placeholder="Add a comment… (100 chars max)",
-            key=f"fb_txt_{sid}_{msg_idx}",
-            label_visibility="collapsed",
+    def _icon(emoji, qs, active):
+        op   = "1"    if active else "0.45"
+        glow = "filter:drop-shadow(0 0 4px rgba(99,102,241,0.55));" if active else ""
+        return (
+            f'<span class="fb" data-qs="{qs}" '
+            f'style="opacity:{op};{glow}cursor:pointer;font-size:14px;'
+            f'padding:1px 4px;border-radius:4px;user-select:none;'
+            f'transition:opacity 0.12s,transform 0.1s;">{emoji}</span>'
         )
-        st.markdown('</div>', unsafe_allow_html=True)
-        if comment != existing:
-            st.session_state.fb[msg_idx] = {
-                **st.session_state.fb.get(msg_idx, {}),
-                "comment": comment,
-            }
-            save_feedback(sid, msg_idx, username, cur, comment)
-            st.markdown('<p class="fb-saved">✓ Saved</p>', unsafe_allow_html=True)
+
+    icons_html = (
+        _icon("👍", f"?fb_r=up&fb_i={msg_idx}",   cur == "up")   +
+        _icon("👎", f"?fb_r=down&fb_i={msg_idx}", cur == "down") +
+        _icon("❤️", f"?fb_r=love&fb_i={msg_idx}", cur == "love") +
+        _icon("💬", f"?fb_c={msg_idx}",            show)
+    )
+
+    html = f"""<!DOCTYPE html><html><head>
+<style>
+  html,body{{margin:0;padding:0;background:transparent;overflow:hidden;}}
+  .row{{display:flex;align-items:center;justify-content:space-between;
+        padding:2px 0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}}
+  .tok{{font-size:12px;color:#94a3b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums;}}
+  .icons{{display:flex;align-items:center;gap:4px;flex-shrink:0;margin-left:8px;}}
+  .fb{{display:inline-flex;align-items:center;justify-content:center;
+       width:24px;height:24px;padding:0;font-size:14px;line-height:1;
+       background:none;border:none;border-radius:6px;cursor:pointer;opacity:.4;
+       transition:opacity .15s ease,background .15s ease,transform .1s ease,filter .15s ease;}}
+  .fb:hover{{opacity:.85;background:#f1f5f9;}}
+  .fb.active{{opacity:1;filter:drop-shadow(0 0 6px rgba(79,70,229,.30));transform:scale(1.08);}}
+</style>
+</head><body>
+<div class="row">
+  <span class="tok">{token_str}</span>
+  <span class="icons">{icons_html}</span>
+</div>
+<script>
+document.querySelectorAll('.fb').forEach(function(el){{
+  el.addEventListener('click',function(){{
+    try{{window.parent.location.search=el.dataset.qs;}}
+    catch(e){{window.location.search=el.dataset.qs;}}
+  }});
+}});
+</script>
+</body></html>"""
+    components.html(html, height=28, scrolling=False)
+
+
+def render_comment_box(msg_idx: int):
+    """Optional freetext comment — shown below the bubble when 💬 is toggled."""
+    fb = st.session_state.fb.get(msg_idx, {})
+    if not fb.get("show_comment"):
+        return
+    sid      = st.session_state.current_session_id
+    existing = fb.get("comment", "")
+    comment  = st.text_input(
+        "", value=existing, max_chars=100,
+        placeholder="Add a comment… (100 chars max)",
+        key=f"fb_txt_{sid}_{msg_idx}",
+        label_visibility="collapsed",
+    )
+    if comment != existing:
+        st.session_state.fb[msg_idx] = {**fb, "comment": comment}
+        save_feedback(sid, msg_idx, username, fb.get("reaction"), comment)
+        st.markdown('<p class="fb-saved">✓ Saved</p>', unsafe_allow_html=True)
 
 
 # ---------------------------------------------------------------------------
@@ -777,9 +910,12 @@ with st.sidebar:
 
     # ── Branding ───────────────────────────────────────────────────────────
     st.markdown("""
-    <div class="sb-brand">
-        <p class="sb-brand-title">⚡ Home Energy &amp; EV Research</p>
-        <p class="sb-brand-sub">EV Charging &amp; Prosumer Apps</p>
+    <div style="display:flex;align-items:center;gap:10px;padding:18px 16px 14px;border-bottom:1px solid var(--sidebar-border);margin-bottom:4px;">
+        <div style="width:34px;height:34px;flex:none;border-radius:9px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;">⚡</div>
+        <div style="min-width:0;">
+            <div style="font-weight:700;font-size:14px;line-height:1.2;color:var(--sidebar-text);">Home Energy &amp; EV</div>
+            <div style="font-size:11px;color:var(--sidebar-muted);line-height:1.3;">Competitive intelligence</div>
+        </div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -817,22 +953,47 @@ with st.sidebar:
                         start_new_chat()
                     st.rerun()
 
-    st.divider()
+    st.markdown(
+        "<div style='height:1px;background:var(--sidebar-border);margin:8px 0 0 0;'></div>",
+        unsafe_allow_html=True,
+    )
 
-    # ── Knowledge Base ────────────────────────────────────────────────────
-    with st.expander("Knowledge Base", expanded=False):
+    # ── Knowledge Base — Volt-style collapsible ───────────────────────────
+    if "kb_open" not in st.session_state:
+        st.session_state.kb_open = False
+    kb_chev = "▾" if st.session_state.kb_open else "▸"
+    st.markdown(
+        f'<button class="sb-section-btn" onclick="window.parent.location.search=\'?sb=kb\'">'
+        f'<span style="display:inline-block;width:10px;">{kb_chev}</span>&nbsp;Knowledge Base'
+        f'</button>',
+        unsafe_allow_html=True,
+    )
+    if st.session_state.kb_open:
         kb_counts = _get_kb_counts()
-        st.markdown(
-            f"Google Play &nbsp; **5,973**  \n"
-            f"App Store &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **3,687**  \n"
-            f"News articles &nbsp; **1,443**  \n"
-            f"Web pages &nbsp;&nbsp;&nbsp;&nbsp; **112**  \n"
-            f"YouTube &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **107**  \n"
-            f"**Total** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **{kb_counts:,}**"
-        )
+        st.markdown(f"""
+        <div style="padding:2px 6px 10px;font-size:12px;color:var(--sidebar-muted);line-height:1.85;">
+            <div style="display:flex;justify-content:space-between;"><span>Google Play</span><b style="color:var(--sidebar-text);">5,973</b></div>
+            <div style="display:flex;justify-content:space-between;"><span>App Store</span><b style="color:var(--sidebar-text);">3,687</b></div>
+            <div style="display:flex;justify-content:space-between;"><span>News</span><b style="color:var(--sidebar-text);">1,443</b></div>
+            <div style="display:flex;justify-content:space-between;"><span>Web pages</span><b style="color:var(--sidebar-text);">112</b></div>
+            <div style="display:flex;justify-content:space-between;"><span>YouTube</span><b style="color:var(--sidebar-text);">107</b></div>
+            <div style="display:flex;justify-content:space-between;margin-top:6px;padding-top:6px;border-top:1px solid var(--sidebar-border);">
+                <span>Total chunks</span><b style="color:var(--sidebar-text);">{kb_counts:,}</b>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
 
-    # ── Search Settings ───────────────────────────────────────────────────
-    with st.expander("Search Settings", expanded=True):
+    # ── Search Settings — Volt-style collapsible ──────────────────────────
+    if "settings_open" not in st.session_state:
+        st.session_state.settings_open = True
+    s_chev = "▾" if st.session_state.settings_open else "▸"
+    st.markdown(
+        f'<button class="sb-section-btn" onclick="window.parent.location.search=\'?sb=settings\'">'
+        f'<span style="display:inline-block;width:10px;">{s_chev}</span>&nbsp;Search Settings'
+        f'</button>',
+        unsafe_allow_html=True,
+    )
+    if st.session_state.settings_open:
         comparison_mode = st.toggle(
             "Comparison mode",
             value=False,
@@ -873,11 +1034,28 @@ with st.sidebar:
             n_per_app = None
             _app_pool = None
 
+    # ── Tools nav ─────────────────────────────────────────────────────────
+    st.markdown(
+        "<div style='height:1px;background:var(--sidebar-border);margin:8px 0;'></div>"
+        "<div style='font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;"
+        "color:var(--sidebar-muted);padding:6px 10px 4px;'>Tools</div>",
+        unsafe_allow_html=True,
+    )
+    if role in ("superadmin", "superuser"):
+        st.page_link("pages/1_Admin_Portal.py", label="Admin Portal", icon="⚙️")
+    st.page_link("pages/2_Observability.py",    label="Observability", icon="📊")
+
     # ── User block ────────────────────────────────────────────────────────
+    _role_badge = {"superadmin": "badge--indigo", "superuser": "badge--green", "user": "badge--grey"}
+    _role_label = {"superadmin": "Superadmin", "superuser": "Superuser", "user": "User"}
     st.markdown(f"""
-    <div class="sb-user">
-        <div class="sb-user-avatar">{display_name[0].upper()}</div>
-        <span class="sb-user-name">{display_name}</span>
+    <div style="display:flex;align-items:center;gap:10px;padding:12px 16px;border-top:1px solid var(--sidebar-border);margin-top:4px;">
+        <div class="avatar" style="background:var(--accent);color:#fff;">{display_name[0].upper()}</div>
+        <div style="min-width:0;flex:1;">
+            <div style="font-size:13px;font-weight:600;color:var(--sidebar-text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{display_name}</div>
+            <div style="font-size:11px;color:var(--sidebar-muted);">@{username}</div>
+        </div>
+        <span class="badge {_role_badge.get(role, 'badge--grey')}" style="font-size:10px;">{_role_label.get(role, 'User')}</span>
     </div>
     """, unsafe_allow_html=True)
 
@@ -891,9 +1069,19 @@ with topbar_left:
     st.markdown("""
     <div class="ev-topbar">
         <span class="ev-topbar-icon">⚡</span>
-        <span class="ev-topbar-title">Home Energy &amp; EV Research</span>
-        <span class="ev-topbar-sub">EV Charging · Prosumer Apps</span>
-        <span class="ev-topbar-badge">AI Research</span>
+        <div class="ev-topbar-body">
+            <div class="ev-topbar-row1">
+                <span class="ev-topbar-title">Home Energy &amp; EV Research</span>
+                <span class="pill">AI Research</span>
+            </div>
+            <p class="ev-topbar-stats">
+                <b>15,045</b> app reviews &nbsp;·&nbsp;
+                <b>2,307</b> news articles &nbsp;·&nbsp;
+                <b>224</b> web pages &nbsp;·&nbsp;
+                <b>21</b> videos &nbsp;·&nbsp;
+                <b>17</b> apps
+            </p>
+        </div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -903,20 +1091,14 @@ with topbar_right:
         unsafe_allow_html=True,
     )
     with st.popover("···", use_container_width=False):
-        role_colors = {
-            "superadmin": ("Superadmin", "#eef2ff", "#4338ca"),
-            "superuser":  ("Superuser",  "#f0fdf4", "#166534"),
-            "user":       ("User",        "#f8fafc", "#475569"),
-        }
-        r_label, r_bg, r_color = role_colors.get(role, ("User", "#f8fafc", "#475569"))
+        _pop_badge = {"superadmin": "badge--indigo", "superuser": "badge--green", "user": "badge--grey"}
+        _pop_label = {"superadmin": "Superadmin", "superuser": "Superuser", "user": "User"}
         st.markdown(f"""
         <div style="padding:0.3rem 0 0.5rem 0;">
-            <div style="font-weight:700; font-size:0.9rem; color:#0f172a;">{display_name}</div>
-            <div style="font-size:0.75rem; color:#94a3b8; margin-top:0.1rem;">@{username}</div>
-            <div style="margin-top:0.4rem;">
-                <span style="font-size:0.7rem; font-weight:700; text-transform:uppercase;
-                    letter-spacing:0.05em; padding:0.15rem 0.5rem; border-radius:999px;
-                    background:{r_bg}; color:{r_color};">{r_label}</span>
+            <div style="font-weight:700; font-size:0.9rem; color:var(--text);">{display_name}</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.1rem;">@{username}</div>
+            <div style="margin-top:0.5rem;">
+                <span class="badge {_pop_badge.get(role, 'badge--grey')}">{_pop_label.get(role, 'User')}</span>
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -949,29 +1131,14 @@ for msg_idx, msg in enumerate(st.session_state.messages):
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
         if msg["role"] == "assistant":
-            u = msg.get("usage", {})
-            if u:
-                cache_read = u.get("cache_read_input_tokens", 0)
-                cache_str  = f" · cache read {cache_read:,}" if cache_read else ""
-                st.markdown(
-                    f"<p class='token-info'>Tokens — "
-                    f"in {u.get('input_tokens', 0):,} · "
-                    f"out {u.get('output_tokens', 0):,} · "
-                    f"total {u.get('total_tokens', 0):,}"
-                    f"{cache_str} &nbsp;·&nbsp; {MODEL}</p>",
-                    unsafe_allow_html=True,
-                )
             if msg.get("sources"):
                 with st.expander(f"View {len(msg['sources'])} source chunks"):
-                    for s in msg["sources"]:
-                        label = SOURCE_LABELS.get(s["source"], s["source"])
-                        st.markdown(
-                            f"**{s['app_name']}** &nbsp;·&nbsp; {label} "
-                            f"&nbsp;·&nbsp; score `{s['score']:.3f}`"
-                        )
-                        st.caption(s["content"])
-                        st.divider()
-            render_feedback_bar(msg_idx)
+                    render_source_chunks(msg["sources"])
+            u = msg.get("usage", {})
+            if u:
+                render_token_feedback_row(msg_idx, u)
+    if msg["role"] == "assistant":
+        render_comment_box(msg_idx)
 
 # Chat input
 prefill = st.session_state.pop("prefill", None)
@@ -1063,32 +1230,15 @@ if prompt:
         status.update(label="Done", state="complete")
         st.markdown(answer)
 
-        if usage:
-            cache_read = usage.get("cache_read_input_tokens", 0)
-            cache_str  = f" · cache read {cache_read:,}" if cache_read else ""
-            st.markdown(
-                f"<p class='token-info'>Tokens — "
-                f"in {usage['input_tokens']:,} · "
-                f"out {usage['output_tokens']:,} · "
-                f"total {usage['total_tokens']:,}"
-                f"{cache_str} &nbsp;·&nbsp; {MODEL}</p>",
-                unsafe_allow_html=True,
-            )
-
         if sources:
             with st.expander(f"View {len(sources)} source chunks"):
-                for s in sources:
-                    label = SOURCE_LABELS.get(s["source"], s["source"])
-                    st.markdown(
-                        f"**{s['app_name']}** &nbsp;·&nbsp; {label} "
-                        f"&nbsp;·&nbsp; score `{s['score']:.3f}`"
-                    )
-                    st.caption(s["content"])
-                    st.divider()
+                render_source_chunks(sources)
 
-        # new message index = current length (user msg already appended, assistant not yet)
-        new_msg_idx = len(st.session_state.messages)
-        render_feedback_bar(new_msg_idx)
+        if usage:
+            render_token_feedback_row(len(st.session_state.messages), usage)
+
+    if usage:
+        render_comment_box(len(st.session_state.messages))
 
     assistant_msg = {
         "role": "assistant", "content": answer,
