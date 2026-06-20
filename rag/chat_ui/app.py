@@ -26,7 +26,6 @@ from rag.retriever import (
     ALL_EV_APPS, ALL_PROSUMER_APPS,
 )
 import psycopg2  # safe now — sentence-transformers/PyTorch already initialised above
-import streamlit.components.v1 as components
 from rag.chat_ui.session_db import (
     ensure_table, create_session, list_sessions,
     load_messages, save_messages, delete_session,
@@ -616,13 +615,9 @@ section.main, .block-container { background: var(--bg) !important; }
 }
 
 /* ════════════════════════════════════════════════════════════════════
-   FEEDBACK — iframe (components.html) needs no extra CSS.
-   Comment-saved confirmation text.
+   FEEDBACK — comment-saved confirmation text.
    ════════════════════════════════════════════════════════════════════ */
 .fb-saved { font-size: 0.68rem; color: #22c55e; margin: 0.05rem 0 0 0; }
-
-/* Remove the default iframe border that Streamlit adds */
-[data-testid="stIFrame"] { border: none !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -711,7 +706,7 @@ if "fb" not in st.session_state:
 
 # ---------------------------------------------------------------------------
 # Query-param feedback handler
-# Clicks in the components.html iframe set window.parent.location.search
+# Feedback icon onclick handlers set window.parent.location.search
 # e.g. ?fb_r=up&fb_i=3  or  ?fb_c=3  — processed here on each rerun.
 # ---------------------------------------------------------------------------
 _qp = st.query_params
@@ -818,12 +813,16 @@ def render_source_chunks(sources: list):
 
 
 # ---------------------------------------------------------------------------
-# Feedback bar — inline token+icons via components.html (iframe, JS works)
+# Feedback bar — inline token+icons via plain onclick markdown
 # ---------------------------------------------------------------------------
 def render_token_feedback_row(msg_idx: int, usage: dict):
     """Token info + 👍👎❤️💬 on one line inside the chat bubble.
-    Uses components.v1.html so JS can set window.parent.location.search
-    without being stripped by Streamlit's DOMPurify sanitiser."""
+    Uses a plain onclick attribute in st.markdown (same technique as the sidebar's
+    Knowledge Base / Search Settings toggles) — NOT components.html. A components.html
+    iframe is sandboxed without allow-top-navigation, so window.parent.location
+    assignment from inside it is silently vetoed by the browser: no JS exception is
+    thrown (allow-same-origin is present), the navigation request is just dropped,
+    so the click appeared to do nothing."""
     fb   = st.session_state.fb.get(msg_idx, {})
     cur  = fb.get("reaction")
     show = fb.get("show_comment", False)
@@ -840,9 +839,10 @@ def render_token_feedback_row(msg_idx: int, usage: dict):
         op   = "1"    if active else "0.45"
         glow = "filter:drop-shadow(0 0 4px rgba(99,102,241,0.55));" if active else ""
         return (
-            f'<span class="fb" data-qs="{qs}" '
+            f'<span onclick="window.parent.location.search=\'{qs}\'" '
             f'style="opacity:{op};{glow}cursor:pointer;font-size:14px;'
-            f'padding:1px 4px;border-radius:4px;user-select:none;'
+            f'display:inline-flex;align-items:center;justify-content:center;'
+            f'width:22px;height:22px;border-radius:6px;user-select:none;'
             f'transition:opacity 0.12s,transform 0.1s;">{emoji}</span>'
         )
 
@@ -853,35 +853,17 @@ def render_token_feedback_row(msg_idx: int, usage: dict):
         _icon("💬", f"?fb_c={msg_idx}",            show)
     )
 
-    html = f"""<!DOCTYPE html><html><head>
-<style>
-  html,body{{margin:0;padding:0;background:transparent;overflow:hidden;}}
-  .row{{display:flex;align-items:center;justify-content:space-between;
-        padding:2px 0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}}
-  .tok{{font-size:12px;color:#94a3b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums;}}
-  .icons{{display:flex;align-items:center;gap:4px;flex-shrink:0;margin-left:8px;}}
-  .fb{{display:inline-flex;align-items:center;justify-content:center;
-       width:24px;height:24px;padding:0;font-size:14px;line-height:1;
-       background:none;border:none;border-radius:6px;cursor:pointer;opacity:.4;
-       transition:opacity .15s ease,background .15s ease,transform .1s ease,filter .15s ease;}}
-  .fb:hover{{opacity:.85;background:#f1f5f9;}}
-  .fb.active{{opacity:1;filter:drop-shadow(0 0 6px rgba(79,70,229,.30));transform:scale(1.08);}}
-</style>
-</head><body>
-<div class="row">
-  <span class="tok">{token_str}</span>
-  <span class="icons">{icons_html}</span>
-</div>
-<script>
-document.querySelectorAll('.fb').forEach(function(el){{
-  el.addEventListener('click',function(){{
-    try{{window.parent.location.search=el.dataset.qs;}}
-    catch(e){{window.location.search=el.dataset.qs;}}
-  }});
-}});
-</script>
-</body></html>"""
-    components.html(html, height=28, scrolling=False)
+    st.markdown(
+        f'<div style="display:flex;align-items:center;justify-content:space-between;'
+        f'padding:2px 0;">'
+        f'<span style="font-size:12px;color:var(--text-muted);white-space:nowrap;'
+        f'overflow:hidden;text-overflow:ellipsis;font-variant-numeric:tabular-nums;">'
+        f'{token_str}</span>'
+        f'<span style="display:flex;align-items:center;gap:4px;flex-shrink:0;margin-left:8px;">'
+        f'{icons_html}</span>'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
 
 
 def render_comment_box(msg_idx: int):
