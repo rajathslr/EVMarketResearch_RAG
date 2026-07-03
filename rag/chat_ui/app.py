@@ -995,7 +995,8 @@ with st.sidebar:
                 _app_pool = ALL_PROSUMER_APPS
             else:
                 _app_pool = ALL_EV_APPS + ALL_PROSUMER_APPS
-            n_per_app = st.slider("Chunks per app", min_value=2, max_value=5, value=3)
+            n_per_app       = st.slider("Chunks per app", min_value=2, max_value=5, value=3)
+            score_threshold = 0.45
             st.caption(f"{n_per_app} chunks × {len(_app_pool)} apps = {n_per_app * len(_app_pool)} total")
         else:
             _app_pool = (
@@ -1012,7 +1013,10 @@ with st.sidebar:
                 help="Use 'youtube' to query video content directly.",
             )
             source_filter = None if source_choice == "All sources" else source_choice
-            top_k     = st.slider("Chunks to retrieve", min_value=4, max_value=25, value=12)
+            top_k           = st.slider("Chunks to retrieve", min_value=4, max_value=25, value=8)
+            score_threshold = st.slider("Min similarity score", min_value=0.0, max_value=0.8,
+                                        value=0.45, step=0.05,
+                                        help="Chunks below this score are dropped before sending to Claude.")
             n_per_app = None
             _app_pool = None
 
@@ -1151,7 +1155,8 @@ if prompt:
                 else:
                     st.write("Running similarity search...")
                     chunks = retrieve(prompt, app_filter, top_k,
-                                      category_filter=category_filter if not app_filter else None)
+                                      category_filter=category_filter if not app_filter else None,
+                                      score_threshold=score_threshold)
             except Exception as exc:
                 _q_error = f"Retrieval error: {exc}"
                 chunks   = []
