@@ -385,20 +385,19 @@ def fetch_app_feeds(app_filter: list[str] | None = None, fetch_body: bool = True
 # Main
 # ---------------------------------------------------------------------------
 
-def main() -> None:
-    parser = argparse.ArgumentParser(
-        description="Scrape EV/energy publication RSS feeds for news")
-    parser.add_argument("--app", nargs="+", choices=list(APP_KEYWORDS.keys()),
-                        help="Save specific app files only (category buckets always saved)")
-    parser.add_argument("--no-body", action="store_true",
-                        help="Skip body fetch (use RSS summaries only, fast)")
-    args = parser.parse_args()
-
-    fetch_body = not args.no_body
+def run_scrape(app_filter: str | None = None, fetch_body: bool = True) -> None:
+    """Scrape news from publication RSS feeds. `app_filter` restricts the
+    per-app file output to one app name (matches run_pipeline.py's --app),
+    otherwise every app gets its file. The _ev_general/_prosumer_general
+    category buckets are always saved regardless of app_filter — they're
+    what most retrieval actually hits. Callable directly (used by
+    run_pipeline.py's on-demand refresh) or via CLI."""
     if fetch_body and not _TRAFILATURA_AVAILABLE:
         log.warning("trafilatura not installed — body fetch disabled. "
                     "Run: pip install trafilatura")
         fetch_body = False
+
+    app_list = [app_filter] if app_filter else None
 
     log.info("Fetching %d publication RSS feeds...", len(FEEDS))
     buckets = fetch_all_feeds()
@@ -431,7 +430,7 @@ def main() -> None:
     log.info("=== Saving per-app files ===")
     all_articles = all_ev_articles + all_prosumer_articles
     targets = {k: v for k, v in APP_KEYWORDS.items()
-               if not args.app or k in args.app}
+               if not app_list or k in app_list}
     for app_name, keywords in targets.items():
         matched = [a for a in all_articles if _matches(a, keywords)]
         if matched:
@@ -442,9 +441,26 @@ def main() -> None:
 
     # Fetch dedicated per-app tag feeds (direct publication tag URLs)
     log.info("=== Fetching per-app tag feeds ===")
-    fetch_app_feeds(app_filter=args.app, fetch_body=fetch_body)
+    fetch_app_feeds(app_filter=app_list, fetch_body=fetch_body)
 
     log.info("Done.")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description="Scrape EV/energy publication RSS feeds for news")
+    parser.add_argument("--app", nargs="+", choices=list(APP_KEYWORDS.keys()),
+                        help="Save specific app files only (category buckets always saved)")
+    parser.add_argument("--no-body", action="store_true",
+                        help="Skip body fetch (use RSS summaries only, fast)")
+    args = parser.parse_args()
+
+    fetch_body = not args.no_body
+    if args.app:
+        for name in args.app:
+            run_scrape(app_filter=name, fetch_body=fetch_body)
+    else:
+        run_scrape(fetch_body=fetch_body)
 
 
 if __name__ == "__main__":

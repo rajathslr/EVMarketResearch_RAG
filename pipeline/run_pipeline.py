@@ -10,6 +10,7 @@ import argparse
 import json
 import logging
 import sys
+from importlib import import_module
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -281,6 +282,18 @@ SOURCE_READERS = {
     "web_pages":   read_web_pages,
 }
 
+# Sources backed by a live scraper (no API key, no rate-limit gotcha — unlike
+# YouTube, see CLAUDE.md). "Run now" should fetch fresh reviews/articles, not
+# just re-read whatever raw JSON happens to already be on disk, so these
+# always scrape immediately before reading. This also means the source
+# directory under data/raw/text/<source>/ no longer needs to pre-exist on
+# whatever machine runs the pipeline — the scrape step creates it.
+SCRAPER_MODULES = {
+    "google_play": "scrapers.google_play",
+    "app_store":   "scrapers.app_store",
+    "news":        "scrapers.news_rss",
+}
+
 
 # ---------------------------------------------------------------------------
 # Pipeline
@@ -323,6 +336,15 @@ def process_docs(docs: list[dict]) -> None:
     log.info("Done. Total upserted: %d", total_inserted)
 
 
+def list_apps(source: str) -> list[str]:
+    """App subfolder names under data/raw/text/<source>/. Every reader uses
+    the same base/<app>/<file> layout, so this works for all 5 sources."""
+    base = DATA_DIR / "raw" / "text" / source
+    if not base.exists():
+        return []
+    return sorted(p.name for p in base.iterdir() if p.is_dir())
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--source", choices=list(SOURCE_READERS.keys()),
@@ -332,23 +354,34 @@ def main() -> None:
 
     sources = [args.source] if args.source else list(SOURCE_READERS.keys())
 
-    all_docs = []
+    total_docs = 0
     for source in sources:
-        reader = SOURCE_READERS[source]
-        kwargs = {}
-        if args.app:
-            kwargs["app_filter"] = args.app
-        all_docs.extend(reader(**kwargs))
+        if source in SCRAPER_MODULES:
+            log.info("Scraping fresh %s data before ingesting...", source)
+            scraper = import_module(SCRAPER_MODULES[source])
+            scraper.run_scrape(app_filter=args.app)
 
-    if not all_docs:
+        reader = SOURCE_READERS[source]
+        # Process one app at a time instead of accumulating every app's docs
+        # in memory before chunking/embedding — a full multi-app source (e.g.
+        # 17 app_store apps x ~500 reviews) blew past this droplet's 1.9GB RAM
+        # (no swap configured) and got OOM-killed, taking the API service
+        # down with it since the subprocess shares its cgroup. Bounding peak
+        # memory to "one app's docs" fixes that regardless of source size.
+        apps = [args.app] if args.app else (list_apps(source) or [None])
+        for app in apps:
+            docs = reader(app_filter=app) if app else reader()
+            if not docs:
+                continue
+            total_docs += len(docs)
+            log.info("Saving %d raw documents (%s/%s) to raw_documents table...", len(docs), source, app or "all")
+            upsert_raw_docs(docs)
+            log.info("Processing %d documents for %s/%s...", len(docs), source, app or "all")
+            process_docs(docs)
+
+    if total_docs == 0:
         log.warning("No documents found. Check that scrapers have been run.")
         return
-
-    log.info("Saving %d raw documents to raw_documents table...", len(all_docs))
-    upsert_raw_docs(all_docs)
-
-    log.info("Processing %d total documents...", len(all_docs))
-    process_docs(all_docs)
 
 
 if __name__ == "__main__":

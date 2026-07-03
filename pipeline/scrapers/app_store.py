@@ -166,13 +166,11 @@ def scrape_app(name: str, app_id: int) -> None:
         log.error("  Failed to fetch reviews for %s: %s", name, exc)
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Scrape iOS App Store reviews for EV charging apps")
-    parser.add_argument("--app", nargs="+", choices=list(APPS.keys()),
-                        help="Scrape specific apps only (default: all)")
-    args = parser.parse_args()
-
-    targets = {k: v for k, v in APPS.items() if not args.app or k in args.app}
+def run_scrape(app_filter: str | None = None) -> None:
+    """Scrape App Store reviews. `app_filter` restricts to one app name
+    (matches run_pipeline.py's --app), otherwise scrapes every target app.
+    Callable directly (used by run_pipeline.py's on-demand refresh) or via CLI."""
+    targets = {k: v for k, v in APPS.items() if not app_filter or k == app_filter}
     log.info("Scraping %d app(s): %s", len(targets), ", ".join(targets))
 
     for name, app_id in targets.items():
@@ -183,6 +181,19 @@ def main() -> None:
         time.sleep(SLEEP_SECS)
 
     log.info("Done.")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Scrape iOS App Store reviews for EV charging apps")
+    parser.add_argument("--app", nargs="+", choices=list(APPS.keys()),
+                        help="Scrape specific apps only (default: all)")
+    args = parser.parse_args()
+
+    if args.app:
+        for name in args.app:
+            run_scrape(app_filter=name)
+    else:
+        run_scrape()
 
 
 if __name__ == "__main__":
