@@ -107,8 +107,7 @@ export default function ChatPage() {
   const [app, setApp] = useState("all");
   const [source, setSource] = useState("all");
   const [compareMode, setCompareMode] = useState(false);
-  const [topK, setTopK] = useState(8);
-  const [scoreThreshold, setScoreThreshold] = useState(0.45);
+  const [topK, setTopK] = useState(12);
 
   const [kbOpen, setKbOpen] = useState(true);
   const [settingsOpen, setSettingsOpen] = useState(true);
@@ -251,7 +250,7 @@ export default function ChatPage() {
     try {
       const data = await askQuestion({
         question: q, categoryFilter: category, appFilter: app, sourceFilter: source,
-        comparisonMode: compareMode, sessionId, topK, scoreThreshold,
+        comparisonMode: compareMode, sessionId, topK,
       });
       const aid = nid();
       assistantMsg = {
@@ -369,7 +368,6 @@ export default function ChatPage() {
               <Select label="App" value={app} options={appOptionsFor(category)} onChange={setApp} />
               <Select label="Source" value={source} options={SOURCE_OPTIONS} onChange={setSource} />
               <Slider label="Chunks to retrieve" value={topK} min={4} max={25} onChange={setTopK} format={(v) => v + " chunks"} />
-              <Slider label="Min similarity score" value={scoreThreshold} min={0} max={0.8} step={0.05} onChange={setScoreThreshold} format={(v) => v.toFixed(2)} />
               {compareMode && (
                 <div style={{ fontSize: 11, color: "var(--sidebar-muted)" }}>
                   Comparison mode is a UI preview — per-app retrieval isn't wired up yet.

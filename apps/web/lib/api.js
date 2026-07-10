@@ -1,4 +1,4 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 const TOKEN_KEY = "ev_research_token";
 const USER_KEY = "ev_research_user";
@@ -42,7 +42,7 @@ export async function login(username, password) {
   return data.user;
 }
 
-export async function askQuestion({ question, categoryFilter, appFilter, sourceFilter, comparisonMode, sessionId, topK, scoreThreshold }) {
+export async function askQuestion({ question, categoryFilter, appFilter, sourceFilter, comparisonMode, sessionId, topK }) {
   return authedFetch("/api/query", {
     method: "POST",
     body: {
@@ -53,7 +53,6 @@ export async function askQuestion({ question, categoryFilter, appFilter, sourceF
       comparison_mode: !!comparisonMode,
       session_id: sessionId || null,
       top_k: topK,
-      score_threshold: scoreThreshold,
     },
   });
 }

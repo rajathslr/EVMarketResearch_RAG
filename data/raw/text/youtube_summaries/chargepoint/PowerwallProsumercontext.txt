@@ -1,0 +1,2268 @@
+Tesla Powerwall App Walkthrough 2026 | Complete Powerwall 3 Guide & Settings Explained
+https://www.youtube.com/watch?v=wxhZBcCFQwI
+
+[00:00:00]  
+**Introduction to Tesla Powerwall 3 Mobile App**  
+- The video introduces the Tesla Powerwall 3 mobile application and its functionalities.  
+- Common user questions targeted include:  
+  - How the mobile phone app works  
+  - Setting up off-peak time-of-use tariffs  
+  - Utilizing “Stormwatch” feature  
+  - Going off-grid mode  
+  - Understanding the app’s various graphs and data  
+- The goal is to explain all essential features to maximize the Powerwall 3 usage through the app interface.
+
+[00:00:34]  
+**Powerwall 3 Mobile App Home Screen Overview**  
+- The home screen shows a live infographic of solar generation and power flows:  
+  - Example displayed: 0.7 kW solar generation, with 0.5 kW charging the Powerwall 3 battery and 0.2 kW powering the home demand.  
+- The flow graph dynamically changes based on loads and solar setup, e.g., multiple Powerwalls or expansion packs are displayed with labels like "Powerwall x 2" or "x 3."  
+- If a Tesla Wall Connector is present and a Tesla car is plugged in, the infographic updates to show the car’s charging status.  
+- The Tesla app integrates both Powerwall and Tesla vehicle data within the same application, allowing users to swipe and view car information seamlessly.
+
+[00:01:32]  
+**Off-Grid Mode Feature**  
+- A rarely used but notable feature is the ability to go off-grid manually from the app.  
+- When off-grid mode is activated (typically with local connection), the Powerwall disconnects from the grid supply and powers the home solely with battery storage and solar energy.  
+- Users often activate this to:  
+  - Prepare for known outages by testing off-grid functionality  
+  - Demonstrate system capabilities to visitors  
+- Continuous off-grid operation is possible but generally recommended only for testing or outages.
+
+[00:02:22]  
+**Energy Graph and Usage Analytics**  
+- The "Energy" tab displays detailed consumption and source breakdown by day:  
+  - Example values include 21.1 kWh usage yesterday (noting EV charger consumption).  
+  - Current day data shows demand peaks and drops in near real-time.  
+- Energy sources are shown in percentage contributions, such as:  
+  | Source             | Percentage (%) | Comment                             |  
+  |--------------------|----------------|-----------------------------------|  
+  | Powerwall 3         | 36             | Battery storage contribution      |  
+  | Direct Solar        | 44             | Most efficient source when active |  
+  | Grid                | 20             | Purchased grid electricity        |  
+- Users can swipe through days or select different time ranges (day, month, year, lifetime, or custom) to analyze historical data trends.
+
+[00:03:42]  
+**Powerwall Activity and Charging Behavior**  
+- Activity tab illustrates charging and discharging cycles:  
+  - Example shows Powerwall charging from the grid overnight using an off-peak tariff.  
+  - During the day, the Powerwall partly charges from solar production and then discharges to meet home demand.  
+- The app also displays real-time state of charge and how the battery interacts with solar and grid.  
+- This insight helps understand battery optimization strategies and cost savings.
+
+[00:04:07]  
+**Solar Generation Insights**  
+- Solar tab graphically represents solar panel output throughout the day:  
+  - Peak production typically occurs midday, tapering off towards evening.  
+  - This serves as a performance check to ensure solar panels operate correctly.  
+  - Monitoring solar flow aids in maximizing onsite solar consumption.
+
+[00:04:57]  
+**Grid Interaction and Off-Peak Tariff Optimization**  
+- The grid tab details Powerwall’s import/export activity and tariff usage:  
+  - Example highlights grid import during off-peak hours, aligned with an EV tariff (Octopus Go).  
+  - The Powerwall autonomously forecasts weather (weather forecast, solar output, battery state) to decide how much grid energy to import overnight.  
+- Users can access a menu (three dots) at top right to download data for further analysis or reporting—useful for EV expense reimbursement or ROI calculations.
+
+[00:05:31]  
+**Environmental and Usage Impact Overview**  
+- Impact tab summarizes annual or custom-period performance:  
+  - Example percentages: 20% solar, 36% battery use.  
+  - It separates peak vs off-peak consumption and shows cost savings or expenditures.  
+  - Provides insights on export credits and overall energy footprint.  
+- Importantly, this page logs backup events:  
+  - Indicates when the home has been supplied by the Powerwall during a grid outage.  
+  - Example: 32 minutes backup power on 26th March, useful for monitoring power reliability.
+
+[00:06:53]  
+**Settings and Customizations (Core Functionalities)**  
+- This section contains vital controls for optimizing Powerwall use:  
+
+| Setting                      | Description                                                                                                   | Notes / Recommendations                                                          |  
+|------------------------------|---------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|  
+| Backup Reserve Level         | Adjustable percentage (0%-100%) of battery capacity set aside for backup power in outages                     | Recommended 20% if frequent outages; full saving if outages rare                 |  
+| Operational Modes            | - Self-Powered: battery prioritizes solar, no grid draw<br>- Time-Based Control: blends solar, grid, tariffs  | Time-Based Control is used to automate charging based on tariffs and export rates |  
+| Utility Rate Plan Setup      | Define peak/off-peak/mid-peak/super off-peak time periods, prices for each                                        | Supports complex tariff schemes including seasonality if applicable              |  
+| Permission to Export         | Enables export of electricity and associated credits                                                            | Must be enabled to sell excess solar power                                      |  
+| Grid Charging Enable/Disable | Allows or disallows Powerwall charging from grid power                                                           | Disabling prevents Powerwall from charging on cheap grid rates                   |  
+| Storm Watch                  | Connects to Met Office weather warnings (yellow/red)                                                           | Automatically charges Powerwall preemptively for outages and sends push notifications|  
+| Manage Users                | Add or remove access for multiple users                                                                          | Supports household or facility sharing                                           |  
+| Support and Manuals         | Access to tutorials, manuals, and troubleshooting resources                                                      | Provides additional help for users                                              |  
+
+- Users can precisely configure off-peak schedules and prices; example: Octopus Go with 5 hours off-peak at a discounted rate.
+- *Important Note*: Powerwall 3 cannot detect complex time-of-use plans such as Octopus Go Intelligent's cheap charging slots without third-party integrations (e.g., Home Assistant or Net Zero app).
+
+[00:10:33]  
+**User Interface and App Indicators**  
+- The Powerwall home infographic dynamically updates to display current state:  
+  - Example given shows Powerwall meeting home demand at 2.3 kW.  
+  - If off-grid mode is activated, a red cross appears on the incoming grid supply icon to indicate disconnection.  
+- Clear visual communication helps users understand power status at a glance.
+
+[00:11:31]  
+**Conclusion and Recommendations**  
+- This detailed overview demystifies many common questions regarding the Tesla Powerwall 3 app.  
+- Users are encouraged to explore settings especially around tariffs, backup reserves, and storm watch to optimize usage and cost savings.  
+- The video invites viewers to subscribe for further in-depth tutorials on Tesla Powerwall 3 operations.  
+- Ideal for new owners to maximize their investment and system performance.
+
+---
+
+### Key Highlights and Summary:  
+- **Powerwall 3 app consolidates solar, battery, grid, and Tesla car data in one dashboard.**  
+- **Customizable off-peak tariff settings allow time-based control to reduce energy costs.**  
+- **Off-grid mode can be manually activated for testing or outages, using Powerwall and solar only.**  
+- **Storm Watch leverages weather warnings to pre-charge battery for power outages.**  
+- **Backup reserve level is adjustable to balance energy availability and usage.**  
+- **Comprehensive visualization of energy flows and historical usage aids user understanding and optimization.**  
+- ** Powerwall cannot natively manage complex tariff plans like Octopus Go Intelligent’s variable slots without add-on software.**  
+- **User support and data export capabilities enhance management and reporting.**
+
+This video serves as a comprehensive guide to understand and fully leverage all essential Tesla Powerwall 3 mobile app features.
+
+--------------------------------------------
+Powerwalll 3 Tesla App Walkthrough & Tariff Set Up | Apex Doma
+https://www.youtube.com/watch?v=c2kwwE1rT3I
+
+[00:00:00]  
+### Overview of Tesla Powerwall Mobile App Interface  
+- The app begins by displaying the **property description** (example given: Apex Doma office, location in Wils).  
+- Shows **real-time solar power generation**; example given is a low output of 0.1 kW on a gloomy day.  
+- Displays current **total home energy consumption**; example cited is 5.8 kW due to fully electric heating.  
+- Indicates **electric vehicle (EV) charging status**; example shows an electric van drawing 7.2 kW while preparing for a day's solar installation.  
+- The **Powerwall itself** is shown with capacity and discharge limits:  
+  - Older Powerwall 2 model discharges up to 5 kW.  
+  - Newer Powerwall 3 model discharges up to 11 kW (most common scenario).  
+- Displays **grid input power**; example is drawing 7.2 kW from the National Grid.  
+
+[00:00:54]  
+### Energy Monitoring and Historical Usage  
+- App shows whether **wall connector** (EV charging hardware) is online; in example, offline for maintenance.  
+- Displays **daily energy usage**; example today usage: 8.4 kW.  
+- Enables swiping left/right to review **historical data** for previous days or months.  
+- Monthly consumption examples:  
+  | Month     | Energy Used (kWh) | Breakdown (kWh)                              |
+  |-----------|-------------------|---------------------------------------------|
+  | November  | 563               | Powerwall discharge 242, solar 140, grid 432|  
+  | October   | 800+              | *Not specified in detail*                    |  
+- Breakdown highlights heavy use of **electric vehicle charging** as a major grid energy draw.  
+
+[00:02:13]  
+### Energy Source Breakdown and Visualization  
+- For a day in November:  
+  - Powerwall discharge: 30% (full 13.5 kWh capacity).  
+  - Solar contribution: 11%.  
+  - Grid energy usage: 59%.  
+- App’s navigation includes:  
+  - **EV charging overview**—shows when vehicles charged (e.g., overnight).  
+  - **Powerwall charging and discharging graph**—illustrates charge cycles, including cheap nighttime charging and daytime solar top-up.  
+  - **Solar generation data**—e.g., 7.4 kWh solar generation on a sample day.  
+  - **Grid draw amounts**—aligned with tariff periods to show costs.  
+
+[00:03:30]  
+### Cost and Tariff-Based Analytics  
+- App uses **time-scale filters** (day, week, month) to view energy use and costs.  
+- Costs are calculated dynamically based on **user’s utility tariff**.  
+- The app tracks whether the **whole home backup** has been engaged (if power outages occur).  
+- Graphs visualize costs offset by solar generation and Powerwall discharge to maximize self-consumption.  
+
+[00:03:57]  
+### Powerwall Settings and Backup Reserve  
+- Users can set a **Powerwall backup reserve percentage** (example: 20%).  
+- The backup portion is reserved to maintain power in case of an outage.  
+- The remainder (e.g., 80%) is available for everyday use.  
+- Users can adjust the reserve anywhere between 0% to 100%, balancing backup reliability vs. usable capacity.  
+
+[00:04:27]  
+### Operational Modes  
+| Mode            | Description                                                                                             | Best For                                   |
+|-----------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------|
+| Self-Powered    | Powerwall does not draw energy from the grid; solely uses solar and stored energy.                    | Users without cheap night rates; solar maximizers.|
+| Time-Based Control | Powerwall follows utility rates to charge during cheap off-peak hours and discharge during peak rates.| Users with cheap night tariffs or EV charging schedules.|
+
+- Most users prefer **time-based control** to optimize costs by leveraging low tariff windows.  
+
+[00:05:11]  
+### Utility Rate Plan Configuration  
+- Users can select and customize their **utility provider and rate plans** in the app.  
+- Example given: Octopus Go tariff with a 5-hour cheap night period.  
+- Supports entering **seasonal tariffs** allowing multiple rate windows annually (e.g., switching between EV and heat pump plans in different seasons).  
+- Customizable daytime and nighttime tariff periods with draggable sliders for fine-tuning.  
+
+[00:06:43]  
+### Powerwall Algorithm and Learning Capabilities  
+- Powerwall undergoes a **2–3 month learning phase** adapting to household usage patterns.  
+- The system predicts events like heavy usage days (e.g., baking or family visits) and pre-charges accordingly during cheap rates.  
+- Optimizes charge/discharge around expected solar conditions, weather forecasts, and tariff schedules to minimize costs.  
+
+[00:07:24]  
+### Pricing and Selling Energy Back to Grid  
+- Users can input exact values for:  
+  - Off-peak purchase price (example: 16p commercial, modified to 8p domestic rate).  
+  - Sell-back price (e.g., 0.8p/kWh).  
+  - Peak rates (example: 21p/kWh).  
+- The Powerwall can **purchase energy in advance** to avoid super-peak periods by slightly overpaying earlier during cheaper but still off-peak hours.  
+- Settings must be saved manually after editing rates.  
+
+[00:08:18]  
+### Additional Settings and Features  
+- **Grid charging toggle:** Enables or disables Powerwall charging from the grid during low tariff periods.  
+- **Vehicle charging settings:** For those with installed Tesla Wall Connectors; scheduling options described (detailed setup to be covered in a separate video).  
+- **Storm Watch feature:**  
+  - Monitors UK’s Met Office weather warnings (yellow or red alerts).  
+  - Automatically charges the Powerwall battery to full before severe weather to ensure maximum energy backup.  
+  - Requires correct property location input for accurate weather forecasting.  
+  - Users can enable/disable or manually schedule storm watch events.  
+
+[00:09:32]  
+### User Interface and Connectivity Options  
+- The app supports:  
+  - Linking multiple mobile phones via phone pairing.  
+  - Wi-Fi configuration for communication with Tesla servers.  
+  - Sharing access with other users if desired.  
+- **Go off-grid option:**  
+  - Allows manual switch to off-grid mode where the home is powered entirely by Powerwall energy.  
+  - Limited to maximum Powerwall discharge capacity (e.g., 5 kW for Powerwall 2; 11 kW for Powerwall 3).  
+  - Suitable in low consumption scenarios or certain months (e.g., April to October) to maximize renewable energy use.  
+
+[00:10:23]  
+### Visual Feedback and Support Resources  
+- The app displays a **dynamic garage view** showing plugged-in Tesla vehicles with corresponding icons.  
+- Number of wall connectors installed influences the app’s garage interface size and visuals.  
+- Contains embedded **tutorials, support contact methods, and owner manuals** for troubleshooting and guidance.  
+
+[00:10:48]  
+### Final Notes  
+- The video provides a comprehensive walkthrough of the **Tesla Powerwall 3 mobile app**, focusing on monitoring, control, and optimization features.  
+- Users seeking assistance can contact the **Apex Doma team** for further help with the Tesla app or Powerwall system.  
+- The walkthrough covers configuration, tariff management, backup settings, storm preparation, and power consumption visualization.  
+
+---
+
+### **Key Insights:**  
+- The Powerwall app offers **real-time energy monitoring** across solar generation, home consumption, EV charging, and grid usage.  
+- **Backup reserve management** is crucial to maintaining power during outages, configurable between 0–100%.  
+- **Time-based control mode** optimizes battery use based on tariff schedules, beneficial for users with cheap night rates or EV charging needs.  
+- The Powerwall **learns household consumption patterns** over months to improve cost efficiency dynamically.  
+- **Storm Watch** enhances resilience by proactively charging the battery ahead of forecasted severe weather.  
+- The app supports **detailed tariff customization**, including multiple seasonal plans and tariff periods to maximize savings.  
+- Users can **go off-grid** manually with the Powerwall capacity, enabling continuous solar-powered operation during certain times.  
+- Visual and user experience features like the garage view and EV charging status improve usability for Tesla customers.  
+
+This detailed summary reflects all features and functionalities discussed in the provided transcript, strictly adhering to the source content without inferring or assuming additional details.
+----------------------------------------------------
+Tesla Powerwall 3 - Commissioning
+https://www.youtube.com/watch?v=7AjjGeIhylQ
+
+[00:00:00]  
+**Summary of Powerwall 3 Commissioning Process – Initial Setup**  
+- Begin commissioning by turning on the breaker for Powerwall 3 and enabling the switch.  
+- Two LEDs turn green; once the LED turns light blue, Powerwall 3 is ready for commissioning.  
+- LED illumination can take up to 5 minutes.  
+- If the Powerwall switch is turned on but system is idle, the logo LED blinks for 10 minutes, then turns off—indicating the system enters a **sleep state**.  
+- To wake from sleep, toggle the Powerwall switch off for 3 seconds, then back on until the light blue LED appears.
+
+[00:00:36]  
+**Connecting and Configuring Powerwall 3 Using Tesla 1 App**  
+- Installers use the *Tesla 1 app* to connect to the Tesla Asset Controller within Powerwall 3.  
+- Log in or create an account, update the app if prompted for best functionality.  
+- Scan the QR code located on the black plastic piece below the Taco (do **not** scan QR codes on the side of Powerwall 3 or inside Backup Gateway).  
+- Alternatively, SSID and password on the sticker can be manually entered if scanning is not possible.  
+- Grant permission for Tesla 1 to access local network devices—mandatory to connect to Powerwall 3.  
+- After successful connection, app opens to Powerwall 3 landing page.
+
+[00:01:55]  
+**Power Flow & Main Control Tiles Overview**  
+- The top of the landing page visually displays the electrical power flow in the home; initially no flow as system is off.  
+- Key tiles for navigation and commissioning:  
+  - **System:** Shows all devices including Powerwall and Backup Switch/Gateway.  
+  - **Settings:** Configure grid code (voltage/frequency), import/export limits.  
+  - **Networking:** Manage internet connection setups.  
+  - **System Tests:** Allows grid outage simulation.  
+  - **Registration:** Customer information entry to enable Tesla app visibility.  
+  - **Software:** Device update status.  
+  - **Summary:** Provides serial numbers and an overview of installation and operational settings.  
+- Tiles show a green check mark (no action needed), or red/yellow exclamation marks (attention required).  
+- Alerts tray at the page bottom helps prioritize tasks.
+
+[00:02:58]  
+**Networking Requirements and Internet Connectivity**  
+- Internet connection required for full warranty benefits.  
+- Powerwall 3 is factory configured to connect via cellular.  
+- Cellular signal strength depends on location and region.  
+- For best reliability, connect to customer Wi-Fi or use Ethernet cable to router.  
+- Wi-Fi connection status may take up to 1 minute to show as green check mark.  
+- Test internet connection before proceeding.  
+
+[00:04:03]  
+**Software Updates and Sideloading Feature**  
+- Software tile shows if updates are required, recommended, or up to date.  
+- Use the *sideloading* feature to download updates to the commissioning phone first, then transfer to Powerwall 3:  
+  - This method is often faster and more reliable than using Powerwall 3’s cellular modem or customer Wi-Fi directly.  
+- After update, LED should turn light blue before continuing commissioning.
+
+[00:04:34]  
+**Essential Configuration Settings: Grid Code & Solar Installation Type**  
+- The first critical setting on the Settings tile is the **grid code**, defining grid voltage and frequency based on regional utility requirements — mandatory for operation.  
+- Set **solar installation type** for site with either solar panels or Tesla solar roofs to ensure proper functionality and correct Tesla app visuals.  
+- Select the relevant solar option (solar panels or solar roof) and confirm.  
+- Import/export power limits must be entered if required for compliance.  
+- After proper entry, the red exclamation mark in Settings changes to green check mark.
+
+[00:05:38]  
+**System Metering and Device Configuration**  
+- System tile has two tabs: **Devices** and **Metering**.  
+- Metering tab displays all connected meters and summarizes their measurement scopes.  
+- For sites with Backup Switch, both **Current Transformers (CTs) 1 and 2** must be set to *site*.  
+- For Gateway installations, configure the integrated meter CT settings based on site metering setup: *site* or *none*.  
+- If Gateway 2 CTs are plugged into Meter Y, configuration can be done here.  
+- To pair a Tesla Remote Energy Meter:  
+  - Use “Detect wired meter” if connected via RS485 cable.  
+  - Use QR code scan or manual SSID/password entry for Wi-Fi meters; allow network join permissions.  
+  - Power cycle remote meter if the network SSID is not broadcasting.  
+  - After pairing, assign each CT port as *site* or *solar* depending on what it measures.
+
+[00:06:56]  
+**Device Tab & Powerwall Settings**  
+- Lists all detected Tesla equipment including Backup Switch, Gateway, additional Powerwall 3 or expansion units.  
+- If a device is missing, check power status and CAN communication wires (high and low) for issues.  
+- Backup Switch or Gateway tiles show current state and vitals.  
+- On Powerwall 3 tile, installers can set the **maximum current output** using a dropdown menu.  
+- **Important:** Max current output setting is adjustable only once during installation. For changes, Tesla support must be contacted.
+
+[00:07:33]  
+**Starting the System & Self-Tests**  
+- After configuring tiles with green checks, tap “Start System” from landing page to power on.  
+- This triggers automatic self-tests and device firmware updates:  
+  - Progress visible on Devices page for Powerwall updates.  
+  - Metering page shows updates for Tesla remote meters.  
+- Power flow diagram remains inactive (no solar or battery display) until self-tests complete.  
+
+[00:08:09]  
+**Verifying Meter Installation and Backup Tests**  
+- Once self-tests complete, select Powerwall 3 on Devices tab to view solar production and system performance values.  
+- Review all meters on Metering tab to confirm CT installation and configuration correctness.  
+- Alerts for incorrectly installed CTs indicate troubleshooting is needed.  
+- Conduct **Backup Test** from System Tests tile:  
+  - Choose backup type—either whole home or partial home backup.  
+  - Begins a grid outage simulation to verify system operation off-grid.  
+  - Monitor system during test; when complete, select “Reconnect to Grid” to conclude.  
+  - Successful completion returns installer to landing page.
+
+[00:09:15]  
+**Customer Registration and Finalization**  
+- Customer registration is the final commissioning step; without it, the customer cannot view their system in Tesla App.  
+- Complete installer information page, then continue.  
+- Options for entering customer information:  
+  - Show QR code or send a text for the customer to enter their info.  
+  - If customer unavailable, complete registration on their behalf.  
+- Summary page consolidates serial numbers and operational overview.  
+- Commissioning is complete when system is on and no alerts appear on landing page.
+
+[00:09:42]  
+**Customer Handoff and Tesla App Demonstration**  
+- Advise customer to open Tesla app and confirm visibility of Powerwall 3 system.  
+- Tesla vehicle owners can swipe on home screen to view Powerwall 3 details.  
+- Demonstrate app capabilities: power consumption monitoring, system status review, and adjustment of basic settings.
+
+---
+
+### Key Insights and Conclusions  
+- **Powerwall 3 commissioning involves a systematic hardware and software configuration using Tesla 1 app with clearly defined setup tiles.**  
+- **Correct QR code scanning and network permissions are critical for establishing connection with Powerwall 3.**  
+- **Grid code and solar installation type must be configured precisely to meet regional requirements and activate features.**  
+- **Metering setup requires precise CT configuration and pairing of remote meters if applicable.**  
+- **Max current output setting on Powerwall 3 is a one-time, critical installer configuration.**  
+- **Self-tests and backup tests validate installation quality and operational reliability before customer handover.**  
+- **Customer registration activates app visibility, enabling users to monitor and control the system remotely.**  
+- **Internet connectivity (cellular, Wi-Fi, or Ethernet) is mandatory for warranty and system management functions.**  
+- **Tesla app plays a central role for installers during commissioning and is the primary interface for customers post-installation.**
+
+---
+
+### Terminology Table
+
+| Term                     | Definition                                                    |
+|--------------------------|---------------------------------------------------------------|
+| Powerwall 3              | Tesla’s advanced home battery system for energy storage.      |
+| Asset Controller         | Internal control module in Powerwall for system management.   |
+| QR Code                  | Unique identifier used to connect Tesla 1 app to Powerwall 3. |
+| Current Transformer (CT) | Device clamped on electrical conductors to measure current.   |
+| Backup Switch            | Device allowing islanding of home circuits during grid outage.|
+| Gateway                  | Communication device integrating metering and control features.|
+| Sideloading              | Method to transfer updates via phone to Powerwall.            |
+
+---
+
+This summary is strictly based on the provided transcript content with no extrapolation beyond the source.
+---------------------------------
+Enphase Solar Monitoring App Overview
+https://www.youtube.com/watch?v=MRl-a-emwcA
+
+[00:00:00]  
+**Introduction and Context**  
+Anthony, owner at New York State Solar Farm, welcomes new solar system owners who have just received permission to operate and are accessing their Enphase app for the first time. He offers a light overview of key features and recommends settings to optimize user experience. He mentions that more detailed videos and resources are available within the app for further learning.
+
+---
+
+[00:00:35]  
+**Enphase App Home Screen Overview**  
+- The dashboard, located on the left side of the app, functions like a car dashboard providing an at-a-glance summary of:  
+  - Solar production for the day  
+  - Home energy consumption  
+  - Grid dependence (how much power is drawn from the utility grid)  
+- A sample home in Beacon is used as a test case to demonstrate functionality.  
+- Key figures displayed include:  
+  - 3.3 kWh imported from the grid (when solar was not producing)  
+  - 19.9 kWh solar production to date  
+  - 7.7 kWh home energy consumption so far (at 1 PM)  
+  - 15.5 kWh exported back to the grid, earning credits for future power use  
+
+**Key Insight:** The app tracks energy flow, showing how much power is consumed, produced, imported, and exported, which informs the user’s net energy status and credits balance.
+
+---
+
+[00:01:39]  
+**Grid Dependence Score Explanation**  
+- The app calculates a **Grid Dependence Score** measuring how reliant the home is on utility grid power.  
+- For the test user:  
+  - 57% of the day’s energy consumption is supplied by solar, equating to a 43% grid dependence.  
+- The formula described:  
+  $$ \text{Grid Dependence} = \frac{\text{Imported kWh}}{\text{Total Consumption kWh}} \times 100\% $$  
+- Anthony notes this metric is insightful but not frequently checked.
+
+---
+
+[00:02:15]  
+**Environmental Impact Metrics**  
+- The app quantifies environmental benefits of solar production, such as:  
+  - CO2 emissions reduced  
+  - Number of trees “planted” equivalent to the carbon offset  
+  - Number of devices like phones charged by the saved energy  
+- This feature helps users connect energy data with real-world environmental impact.
+
+---
+
+[00:02:51]  
+**Live Stats Feature**  
+- Clicking “Live Stats” shows real-time data:  
+  - Current solar production (e.g., 2.1 kW)  
+  - Power distribution between home use and grid export  
+  - Time left in the current billing or monitoring period (e.g., closing out in 15 minutes)  
+- This immediate feedback assists users in understanding instantaneous energy flows.
+
+---
+
+[00:03:28]  
+**Energy Production and Consumption Graphs**  
+The app includes multiple expandable graphs for detailed review:  
+- **Solar Production Graph:**  
+  - Displays production throughout the day with the ability to hover/finger-point to see exact power at specific times.  
+- **Home Consumption (Use) Graph:**  
+  - Shows hourly or time-specific energy use, highlighting peak times (typically between 7 AM and 9 AM).  
+- **Import/Export Graph:**  
+  - Visualizes energy sent back to the grid (exported) and drawn from the grid (imported).  
+  - Export line dips below “zero” indicating power flow towards the grid.  
+
+Anthony highlights that various graph viewing modes exist, such as rotating the phone for a wider graph view, though portrait mode remains the most common.
+
+---
+
+[00:04:44]  
+**Array Layout Visualization**  
+- Users can see a detailed layout of their solar panels once the system’s array is fully set up, approx. 3-4 weeks post-installation.  
+- Features of this section:  
+  - Zoomable map of the roof with panels identified by production levels.  
+  - Ability to monitor individual panels’ output on different roof faces.  
+- Anthony underscores a crucial point: **not all panels produce equally due to different orientations, shading, and other physical factors.**  
+- Slight panel-to-panel production differences are normal and expected.
+
+---
+
+[00:05:47]  
+**Menu and Settings Overview: Key Options**  
+- **Dark Mode:** Allows users to toggle app appearance to reduce eye strain.  
+- **Electricity Rate Input:**  
+  - Users should enter their utility’s electricity rate (typically between 17 and 23 cents per kWh).  
+  - This enhances the accuracy of financial savings and energy cost calculations displayed in the app.  
+  - Most customers are on fixed-rate plans (not time-of-use), so a flat average price can be entered (Anthony uses $0.23/kWh as an example).  
+- **Connectivity Settings:** Users can modify the Wi-Fi network to which the solar system is connected.
+
+---
+
+[00:06:48]  
+**Notifications and Account Management**  
+- The app allows configuration of notifications, such as **monthly energy reports** summarizing:  
+  - System health  
+  - Total energy produced and consumed  
+  - Warnings in case of underperformance or faults  
+- Anthony stresses the importance of enabling reports to proactively monitor system status.  
+- Account information such as name, address, and phone number can be updated directly within the app.
+
+---
+
+[00:08:25]  
+**Support Section and Common Panel Production Questions**  
+- The support tab links to an Enphase blog post addressing frequently asked questions about panel production differences. Key points include:  
+  - It is **normal for some panels to produce less energy** than others due to:  
+    - Varying panel orientations and directions  
+    - Shading by trees, chimneys, or other obstacles  
+    - Manufacturing mismatches and tolerances specific to solar panels  
+  - Panel ratings (e.g., 425 W) denote maximum DC wattage under perfect conditions; typical real-time production will often be lower.  
+  - Replacement of microinverters resets historical production data for that panel from the point of replacement onward. Older data remains intact for other panels.
+
+---
+
+[00:09:34]  
+**Data Tracking and Customer Support**  
+- The app maintains comprehensive production records:  
+  - **Lifetime system data**  
+  - Yearly breakdowns of energy production and consumption  
+- For newly installed systems (example: installed in June), users can monitor the entire performance lifecycle.  
+- Anthony encourages customers to email support at **service@nf.com** with any questions or concerns about their solar systems.  
+- He also welcomes feedback about the installation and app experience.
+
+---
+
+[00:10:06]  
+**Closing Remarks**  
+- Anthony thanks users for choosing solar and encourages exploration of the Enphase app’s many features for better energy management and system monitoring.  
+- He expresses hope that users are satisfied with the installation and invites further contact for assistance.  
+- Final congratulatory note on transitioning to solar energy.
+
+---
+
+### Summary Table: Sample Energy Data (Test Customer)
+
+| Metric                          | Value          | Description                                 |
+|--------------------------------|----------------|---------------------------------------------|
+| Solar Production (to date)      | 19.9 kWh       | Total solar energy generated today          |
+| Home Energy Consumption (to date) | 7.7 kWh      | Total energy used by the home today          |
+| Grid Energy Imported            | 3.3 kWh        | Energy drawn from the utility grid            |
+| Energy Exported to Grid         | 15.5 kWh       | Excess solar energy sent back, credited for later use |
+| Grid Dependence Score           | 43%            | Percent of total energy consumption from the grid |
+| Solar Contribution             | 57%             | Percent of energy consumption supplied by solar |
+
+---
+
+### Key Insights  
+- **Understanding and monitoring the solar energy system using the Enphase app empowers homeowners with real-time and historical energy data.**  
+- **Variations in panel output are expected and influenced by physical and technical factors, not necessarily defects.**  
+- **Inputting accurate electricity rates is important for understanding financial savings accurately.**  
+- **Regular notifications and monthly reports are recommended to maintain system health and detect issues quickly.**  
+- The app helps visualize the environmental impact of solar use, connecting energy savings to CO2 reductions and ecological benefits.  
+
+---
+
+This detailed overview equips new solar owners to confidently navigate their Enphase app and maximize their awareness and efficiency of their solar energy system.
+---------------------------------------------------------
+https://www.youtube.com/watch?v=SCLZ7SouiYE
+Energy 101: Enphase App-feature and benefits
+
+[00:00:00]  
+**Introduction to Enphase App Features**  
+- Presenter Duncan, Technical Trainer at Enphase, introduces key features of the Enphase App designed to optimize user experience with their solar systems.  
+- The **"Status" page** is described as the primary interface users will interact with, offering a system overview and data summary for the day.  
+- Located at the top right is a **"question mark" icon** providing access to various Customer Support options for assistance.  
+- Just below, users can see the **current weather** conditions relevant to solar generation.
+
+[00:00:33]  
+**Real-time System Status and Power Monitoring**  
+- The displayed data on this page updates every **15 minutes**, ensuring near real-time monitoring.  
+- Beneath the weather and status, users find **latest power readings from all solar panels**, which naturally vary depending on time and weather.  
+- **"Peak power"** represents the maximum output recorded from the panels so far during the day.  
+- The app includes a graph depicting the home’s energy usage through distinct icons:  
+  - **House icon:** Total electricity consumed by the home today.  
+  - **Solar panel icon:** Total electricity generated by the solar panels.  
+  - **Electricity pole icon:** Power imported from the electrical grid.
+
+[00:01:02]  
+**Energy Flow and Grid Interaction Explained**  
+- The app helps users understand energy flow:  
+  - Nighttime typically involves **importing electricity from the grid** due to lack of sunlight.  
+  - During daylight, users may generate excess electricity when household consumption is low. This excess can often be **exported back to the grid**, potentially generating credits on the power bill depending on location and local regulations.  
+- The app shows the **amount of electricity exported back to the grid**, supporting energy management and cost savings strategies.  
+- A navigation tab labeled **"Energy"** at the bottom enables users to explore system performance trends over time.
+
+[00:01:35]  
+**Energy Trends and Custom Data Analysis**  
+- The **Energy tab** allows inspection of energy consumption and production data over customizable time frames:  
+  - Standard options such as weekly views or custom dates can align with electricity billing cycles for accurate bill comparison.  
+- The top of the page displays the **total energy data for the selected period**.  
+- Below this summary, a detailed graph presents:  
+  - **Solar production (blue line/area)** with expected peaks during midday when sunlight is strongest.  
+  - **Home electricity consumption (orange)** fluctuating throughout the day.  
+  - **Grid import/export (grey)** indicating when electricity is drawn from or sent to the grid.  
+
+- This visualization clearly shows typical daily patterns — solar power exported during sunlight hours, with electricity imported at night or when generation is insufficient.
+
+[00:02:03]  
+**Panel-level Monitoring with Enphase Microinverters**  
+- Switching to the **"Array" tab** reveals the granular benefit of **Enphase microinverters**:  
+  - Users can view performance data on a **per individual solar panel basis** rather than aggregate system data.  
+  - Panel color intensity reflects energy output:  
+    - **Lighter colors indicate higher electricity production** for that timeframe.  
+    - **Darker colors suggest reduced output**, often caused by shading or sun position constraints.  
+- This panel-level insight facilitates rapid identification of underperforming panels or shading effects.
+
+[00:02:34]  
+**Settings and Support Features**  
+- The **"Settings" tab** provides access to important system information, including:  
+  - Full system details and specifications.  
+  - Installer contact information for direct support.  
+  - Additional help resources and support options.  
+  - A **refer-a-friend** feature encouraging network growth and customer engagement.  
+- Duncan highlights these functionalities as part of the **comprehensive capabilities of the Enphase App** designed to enhance user experience and system maintenance.
+
+**Additional Notes:**  
+- Users are encouraged to consult the **Enphase 101 video series** for deeper insights, energy management tips, and troubleshooting guidance.  
+- The presentation concludes with a note of appreciation for watching, reinforcing a customer-focused approach.
+
+---
+
+### Summary Table of Enphase App Features and Functions
+
+| Feature/Page         | Purpose/Function                                                                 | Key Icons/Indicators                          | Notes                                   |
+|---------------------|---------------------------------------------------------------------------------|----------------------------------------------|-----------------------------------------|
+| Status Page         | Daily system overview and current performance                                  | Question mark (support), weather, peak power| Data updates every 15 minutes            |
+| Power Readings      | Live solar production and household consumption status                         | House (usage), Solar panel (production), Grid pole (import/export)  | Visualizes energy flows throughout day  |
+| Energy Tab          | Historical trends of energy production, consumption, and grid interaction      | Blue (solar), Orange (usage), Grey (grid import/export)            | Custom time periods and billing cycle alignment supported |
+| Array Tab           | Individual solar panel performance monitoring                                 | Panel color intensity reflects output        | Identifies shading and underperformance |
+| Settings Tab        | System details, installer contact, support resources, referrals                | N/A                                          | User control and additional resources   |
+
+---
+
+### Key Insights  
+- **Enphase App offers comprehensive system visibility** from a high-level daily snapshot down to individual panel performance thanks to microinverter technology.  
+- Real-time data is refreshed every **15 minutes**, providing reliable and current information.  
+- The app supports energy management strategies through clear visualization of **solar generation, consumption, and grid interaction**, including export credits.  
+- **Custom time period views** help correlate solar performance to billing cycles and identify consumption patterns.  
+- The per-panel performance view is critical for pinpointing issues like shading, enabling targeted maintenance and optimization.  
+- Integrated **support and referral features** enhance user experience by facilitating easy access to help and community growth.  
+
+---
+
+This summary is based strictly on the provided transcript, preserving the factual content without inference or external augmentation.
+-------------------------------------------------------------------------
+The Enphase App: Settings and Control
+https://www.youtube.com/watch?v=tfqv-ZO_xas
+
+[00:00:02] **Introduction to System Settings and Controls**  
+- The system features both **"set it and forget it" options and granular controls** targeted toward clean energy optimization.  
+- The **System page** offers detailed insights into device status and system performance.  
+- The **"Know Your System"** section provides access to the latest topics, videos, and articles through the nPhase community, ideal for users seeking deeper understanding or updates.  
+- The **Site Details** area allows users to view installer contact info for support purposes.  
+
+[00:00:48] **Generating Reports and Device Management**  
+- Users can generate reports by tapping the **Reports** tab, selecting the report type, setting parameters, and using the **Email Report** button to receive system reports via registered email.  
+- The **Devices** page lists all system components, providing detailed information on each.  
+- Some devices allow configuration changes directly via the hardware settings accessible on this page.  
+- For storage systems, live status and **Live Vitals** data (e.g., IQ System Controller and individual IQ batteries) are accessible to monitor real-time system health.  
+
+[00:01:23] **Event and Backup History Insights**  
+- The **Event History** tab logs recorded system events and changes.  
+- Users can view event specifics such as:  
+  - Start and end dates  
+  - Impacted devices  
+  - Event descriptions  
+  - Recommended actions  
+- The **Backup History** tab provides details related to system power provision during grid outages. This history is crucial for analyzing system reliability in outage situations.  
+
+[00:02:02] **Settings Overview and Energy Profiles**  
+- The **Settings page** allows users to adjust controls on their nPhase system, particularly if they have an IQ battery.  
+- The **Profile** section supports profile selection aligned to **primary energy goals**:  
+  - **Storm Guard**: Automatically activates full backup during severe weather based on local weather department updates; charges the battery to 100% to ensure power availability during outages.  
+  - **Savings Profile**: Optimizes financial savings by powering the home via battery when electricity prices peak, contingent on entering an electricity rate.  
+  - **Self-Consumption Profile**: Maximizes use of solar energy by storing excess solar power in batteries during the day and powering the home when the sun is down.  
+  - **Full Backup Profile**: Reserves 100% battery power for outages, maintaining battery charge via solar panels as needed.  
+
+[00:02:42] **Details on Energy Profiles and Battery Behavior**  
+- **Savings Profile** requires the addition of an electricity rate to function properly; this feature will be explained further in the following segments.  
+- The **Self-Consumption Profile** is specifically designed to enhance solar energy utilization by balancing battery charging and discharging based on solar availability.  
+- The **Full Backup Profile** is safety-focused, ensuring the battery maintains full charge as a reserve strictly for outage scenarios.  
+
+[00:03:14] **Battery Settings Management**  
+- Users manage battery preferences in the **Battery** section on the Settings page. Features include:  
+  - Ability to **enable or disable battery charging from the grid** per chosen battery profile.  
+  - Configuring a **battery shutdown level percentage** during outages to preserve energy, ensuring batteries can restart effectively when grid power returns or solar production resumes.  
+
+[00:03:45] **Electricity Rate Configuration for Savings Profile**  
+- To utilize the Savings Profile and estimate energy production value, users must input electricity rates:  
+  - Access via **Electricity Rate** in settings.  
+  - Add **Electricity Import Rate** using either automatic autofill or manual entry.  
+  - Have the electric bill ready for accurate data entry.  
+- **Autofill Process:**  
+  - Select utility company and tariff name/code (also known as rate schedule or structure found on the bill).  
+  - Confirm and save the information.  
+- Users then repeat the process to add the **Electricity Export Rate** for complete rate setup.  
+
+[00:04:19] **Grid Control Feature**  
+- The **Grid Control** setting enables manual control to turn the grid connection on or off.  
+- This is an **advanced feature** and its frequent use is discouraged due to complexity and potential implications.  
+- When toggling grid connection:  
+  - The system requires verification via a **four-digit code** sent by email and text to associated contacts.  
+  - Upon successful verification, the system disconnects or reconnects to the grid accordingly.  
+
+[00:04:56] **Summary of System Control Security and Verification**  
+- Grid connection toggling is secured through multi-factor verification, ensuring only authorized users perform this critical action.  
+- Notifications come via both email and SMS tied to the registered account to maintain security integrity.  
+
+---
+
+### Key Insights  
+- **Comprehensive system control options** make it possible for users to tailor energy usage to their preferences, be it for savings, self-consumption, or backup readiness.  
+- **Profiles streamline system behavior** according to changing needs or environmental factors such as weather events.  
+- **Real-time data and detailed history logs** maximize transparency and empower users to troubleshoot or verify system performance.  
+- The **electricity rate setup** is essential for financial optimization and relies on accurate utility billing data.  
+- Advanced grid control capabilities come with **strict verification protocols** to maintain operational security.  
+
+### System Profiles Summary Table
+
+| Profile Name          | Description                                                                                   | Key Feature                                      | Requirements/Notes                                                    |
+|----------------------|-----------------------------------------------------------------------------------------------|-------------------------------------------------|----------------------------------------------------------------------|
+| Storm Guard          | Automatically switches to full backup during severe weather                                   | Battery charged to 100% pre-storm event          | Relies on local weather department alerts                            |
+| Savings Profile      | Maximizes savings by using battery power during costly electricity periods                    | Requires electricity rate input                   | Needs accurate utility tariff information                            |
+| Self-Consumption     | Maximizes solar energy usage by storing and discharging battery intelligently                 | Focused on maximizing solar energy utilization   | Utilizes battery to power home during non-daylight hours             |
+| Full Backup          | Reserves entire battery capacity specifically for outage support                              | Battery power reserved at 100%                     | Battery charges from solar to top off as needed                      |
+
+### Battery Settings Overview
+
+| Setting                         | Description                                                        | Purpose                                                              |
+|---------------------------------|--------------------------------------------------------------------|----------------------------------------------------------------------|
+| Grid Charging Toggle            | Allows/disallows the battery to charge from the grid               | Provides flexibility depending on user's energy strategy              |
+| Battery Shutdown Level (%)      | Sets the minimum charge to preserve during an outage              | Ensures enough reserve to restart battery post-outage or when solar reactivates |
+
+---
+
+This summary captures all key functionalities, control mechanisms, energy management profiles, configuration steps, and security protocols presented in the video transcript without unsupported extrapolation.
+-------------------------------------------------
+How To Use The Enphase Enlighten Mobile App
+https://www.youtube.com/watch?v=1KL8zJFtxQw
+
+### Summary  
+The video provides a comprehensive and detailed review of the nPhase Enlighten mobile app, designed for users with nPhase solar monitoring systems. Jason from Florida Solar Design Group guides viewers through the app’s key features, functionalities, and how to maximize its benefits for monitoring solar energy production, consumption, and system health. The app offers lifetime monitoring via the nPhase web portal, delivering timely data updates every 15 minutes, with a separate live status screen providing real-time system performance information.  
+
+The overview emphasizes understanding daily energy consumption and production metrics, including net export and import of electricity, while explaining aspects that net metering customers need not focus on, such as grid dependence values. Users can track historical data on multiple timescales including daily, weekly, monthly, yearly, and lifetime to analyze performance patterns and environmental impact. The app also visually displays the solar array layout and energy production by individual panels or roof faces, helping diagnose underperforming panels or shading impacts.  
+
+Additional functions include account management, notification setups for system alerts, and troubleshooting connectivity issues. Jason stresses the importance of regularly checking the app for system updates or anomalies and encourages direct contact with the solar provider for faster diagnostics and support. Finally, Jason promotes sharing the app with others, staying informed via their YouTube channel, and leveraging nPhase’s robust monitoring ecosystem for lasting solar energy management.  
+
+### Highlights  
+- 📱 Lifetime solar monitoring with the nPhase Enlighten app is included with every system.  
+- 🔄 Real-time “Live Status” feature shows instantaneous solar production and consumption data.  
+- 📊 Historical data is available by day, week, month, year, and lifetime for comprehensive trend tracking.  
+- 🌞 Visual solar array map displays individual panel energy output to spot panel underperformance.  
+- ⚠️ System alerts and notifications help users quickly identify and troubleshoot performance issues.  
+- 🌍 The app tracks environmental impact by showing energy use and solar production data.  
+- 🤝 Support team assistance is available for app issues, first solar bills, and system diagnostics.  
+
+### Key Insights  
+- 📉 **Net Metering Simplifies Energy Accounting:** The app demystifies net metering by focusing on net import/export numbers rather than complex intermediate values like grid dependency or raw import/export figures. For most users, especially those with net metering setups, the most critical metric is the net energy balance per billing cycle, which determines if credits carry over or if energy costs apply. This simplifies user understanding and billing reconciliation.  
+
+- ⚡ **Real-Time Data Versus Historical Insights:** The distinction between real-time monitoring (via the Live Status screen) and historical data (15-minute delayed updates) is crucial for accurate system interpretation. Real-time data allows users to understand immediate system behavior, enabling prompt detection of performance drops or system errors. In contrast, historical data supports trend analysis and performance comparisons across days, months, and years, helping long-term energy management decisions.  
+
+- 🌤️ **App as a Weather Indicator:** Variations in the solar production curve correspond directly to real-world weather conditions (cloud cover, shading, etc.), enabling users to indirectly infer daily weather patterns from their solar system performance. This innovative use enhances user engagement and situational awareness without requiring separate weather apps or reports.  
+
+- 🏠 **Energy Consumption Monitoring is Not Always Available:** Approximately 5% of installations lack consumption monitoring due to home electrical system configurations or incomplete implementation by some contractors. This gap highlights the importance of selecting qualified solar providers who ensure comprehensive installation, including consumption sensors, to enable full app functionality and energy management capabilities.  
+
+- 📈 **Seasonal Energy Production and Consumption Cycles:** The data visualization reflects typical seasonal shifts—net energy exportation dominant in the high production spring/early summer months, and net importation in the high consumption late summer/fall months due to increased air conditioning use. Understanding these cycles allows homeowners to proactively manage energy consumption, optimize solar usage, and anticipate utility bills.  
+
+- 🛠️ **Panel-Level Diagnostic Capability Enhances Maintenance:** The array tab’s detailed graphical layout presents a powerful diagnostic tool showing energy production per panel, color-coded by output. This granularity enables early detection of underperforming panels, potentially caused by shading, dirt, or equipment malfunction, improving system uptime and long-term return on investment through timely maintenance.  
+
+- 🖥️ **Integrated Support and Ecosystem Advantage:** The nPhase monitoring ecosystem, including web portal, mobile app, and provider diagnostic access, allows seamless coordination between users and solar service providers. This integration supports remote troubleshooting, firmware updates, and personalized support, reducing downtime and ensuring optimized solar system performance over time.  
+
+Overall, the nPhase Enlighten app is more than a monitoring tool—it is a comprehensive energy management platform that empowers solar customers with real-time insights, historical trends, proactive alerts, and direct professional support. The app’s user-friendly interface and deep feature set encourage regular engagement and informed decision-making, maximizing both energy savings and the environmental benefits of solar power.
+
+---------------------------------------------------
+Enphase installer app commissioning process
+https://www.youtube.com/watch?v=ywYL99ADTNc
+
+[00:00:03]  
+**Introduction to nFace System Commissioning Using Installed Toolkit**  
+- The video demonstrates the process of commissioning an nFace solar plant system with the **nFace Installed Toolkit application**.  
+- The app is available for both **Android and iOS platforms**; users should ensure they have the **latest app version**.  
+- Initial step: **log in** via registered email and password.  
+- Permissions needed: **allow location access** and **enable auto download** of updates.  
+- To begin commissioning: tap the **plus (+) sign** to add a new system.
+
+[00:00:52]  
+**System Details Setup and Device Configuration**  
+- Users must complete all commissioning steps sequentially:  
+  - Access **System Details** and fill out the required fields, then **save**.  
+  - A unique **System ID** is generated upon successful creation.  
+- Proceed to the **Devices and Array** section:  
+  - Specify the number of devices installed:  
+    - **IQ Gateways**  
+    - **IQ Microinverters**  
+    - **IQ Relays**  
+  - Confirm by clicking **Continue**.  
+- Begin device identification:  
+  - **Scan the IQ Gateway serial number** found on the device label.  
+  - Choose the **default grid profile** for the system.
+
+[00:01:58]  
+**Microinverter Scanning and Array Creation**  
+- Scan each **IQ microinverter serial number** individually to register devices in the app.  
+- After completing scans, click **Proceed to create the array**:  
+  - Add a new array by clicking the **plus sign (+)**.  
+  - Assign an **array name**.  
+  - Define the array’s **dimensions**: number of **rows** and **columns**.  
+  - Specify the **PV panel orientation** (e.g., portrait or landscape).  
+  - Add the array to the system.  
+- For each PV panel in the array:  
+  - Select the panel, then click **Assign** and select the corresponding **microinverter serial number** from the list.  
+  - Repeat this association for all microinverters within the array.  
+- Save the finalized array setup.  
+- Next, scan the **IQ Relay barcode** and confirm by clicking **Done**.
+
+[00:03:09]  
+**Connecting Phone to IQ Gateway using Access Point (AP) Mode**  
+- The connection process involves linking the commissioning phone to the IQ Gateway via **AP mode**:  
+  - Activate AP mode by pressing the **AP mode button** on the IQ Gateway; a green light indicates active AP mode.  
+  - On the phone, **disable cellular data** and enable **Wi-Fi**.  
+  - Connect to the Wi-Fi network named with the **last six digits of the IQ Gateway serial number**.  
+- Upon connecting to this network, return to the **IQ Gateway connectivity page** in the app where the device connection is confirmed.
+
+[00:03:51]  
+**Internet Configuration for IQ Gateway**  
+- Select the local **Wi-Fi network** to be used by IQ Gateway.  
+- Enter the Wi-Fi **password** for network access.  
+- Alternatively, an **Ethernet cable** can be directly connected to the IQ Gateway to provide internet access.  
+- After setting up internet, click **Start provisioning devices**:  
+  - The system begins **uploading the grid profile** to the IQ microinverters and IQ relay.  
+- Upon successful configuration, click **Continue**.
+
+[00:05:10]  
+**Production and Consumption Meter Setup**  
+- Set up the **Production Meter**:  
+  - Select the number of **phases** relevant to the system.  
+  - Follow guided steps to enable and configure the production meter.  
+- Set up the **Consumption Meter**:  
+  - Choose the consumption meter type and location.  
+  - Enable the consumption meter and complete the corresponding setup process.  
+- Once meters are configured, enable consumption monitoring.
+
+[00:05:52]  
+**Final Steps and System Summary**  
+- View the **IQ Gateway summary** for an overview of all system statuses.  
+- Turn off Wi-Fi on the mobile device and reactivate **cellular data**.  
+- Perform a **homeowner walkthrough** using the app to verify all commissioning points.  
+- On successful verification, the **nFace system is fully commissioned**.  
+- The system can now be handed over by granting **system access to the homeowner**.
+
+**Summary of Key Processes**  
+| Step                         | Action                                                                       | Notes                                      |
+|------------------------------|------------------------------------------------------------------------------|--------------------------------------------|
+| System Setup                 | Login, fill system details, save system ID                                   | Ensures unique system identification       |
+| Devices Configuration        | Select devices, scan serial numbers (Gateway, microinverters, relay)        | Accurate device mapping critical            |
+| Array Creation               | Define array size, orientation; assign microinverters to panels              | Precisely links each panel to its inverter  |
+| IQ Gateway Connection        | Connect phone to IQ Gateway via AP mode Wi-Fi                               | Required to provision devices               |
+| Internet Setup               | Wi-Fi or Ethernet configuration for IQ Gateway                              | Provides communication with cloud services |
+| Device Provisioning          | Upload grid profile to devices                                               | Synchronizes system parameters              |
+| Meter Setup                  | Configure production and consumption meters                                 | Enables energy monitoring                    |
+| Final Validation and Handover| Homeowner walkthrough and system access assignment                          | Complete commissioning                      |
+
+**Highlighted Key Terminology**  
+- **nFace Installed Toolkit**: Commissioning application available on Android/iOS.  
+- **IQ Gateway**: Central communication device for monitoring and controlling the solar system.  
+- **IQ Microinverter**: Converts solar panel DC output to AC, individually monitored.  
+- **IQ Relay**: Controls energy flow and system safety parameters.  
+- **AP Mode**: Access Point mode enabling direct Wi-Fi connection between phone and IQ Gateway.  
+- **Grid Profile**: Settings aligned with the local electricity grid for safe operation.
+
+**Conclusions**  
+- The video provides a **step-by-step commissioning process** for nFace solar systems using the mobile app, emphasizing a **secured and systematic setup** encompassing device scanning, array configuration, network connection, and meter installation.  
+- Completing these steps ensures reliable system communication, device provisioning, and energy monitoring, enabling **efficient management of solar energy production and consumption**.  
+- The final walkthrough and homeowner access facilitate a smooth handover, signaling the system’s readiness for operation.
+----------------------------------------------------------------
+How to create and edit site layout using SolarEdge’s Mapper app
+https://www.youtube.com/watch?v=W8TAz2nYgFU
+
+[00:00:06] **Introduction to Site Layout Creation and Editing in the Mapper App**  
+- This video tutorial demonstrates how to create and edit a **site layout** using the Mapper app.  
+- The **site layout** serves as a virtual map of a photovoltaic (PV) site and is used in the monitoring platform for **remote diagnostics**.  
+- In the **site list**, there are two categories of sites:  
+  - **On-device sites**: Sites opened and saved locally on the device.  
+  - **Online sites**: Sites saved on the server, accessible remotely.  
+- To begin creating a site layout, users need to:  
+  - Tap on the relevant site.  
+  - The layout screen will initially be empty.  
+  - Tap the **plus (+) button** to start adding system components.
+
+[00:00:39] **Adding System Components to the Site Layout**  
+- Users can add components by tapping:  
+  - **Inverter**:  
+    - Add a single inverter or multiple inverters simultaneously.  
+    - When adding multiple inverters, specify:  
+      - The **number of inverters**.  
+      - Their **orientation**.  
+    - After selection, tap **Done**.  
+  - **Module group**:  
+    - Add one or more module groups according to the site’s design.  
+    - For each module group, specify:  
+      - Number of **modules per column** and **per row**.  
+      - Module **orientation**: Landscape or vertical.  
+      - Module **tilt** and **azimuth** angles.  
+    - Tap **Done** when finished.  
+- If the PV site comprises multiple facets or several module groups, continue adding module groups accordingly.  
+- Positioning modules:  
+  - Drag and drop module groups to the correct location on the layout.
+
+[00:01:24] **Editing and Managing Layout Elements**  
+- To **delete an element** (e.g., inverter or module group):  
+  - Long press the element and drag it to the trash bin icon.  
+- To **edit module groups**:  
+  - Double tap on the group.  
+  - Change parameters like **tilt**, **azimuth**, and **orientation**.  
+  - Tap **Done** to save changes.  
+- For sites with **obstacles**:  
+  - Use the **hide/show** feature.  
+  - Tap the edit icon, select modules to hide, then tap **Done**.  
+  - To unhide modules, repeat the process selecting modules to unhide.  
+- An **undo/redo** function is available for convenience during editing.
+
+[00:02:29] **Layout Display and Customization Options**  
+- Use the **fit to screen icon** to scale the entire layout to fit the device screen for better visualization.  
+- Change the layout’s background through the **settings icon**:  
+  - Switch between **dark mode** and **light mode**.  
+  - Change the background to **satellite view** to assist in precise navigation and placement of components on the site.  
+- Optionally, show **roof edges** if previously drawn in the **SolarEdge Designer** software, allowing clearer outline of the site roof.  
+- **All changes made in the layout are automatically saved as a draft** in the monitoring platform.
+
+[00:03:04] **Summary and Saving**  
+- When the site layout visually matches the physical installation, the user is done with the editing process.  
+- The draft state means edits are saved online automatically without requiring manual saving actions.  
+- The video emphasizes smooth integration between the Mapper app and the SolarEdge monitoring platform for **efficient remote site management**.
+
+---
+
+### **Key Concepts and Features Highlighted**  
+| Feature                    | Description                                                                                          |
+|----------------------------|--------------------------------------------------------------------------------------------------|
+| Site Layout                | A virtual map representing a PV site’s components for remote monitoring and diagnostics.         |
+| System Components           | Includes inverters and module groups that can be customized in quantity, orientation, tilt, azimuth. |
+| Multi-module group support  | Accommodates sites with complex designs involving multiple module groups or facets.                |
+| Hide/Show Modules           | Allows hiding modules obstructed by obstacles to improve clarity in the layout.                    |
+| Undo/Redo                   | Supports reversal or reapplication of recent edits for easier manipulation.                        |
+| Background customization    | Switch between light/dark modes and satellite view for better visualization and accuracy.          |
+| Roof edges display          | Overlay of roof outlines imported from SolarEdge Designer enhances the layout’s clarity.           |
+| Automatic draft saving      | Changes to the layout are saved automatically to avoid data loss and allow continued editing.      |
+
+---
+
+### **Stepwise Workflow for Creating and Editing Site Layouts**  
+
+| Step No. | Action                                              | Details                                                                        |
+|----------|-----------------------------------------------------|--------------------------------------------------------------------------------|
+| 1        | Access the Mapper app site list                      | Choose on-device or online site to work on                                    |
+| 2        | Tap the site and open layout screen                  | Initial layout will be empty                                                  |
+| 3        | Tap **+** to add system components                   | Add inverters (single or multiple), add module groups                         |
+| 4        | Configure components’ parameters                      | Specify quantity, orientation, tilt, azimuth, module group layout              |
+| 5        | Position components on layout                         | Drag module groups to correct locations                                       |
+| 6        | Edit elements if necessary                            | Double tap modules, adjust tilt, azimuth; long press and drag to delete       |
+| 7        | Use hide/show for obstacles                           | Edit and select modules to hide/unhide                                       |
+| 8        | Customize layout view                                 | Fit to screen, switch modes, enable satellite view, show roof edges            |
+| 9        | Save work                                            | Changes auto-saved as draft on the platform                                  |
+
+---
+
+### **Highlighted Terminology**  
+- **PV site**: Photovoltaic solar power installation.  
+- **Inverter**: Device converting DC electricity from solar panels to AC electricity.  
+- **Module group**: Grouped solar modules arranged in specific rows and columns.  
+- **Tilt**: Angle of solar modules relative to the horizontal plane.  
+- **Azimuth**: Compass direction the modules face relative to true north.  
+- **SolarEdge Designer**: Software used to draft site outlines and roof edges used in the layout.  
+- **Monitoring platform**: The online system that visualizes and diagnoses PV sites remotely.
+
+---
+
+**In conclusion**, the Mapper app provides a **comprehensive and user-friendly interface** to create, customize, and maintain PV site layouts conveniently. It supports detailed input of system components and environmental factors, visual aids like satellite views and roof outlines, and seamless integration with the SolarEdge monitoring platform, enabling **efficient remote diagnostics and management** of solar installations.
+----------------------------------------
+Meet The Emporia Pro: One Of The Best EV Chargers You Can Buy Today
+
+https://www.youtube.com/watch?v=iIic_biLXHE&t=1255s
+
+[00:00:00]  
+**Summary: Introduction and Background**  
+The video begins with a review of the **Emporia Pro, the second-generation EV charger from Emporia**. The host highlights his previous positive experience with Emporia’s original charger, which scored highly on the Charger Raider rating system and was considered an excellent value. The new generation Emporia Pro charger introduces several enhancements, including a new feature called **Power Smart**—an intelligent load-balancing system designed to prevent overdraw on home electrical services, enabling installation even on lower-capacity electrical panels.
+
+---
+
+[00:01:07]  
+**Summary: Unboxing and Physical Features**  
+The Emporia Pro comes with:  
+- A sleek new design with LED indicator lights on the front.  
+- A 25 ft thin and flexible charging cable, approximately 14.3 mm in diameter, comparable to Tesla Wall Connector cables.  
+- The version reviewed includes a **NEMA 14-50 plug** (40 amp output mode) instead of hardwiring (which would support 48 amps).  
+- An attached mounting bracket, removable by two screws.  
+- The charging connector is a **Vollex connector**, which the reviewer finds serviceable but not ideal due to a small plastic locking tab (non-metal).  
+- A **remote connector holster** replacing the first generation’s poor holster design, which exposed connector pins; this new holster mounts separately on the wall and better protects the connector.  
+- Installation hardware including screws and drywall anchors.  
+- Included is the **Emporia View smart home energy monitoring system**, essential for utilizing the Power Smart feature to dynamically manage electrical load and enable high-power charging on homes with limited service capacity.
+
+---
+
+[00:04:27]  
+**Summary: Power Smart Feature and Its Importance**  
+The **Power Smart system**, enabled by the Emporia View monitor, allows the charger to dynamically adapt its charging power based on the home's total electrical load, preventing overload in houses with 100 or 150 amp services where a 48 amp charger would otherwise be disallowed by load calculations. This system can reduce the charger’s output temporarily when the home's electrical demand is high, avoiding expensive service panel upgrades. This intelligent load management is a key innovative feature that distinguishes the Emporia Pro from many other chargers on the market, including Emporia’s own classic model.
+
+---
+
+[00:05:56]  
+**Summary: Key Specifications and Pricing**  
+
+| Feature                      | Specification                        |
+|------------------------------|------------------------------------|
+| Price                        | $599 (includes Emporia View system)|
+| Dimensions                   | 11.5 in x 8 in x 3.1 in            |
+| Maximum Current              | 48 amps (full power); 40 amps for plug-in NEMA 14-50 version |
+| Maximum Power Output         | 11.5 kW (48 amps), 9.6 kW (40 amps)|
+| Cable Length                 | 25 ft                             |
+| Connector Type               | J1772 (Knack connector pending Q4 release) |
+| Enclosure Rating             | NEMA 4 (suitable for outdoor use)  |
+| Operating Temperature Range  | -22°F to 122°F                     |
+| Warranty                    | 3 years                           |
+| Safety Certification          | UL Listed                         |
+| Country of Manufacture       | India                             |
+
+---
+
+[00:07:46]  
+**Summary: Installation Details**  
+- The unit ships with the mounting bracket factory-attached; removal requires unscrewing two bottom screws.  
+- Plug-in versions with NEMA 14-50 connectors require no internal wiring — just plug into a matching outlet.  
+- Hardwired versions require removing covers: an outer cover (two screws) and an inner weatherproof cover (10 screws with a number 3 Allen key).  
+- The unit supports wiring through the back to avoid exposed conduit, resulting in a cleaner installation.   
+- Terminal screws must not be torqued beyond $1.2 \text{ N·m}$ (10.6 in-lb).  
+- The reviewer strongly recommends hiring a licensed electrician for installation to ensure safety and compliance.  
+
+---
+
+[00:11:17]  
+**Summary: Power Adjustment Method**  
+- The charger’s output power is **adjusted solely through the Emporia app**—there is **no internal hardwired dip switch** to set maximum power, which is a drawback from a safety and inspection standpoint.  
+- Users must manually configure the maximum allowed current in the app, e.g., 40 amps for a 50 amp circuit with a NEMA 14-50 outlet.  
+- Misconfiguration can potentially lead to overloading circuits or violating electrical codes.  
+- The app requires a four-digit passcode to prevent unauthorized or accidental adjustment of power limits, providing some security.
+
+---
+
+[00:12:24]  
+**Summary: Extreme Heat Test**  
+- The Emporia Pro was heat-stressed for 2 hours under a heat lamp, holding the case at around 120°F to simulate hot climates like Arizona or Texas summers.  
+- After 3 hours of charging a Porsche Macan at full 40 amps under these conditions, the charger continued functioning reliably without shutting down or derating.  
+- The case temperature rose further to around 166.5°F due to charging, indicating robust thermal performance.  
+- **Result: Passed extreme heat test.**
+
+---
+
+[00:14:43]  
+**Summary: Automatic Restart Test**  
+- Simulated a power outage by cutting power to the charger during a charging session.  
+- Upon restoring power, the charger successfully resumed charging the vehicle without manual intervention.  
+- **Result: Passed automatic restart test,** critical to avoid interrupted charging after outages.
+
+---
+
+[00:16:48]  
+**Summary: Cold Weather Testing**  
+- The charger was frozen in a deep freezer at around -12°F for over 30 hours.  
+- Key tests included cable flexibility, connector drop test (5 drops), and cold startup.  
+- The thin cable performed exceptionally well, remaining flexible and easy to handle despite frost accumulation.  
+- The connector sustained five drops without any visible damage.  
+- The charger powered up normally in cold conditions and successfully initiated charging.  
+- **Result: Passed all cold weather tests with excellent scores for cable pliability and connector durability.**
+
+---
+
+[00:21:17]  
+**Summary: App and Smart Features**  
+- The Emporia Pro connects via Wi-Fi and uses the **Emporia app**, which is considered one of the better charging apps on the market due to its robust energy management ecosystem.  
+- The app supports multiple chargers on one user account (unlike some competitors requiring separate accounts for each unit).  
+- Key app features include:  
+  - Setting and adjusting power limits (initial setup required).  
+  - **Access control** (enable/disable charging remotely to prevent unauthorized usage).  
+  - Detailed charging history logs (displaying kWh usage or monetary cost).  
+  - Scheduling charging sessions to optimize usage with time-of-use electricity rates.  
+  - Solar charging mode that uses only excess solar energy for EV charging, maximizing renewable energy use and reducing grid draw.  
+  - Utility incentive discovery by inputting zip codes for regional EV programs.  
+  - Integration with other Emporia smart home energy devices for comprehensive home energy optimization.  
+- The reviewer notes some points of caution regarding the lack of physical hard limits on the unit and the reliance on app configuration for safety.
+
+---
+
+[00:29:06]  
+**Summary: User Experience and Cable/Connector Impressions**  
+- The 25 ft cable suits all vehicle types, including long trucks like the Ford F-150 Lightning. Its thin design contributes to excellent cold weather flexibility.  
+- The Vollex connector is functional but lacks the premium feel and robustness of some competitors (plastic locking tab versus metal).  
+- The connector holster shows improvement over the first generation but still protrudes about 9-10 inches from the wall and lacks design finesse (compared to a preferred “upward” insertion style which minimizes obstruction).  
+- Available colors are only black or white.  
+- The **Knack connector option is not yet available**, expected by the end of the year: a downside for drivers planning future EVs with Knack ports.  
+- Power sharing between multiple chargers is currently unavailable but is planned via an over-the-air update about a month after the video date.
+
+---
+
+[00:33:05]  
+**Summary: Intelligent Load Management (Power Smart) Explained**  
+- Definition: **Intelligent load management** allows the charger to dynamically reduce output to avoid exceeding the electrical panel’s capacity.  
+- This feature enables installation on homes with limited service capacity (e.g., 100 or 150 amp service) without expensive service upgrades.  
+- The Emporia Pro with the Vue system monitors total household load and adjusts EV charging current accordingly.  
+- Example scenario:  
+  - Home with 100 amp service; only 20 amps are available for EV charging without overload.  
+  - The charger manages power such that it stays within this limit during peak appliance use, but increases charging rate when home load lowers, e.g., after cooking is finished.  
+- This flexibility reduces the need for costly electrical service upgrades often required to install high-powered EV chargers.  
+- The reviewer could not personally test this due to a 400 amp service at his home, which exceeds typical residential service loads.
+
+---
+
+[00:37:24]  
+**Summary: Comparison Against Emporia Classic Charger**  
+| Model           | Price  | Intelligent Load Management | Similar Features                         |
+|-----------------|--------|-----------------------------|-----------------------------------------|
+| Emporia Pro     | $599   | Yes                         | Solar charging, Power Smart system app integration, thin cable, 3-year warranty |
+| Emporia Classic | $429   | No                          | Quality charger, same app ecosystem, robust performance              |
+
+- The Pro is recommended if you need **intelligent load management**.  
+- The Classic is suitable for those with adequate electrical capacity and a lower budget.  
+- Both units remain top-rated chargers with solid build quality and feature sets.
+
+---
+
+[00:38:54]  
+**Summary: Charger Raider Scores**  
+- The Charger Raider scoring system was recently overhauled to be stricter, reflecting improvements in chargers generally.  
+- **Emporia Classic scored 99 in previous system** (tied for best ever).  
+- **Emporia Pro scored 86 points**, translating to **4.3 out of 5 stars**, which is considered excellent under the new tougher criteria.  
+- The reviewer personally rates the Emporia Pro at 4.5 stars, praising its comprehensive feature set and value.
+
+---
+
+[00:40:22]  
+**Summary: Detailed Charger Raider Category Scores**
+
+| Category              | Subcategory                  | Points Received | Notes                                                              |
+|-----------------------|------------------------------|-----------------|--------------------------------------------------------------------|
+| Cost & Value          | Cost (≤ $600)                | 0               | Max points for ≤ $600                                              |
+|                       | Warranty (3 years)           | 3               |                                                                    |
+|                       | Value                       | 2               | Assigned "Excellent" value                                         |
+|                       | **Total (Cost & Value)**     | **20**          |                                                                    |
+| Power & Construction  | Max Charging Power (48A)     | 0               | No points given due to max power only                             |
+|                       | Adjustable Power (app only)  | 1               | No internal dip switch for power limiting                         |
+|                       | Cable Length (25 ft)         | 2               |                                                                    |
+|                       | Connector                   | 3 (out of 5)    | Average rating due to connector feel and locking tab               |
+|                       | Connector Holster            | 3 (out of 5)    | Improved but not ideal design                                     |
+|                       | **Total (Power & Construction)** | **24**      |                                                                    |
+| Testing               | Extreme Cold Testing          | 4 (out of 5)    | Excellent cable and unit behavior                                 |
+|                       | Extreme Heat Testing          | Full points     | No issues found                                                  |
+|                       | Automatic Restart            | 1               | Passed                                                             |
+|                       | Safety Certification           | 0               | UL listed, no extra points                                         |
+|                       | Energy Star Certification     | 1               |                                                                    |
+|                       | **Total (Testing)**           | **21**          |                                                                    |
+| Intelligence          | Smart Charger App             | 2               | Emporia app only, no third-party app support                      |
+|                       | Power Sharing (future OTA)     | 0               | Pending OTA update planned shortly                               |
+|                       | Intelligent Load Management    | 3               | Key feature                                                     |
+|                       | Solar Charging Capability      | 2               | Charge from excess solar                                          |
+|                       | Access Control                 | 1               | App-based enable/disable charging                                 |
+|                       | Open Charge Point Protocol (OCPP) Support | -2      | No third-party app compatibility                                |
+|                       | **Total (Intelligence)**        | **21**          |                                                                    |
+| **Grand Total**       |                              | **86 Points**   |                                                                    |
+
+---
+
+[00:44:30]  
+**Summary: Final Hits and Misses**
+
+- **Hits:**  
+  - Intelligent load management system enabling high-power charging on limited residential service capacity.  
+  - Thin, long, and highly flexible cable performing superbly in cold weather.  
+  - Ability to charge exclusively from excess solar generation, a still-rare feature.  
+  - Robust Emporia app integration with excellent energy management ecosystem.  
+
+- **Misses:**  
+  - No physical, internal power limit switch (reliant entirely on app configuration).  
+  - Connector and holster design are average—functional but could be improved in feel, robustness, and mounting ergonomics.  
+  - Lacks immediate availability of Knack connector option (expected by end of the year).  
+
+---
+
+[00:45:29]  
+**Summary: Closing Remarks**  
+The review wraps up emphasizing the thoroughness of the coverage, acknowledging the review’s length and the availability of a more concise "quick charge" version for viewers who prefer a shorter summary. Viewers are encouraged to subscribe for more electric vehicle news and reviews. The reviewer reiterates the high quality and value of both Emporia chargers, with special praise for the Emporia Pro due to its intelligent load management—a feature increasingly important for modern home installations.
+
+---
+
+**Overall Key Insights:**  
+- The **Emporia Pro excels primarily due to its intelligent load management (Power Smart) enabled by the Emporia View monitor**, allowing installation on homes with limited electrical service capacity without expensive panel upgrades.  
+- It is a **versatile, high-power (up to 48 amps) charger** with adjustable output controlled via a well-designed app.  
+- The charger features **excellent thermal management**, passing extreme cold and heat tests, ensuring reliability in varied climates.  
+- The 25 ft thin cable provides excellent usability and cold weather flexibility.  
+- The **lack of an internal hardwired power limit switch** is a notable safety and inspection downside; adjustment requires app use secured by a passcode.  
+- The connector is functional but unremarkable; the holster improved over the first generation but is still not ideal ergonomically.  
+- Currently only available with the **J1772 connector**, with Knack planned for future release.  
+- The integration with Emporia’s broader **home energy ecosystem** adds value through solar charging and energy usage insights.  
+- Priced at $599 (including the Emporia View system), the Emporia Pro offers **excellent overall value** compared to competitors and the older Emporia Classic model.  
+
+---
+
+This detailed and data-driven review establishes the Emporia Pro as a **top-tier residential EV charging solution**, especially for users seeking advanced power management without costly home electrical upgrades.
+
+------------------------------------------------------
+https://www.youtube.com/watch?v=ydKBHj9Wyws
+Sense vs Emporia Vue Energy Monitor Comparison
+[00:00:04]  
+**Introduction and Context:**  
+Nate Adams, known as "Nate the House Whisperer," introduces a comparative review between two popular home energy monitoring systems: **Sense Energy Monitor** and **Emporia Vue Energy Monitor**. He aims to clarify the differences by demonstrating both devices using their web applications (not phone apps), noting that while both apps are generally good, he personally prefers Emporia Vue despite Sense having certain app advantages.
+
+Key points:  
+- Sense app has cool, refined features like zooming in/out on energy data.  
+- Emporia Vue is favored by Nate largely for functionality and price.  
+- Price point roughly: **Sense ≈ $300**, **Emporia Vue ≈ $150**.
+
+---
+
+[00:00:44]  
+**Multi-House Monitoring and Panel Setup:**  
+Nate explains that he uses Emporia Vue monitors in three different houses, which can be easily switched between within the Emporia app/web interface. He notes this feature is unclear or not existing in Sense. The three locations include:  
+- Mountain Escape (Nate’s current house in West Virginia)  
+- River House (outside Cleveland, Ohio)  
+- Game House (an Airbnb property).
+
+He highlights that at the River House, both Sense and Emporia Vue monitors are installed simultaneously, enabling a direct side-by-side comparison. Additionally:  
+- For his barn, which has a 100-amp panel, he mentions the option of installing two Emporia Vue monitors to cover the full electrical load.
+
+---
+
+[00:02:24]  
+**Energy Usage Agreement and Voltage Monitoring:**  
+At the River House, Emporia Vue reports about **1180 watts**, Sense shows **1200 watts** at the same time, showing small discrepancies (~2%). Nate suspects that **Sense likely has better voltage monitoring accuracy**—a point in Sense’s favor.
+
+However, Nate’s **primary criticism of Sense is its poor detection of variable electrical loads**, critical in modern electrification with items like **variable speed heat pumps**. He states the Sense monitor has missed these loads repeatedly over years, diminishing its utility for full load insight.
+
+---
+
+[00:02:58]  
+**Limitations in Sense Device Detection:**  
+Nate illustrates with examples, such as his Chevy Volt EV charging sessions, where Sense failed to detect the charging about half the time—despite clear power draw patterns. This problem also extends to variable speed heat pumps, which Sense does not individually identify or track accurately.
+
+Technical detail:  
+- Sense uses just **two current clamps** on the main power inputs ("two mains").  
+- Emporia Vue installs clamps on mains plus allows monitoring of **up to 8 or even 16 individual circuit loads** with additional clamps.
+
+This circuit-level granularity is a major advantage for Emporia in understanding exact load origins.
+
+---
+
+[00:04:10]  
+**Reporting and Data Granularity:**  
+Sense’s app excels in providing detailed, zoomable timeline data, allowing users to trace power usage over seconds to months, useful for detecting event-specific usage patterns.
+
+Emporia, by contrast, deletes granular second- and minute-level data within a few days, making such detailed time travel impossible in their current app/web interface.
+
+---
+
+[00:05:23]  
+**Sense App Features and Issues:**  
+The Sense app’s visualization – such as its “bubbles” for devices – is praised for its slick interface and ease of seeing device power draws. However, Nate reports Sense sometimes misattributes devices (e.g., detecting nine or ten window air conditioners when only three exist), and he found device naming refinement tedious.
+
+Nate also points out **frequent connectivity/reliability problems with Sense**, which sometimes stops working for weeks. This is despite the Sense monitor being installed near the internet router, but embedded inside a panel box which likely reduces antenna effectiveness.
+
+In contrast, Emporia has maintained a **stable connection with no noted signal drops** in the same locations.
+
+---
+
+[00:06:36]  
+**User Experience and Device Detection Challenges:**  
+Sense’s timeline reveals the turning on/off of appliances and HVAC systems, which can be valuable in quiet homes with fewer devices. Nate shares that Sense works okay for one client with minimal devices, but even here Sense fails to detect the heat pump load.
+
+Sense offers a feature that compares your home's energy usage against other homes, which Emporia currently does not provide.
+
+---
+
+[00:07:42]  
+**Emporia Data Gaps and Limitations:**  
+Emporia Vue has experienced some significant connectivity/data gaps, such as missing nearly all of March’s data in the monitored house. Nate finds this frustrating though notes that overall, connectivity seems better than Sense.
+
+Emporia’s zoom-out abilities allow easy toggling between detailed 15-minute increments to weekly or monthly views, but zooming into seconds level is not supported, unlike Sense.
+
+---
+
+[00:09:05]  
+**Sense Device List and Charge Monitoring:**  
+Sense’s device detection shows multiple entities for seemingly identical appliances (e.g., 15 separate AC entries for 3 actual AC units), requiring manual merging by the user, which Nate found tedious.
+
+Reviewing Sense data for Chevy Volt charging sessions reveals inconsistencies and missed events, confirming that Sense detection for certain EV charging loads is unreliable. This undermines confidence in its accuracy for variable loads.
+
+---
+
+[00:11:02]  
+**Emporia Circuit-Level Monitoring:**  
+Emporia Vue permits granular monitoring of individual circuits through its multiple CT clamps, allowing monitoring of specific rooms or devices such as resistance baseboard heaters in different rooms.
+
+Smart plugs integrate with Emporia and can measure device-level power consumption remotely, enabling control and scheduling, a feature Nate values especially in his Airbnb setups.
+
+This granular monitoring enables Nate to track heating contributions by individual thermostats/rooms—an insight that is difficult or impossible to attain with Sense.
+
+---
+
+[00:15:54]  
+**Energy Usage Examples from Emporia:**  
+- Office air conditioner and heating loads.  
+- Resistance oil heaters using significant electricity (~813 kWh over certain periods).  
+- Dehumidifier usage linked with air filtration.  
+- Refrigerator energy use is surprisingly high, roughly twice that of the heat pump water heater, demonstrating value in granular appliance tracking.
+
+Nate highlights how Emporia quantifies detailed energy breakdowns over monthly and yearly spans, illustrating how individual appliances and circuits contribute to overall energy consumption.
+
+---
+
+[00:17:17]  
+**Sense Energy Usage Insights:**  
+Sense also tracks devices like refrigerators, providing annual and monthly energy use numbers. Nate mentions an old basement fridge costing about $90/year in electricity. However, Sense's data is sometimes fragmented due to connectivity drops.
+
+Despite these flaws, Sense’s detailed analytics and power quality info (e.g., voltage variation) are attractive features, which Emporia does not currently fully match.
+
+---
+
+[00:19:00]  
+**Comparisons on Variable Loads and User Control:**  
+Emporia tracks variable and complex loads better, including induction stove use and water pump cycling, whereas Sense often misses or inaccurately measures such devices, particularly when load power fluctuates.
+
+Emporia’s higher circuit count and smart plug ecosystem provide **better visibility and control over where and how energy is consumed**, an important asset for users aiming to optimize or monitor multifaceted loads.
+
+---
+
+[00:20:40]  
+**Nate’s Final Evaluation and Recommendations:**  
+Nate has monitored both products over years and draws these **key conclusions**:  
+- **Emporia Vue offers greater visibility and detailed circuit-level monitoring for about half the price of Sense.**  
+- Sense provides an excellent app experience with features like long-term zoom and home comparison but falls short on device detection accuracy and connectivity reliability.  
+- Sense struggles to detect critical variable loads such as heat pumps and EV chargers.  
+- Emporia’s ecosystem includes affordable smart plugs and additional electrification products (smart outlets, car chargers, batteries) expanding usability beyond monitoring.  
+- Sense has options for extra clamps (such as for solar or heat pump monitoring), but these add cost and still offer fewer monitored circuits than Emporia.  
+
+Nate's recommendation:  
+> **If you only get one monitor and want practical, reliable, and detailed energy monitoring, Emporia Vue is the better choice.**  
+> Sense might appeal to tech enthusiasts who want advanced app features and can tolerate detection/connectivity issues.
+
+---
+
+[00:22:22]  
+**Closing Remarks:**  
+Nate encourages viewers to watch for Emporia’s expanding product line, which includes smart charging and battery storage solutions, suggesting a promising future for integrated home electrification management.
+
+He closes by reaffirming his preference for Emporia for most users, despite liking some of Sense's app features, wishing everyone well.
+
+---
+
+### Summary Table: Key Points Comparison
+
+| Feature                          | Sense Energy Monitor                      | Emporia Vue Energy Monitor                  |
+|---------------------------------|------------------------------------------|---------------------------------------------|
+| Price                           | ~$300                                   | ~$150                                      |
+| Number of Monitored Circuits     | 2 (main mains clamps only)               | 8 or 16 with additional CT clamps          |
+| Device Detection                | Detects some devices but misses many, especially variable loads (e.g. heat pumps, EV charger) | Good visibility on individual circuits/devices via multiple clamps and smart plugs |
+| App Features                   | Advanced zoom (seconds to months), device naming, home comparisons | Basic zoom (no detailed second-level), no home usage comparison |
+| Data Granularity               | Detailed second/minute level lasting months | Second/minute data deleted after few days  |
+| Connectivity Reliability         | Frequent dropouts, unreliable signal in some installations | Stable, reliable connectivity               |
+| Voltage Monitoring             | Better voltage monitoring capability      | Some voltage monitoring, but less refined   |
+| Smart Plugs & Ecosystem           | No or limited smart plug integration       | Supports smart plugs, on/off control, schedules |
+| Solar/Extra Clamp Option          | Optional (increases cost, max 4 clamps)  | More CT clamps included                      |
+| User Experience                 | Sleek app, fun device discovery but tedious device management | Practical detailed usage, easy circuit labeling |
+| Overall Recommendation          | Good for tech enthusiasts with simple loads | Best for detailed monitoring and diverse loads at lower cost |
+
+---
+
+This detailed synthesis provides a credible and comprehensive overview of the Sense vs. Emporia Vue home energy monitors based strictly on Nate Adams’ video content.
+
+-----------------------------------
+Emporia Vue Energy Monitor App Review
+
+https://www.youtube.com/watch?v=swzw8QKxYGM
+
+[00:00:00] **Introduction and Product Overview**  
+The video begins with a review of the **Emporia Vue energy monitor**, a device priced around $100 that includes main clamps and eight additional current transformers (CTs) for circuit monitoring. This price point is highlighted as **significantly cheaper** compared to other market options such as the Sense energy monitor, which costs about $300. The reviewer has prior experience with Sense, noting its **limitations in detecting diverse and variable electrical loads**. The Emporia Vue was sent by Seth Terry of Emporia in late November of the previous year, and the reviewer has been using it since then.
+
+[00:01:21] **App Interface and Data Presentation**  
+- The app allows viewing energy use in different units:  
+  - **Kilowatt-hours (kWh)**  
+  - **Average kilowatts (kW) per minute**  
+  - **Real-time power usage in watts updated every second**  
+- The user prefers viewing the second-by-second live power usage because it breaks down **individual circuit loads**, providing clarity on what devices consume power at any moment.
+- The app shows a **home screen layout**, where individual circuits such as the main line, living room heat pump (an air conditioner), laundry (washer and dryer), and office equipment (like a laptop) are visually identifiable with real-time power consumption updates.
+- By toggling laptop power states (plugged/unplugged), the app shows accurate, immediate changes in load, demonstrating **high responsiveness and circuit-level monitoring accuracy**.
+
+[00:03:18] **Time Period Limitations and Usage Breakdown**  
+- Current app version **limits time frame views** to preset periods: the last 60 minutes, hour, day, week, month, or year, **without user-selectable custom periods** (feature under development).
+- After one hour, the device shows cumulative uses, e.g., the reviewer's electric vehicle (EV) finished charging using a bit over 3 kWh.
+- The Emporia Vue calculates used energy for separate loads and contrasts it with the reading on the main circuit, giving a **percentage breakdown of known circuits versus total usage** (e.g., 96% covered by monitored circuits).
+- **No voltage monitoring capability yet** means results could be off by as much as 5%, since voltage fluctuates between 110V and 120V in typical US homes.
+- However, voltage monitoring is slated to be released in the fall, which would greatly improve accuracy and make the device a "hard recommend."
+
+[00:05:10] **Daily and Weekly Consumption Analysis**  
+- The reviewer’s 1400 sq. ft. home, located by the Cuyahoga River, uses about **34 kWh per day**; the main consumers include:  
+  - A **roll-around heat pump (~1 ton capacity)** providing heating and cooling, but only effective above freezing temperatures.  
+  - A **wood stove** used as the primary heat source when temperatures drop below the heat pump’s capacity.  
+  - Electrical **baseboard heating** in individual rooms.
+- The breakdown over 24 hours features:  
+  | Circuit         | Approximate Use (kWh/day) | Notes                              |
+  |-----------------|---------------------------|-----------------------------------|
+  | Heat Pump       | ~11                       | Top load for HVAC                 |
+  | EV Charging     | ~12                       | Full charge on a Chevy Volt       |
+  | Laundry         | Moderate usage            | 4-5 full loads per day             |
+  | Water Heater    | None activated last day   | Unused in recorded 24h             |
+  | Office & Others | Small consumption         | Minimal relative to main loads     |
+
+- Over a weekly period, the EV is the largest user, consuming about 60 kWh out of 143 kWh total. This highlights the challenge in differentiating **household vs. EV power consumption** without specialized monitoring.
+- Even though the data is precise to a thousandth of a kWh, it is **not fully accurate without voltage data**, but provides useful directional insight.
+
+[00:07:34] **Long-Term and Cost Insights**  
+- The video provides annual usage data from January 1, 2020, to mid-June 2020:  
+  | Load                  | Year-to-Date Usage (kWh) | Commentary                         |
+  |-----------------------|--------------------------|----------------------------------|
+  | Heat Pump             | Highest single usage      | Clamped and monitored            |
+  | EV Charging           | ~1400                    | 1/7th of total consumption       |
+  | Water Heater          | ~700                     | Uses a Sanden carbon dioxide heat pump water heater with an outdoor unit and 80-gallon tank |
+  | Laundry               | ~300                     | Approx. $35 annual cost           |
+
+- User input includes local electricity cost (~$0.13/kWh), allowing real-time cost calculations.
+- Due to COVID-19, the EV usage decreased with fewer or shorter trips, resulting in $200 in electricity costs for 6 months of driving.
+
+[00:09:33] **Load Profile and Seasonal Considerations**  
+- The house showed increased energy use during January and February owing to resistance heating backup and other loads like lighting and cooking.
+- The heat pump efficiency and capacity are addressed: a **roll-around heat pump** is less efficient and unable to fully heat the home at low temperatures, unlike **mini-split heat pumps** which can maintain high output at temperatures down to 0°F or below.
+- Improved insulation and a proper HVAC system would reduce energy consumption by roughly half.
+
+[00:11:23] **Graphing Features and Historical Trends**  
+- The app graphing screen provides visualization by year, month, week, day, hour, minute, or second — but with aforementioned limitations on selectable historical ranges.
+- The reviewer notes the month with about 3,000 kWh usage, expecting a reduction after HVAC improvements.
+- Week-by-week views help analyze specific loads (like water heater) and their energy contribution.
+- The app can approximate dual-pole breakers by doubling one pole’s reading for rough calculation.
+
+[00:13:17] **Hourly and Minute-Level Analysis**  
+- Hourly graphs show spikes corresponding to EV charging cycles (~3 hours 15 minutes per charge), segmented across multiple hours.
+- The app is useful to detect daily usage patterns, such as when air conditioning is off leading to uniformly lower usage.
+- Minute and second level data can isolate transient loads such as washer or dryer cycles.
+- The inability to select historic minute-by-minute data limits deeper historical investigations.
+
+[00:15:48] **Additional App Screens and Features**  
+- Other app features include:  
+  - **Savings metrics** labeled as "Potential savings" and "Miss savings" which are *Not specified/Uncertain* in their calculation method.  
+  - Ability to export data (CSV or other formats) supporting personalized analysis.
+  - Configurable inputs such as heat source type and EV count support tailored monitoring.
+
+[00:16:21] **Installation Experience and Device Design**  
+- **Very simple installation** was praised due to Emporia’s use of **headphone jack connectors** for CTs instead of fragile tiny wires. This greatly reduces the risk of reversed polarity (which can cause diagnostic confusion).
+- User simply snaps clamps on circuits and plugs CTs into the monitoring unit, completing setup rapidly (~30 minutes).
+- This ease of installation is a strong advantage compared to more complex units.
+
+[00:17:38] **Final Assessment and Recommendations**  
+- Despite the current absence of voltage monitoring (which induces potential 5% error), the Emporia Vue is described as a **very good value and usable device**, especially for $100.
+- Once voltage monitoring is added and the ability to select custom time periods is introduced, the reviewer declares the monitor will become a **"hard recommend"**.
+- The device is ideal for users wanting to separate EV charging loads from home usage or for finding large energy consumers affordably.
+- The reviewer plans to integrate it into future projects and encourages viewers to consider the Emporia Vue on the basis of price and functionality.
+
+[00:18:56] **Closing Remarks**  
+- The reviewer signs off with a friendly reminder to subscribe and follow the channel, summarizing that the Emporia Vue offers a compelling combination of **affordability, ease of installation, and useful circuit-level insight**, albeit with some limitations to be addressed in coming updates.
+
+---
+
+### Key Insights Summary
+
+- **Emporia Vue is an affordable ($100) energy monitor providing real-time, circuit-level data with eight CT clamps.**
+- **App supports multiple data views: energy in kWh, instantaneous power in watts, and rolling hourly/daily/monthly/annual summaries.**
+- **Current limitations include lack of voltage monitoring (accuracy penalty up to 5%) and inflexible historic data period selection.**
+- **Installation is notably easy due to headphone jack style connections for CT clamps.**
+- **Effectively tracks major loads such as EV charging, heat pump usage, laundry, and water heater, allowing detailed consumption analysis and cost estimation.**
+- **Future firmware updates expected to add voltage monitoring and adjustable time frames, which will elevate product recommendation from cautious to strong.**
+
+### Quantitative Energy Usage Table (Annualized Sample)
+
+| Device/Circuit       | Annualized kWh | Notes                                      |
+|----------------------|----------------|--------------------------------------------|
+| Home Heat Pump       | ~ (extrapolated from year data) highest usage   | Clamped and tracked                         |
+| Chevy Volt EV Charging| ~1400          | Over 6 months, ~200 USD electricity cost    |
+| Water Heater          | ~700           | CO2 heat pump type with external unit       |
+| Laundry               | ~300           | Moderate usage, estimated cost ~$35/yr      |
+| Other (Misc. loads)   | *Not specified*| Includes resistance heating, lighting, etc. |
+
+---
+
+This report encompasses all verifiable data and insights from the video transcript, following strict guidelines on data presentation and timestamp referencing.
+-----------------------------------------------------------
+Sense Energy monitor Unboxing, install, app review and recap
+
+https://www.youtube.com/watch?v=sKVD69bSTu8
+
+[00:00:11]  
+**Introduction and Initial Experience with Sense Energy Monitor**  
+- Joe from Dissecting DIY introduces the Sense Energy Monitor, emphasizing he has two units because the first was a returned, damaged solar version from Amazon.  
+- The first unit was unusable due to modifications made by the previous owner (cut wiring).  
+- Joe contacted Sense via Facebook; the company provided **excellent customer service** with fast responses and shipped a replacement in two days.  
+- Sense directed Joe to their **active community forum**, which is a rich resource for troubleshooting and user support.  
+
+[00:02:14]  
+**Sense Solar Version and Smart Meter Limitations**  
+- The solar version has a **solar connector for real-time solar power monitoring**.  
+- Most utility companies, including Eversource and National Grid, don’t provide real-time monitoring despite having smart meters (called Metro meters), resulting in slow or no updates through official channels.  
+- The private sector, represented by Sense, offers **much better real-time energy monitoring solutions**.  
+
+[00:02:51]  
+**Unboxing of Non-Solar Sense Version and Components Overview**  
+- The non-solar Sense package includes:  
+  - Sense monitor device  
+  - Wall decals for labeling  
+  - Mounting hardware for the electrical panel  
+  - Instructions  
+- Key device features:  
+  - An **antenna port** for Wi-Fi communication  
+  - Sensors that clamp around each phase wire (usually black and red wires for a 240V system) to measure voltage and amperage  
+  - A white neutral wire that connects to the neutral busbar  
+  - Optional external wall mounting plate for panels with limited internal space  
+- Proper clamping around wires is critical; clamping all lines together results in no readings (cancelling currents).  
+
+[00:04:38]  
+**Installation Preparation and Electrical Requirements**  
+- Installation requires:  
+  - A **240V breaker** (usually a 20A breaker is adequate)  
+  - Basic electrical panel knowledge or professional electrician assistance  
+- Red and black wires from the Sense device connect to the breaker poles; the white wire connects to the neutral busbar.  
+- Joe strongly advises **those unfamiliar with electrical panels avoid DIY installation** due to safety risks (shock, injury, or death).  
+
+[00:05:50]  
+**Panel Inspection and Installation Setup**  
+- Joe’s panel was messy due to previous electrician work and the presence of a switch, which complicated the installation.  
+- Joe planned an **external mount** due to lack of internal space, particularly because of generator lines restricting space inside the panel.  
+- Important safety step: shutting off the main breaker before installation to cut power.  
+
+[00:08:04]  
+**Wiring and Mounting Details**  
+- Installed a 240V breaker to power the Sense monitor.  
+- Red and black wires inserted into the breaker, white wire connected to the neutral busbar.  
+- Mounted the Sense externally due to panel constraints, adding cable supports and zip ties for securing wiring and antenna positioning towards Wi-Fi signal.  
+- Small inconvenience but functional external setup, antenna oriented for optimal wireless communication.  
+
+[00:10:20]  
+**Sense App Overview and Initial Use**  
+- The app’s **initial screen shows real-time whole-house energy usage in watts**.  
+- Usage fluctuates visibly when devices turn on/off—ideal for tracking consumption dynamically.  
+- The app requires **24-48 hours to begin identifying individual devices** using "bubbles" (a detection and learning feature).  
+- Real-time tracking validates device power consumption claims, e.g.:  
+  - Joe measured his basement LED can lights at about 7.7 watts each, consistent with manufacturer ratings.  
+- Additional app features include:  
+  - Historical **usage trends by day, week, month, and year**  
+  - Cost estimations based on user-input electricity rates  
+  - Identification of peak usage events like laundry day  
+
+| Parameter                     | Joe’s Values                                | Notes                                      |
+|------------------------------|--------------------------------------------|--------------------------------------------|
+| Average Electricity Cost      | $0.094/kWh (base rate)                     | ~ $0.19/kWh including delivery charges     |
+| Laundry Day Usage             | 27.9 kWh                                   | Moderate compared to an average 48 kWh/day |
+| LED Bulb Power Usage          | ~7.7 watts per bulb                        | Confirmed manufacturer rating              |
+
+[00:14:29]  
+**Device Identification and Learning Limitations**  
+- The Sense monitor has a **learning curve** and can struggle to consistently identify certain devices.  
+- Successfully identified devices include:  
+  - Boiler (merged with circulator pump for accuracy)  
+  - Coffee maker  
+  - Dryer  
+  - Oven  
+  - Several heat devices (labeled Heat 3, 4, 5) remain unidentified despite testing various heat sources.  
+- Merging related devices (e.g., boiler and circulator pump) may improve recognition and simplify monitoring but may lose some granularity if separate data is desired.  
+- Joe found some **detection inconsistencies and finickiness** in the app, particularly with intermittent or less consistent devices.  
+
+[00:16:46]  
+**Sense Company Development and User Feedback**  
+- Sense is actively building their **device identification database**, improving accuracy over time.  
+- Many users on Amazon and other forums express frustration about slow or incomplete device detection.  
+- Joe advises that if device-level identification is a primary goal, patience and engagement with the learning process are needed.  
+- For general real-time whole-house energy monitoring and consumption reduction, Sense is **highly recommended and highly effective**.  
+
+[00:17:51]  
+**Plans for Additional Energy Monitoring Solutions**  
+- Joe plans to release a follow-up video on alternative or complementary energy monitoring approaches:  
+  - Smart outlets for device-specific power monitoring  
+  - Other real-time measurement devices  
+- Sense has editing features to manually categorize devices and add metadata (model numbers, device names), implying a semi-supervised learning system assisting the AI.  
+
+[00:18:29]  
+**Safety Reminder and Installation Caution**  
+- Installation inside electrical panels requires full attention and expertise due to high risk.  
+- Joe recommends relying on Sense’s official installation video for detailed guidance.  
+- Modification such as external mounting, if necessary, should be planned carefully ahead of time to avoid last-minute compromises.  
+- Joe reiterates **DIY electrical work is undertaken at one’s own risk and is only recommended for qualified individuals.**  
+
+[00:20:08]  
+**Summary of Installation Requirements and Process**  
+- Key hardware:  
+  - A **20A 240V breaker** (or lowest available 240V breaker)  
+  - Red and black power wires attach to breaker poles  
+  - White neutral wire connects to neutral busbar  
+  - Two clamping sensors around mains feed wires  
+- Installation challenges: limited panel space, external mount as workaround  
+- Setup generally straightforward once the plan is in place  
+- Initial app setup delivers whole-house monitoring immediately, device learning takes longer.  
+
+[00:21:25]  
+**Overall Impression of Sense Energy Monitor**  
+- Joe strongly recommends Sense for:  
+  - Real-time, **whole-house energy usage monitoring**  
+  - Monitoring changes when turning devices on/off  
+  - Validating utility billing and achieving energy savings  
+- Sense is still evolving; device recognition can be inconsistent but improves over time.  
+- Joe appreciates the app interface and ability to monitor energy use dynamically, including during energy retrofits and efficiency checks.  
+
+[00:22:26]  
+**Critique of Utility Company Smart Metering**  
+- Major utilities like Eversource and National Grid have **not innovated much in customer-facing smart metering**.  
+- Their meters serve the utilities’ billing purposes but provide poor or no real-time consumer data access.  
+- Sense bridges this gap by providing **transparent and actionable usage data** directly to consumers via app.  
+
+[00:23:28]  
+**Additional Energy Monitoring Devices Overview**  
+- Joe compares Sense with other device-specific monitoring tools:  
+
+| Device Type                                    | Description                                     | Price Range      | Advantages                          | Limitations                       |
+|-----------------------------------------------|------------------------------------------------|------------------|-----------------------------------|---------------------------------|
+| Sense Energy Monitor                           | Whole-house real-time monitoring with app      | *Not specified*  | Smart device identification; app-based; long-term data trends | Learning curve; finicky identifications |
+| Etekcity Smart Outlet                          | Plugs into device; monitors power; app control | ~$15-20          | Real-time monitoring per device; scheduling; app integration | Requires device plugging; smartphone needed |
+| Kilowatt Meter (Basic Plug-in Meter)           | Measures voltage, amperage, wattage; no data if unplugged | Low cost          | Simple, instant readings; portable | No data retention after unplugging; no smart features |
+  
+- Joe shares a personal experience where the kilowatt meter tripped a breaker during use with a PlayStation 3, noting safety or compatibility concerns with some devices.  
+- The Sense monitor is identified as the most advanced and cohesive product for whole-house monitoring, while smart plugs provide useful appliance-level insights.  
+
+[00:25:55]  
+**Final Recommendations and Conclusion**  
+- The Sense Energy Monitor is **highly recommended for anyone wanting real-time energy consumption data and improved awareness.**  
+- Manual intervention and patience are needed for device detection improvements.  
+- Sense’s real-time usage capabilities far exceed typical utility smart meters, offering actionable intelligence for energy management and cost savings.  
+- Joe encourages viewers to consider their comfort level with electrical work and to hire professionals if unsure.  
+- Future videos will cover complementary technologies for energy monitoring at more granular levels.  
+
+**Presenter: Joel, Dissecting DIY**  
+**Overall:** Detailed unboxing, installation, and review of the Sense monitor highlight it as a solid real-time home energy monitoring system with learning-based device identification, strong customer support, and useful app features, though with limitations in device recognition speed and installation challenges.
+------------------------------------------------------
+Why the Sense Energy Monitor is a Game-Changer for Your Home
+
+https://www.youtube.com/watch?v=DUmu88zUjaI
+
+[00:00:00]  
+**Introduction and Product Overview**  
+Dale from Renewable Innovations introduces the **Sense energy monitor**, a product he has tracked for years and installed in multiple California homes. Sense distinguishes itself from other energy monitors by not requiring a current transformer (CT) clamped on every circuit. Instead, it uses **high-resolution CTs** that measure electrical draw down to the millisecond.  
+
+- **Key technology:**  
+  - Uses **machine learning** to analyze unique electrical signatures of each device  
+  - Identifies individual home appliances such as coffee makers, microwaves, TVs, and air conditioners  
+- **Benefit for homeowners:**  
+  - Eliminates guesswork about electricity bills  
+  - Provides clarity on which devices contribute most to energy consumption  
+
+[00:00:33]  
+**How Sense Works and Its Core Advantages**  
+Sense analyzes the electrical current at a highly granular level, leveraging the fact that every device emits a **unique electrical signature**. This allows the system to identify loads with only a few CT sensors installed. The accompanying app helps track and report this data to the user, enabling fine-grained insights into consumption patterns.  
+
+- **Use cases:**  
+  - Detects excessive air conditioner use  
+  - Identifies lights left on for extended periods  
+  - Detects unusual power draws (e.g., potential power theft from neighbors)  
+
+[00:01:08]  
+**Sense Solar Model**  
+For users with older solar setups lacking integrated monitoring, Sense offers a **solar model** that delivers comprehensive home energy metrics. This includes:  
+
+- Whole-home consumption  
+- Grid energy import  
+- Solar energy production  
+- Exported solar energy (for utility credits)  
+
+Additional features allow users to receive **alerts for solar underperformance**, helping owners monitor their solar investments better.
+
+[00:01:41]  
+**Recent Innovations: Sense Flex Model**  
+Sense has introduced **Sense Flex**, which brings two major enhancements targeting specific consumer needs:  
+
+| Feature                      | Description                                                                                                            |
+|-----------------------------|------------------------------------------------------------------------------------------------------------------------|
+| **Generator Monitoring**     | Tracks output of portable backup generators, showing real-time load and preventing overloads during power outages.     |
+| **400 Amp Split-panel Support** | Supports monitoring for modern homes with 400 amp electrical service split into two 200 amp sub-panels, common in electric homes with EV chargers, heat pumps, induction cooktops, and electric water heaters.  |
+
+- **Importance:**  
+  - Provides users clarity on generator usage during outages  
+  - Enables comprehensive monitoring for large, modern electric service setups that previously lacked good monitoring solutions  
+
+[00:02:54]  
+**Technical Details of Installation and Operation**  
+- The Sense monitor consists of small CT clips that attach to electrical lines to measure current ($I$) flowing through these circuits.  
+- Powered by a dedicated circuit breaker that monitors voltage ($V$), the system captures real-time data combining current and voltage to analyze power consumption accurately.  
+- The device uses this data to identify load signatures and communicate metrics via the app.
+
+[00:03:30]  
+**Limitations with Solar and Battery Storage**  
+- Sense currently faces challenges when integrating with systems combining both solar panels and home battery storage.  
+- The difficulty lies in **differentiating power flow**, specifically:  
+  - When power is drawn from solar panels during the day  
+  - When power is supplied from battery discharges at night  
+- The Sense development team is actively working to improve accuracy in detecting these separate energy sources.  
+- For homes without home batteries, the solar monitoring model functions effectively immediately after installation.
+
+[00:04:05]  
+**Installation Process and Availability**  
+- Installation is designed to be straightforward and typically takes a few hours for most users.  
+- Dale offers personal installation assistance in Southern California.  
+- Installation involves attaching CT sensors, connecting the device to a panel breaker, and completing app setup.
+
+[00:04:37]  
+**Summary of Benefits and Use Cases**  
+- **Sense Energy Monitor** is positioned as a **cost-effective, high-value tool** for:  
+  - Reducing high electric bills by identifying waste  
+  - Maximizing the value and performance of solar systems  
+  - Safely monitoring backup power generators  
+  - Supporting complex home electrical systems (400 amp service panels and sub-panels feeding accessory dwelling units or ADUs)  
+
+- The device provides **visibility and control** over home energy usage that other monitors often cannot deliver.
+
+[00:05:11]  
+**Call to Action and Closing Remarks**  
+- Dale encourages viewers interested in Sense to order via affiliate links on Amazon provided in the video description.  
+- He emphasizes the product as a **small investment yielding savings and increased awareness** of household energy consumption.  
+- Final advice includes liking, subscribing, and sharing the video for further support and information dissemination.
+
+---
+
+### Key Insights  
+- **Machine learning and high-resolution sampling** enable Sense to distinguish between appliance electrical signatures without extensive hardware on every circuit.  
+- Sense’s **solar model** offers a much-needed solution for legacy solar systems lacking integrated monitoring.  
+- The **Sense Flex model** expands capabilities notably by enabling generator tracking and supporting 400 amp split-panel systems important for modern electric homes.  
+- There are still **ongoing improvements** to better handle combined solar and battery systems, indicating active product development.  
+- The overall ease of installation and user-friendly app experience makes Sense accessible to most homeowners.
+
+---
+
+### Glossary and Definitions  
+
+| Term                       | Definition                                                                                                                       |
+|----------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| **CT (Current Transformer)** | A sensor that clips onto an electrical line to measure the current flowing through that wire.                                     |
+| **Electrical Signature**   | Unique pattern or fingerprint of current drawn by an individual appliance when in operation, allowing identification by algorithms.|
+| **400 Amp Split Service Panel** | A modern electrical setup where a large 400 amp service is split into two 200 amp sub-panels for high electrical capacity requirements. |
+| **Exported Solar Energy**   | Surplus electricity generated by solar panels that is sent back to the grid, earning credits or compensation from utilities.     |
+| **Generator Overload**      | Condition when the power demand exceeds the generator’s output capacity, risking damage or failure.                               |
+
+---
+
+### Timeline Table (Chronological Features and Updates)
+
+| Timestamp  | Event/Feature                       | Details                                                                                 |
+|------------|-----------------------------------|-----------------------------------------------------------------------------------------|
+| 00:00:00   | Introduction of Sense Monitor      | Energy monitor with machine learning-based device identification using high-res CTs     |
+| 00:01:08   | Solar Model Introduction           | Tracks consumption, grid use, solar production, export credits, and alerts              |
+| 00:01:41   | Launch of Sense Flex Model          | Generator monitoring and 400 amp split-panel support added                              |
+| 00:03:30   | Ongoing improvement for solar+battery | Working on differentiating solar vs battery power for improved accuracy                |
+| 00:04:05   | Installation overview               | Simple and quick setup; optional local assistance available                             |
+| 00:04:37   | Use cases and benefits summary      | High electric bill reduction, solar optimization, backup generator safety, complex panels support |
+
+---
+
+This summary captures the essential content and technical details presented in the video transcript without speculation, providing a comprehensive understanding of the Sense Energy Monitor system as described.
+-------------------------------------------------------
+How to Use the Sigenergy Monitoring App - Complete Monitoring Walkthrough
+
+https://www.youtube.com/watch?v=LzK1W-m_8tU
+
+[00:00:08]  
+**Introduction to My Sigen Phone App Tutorial**  
+- Presenter: Matt from GI Energy.  
+- Purpose: To guide users through the My Sigen phone app interface, demonstrating system monitoring and control features.  
+- Initial display: system details including site name and grid connection date.  
+- Status indicators: app shows whether the system is in normal operation, off-grid mode, or offline due to Wi-Fi or other connection issues.  
+- Access to System Settings: located via three dots icon at the top right.  
+
+[00:00:38]  
+**Main Interface and Real-Time Power Flow Visualization**  
+- Home or business icon indicates type of installation.  
+- Power flow visualization consists of:  
+  - Solar generation (in this example, 9.8 kW).  
+  - Power consumption in the home (4.18 kW).  
+  - Power exported to the grid (5.62 kW).  
+- Visual flow: power moves from solar panels through the Sigen store, gateway, and meter into the home or exported to the grid.  
+- Time-dependent behavior:  
+  - During low solar periods (e.g., evening), the Sigen store battery discharges energy to home loads.  
+  - Battery may also import/export power depending on tariff or VPP (Virtual Power Plant) participation.  
+
+[00:02:18]  
+**System Variations and Additional Components**  
+- Solar reading distinctions:  
+  - Systems directly connected to SIG Energy system show one set of solar data.  
+  - AC-coupled third-party inverters are also supported and display separate solar generation figures (e.g., 5 kW inverter with 6.6 kW panels).  
+- EV Charging Integration:  
+  - AC or DC EV chargers appear on the app interface, showing connection status and charging power consumption.  
+
+[00:02:53]  
+**Real-Time Data and Battery Status**  
+- Displays current active power and reactive power metrics.  
+- Usable battery capacity shown; example system has 48 kWh battery stack.  
+- Battery state of charge (SOC) indicator displayed clearly (example: fully charged battery).  
+
+[00:03:25]  
+**Energy Statistics Overview**  
+- App allows viewing energy data for: day, week, month, year, and system lifetime.  
+- Current example for a single day at 3 p.m.:  
+  | Metric                         | Value             | Percentage of Solar Generation    |  
+  |-------------------------------|-------------------|----------------------------------|  
+  | Solar energy generated         | 81 kWh+           | 100%                             |  
+  | Energy stored in battery       | 29.87 kWh         | ~32%                             |  
+  | Energy consumed by home load   | 45+ kWh           | ~50%                             |  
+  | Energy exported to grid        | 16.5 kWh          | Remaining portion (~18%)          |  
+- Battery discharge since midnight: ~11 kWh directly supplying the load.  
+- Grid energy imported briefly: 70 Wh (small burst).  
+
+[00:05:11]  
+**Lifetime Performance and Visual Data Representation**  
+- System installed ~6-7 weeks.  
+- Cumulative solar generation: 3.3 MWh.  
+- Grid energy imported during lifetime: only 63.92 kWh, indicating **near self-sufficiency**.  
+- Graphical displays:  
+  - Yellow line above zero: solar generation.  
+  - Purple below zero: home load consumption.  
+  - Battery charging below line; discharging above line.  
+  - Sunrise and sunset times also shown.  
+
+[00:06:18]  
+**Battery State of Charge (SOC) Trend**  
+- Example SOC trend: dropped to just under 50% before 6:00 a.m., then fully charged before midday.  
+- Demonstrates typical daily battery cycling aligned with solar availability and load demand.  
+
+[00:06:56]  
+**Smart Home Device Integration and Tariff Settings**  
+- App supports third-party chargers connected via smart port.  
+- Shows cumulative power usage of smart home devices (e.g., 50 Wh in example day).  
+- Tariff import options:  
+  - Time-of-use rates.  
+  - Flat rates.  
+  - Feed-in tariffs (export rates).  
+- Includes calculation of energy savings and environmental benefits (emissions avoided, trees planted).  
+
+[00:07:33]  
+**System Settings and Operational Modes**  
+- Available modes:  
+  - **Self-Consumption Mode**: maximizes local use of solar energy.  
+  - **AI Mode**: Sigen AI optimizes energy usage automatically.  
+  - **Time-Based Control**: schedule grid import/export, useful for time-of-use tariff optimization.  
+  - **Full Feed-In**: exports all generated power to grid.  
+  - **VPP Mode**: remotely managed mode for Virtual Power Plant participation; enabled by retailer.  
+
+- Scheduling example:  
+  - Import power grid from 11 a.m. to 2 p.m. when grid power is free.  
+  - Self-consumption before and after this period.  
+  - Can define grid export schedules for discharging when beneficial (e.g., between 5 p.m. to 7 p.m. if retailer offers payment).  
+
+[00:10:01]  
+**Battery and Grid Management Priorities**  
+- Adjustable battery parameters:  
+  - Minimum battery state of charge (cutoff level), example 10%.  
+  - Backup SOC level adjustable for situations like storm preparedness.  
+  - Battery maximum charge level can be limited if desired.  
+- Grid restrictions:  
+  - Export power limits set per local Distribution Network Service Provider (DNSP) rules.  
+  - Import limits configurable to avoid exceeding supply limits especially on single-phase connection.  
+- Tariff rate plans configurable in detail.  
+
+[00:12:01]  
+**Smart Home Device and Auxiliary Loads Monitoring**  
+- Monitoring includes devices like:  
+  - EV chargers.  
+  - Hot water systems.  
+  - Air conditioning via relay devices (e.g., Shelly relays).  
+- Displays energy consumption per device in interface for detailed home energy management.  
+
+[00:12:39]  
+**StormWatch and Backup Settings**  
+- New firmware feature: StormWatch.  
+- Functionality: system receives severe weather updates (e.g., cyclone, hail, tornado warnings).  
+- Enables automated battery management: forces battery charge if insufficient before storm strikes (e.g., 3 hours before event).  
+- User can enable/disable weather warnings per event type.  
+- Energy Saving Mode:  
+  - Dormancy mode activates in off-grid conditions to minimize battery drain.  
+  - Performance mode (default and recommended) prioritizes system responsiveness like smartphone low-power vs. performance modes.  
+
+[00:14:29]  
+**General System Information and Firmware Updates**  
+- System identifiers, location, panel and battery capacities shown in General settings.  
+- Firmware regularly checked; current example system fully updated.  
+- Warranty information for batteries and inverter accessible here.  
+
+[00:14:59]  
+**LED Indicator Customization**  
+- Users can toggle LED indicator lights on the Sigen Store controller (wheel with LED lights).  
+- Various display modes for LED lights include:  
+  - Breathing (current setting in example).  
+  - Christmas tree mode (colorful pattern).  
+  - State of Charge visualization.  
+  - Power flow direction and colors customizable.  
+- LEDs on battery side can display SOC or decorative modes.  
+
+[00:15:41]  
+**Connectivity, Diagnostics, and Alerts**  
+- Connectivity status: Ethernet or Wi-Fi connection details shown.  
+- Device status reporting included.  
+- Diagnostics runs automated system checks:  
+  - Gateway power sensor.  
+  - Internet connectivity.  
+  - Other connection checks.  
+- Alarm section shows active system alerts (none in example).  
+- Feedback history section logs support tickets or system incidents.  
+
+[00:16:18]  
+**Installer Tools and Summary**  
+- Installer tools available via a management app (details for installers).  
+- Summary of most frequently viewed app sections:  
+  - Power flow visualization (solar generation, home consumption, battery SOC).  
+  - Daily energy graph and statistics.  
+- Invitation for viewer feedback and further questions to be posted in comments.  
+
+---
+
+**Key Insights and Conclusions:**  
+- The My Sigen app provides a comprehensive real-time and historical overview of home solar + battery system operation, including detailed power flow visualization and energy statistics.  
+- System flexibility is a strong feature, accommodating self-consumption, AI-controlled optimization, time-based controls, and advanced modes such as VPP integration.  
+- Customizable settings allow users to optimize battery usage, grid import/export, and tariff applications to maximize financial and environmental benefits.  
+- Battery health and operation are supported by intelligent storm response features that protect system reliability during severe weather conditions.  
+- Monitoring extends beyond solar generation to include smart home devices, EV chargers, and auxiliary loads for holistic home energy management.  
+- User experience enhanced by customizable LED indicators, automated diagnostics, and straightforward connectivity information.  
+
+This tutorial offers clear guidance to maximize system use and highlights the importance of intelligent scheduling, environmental awareness, and responsive control within home energy systems.
+------------------------------------------------------------
+Sense Energy Monitor review - Real Time Electricity Usage
+
+https://www.youtube.com/watch?v=G-haFFLgApM
+[00:00:00]  
+This segment introduces the **Sense Flex Home Energy Monitor** review, motivated by the frustration of high electricity bills despite energy-saving measures such as turning off unnecessary lights, closing shades in summer, and using intelligent thermostats. The reviewer positions Sense Flex as a potential solution for those seeking deeper insights into their home energy consumption.
+
+- The rise in electricity costs was a primary concern before using the Sense Flex monitor.
+- The video promises to present detailed information and personal experience after months of ownership.
+- Encourages viewers to subscribe for daily video updates and check links for pricing and details.
+
+---
+
+[00:00:58]  
+This segment explains **what the Sense Flex Home Energy Monitor is and how it works**:
+
+- Sense captures **real-time electrical consumption data** in the home.
+- It leverages the fact that **every electrical device has a unique electrical signature**.
+- When a device is turned on, Sense records its signature and compares it to an extensive database using **machine learning algorithms**.
+- Initial detection can have some **false or duplicate identifications**, which improve over time as the algorithm learns.
+- The app visualizes the data through interactive bubbles that show detected appliances and their electricity use in watts.
+- Additional sensor options (CT clamps) can be added for tracking solar power production, available separately or within the Sense Flex package.
+
+---
+
+[00:02:17]  
+This part delves into the **physical installation** and **initial setup**:
+
+- Sense monitors are installed in the **main electrical panel**, connected around the main power leads using CT clamps.
+- The installation requires disabling power temporarily; thus, electrical safety and basic tool knowledge are important.
+- The main panel must be within **Wi-Fi range** because data is transmitted over Wi-Fi.
+- The installation process is straightforward with good support from Sense.
+- The reviewer emphasizes checking that clamps fit securely since panel layouts can be cramped.
+
+---
+
+[00:02:45]  
+This segment describes the **load detection timeline and app experience**:
+
+- After installation, it took about **4 minutes** for Sense to begin monitoring grid power and about **5 days** before it started notifying detected loads.
+- Example: The first detected appliance was a refrigerator after 3 days.
+- Users need to **confirm detected devices** to improve recognition accuracy.
+- Detection accuracy can vary; some appliances may be detected inconsistently or intermittently.
+- The app provides real-time wattage and summaries of appliance energy use.
+- Household members may be asked repeatedly to verify if appliances were on, which is part of Sense’s learning process.
+
+---
+
+[00:03:38]  
+This part discusses **how Sense helps save money by identifying energy consumption patterns**:
+
+- Sense integrated with **smart plugs (WeMo and Casa brands)** allows users to monitor and control specific outlets.
+- It helped identify a water cooler’s hot water switch left on 24/7, consuming nearly **10 kWh per day**.
+- Detects **phantom loads** from devices such as TV chargers and night lights.
+- Users can use smart plugs to schedule turning off devices to reduce such wasted energy.
+- Another energy hog identified was an inefficient **55-gallon electric water heater**, worsened by hard water.
+- Even small savings on status lights or standby energy can accumulate significantly over time.
+
+---
+
+[00:04:34]  
+The focus here is on **solar energy monitoring with Sense Flex**:
+
+- Sense Flex can monitor solar panel production by measuring the generated solar power.
+- Displays **real-time solar power generation** alongside home consumption on a single screen.
+- Enables users to **optimize solar energy use**: for example, by scheduling the best time to charge a home battery or slow down the air conditioner.
+- Provides a simple but effective interface for managing solar energy in a home with solar panels.
+
+---
+
+[00:05:00]  
+This segment elaborates on **device-level energy tracking and notifications**:
+
+- Sense provides a **running total of overall house electricity consumption**.
+- Once devices are identified, it tracks the **energy usage per device** and estimates the associated electricity cost based on user-supplied rates.
+- The system records how often devices turn on daily, helping to build usage profiles.
+- Users receive **customizable notifications**, such as alerts when a device turns on or off or is on/off for unusual durations (e.g., refrigerator off for more than an hour).
+
+---
+
+[00:05:51]  
+Discusses **smart home integration and voice control**:
+
+- Sense integrates with **Google Assistant and Amazon Alexa** via voice commands.
+- Users can inquire about specific devices or get real-time updates, e.g., "Is my washing machine on?" or "How much solar am I generating?"
+- This facilitates easier, hands-free monitoring of home energy data.
+
+---
+
+[00:06:17]  
+Final summary and conclusion:
+
+- Despite **slow progress in automated device discovery**, Sense is still quite useful for monitoring and reducing home electricity use.
+- Requires **some manual input and detective work** to identify all appliances and phantom loads fully.
+- Potential savings can accumulate over time through awareness and behavioral adjustments.
+- The $299 price tag may be difficult to justify without the tangible benefits.
+- The most exciting prospect is the **future potential of the platform**:
+  - As more users contribute data, detection accuracy should improve.
+  - Advanced notifications may evolve to warn of **potential electrical faults** before costly failures occur.
+- The reviewer encourages viewers to subscribe and check the description for pricing and more details.
+
+---
+
+### Summary Table: Key Features of Sense Flex Home Energy Monitor
+
+| Feature                           | Description                                                                                 |
+|---------------------------------|---------------------------------------------------------------------------------------------|
+| Real-time Monitoring             | Tracks home electricity use dynamically, showing wattage and device activity.               |
+| Device Signature Detection       | Uses machine learning to identify individual appliances by their unique electrical signatures. |
+| Installation                    | Main electrical panel installation with CT clamps; Wi-Fi required for data transmission.   |
+| Load Detection Timeline          | Initial recognition can take several days; manual user confirmations improve accuracy.     |
+| Solar Monitoring (Sense Flex)    | Measures solar panel output to optimize energy use and display combined consumption/production. |
+| Energy Usage Breakdown           | Tracks energy per device and estimates cost based on user tariff input.                     |
+| Notifications                   | Custom alerts on device activity, unusual operation times, and potential issues.           |
+| Smart Home Integration           | Supports voice control via Google Assistant and Amazon Alexa.                              |
+| Cost                            | Priced around $299; justified mainly for users seeking detailed insights and savings.      |
+
+---
+
+### Key Insights
+
+- **Sense Flex provides granular, real-time energy insights** that go beyond traditional smart meters.
+- **Machine learning-based detection improves with time and user interaction** but may require effort to fine-tune.
+- Identifying **phantom energy loads and inefficient appliances** can unlock meaningful savings.
+- Solar energy owners benefit from integrated solar production tracking.
+- The value proposition lies not only in current savings but in the **future evolution towards predictive maintenance and fault detection**.
+- Requires **Wi-Fi coverage and some technical confidence for installation**; manual verification by occupants is part of the process.
+
+---
+
+### Keywords
+
+- Sense Flex  
+- Home Energy Monitor  
+- Electrical Signature  
+- Machine Learning  
+- CT Clamps  
+- Solar Power Monitoring  
+- Phantom Load  
+- Energy Savings  
+- Smart Plugs  
+- Alexa / Google Assistant Integration  
+- Energy Usage Notifications  
+- Predictive Maintenance  
+
+---
+
+This comprehensive review highlights the strengths and caveats of the **Sense Flex Home Energy Monitor** based strictly on the video transcript, making it a credible resource for anyone considering this product to manage their home electricity consumption.
+--------------------------------------------------------
+How to Use and Access Enphase Enlighten App Secret Tools
+
+https://www.youtube.com/watch?v=aWkHFH_jIFE
+
+[00:00:00]  
+**Introduction to Hidden Features in the Enphase App**  
+- The video introduces **hidden features built into the Enphase app**, many of which are unknown to most users including customers.  
+- These features provide **granular data** accessible especially with a new system, offering deeper insights beyond typical usage.  
+- The presenter plans to **screen-share a phone** and demonstrate where these settings are located for viewers to explore their own solar systems.  
+- A call to action encourages viewers interested in solar or battery backup solutions to visit the company’s website and subscribe to the channel.  
+
+[00:01:01]  
+**Overview of the Enphase App Home Screen**  
+- Upon logging in, users land on the **home screen** displaying a **general overview** of current system status:  
+  - Battery charge status  
+  - Current profile settings  
+  - Grid import/export data  
+  - Solar production and home energy consumption  
+- The example system shown features:  
+  - Four IQ 10 batteries totaling **42 kWh storage capacity**  
+  - A large solar system of approximately **15 to 16 kW**  
+- The app includes a **Live Status** button (note: availability may vary with system type and ongoing server updates).  
+
+[00:02:16]  
+**Grid Dependence vs. Independence Setting**  
+- A key toggle on the app is grid dependence, which affects displayed data interpretation:  
+  | Mode          | Meaning                                                      | Expected Values  | Key Insight                                                  |
+  |---------------|--------------------------------------------------------------|------------------|-------------------------------------------------------------|
+  | Grid Dependence  | Shows how much energy is consumed from the grid              | Lower number = less grid usage | Default mode in Enphase; indicates actual grid use         |
+  | Grid Independence | Shows how little grid energy is used (more solar + battery) | Higher number = less grid usage | Easier to understand for many users                          |
+  
+- The app also reports on **carbon emissions saved** and **trees saved**, supporting environmental impact awareness.  
+
+[00:02:49]  
+**Detailed Energy Metrics and Data Views**  
+- The app tracks:  
+  - Grid import/export  
+  - Solar production  
+  - Battery status  
+  - Home energy consumption  
+- Users can explore data on a **daily, weekly, and monthly basis** to analyze efficiency and overall system performance.  
+- **Toggle switches** allow users to display or hide certain data streams depending on the installation and hardware available.  
+
+[00:03:49]  
+**Installation Considerations: Consumption CT Sensors**  
+- Installation of **consumption CT sensors** improves data accuracy by measuring home energy use precisely.  
+- Details:  
+  - Most systems with batteries include consumption CTs as they are necessary for battery operation.  
+  - For solar-only systems, consumption CTs may or may not be installed depending on the electrical panel type and installer capability.  
+  - The presenter’s company prioritizes installing CT sensors where possible for better monitoring.  
+
+[00:04:19]  
+**Solar Array and Panel Details in the App**  
+- The specific site shown uses:  
+  - **LG Neon R 440 W panels**  
+  - **IQ7A microinverters** (just before transition to IQ8 models)  
+- Users can view detailed panel-level data, including production in **kWh per panel**.  
+- Panel status was previously color-coded but now provides actual numeric production data, facilitating quick problem detection (e.g., black panels indicate non-working units).  
+
+[00:05:24]  
+**Navigating the Device and System Settings Menus**  
+- Menu options include:  
+  - System Settings  
+  - Account Info  
+  - Reports and Site Details  
+- The **refer-a-friend feature** within the app is criticized as currently ineffective because:  
+  - No installer receives referrals directly via the app.  
+  - Enphase does not process or act on referral data.  
+- Users are advised to avoid this feature for installers and instead personally refer if satisfied.  
+
+[00:06:25]  
+**Devices and Live Vitals: The Key Hidden Features**  
+- The presenter identifies **two core hidden features** in the app:  
+  1. **Devices**  
+  2. **Live Vitals**  
+- Under **Devices**, users can view:  
+  - Gateway device communication status  
+  - List of batteries on site with model numbers  
+  - Controller (automatic transfer switch)  
+  - All microinverters on the system  
+- Clicking into these provides detailed insights on individual devices, like power output and state of charge for batteries.  
+- Installer accounts have access to more granular data, but basic functionality is enough for most users.  
+
+[00:07:25]  
+**Battery Data and Modular Design Insights**  
+- Example site has:  
+  - Four IQ10 batteries comprising **twelve IQ3 battery units** total (with four microinverters each)  
+  - Usable energy of the battery bank is reported at **40.32 kWh**  
+- **Modular architecture**:  
+  - Each battery unit and microinverter operate independently  
+  - Failure of one microinverter affects only that unit’s power output, **not the entire battery bank**  
+- The app shows actual power output in kW per battery module, and displays details such as state of charge and microinverter status.  
+
+[00:08:58]  
+**Wi-Fi Settings and User-Friendly Features**  
+- The **Devices menu** also allows users to:  
+  - Change Wi-Fi settings directly within the app if the network is updated—facilitating easy remote troubleshooting and maintenance without installer support.  
+
+[00:09:27]  
+**Live Vitals Explained and Observations**  
+- **Live Vitals** offers a real-time snapshot of system operation, including:  
+  - Current operating mode (grid-tied, off-grid, backup mode, etc.)  
+  - Status of circuits (open or closed)  
+  - Solar and battery activity  
+  - Grid frequency and microgrid parameters  
+  - Individual battery charging data, including charging rates (can appear negative when batteries are drawing solar power)  
+- Due to ongoing server updates, the presenter notes live data may be slow or occasionally show errors but should stabilize over time.  
+
+[00:09:58]  
+**Connectivity and Signal Strength Insights for Wireless Batteries**  
+- IQ batteries use **wireless communication**, while new IQ5P batteries will be hardwired.  
+- An example shows:  
+  - Equipment located within a garage across a wall (~10-20 feet apart) still exhibits varying Wi-Fi signal strength.  
+- Monitoring wireless signals can help diagnose connectivity issues related to battery operation.  
+
+[00:11:00]  
+**Practical Use and Summary of Hidden Features**  
+- The hidden features primarily serve as **monitoring tools**; end users typically do not need to modify settings but can:  
+  - Verify system health  
+  - Check for alerts or anomalies  
+  - Confirm installed equipment matches contractual specifications (e.g., model of microinverters)  
+- The platform benefits from **automated monitoring** by installers and Enphase, who may initiate support cases proactively if abnormalities arise.  
+
+[00:12:00]  
+**Importance of Verifying Equipment**  
+- Checking the **Devices menu** is essential, especially to confirm if the installed microinverters match what was promised by the installer (e.g., IQ8 vs. IQ7A).  
+- This verification can prevent long-term underperformance and disputes, as some customers discover incorrect equipment only years later.  
+
+[00:12:32]  
+**Closing Remarks and Call to Action**  
+- The video concludes with an encouragement for viewers interested in solar or battery backup systems to visit the linked company website for more information.  
+- Viewers are reminded to subscribe for future content relating to solar and renewable energy system insights.  
+
+---
+
+### Key Insights and Terminology  
+- **Enphase App Hidden Features:** Devices (detailed hardware insights) and Live Vitals (real-time operational data).  
+- **Grid Dependence vs. Independence:** Controls data perspective on grid usage.  
+- **Battery Modularity:** Each IQ battery unit and its microinverters operate independently for resilience.  
+- **Consumption CT Sensors:** Crucial for accurate home energy monitoring, especially in battery setups.  
+- **Device Verification:** Essential for confirming contractual system specs, especially microinverter models.  
+- **Refer-a-Friend Feature:** Currently ineffective; personal referrals recommended.  
+- **Wireless vs. Hardwired Batteries:** IQ batteries connect wirelessly; IQ5P will use wired connections.  
+
+### Quantitative Data Summary  
+
+| Feature                        | Value / Description                                   |
+|-------------------------------|-----------------------------------------------------|
+| Battery Bank Capacity          | 42 kWh total storage capacity (IQ10 batteries)      |
+| Solar System Size              | 15 - 16 kW solar array                               |
+| Battery Usable Energy          | 40.32 kWh (from 12 IQ3 battery units)                |
+| Microinverter Units per Battery| 4 microinverters per IQ3 battery module              |
+| Power Output per Microinverter | Example: 1.28 kW total for some units                |
+| Solar Panel Model              | LG Neon R, 440 W                                    |
+| Solar Microinverter Model      | IQ7A (pre-IQ8 transition)                            |
+
+### Summary Timeline Table
+
+| Timestamp   | Topic Covered                                     |
+|-------------|--------------------------------------------------|
+| 00:00:00    | Introduction to hidden Enphase app features       |
+| 00:01:01    | Home screen overview and site example              |
+| 00:02:16    | Explanation of grid dependence vs independence     |
+| 00:03:49    | Installation notes on consumption CT sensors       |
+| 00:04:19    | Solar panel and array details                       |
+| 00:05:24    | Menu navigation and critique of refer-a-friend     |
+| 00:06:25    | Devices menu and detailed hardware monitoring      |
+| 00:07:25    | Battery modularity and power output details         |
+| 00:08:58    | Wi-Fi network settings within the app               |
+| 00:09:27    | Live vitals feature and system diagnostics          |
+| 00:09:58    | Wireless signal strength observations               |
+| 00:11:00    | Practical uses and automated monitoring overview    |
+| 00:12:00    | Importance of verifying installed equipment         |
+| 00:12:32    | Closing remarks and call to action                   |
+
+This detailed summary provides a comprehensive understanding of the Enphase app's hidden features, their practical applications, and key technical details as presented in the video transcript.
+
+-----------------------------------------
+
+
+
+
+
+
+
+
