@@ -68,7 +68,7 @@ def _run_pipeline_bg(source: str):
             proc = subprocess.run(
                 [sys.executable, "pipeline/run_pipeline.py", "--source", source],
                 capture_output=True, text=True,
-                cwd=str(PROJECT_ROOT), timeout=1800,
+                cwd=str(PROJECT_ROOT), timeout=3600,
             )
             chunks_after = get_source_chunk_count(source)
             status = "done" if proc.returncode == 0 else "error"
@@ -77,7 +77,7 @@ def _run_pipeline_bg(source: str):
             if status == "done":
                 mark_schedule_ran(source)
         except subprocess.TimeoutExpired:
-            log_run_finish(run_id, "error", get_source_chunk_count(source), "Timed out after 30 minutes.")
+            log_run_finish(run_id, "error", get_source_chunk_count(source), "Timed out after 60 minutes.")
         except Exception as e:
             log_run_finish(run_id, "error", get_source_chunk_count(source), str(e))
 
