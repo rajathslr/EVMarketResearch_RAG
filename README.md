@@ -209,21 +209,6 @@ python pipeline/run_pipeline.py --source youtube
 
 > **Note:** YouTube scraping is IP-rate-limited. Transcripts should be added manually via `pipeline/scrapers/parse_transcripts.py`.
 
----
-
-## Production deployment
-
-| Item | Value |
-|---|---|
-| Host | DigitalOcean Droplet (s-1vcpu-2gb, Ubuntu 22.04, blr1) |
-| IP | 168.144.26.72 |
-| Port | 80 → nginx → 8501 (Streamlit) |
-| Service | `systemctl restart ev-research` |
-| Logs | `journalctl -u ev-research -n 50` |
-| SSH | `ssh -i "~/.ssh/ev_research_do" root@168.144.26.72` |
-
----
-
 ## File structure
 
 ```
