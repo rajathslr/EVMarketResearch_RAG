@@ -1,5 +1,6 @@
 # ── Credentials & secrets — NEVER commit ─────────────────────────────────
 config/.env
+config/users.yaml
 *.env
 infrastructure/terraform/terraform.tfvars
 *.pem
@@ -40,6 +41,10 @@ tmp_*.py
 *.tmp
 *.bak
 *.log
+err_full.txt
+out_full.txt
+streamlit_err*.txt
+streamlit_out*.txt
 
 # ── OS & IDE ──────────────────────────────────────────────────────────────
 .DS_Store
@@ -50,3 +55,4 @@ desktop.ini
 
 # ── Node ──────────────────────────────────────────────────────────────────
 node_modules/
+.next/

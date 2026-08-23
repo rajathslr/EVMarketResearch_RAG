@@ -1,0 +1,76 @@
+<!-- @dsCard group="Components" name="Buttons, badges & controls" subtitle="Button variants, badges, pills, toggle, slider, avatars" viewport="720x560" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; padding: 28px; background: #fff; }
+  h3 { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted); margin: 0 0 12px; }
+  .block { margin-bottom: 24px; }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .panel { max-width: 280px; }
+</style>
+</head>
+<body class="volt">
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+  const { Button, Badge, Pill, Toggle, Slider, Avatar } = window.VoltEVEnergyResearchDesignSystem_1e451b;
+  function Demo() {
+    const [on, setOn] = React.useState(true);
+    const [k, setK] = React.useState(12);
+    return (
+      <>
+        <div className="block">
+          <h3>Buttons</h3>
+          <div className="row">
+            <Button>Sign In</Button>
+            <Button variant="ghost">Cancel</Button>
+            <Button variant="subtle">Secondary</Button>
+            <Button variant="danger">Delete</Button>
+            <Button variant="ghost-danger">Remove</Button>
+            <Button icon="＋">New Chat</Button>
+            <Button size="sm" variant="ghost">Small</Button>
+          </div>
+        </div>
+        <div className="block">
+          <h3>Role badges &amp; pills</h3>
+          <div className="row">
+            <Badge role="superadmin" />
+            <Badge role="superuser" />
+            <Badge role="user" />
+            <Badge tone="success">Success</Badge>
+            <Badge tone="danger">Error</Badge>
+            <Pill icon="⚡">AI Research</Pill>
+          </div>
+        </div>
+        <div className="block">
+          <h3>Toggle &amp; slider</h3>
+          <div className="row" style={{ gap: 32 }}>
+            <Toggle checked={on} onChange={setOn} label="Comparison mode" />
+            <div className="panel" style={{ flex: 1, minWidth: 220 }}>
+              <Slider label="Chunks to retrieve" value={k} min={4} max={25} onChange={setK} format={(v) => v + " chunks"} />
+            </div>
+          </div>
+        </div>
+        <div className="block">
+          <h3>Avatars</h3>
+          <div className="row">
+            <Avatar name="Jordan Lee" />
+            <Avatar kind="assistant" initials="⚡" />
+            <Avatar kind="muted" name="Sam Park" size="lg" />
+            <Avatar size="sm" name="An" />
+          </div>
+        </div>
+      </>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

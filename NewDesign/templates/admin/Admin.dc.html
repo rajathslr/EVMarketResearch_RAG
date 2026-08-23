@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Admin Portal" description="Role-gated admin: overview metrics, data sources, automation pipelines, run logs and user management across 5 tabs." -->
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<script src="./ds-base.js"></script>
+<style>
+  html, body { margin: 0; height: 100%; }
+  *::-webkit-scrollbar { width: 9px; height: 9px; }
+  *::-webkit-scrollbar-thumb { background: rgba(100,116,139,.35); border-radius: 9px; }
+</style>
+</helmet>
+
+<div data-accent="{{ accent }}" data-font="{{ font }}" data-density="{{ density }}" data-screen-label="Admin Portal"
+     style="min-height:100vh; background:var(--surface); font-family:var(--font-sans); color:var(--text);">
+
+  <!-- Access denied -->
+  <sc-if value="{{ denied }}" hint-placeholder-val="{{ false }}">
+    <div style="min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;">
+      <div style="text-align:center; max-width:340px; background:var(--bg); border:1px solid var(--border); border-radius:16px; padding:36px 30px; box-shadow:var(--shadow-md);">
+        <div style="font-size:34px; margin-bottom:10px;">🔒</div>
+        <h2 style="margin:0 0 6px; font-size:18px;">Access denied</h2>
+        <p style="margin:0; font-size:13px; color:var(--text-secondary);">The admin portal requires a superuser or superadmin role. Switch the role in Tweaks to preview it.</p>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isAdmin }}" hint-placeholder-val="{{ true }}">
+  <div style="max-width:1080px; margin:0 auto; padding:24px;">
+
+    <!-- Header -->
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
+      <div style="width:34px; height:34px; flex:none; border-radius:9px; background:var(--accent); display:flex; align-items:center; justify-content:center; font-size:18px;">⚡</div>
+      <div style="flex:1;">
+        <h1 style="margin:0; font-size:20px; font-weight:700;">Admin Portal</h1>
+        <div style="font-size:12px; color:var(--text-muted);">Home Energy &amp; EV Research · knowledge base &amp; pipeline control</div>
+      </div>
+      <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Badge" role="{{ role }}" hint-size="80px,18px"></x-import>
+    </div>
+
+    <!-- Tabs -->
+    <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Tabs" items="{{ tabItems }}" value="{{ activeTab }}" onChange="{{ setTab }}" hint-size="100%,42px"></x-import>
+
+    <div style="padding-top:20px;">
+
+      <!-- ===== OVERVIEW ===== -->
+      <sc-if value="{{ tabOverview }}" hint-placeholder-val="{{ true }}">
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:18px;">
+          <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.StatCard" label="Total chunks" value="17,204" delta="3% this week" hint-size="100%,92px"></x-import>
+          <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.StatCard" label="Sessions" value="1,338" delta="12% this week" hint-size="100%,92px"></x-import>
+          <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.StatCard" label="Queries" value="9,021" delta="5% this week" hint-size="100%,92px"></x-import>
+          <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.StatCard" label="Active users" value="46" hint-size="100%,92px"></x-import>
+        </div>
+
+        <div style="background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:18px; margin-bottom:18px;">
+          <div style="font-size:13px; font-weight:600; margin-bottom:14px;">Queries per day</div>
+          <div style="display:flex; align-items:flex-end; gap:10px; height:120px;">
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
+              <div style="width:100%; max-width:34px; background:var(--accent); border-radius:5px 5px 0 0; height:70%;"></div>
+              <span style="font-size:11px; color:var(--text-muted);">Mon</span>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
+              <div style="width:100%; max-width:34px; background:var(--accent); border-radius:5px 5px 0 0; height:55%;"></div>
+              <span style="font-size:11px; color:var(--text-muted);">Tue</span>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
+              <div style="width:100%; max-width:34px; background:var(--accent); border-radius:5px 5px 0 0; height:88%;"></div>
+              <span style="font-size:11px; color:var(--text-muted);">Wed</span>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
+              <div style="width:100%; max-width:34px; background:var(--accent); border-radius:5px 5px 0 0; height:62%;"></div>
+              <span style="font-size:11px; color:var(--text-muted);">Thu</span>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
+              <div style="width:100%; max-width:34px; background:var(--accent); border-radius:5px 5px 0 0; height:95%;"></div>
+              <span style="font-size:11px; color:var(--text-muted);">Fri</span>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
+              <div style="width:100%; max-width:34px; background:var(--accent); border-radius:5px 5px 0 0; height:40%;"></div>
+              <span style="font-size:11px; color:var(--text-muted);">Sat</span>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; height:100%; justify-content:flex-end;">
+              <div style="width:100%; max-width:34px; background:var(--accent); border-radius:5px 5px 0 0; height:30%;"></div>
+              <span style="font-size:11px; color:var(--text-muted);">Sun</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="font-size:13px; font-weight:600; margin-bottom:10px;">Recent queries</div>
+        <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.DataTable" columns="{{ queryCols }}" rows="{{ queryRows }}" hint-size="100%,240px"></x-import>
+      </sc-if>
+
+      <!-- ===== DATA SOURCES ===== -->
+      <sc-if value="{{ tabSources }}" hint-placeholder-val="{{ false }}">
+        <div style="font-size:13px; font-weight:600; margin-bottom:10px;">Knowledge base by category &amp; source</div>
+        <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.DataTable" columns="{{ sourceCols }}" rows="{{ sourceRows }}" hint-size="100%,320px"></x-import>
+      </sc-if>
+
+      <!-- ===== AUTOMATION ===== -->
+      <sc-if value="{{ tabAuto }}" hint-placeholder-val="{{ false }}">
+        <div style="font-size:13px; font-weight:600; margin-bottom:10px;">Data pipelines</div>
+        <div style="background:var(--bg); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:20px;">
+          <sc-for list="{{ pipelines }}" as="p" hint-placeholder-count="5">
+            <div style="display:flex; align-items:center; gap:14px; padding:14px 16px; border-bottom:1px solid var(--border);">
+              <div style="flex:1; min-width:0;">
+                <div style="font-size:14px; font-weight:600;">{{ p.name }}</div>
+                <div style="font-size:12px; color:var(--text-muted);">{{ p.statusLabel }}</div>
+              </div>
+              <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Badge" tone="{{ p.tone }}" hint-size="60px,18px">{{ p.badge }}</x-import>
+              <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Button" variant="ghost" size="sm" disabled="{{ p.running }}" onClick="{{ p.onRun }}" hint-size="80px,30px">{{ p.runLabel }}</x-import>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px;">
+          <div style="background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:18px;">
+            <div style="font-size:13px; font-weight:600; margin-bottom:14px;">Weekly schedule</div>
+            <div style="display:flex; flex-direction:column; gap:12px;">
+              <sc-for list="{{ schedule }}" as="sc" hint-placeholder-count="5">
+                <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Toggle" checked="{{ sc.on }}" onChange="{{ sc.onToggle }}" label="{{ sc.name }}" hint-size="100%,22px"></x-import>
+              </sc-for>
+            </div>
+          </div>
+          <div style="background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:18px;">
+            <div style="font-size:13px; font-weight:600; margin-bottom:6px;">Ingest YouTube transcript</div>
+            <p style="margin:0 0 14px; font-size:12px; color:var(--text-secondary);">Upload a .txt transcript to add a new video to the knowledge base.</p>
+            <div style="border:1.5px dashed var(--border-strong); border-radius:10px; padding:26px; text-align:center; color:var(--text-muted); font-size:13px;">
+              <div style="font-size:22px; margin-bottom:6px;">📄</div>
+              Drop a .txt file or click to browse
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ===== RUN LOGS ===== -->
+      <sc-if value="{{ tabLogs }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+          <div style="font-size:13px; font-weight:600; flex:1;">Pipeline run logs</div>
+          <div style="width:180px;">
+            <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Select" value="{{ logFilter }}" options="{{ logFilterOptions }}" onChange="{{ setLogFilter }}" hint-size="100%,38px"></x-import>
+          </div>
+          <sc-if value="{{ isSuperadmin }}" hint-placeholder-val="{{ false }}">
+            <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Button" variant="ghost-danger" size="sm" hint-size="90px,30px">Clear logs</x-import>
+          </sc-if>
+        </div>
+        <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.DataTable" columns="{{ logCols }}" rows="{{ logRows }}" hint-size="100%,300px"></x-import>
+      </sc-if>
+
+      <!-- ===== USERS ===== -->
+      <sc-if value="{{ tabUsers }}" hint-placeholder-val="{{ false }}">
+        <div style="font-size:13px; font-weight:600; margin-bottom:10px;">Users</div>
+        <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.DataTable" columns="{{ userCols }}" rows="{{ userRows }}" hint-size="100%,260px"></x-import>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:20px;">
+          <div style="background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:18px;">
+            <div style="font-size:13px; font-weight:600; margin-bottom:14px;">Add user</div>
+            <div style="display:flex; flex-direction:column; gap:14px;">
+              <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.TextField" label="Email" value="{{ nuEmail }}" onChange="{{ onNuEmail }}" placeholder="name@company.com" hint-size="100%,62px"></x-import>
+              <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.TextField" label="Display name" value="{{ nuName }}" onChange="{{ onNuName }}" placeholder="Full name" hint-size="100%,62px"></x-import>
+              <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Select" label="Role" value="{{ nuRole }}" options="{{ roleOptions }}" onChange="{{ onNuRole }}" hint-size="100%,56px"></x-import>
+              <x-import component-from-global-scope="VoltEVEnergyResearchDesignSystem_1e451b.Button" variant="primary" onClick="{{ addUser }}" hint-size="120px,38px">Create user</x-import>
+            </div>
+          </div>
+          <div style="background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:18px;">
+            <div style="font-size:13px; font-weight:600; margin-bottom:14px;">Shareable credentials</div>
+            <sc-if value="{{ hasCreds }}" hint-placeholder-val="{{ false }}">
+              <pre style="margin:0; background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:14px; font-family:var(--font-mono); font-size:12px; color:var(--text); white-space:pre-wrap; line-height:1.7;">{{ credsText }}</pre>
+            </sc-if>
+            <sc-if value="{{ noCreds }}" hint-placeholder-val="{{ true }}">
+              <p style="margin:0; font-size:13px; color:var(--text-muted);">Create a user to generate a copyable credentials block with the login URL and an auto-generated password.</p>
+            </sc-if>
+          </div>
+        </div>
+      </sc-if>
+
+    </div>
+  </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: &quot;100%&quot;, &quot;height&quot;: 760 },
+  &quot;role&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;superadmin&quot;, &quot;superuser&quot;, &quot;user&quot;], &quot;default&quot;: &quot;superadmin&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;accent&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;indigo&quot;, &quot;violet&quot;, &quot;teal&quot;, &quot;blue&quot;, &quot;emerald&quot;, &quot;amber&quot;], &quot;default&quot;: &quot;indigo&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;font&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;system&quot;, &quot;plex&quot;, &quot;source&quot;], &quot;default&quot;: &quot;system&quot;, &quot;tsType&quot;: &quot;string&quot; },
+  &quot;density&quot;: { &quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;comfortable&quot;, &quot;compact&quot;], &quot;default&quot;: &quot;comfortable&quot;, &quot;tsType&quot;: &quot;string&quot; }
+}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeTab: "overview",
+      pipelines: [
+        { id: "gp", name: "Google Play reviews", status: "idle", last: "2h ago" },
+        { id: "as", name: "App Store reviews", status: "idle", last: "2h ago" },
+        { id: "news", name: "News articles", status: "idle", last: "5h ago" },
+        { id: "web", name: "Web pages", status: "idle", last: "1d ago" },
+        { id: "yt", name: "YouTube transcripts", status: "idle", last: "3d ago" },
+      ],
+      schedule: { gp: true, as: true, news: true, web: false, yt: false },
+      logFilter: "all",
+      nuEmail: "", nuName: "", nuRole: "user",
+      creds: null,
+    };
+  }
+
+  badge(text, cls) {
+    return window.React.createElement("span", { className: "badge " + cls }, text);
+  }
+
+  runPipeline(id) {
+    this.setState((s) => ({ pipelines: s.pipelines.map((p) => p.id === id ? { ...p, status: "running" } : p) }));
+    setTimeout(() => {
+      this.setState((s) => ({ pipelines: s.pipelines.map((p) => p.id === id ? { ...p, status: "success", last: "just now" } : p) }));
+    }, 1400);
+  }
+
+  addUser() {
+    const email = (this.state.nuEmail || "").trim();
+    if (!email) return;
+    const pw = "Volt-" + Math.random().toString(36).slice(2, 8);
+    this.setState({
+      creds: { email, name: this.state.nuName || email.split("@")[0], role: this.state.nuRole, pw },
+      nuEmail: "", nuName: "", nuRole: "user",
+    });
+  }
+
+  renderVals() {
+    const role = this.props.role || "superadmin";
+    const isAdmin = role === "superadmin" || role === "superuser";
+    const R = window.React;
+
+    const tab = this.state.activeTab;
+
+    const queryCols = [
+      { key: "time", label: "Time" },
+      { key: "user", label: "User" },
+      { key: "q", label: "Question" },
+      { key: "chunks", label: "Chunks", align: "right" },
+      { key: "ms", label: "Time", align: "right" },
+      { key: "tok", label: "Tokens", align: "right" },
+    ];
+    const queryRows = [
+      { id: 1, time: "14:02", user: "jordan@grid.io", q: "Reliable real-time availability?", chunks: 12, ms: "1.8s", tok: "5,537" },
+      { id: 2, time: "13:48", user: "sam@grid.io", q: "Compare prosumer battery apps", chunks: 8, ms: "1.4s", tok: "4,120" },
+      { id: 3, time: "13:31", user: "ana@grid.io", q: "Top complaints in news coverage", chunks: 15, ms: "2.3s", tok: "6,902" },
+      { id: 4, time: "12:57", user: "jordan@grid.io", q: "Pricing perception across apps", chunks: 10, ms: "1.6s", tok: "4,880" },
+      { id: 5, time: "12:20", user: "lee@grid.io", q: "Which apps mention V2G the most?", chunks: 20, ms: "2.9s", tok: "7,410" },
+    ];
+
+    const sourceCols = [
+      { key: "cat", label: "Category" },
+      { key: "src", label: "Source" },
+      { key: "chunks", label: "Chunks", align: "right" },
+      { key: "scraped", label: "Last scraped" },
+    ];
+    const sourceRows = [
+      { id: 1, cat: "EV Charging", src: "Google Play", chunks: "5,973", scraped: "2h ago" },
+      { id: 2, cat: "EV Charging", src: "App Store", chunks: "3,687", scraped: "2h ago" },
+      { id: 3, cat: "EV Charging", src: "News", chunks: "1,402", scraped: "5h ago" },
+      { id: 4, cat: "Prosumer", src: "Google Play", chunks: "3,221", scraped: "2h ago" },
+      { id: 5, cat: "Prosumer", src: "App Store", chunks: "2,164", scraped: "2h ago" },
+      { id: 6, cat: "Prosumer", src: "YouTube", chunks: "757", scraped: "3d ago" },
+    ];
+
+    const logCols = [
+      { key: "time", label: "Time" },
+      { key: "pipe", label: "Pipeline" },
+      { key: "status", label: "Status", render: (r) => r.ok ? this.badge("Success", "badge--success") : this.badge("Error", "badge--danger") },
+      { key: "rows", label: "Rows", align: "right" },
+      { key: "dur", label: "Duration", align: "right" },
+    ];
+    const allLogs = [
+      { id: 1, time: "14:00", pipe: "Google Play", ok: true, rows: "312", dur: "48s" },
+      { id: 2, time: "13:30", pipe: "App Store", ok: true, rows: "188", dur: "31s" },
+      { id: 3, time: "09:10", pipe: "News", ok: false, rows: "0", dur: "4s" },
+      { id: 4, time: "08:00", pipe: "Web pages", ok: true, rows: "57", dur: "1m 12s" },
+      { id: 5, time: "Mon", pipe: "YouTube", ok: true, rows: "9", dur: "22s" },
+    ];
+    const logRows = this.state.logFilter === "errors" ? allLogs.filter((l) => !l.ok)
+      : this.state.logFilter === "success" ? allLogs.filter((l) => l.ok) : allLogs;
+
+    const roleBadge = (rr) => {
+      const map = { superadmin: "badge--indigo", superuser: "badge--green", user: "badge--grey" };
+      return this.badge(rr.charAt(0).toUpperCase() + rr.slice(1), map[rr] || "badge--grey");
+    };
+    const actionBtns = () => R.createElement("div", { style: { display: "flex", gap: 8 } },
+      R.createElement("button", { className: "btn btn--ghost btn--sm" }, "Reset"),
+      R.createElement("button", { className: "btn btn--ghost-danger btn--sm" }, "Delete"));
+    const userCols = [
+      { key: "email", label: "Email" },
+      { key: "name", label: "Name" },
+      { key: "role", label: "Role", render: (r) => roleBadge(r.role) },
+      { key: "created", label: "Created" },
+      { key: "last", label: "Last login" },
+      { key: "act", label: "Actions", render: () => actionBtns() },
+    ];
+    const userRows = [
+      { id: 1, email: "jordan@grid.io", name: "Jordan Lee", role: "superuser", created: "Jan 2025", last: "2m ago" },
+      { id: 2, email: "ana@grid.io", name: "Ana Ruiz", role: "superadmin", created: "Nov 2024", last: "1h ago" },
+      { id: 3, email: "sam@grid.io", name: "Sam Park", role: "user", created: "Mar 2025", last: "Yesterday" },
+      { id: 4, email: "lee@grid.io", name: "Lee Wong", role: "user", created: "Apr 2025", last: "3d ago" },
+    ];
+
+    const statusMap = {
+      idle: { tone: "neutral", badge: "Idle" },
+      running: { tone: "warning", badge: "Running" },
+      success: { tone: "success", badge: "Done" },
+    };
+    const pipelines = this.state.pipelines.map((p) => {
+      const sm = statusMap[p.status];
+      return {
+        ...p,
+        running: p.status === "running",
+        tone: sm.tone, badge: sm.badge,
+        runLabel: p.status === "running" ? "Running…" : "Run now",
+        statusLabel: p.status === "running" ? "Running now…" : "Last run " + p.last,
+        onRun: () => this.runPipeline(p.id),
+      };
+    });
+
+    const schedule = this.state.pipelines.map((p) => ({
+      id: p.id, name: p.name,
+      on: this.state.schedule[p.id],
+      onToggle: (v) => this.setState((s) => ({ schedule: { ...s.schedule, [p.id]: v } })),
+    }));
+
+    const chartData = [["Mon", 70], ["Tue", 55], ["Wed", 88], ["Thu", 62], ["Fri", 95], ["Sat", 40], ["Sun", 30]];
+    const chartBars = chartData.map(([label, h]) => ({ label, h: h + "%" }));
+
+    const creds = this.state.creds;
+    const credsText = creds
+      ? "Login URL: https://research.grid.io\nEmail: " + creds.email + "\nName: " + creds.name + "\nRole: " + creds.role + "\nPassword: " + creds.pw + "\n\nPlease change your password after first sign-in."
+      : "";
+
+    return {
+      accent: this.props.accent || "indigo",
+      font: this.props.font || "system",
+      density: this.props.density || "comfortable",
+      role, isAdmin, denied: !isAdmin, isSuperadmin: role === "superadmin",
+      tabItems: [
+        { value: "overview", label: "Overview" },
+        { value: "sources", label: "Data Sources" },
+        { value: "auto", label: "Automation" },
+        { value: "logs", label: "Run Logs" },
+        { value: "users", label: "Users" },
+      ],
+      activeTab: tab,
+      setTab: (v) => this.setState({ activeTab: v }),
+      tabOverview: tab === "overview", tabSources: tab === "sources",
+      tabAuto: tab === "auto", tabLogs: tab === "logs", tabUsers: tab === "users",
+      queryCols, queryRows, sourceCols, sourceRows, logCols, logRows, userCols, userRows,
+      pipelines, schedule, chartBars,
+      logFilter: this.state.logFilter,
+      logFilterOptions: [{ value: "all", label: "All runs" }, { value: "success", label: "Success only" }, { value: "errors", label: "Errors only" }],
+      setLogFilter: (v) => this.setState({ logFilter: v }),
+      nuEmail: this.state.nuEmail, nuName: this.state.nuName, nuRole: this.state.nuRole,
+      onNuEmail: (e) => this.setState({ nuEmail: e.target.value }),
+      onNuName: (e) => this.setState({ nuName: e.target.value }),
+      onNuRole: (v) => this.setState({ nuRole: v }),
+      roleOptions: [{ value: "user", label: "User" }, { value: "superuser", label: "Superuser" }, { value: "superadmin", label: "Superadmin" }],
+      addUser: () => this.addUser(),
+      hasCreds: !!creds, noCreds: !creds, credsText,
+    };
+  }
+}
+</script>
+</body>
+</html>

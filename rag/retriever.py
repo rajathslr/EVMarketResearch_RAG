@@ -20,7 +20,8 @@ import psycopg2.extras
 
 _anthropic = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 MODEL  = os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-4-6")
-TOP_K  = int(os.environ.get("TOP_K", 12))
+TOP_K             = int(os.environ.get("TOP_K", 8))
+SCORE_THRESHOLD   = float(os.environ.get("SCORE_THRESHOLD", 0.45))
 
 SYSTEM_PROMPT = """\
 You are a competitive intelligence analyst for a smart energy app research team.
@@ -68,7 +69,8 @@ _YT_KEYWORDS = {"youtube", "transcript", "video", "tutorial", "demo", "watch"}
 
 def retrieve(question: str, app_filter: Optional[str] = None, top_k: int = TOP_K,
              category_filter: Optional[str] = None, min_youtube: int = 2,
-             min_news: int = 2, min_web: int = 2) -> list[dict]:
+             min_news: int = 2, min_web: int = 2,
+             score_threshold: float = SCORE_THRESHOLD) -> list[dict]:
     """Embed question, run cosine similarity search, return top_k chunk dicts.
 
     Source diversity guarantees:
@@ -123,6 +125,10 @@ def retrieve(question: str, app_filter: Optional[str] = None, top_k: int = TOP_K
                 """, (vec_str, vec_str, top_k))
 
             results = [dict(r) for r in cur.fetchall()]
+
+            # Drop chunks below score threshold (diversity guarantee chunks bypass this)
+            if score_threshold > 0:
+                results = [r for r in results if float(r["score"]) >= score_threshold]
 
             # --- Guarantee YouTube representation (no app filter only) ---
             if not app_filter and min_youtube > 0:

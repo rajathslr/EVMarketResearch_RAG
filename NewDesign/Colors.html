@@ -1,0 +1,53 @@
+<!-- @dsCard group="Colors" name="Palette" subtitle="Neutrals, accent, and role/semantic colors" viewport="720x560" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  body { margin: 0; padding: 28px; background: #fff; }
+  h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted); margin: 0 0 12px; }
+  .group { margin-bottom: 26px; }
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .sw { border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; }
+  .sw__chip { height: 56px; }
+  .sw__meta { padding: 8px 10px; }
+  .sw__name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .sw__val { font-size: 12px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body class="volt">
+  <div class="group">
+    <h3>Neutrals</h3>
+    <div class="swatches" id="neutrals"></div>
+  </div>
+  <div class="group">
+    <h3>Accent (themeable)</h3>
+    <div class="swatches" id="accent"></div>
+  </div>
+  <div class="group">
+    <h3>Sidebar (dark navy)</h3>
+    <div class="swatches" id="sidebar"></div>
+  </div>
+  <div class="group">
+    <h3>Role &amp; semantic</h3>
+    <div class="swatches" id="role"></div>
+  </div>
+<script>
+  const sets = {
+    neutrals: [["Background","--bg"],["Surface","--surface"],["Surface 2","--surface-2"],["Border","--border"],["Border strong","--border-strong"],["Text","--text"],["Text secondary","--text-secondary"],["Text muted","--text-muted"]],
+    accent:   [["Accent","--accent"],["Accent hover","--accent-hover"],["Accent soft","--accent-soft"]],
+    sidebar:  [["Sidebar bg","--sidebar-bg"],["Sidebar surface","--sidebar-surface"],["Sidebar border","--sidebar-border"],["Sidebar text","--sidebar-text"]],
+    role:     [["Superadmin","--role-superadmin"],["Superuser","--role-superuser"],["User","--role-user"],["Success","--success"],["Danger","--danger"],["Warning","--warning"]],
+  };
+  const cs = getComputedStyle(document.documentElement);
+  for (const [id, list] of Object.entries(sets)) {
+    document.getElementById(id).innerHTML = list.map(([name, v]) => {
+      const val = cs.getPropertyValue(v).trim();
+      return `<div class="sw"><div class="sw__chip" style="background:${val}"></div><div class="sw__meta"><div class="sw__name">${name}</div><div class="sw__val">${val}</div></div></div>`;
+    }).join("");
+  }
+</script>
+</body>
+</html>

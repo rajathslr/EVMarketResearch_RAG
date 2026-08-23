@@ -116,6 +116,39 @@ def save_messages(session_id: str, messages: list[dict], title: str | None = Non
         conn.close()
 
 
+def append_messages(session_id: str, new_messages: list[dict], title: str | None = None):
+    """Atomically append to the existing messages array instead of replacing
+    it wholesale. Full-replace is unsafe if the same account has the chat
+    open in two tabs/devices: each holds its own possibly-stale local copy
+    of the full list, and whichever save lands last silently wins, discarding
+    whatever the other tab added. JSONB concatenation at the database level
+    means each tab can only ever ADD its own exchange, never erase another
+    tab's — order may interleave under concurrent use, but nothing is lost.
+    Title is only set the first time (left alone once it's no longer the
+    'New Chat' default) so a later append in another tab can't revert it.
+    """
+    conn = _get_conn()
+    try:
+        with conn:
+            with conn.cursor() as cur:
+                if title:
+                    cur.execute("""
+                        UPDATE chat_sessions
+                        SET messages = messages || %s::jsonb,
+                            title = COALESCE(NULLIF(title, 'New Chat'), %s),
+                            updated_at = now()
+                        WHERE session_id = %s
+                    """, (json.dumps(new_messages), title, session_id))
+                else:
+                    cur.execute("""
+                        UPDATE chat_sessions
+                        SET messages = messages || %s::jsonb, updated_at = now()
+                        WHERE session_id = %s
+                    """, (json.dumps(new_messages), session_id))
+    finally:
+        conn.close()
+
+
 def delete_session(session_id: str):
     """Permanently delete a session and its messages."""
     conn = _get_conn()

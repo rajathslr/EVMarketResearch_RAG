@@ -285,3 +285,19 @@ def get_overdue_sources() -> list[str]:
             return [row[0] for row in cur.fetchall()]
     finally:
         conn.close()
+
+
+# ── Retention ─────────────────────────────────────────────────────────────────
+
+def cleanup_old_runs(days: int = 7) -> int:
+    """Delete pipeline_runs rows older than `days`. Returns rows deleted."""
+    conn = _get_conn()
+    try:
+        with conn:
+            with conn.cursor() as cur:
+                cur.execute("""
+                    DELETE FROM pipeline_runs WHERE started_at < now() - (%(d)s || ' days')::INTERVAL
+                """, {"d": str(days)})
+                return cur.rowcount
+    finally:
+        conn.close()

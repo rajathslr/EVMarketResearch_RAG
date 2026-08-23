@@ -1,0 +1,54 @@
+<!-- @dsCard group="Components" name="Admin & data" subtitle="Stat cards, tabs, data tables, expander" viewport="760x560" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; padding: 28px; background: #fff; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 22px; }
+  .wrap { max-width: 700px; }
+</style>
+</head>
+<body class="volt">
+<div id="root"></div>
+<script type="text/babel" data-presets="react">
+  const { StatCard, Tabs, DataTable, Badge } = window.VoltEVEnergyResearchDesignSystem_1e451b;
+  function Demo() {
+    const [tab, setTab] = React.useState("overview");
+    const cols = [
+      { key: "time", label: "Time" },
+      { key: "user", label: "User" },
+      { key: "q", label: "Question" },
+      { key: "chunks", label: "Chunks", align: "right" },
+      { key: "tok", label: "Tokens", align: "right" },
+    ];
+    const rows = [
+      { id: 1, time: "14:02", user: "jordan@grid.io", q: "Reliability of availability data…", chunks: 12, tok: "5,537" },
+      { id: 2, time: "13:48", user: "sam@grid.io", q: "Compare prosumer battery apps…", chunks: 8, tok: "4,120" },
+      { id: 3, time: "13:31", user: "ana@grid.io", q: "Top complaints in news coverage…", chunks: 15, tok: "6,902" },
+    ];
+    return (
+      <div className="wrap">
+        <div className="stats">
+          <StatCard label="Total chunks" value="17,204" delta="3% this week" />
+          <StatCard label="Sessions" value="1,338" delta="12% this week" />
+          <StatCard label="Queries" value="9,021" delta="2% slower" deltaDir="down" />
+          <StatCard label="Active users" value="46" />
+        </div>
+        <Tabs items={[{value:"overview",label:"Overview"},{value:"sources",label:"Data Sources"},{value:"auto",label:"Automation"},{value:"logs",label:"Run Logs"},{value:"users",label:"Users"}]} value={tab} onChange={setTab} />
+        <div style={{ marginTop: 16 }}>
+          <DataTable columns={cols} rows={rows} />
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

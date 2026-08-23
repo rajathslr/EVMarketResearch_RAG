@@ -428,3 +428,28 @@ def get_low_scoring_queries(threshold: float = 0.5, limit: int = 20) -> list[dic
             return [dict(r) for r in cur.fetchall()]
     finally:
         conn.close()
+
+
+# ── Retention ──────────────────────────────────────────────────────────────────
+
+def cleanup_old_logs(days: int = 7) -> dict:
+    """Delete query_logs (and dependent ragas_scores) older than `days`.
+    ragas_scores has a NOT NULL FK to query_logs, so its rows must go first."""
+    conn = _get_conn()
+    try:
+        with conn:
+            with conn.cursor() as cur:
+                cur.execute("""
+                    DELETE FROM ragas_scores
+                    WHERE query_log_id IN (
+                        SELECT id FROM query_logs WHERE created_at < now() - (%(d)s || ' days')::INTERVAL
+                    )
+                """, {"d": str(days)})
+                ragas_deleted = cur.rowcount
+                cur.execute("""
+                    DELETE FROM query_logs WHERE created_at < now() - (%(d)s || ' days')::INTERVAL
+                """, {"d": str(days)})
+                query_logs_deleted = cur.rowcount
+        return {"query_logs_deleted": query_logs_deleted, "ragas_scores_deleted": ragas_deleted}
+    finally:
+        conn.close()
