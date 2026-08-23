@@ -6,6 +6,7 @@ Role access:
   superuser  → read-only  (view all stats, logs, and user list — no actions)
   user       → blocked    (redirected back to chat)
 """
+import os
 import sys
 import subprocess
 import threading
@@ -60,6 +61,7 @@ with st.sidebar:
 PROJECT_ROOT          = Path(__file__).parents[3]
 YOUTUBE_SUMMARIES_DIR = PROJECT_ROOT / "data" / "raw" / "text" / "youtube_summaries"
 CONFIG_PATH           = PROJECT_ROOT / "config" / "users.yaml"
+APP_PUBLIC_URL        = os.environ.get("APP_PUBLIC_URL", "http://localhost:8501")
 
 APPS = [
     # EV Charging
@@ -679,7 +681,7 @@ with tab_users:
                 share_text = (
                     f"Home Energy & EV App Research — Login Credentials\n"
                     f"{'─'*45}\n"
-                    f"URL:      https://168.144.26.72\n"
+                    f"URL:      {APP_PUBLIC_URL}\n"
                     f"Username: {st.session_state.get('nu_uname', '').strip() or '<email>'}\n"
                     f"Password: {nu_pw}\n"
                     f"Role:     {ROLE_LABELS.get(st.session_state.get('nu_role', 'user'), 'User')}\n"
@@ -845,7 +847,7 @@ with tab_users:
                     share_text = (
                         f"Home Energy & EV App Research — Updated Credentials\n"
                         f"{'─'*45}\n"
-                        f"URL:      https://168.144.26.72\n"
+                        f"URL:      {APP_PUBLIC_URL}\n"
                         f"Username: {uname}\n"
                         f"Password: {reset_pw}\n"
                         f"{'─'*45}"

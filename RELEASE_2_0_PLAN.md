@@ -21,7 +21,7 @@ The backend architecture is **unchanged**. This is mostly a configuration + data
 - **Postgres:** `document_chunks` table, 11,322 chunks, pgvector, blr1 DO cluster
 - **Embedding:** BAAI/bge-small-en-v1.5, 384 dims — DO NOT CHANGE
 - **LLM:** claude-sonnet-4-6
-- **UI:** Streamlit at https://168.144.26.72
+- **UI:** Streamlit at <production-url>
 - **Key files:**
   - `rag/retriever.py` — SYSTEM_PROMPT, ALL_APPS, retrieve functions
   - `rag/chat_ui/app.py` — sidebar filters (app, source, comparison mode)
@@ -365,7 +365,7 @@ git merge --no-ff main -m "chore: sync dev with v2.0.0 release"
 git push origin dev
 
 # Deploy to server
-ssh -i "C:\Users\Admin\.ssh\ev_research_do" root@168.144.26.72 \
+ssh -i "<path-to-ssh-key>" root@<production-ip> \
   "cd /opt/ev-research && git pull origin main && systemctl restart ev-research"
 ```
 

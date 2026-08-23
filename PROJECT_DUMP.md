@@ -243,9 +243,9 @@ A Node.js frontend (React/Next.js especially) could import `NewDesign/components
 
 ## 10. Production deployment
 
-- **URL:** `http://168.144.26.72`
+- **URL:** `<production-url>`
 - **Droplet:** DigitalOcean `s-1vcpu-2gb`, Ubuntu 22.04, region `blr1`
-- **SSH:** `ssh -i "C:\Users\Admin\.ssh\ev_research_do" root@168.144.26.72`
+- **SSH:** `ssh -i "<path-to-ssh-key>" root@<production-ip>`
 - **Process:** systemd service `ev-research.service` → `streamlit run rag/chat_ui/app.py --server.port=8501 --server.address=127.0.0.1 --server.headless=true`, behind nginx (port 80 → 8501)
 - **Restart:** `systemctl restart ev-research` · **Logs:** `journalctl -u ev-research -n 50`
 - **Deploy path:** `git pull origin dev` then restart (no CI/CD pipeline — manual)

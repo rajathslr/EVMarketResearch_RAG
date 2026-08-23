@@ -41,10 +41,10 @@ streamlit run rag/chat_ui/app.py
 ```
 Opens at http://localhost:8501
 
-**Cloud (production):** http://168.144.26.72
-- DigitalOcean Droplet: s-1vcpu-2gb, Ubuntu 22.04, blr1, IP 168.144.26.72
+**Cloud (production):** <production-url>
+- DigitalOcean Droplet: s-1vcpu-2gb, Ubuntu 22.04, blr1, IP <production-ip>
 - nginx (port 80 → 8501) + systemd service (`ev-research.service`), both enabled and running
-- SSH: `ssh -i "C:\Users\Admin\.ssh\ev_research_do" root@168.144.26.72`
+- SSH: `ssh -i "<path-to-ssh-key>" root@<production-ip>`
 - Restart app: `systemctl restart ev-research`
 - View logs: `journalctl -u ev-research -n 50`
 

@@ -22,7 +22,7 @@ A **Retrieval-Augmented Generation (RAG)** knowledge base for competitive intell
 | Embedding model | BAAI/bge-small-en-v1.5 | Local CPU, 384 dims, already downloaded |
 | LLM | claude-sonnet-4-6 | Via Anthropic API |
 | Chat UI | Streamlit + streamlit-authenticator | Multi-user with session persistence |
-| Cloud hosting | DigitalOcean Droplet | s-1vcpu-2gb, Ubuntu 22.04, blr1, IP: 168.144.26.72 |
+| Cloud hosting | DigitalOcean Droplet | s-1vcpu-2gb, Ubuntu 22.04, blr1, IP: <production-ip> |
 | Reverse proxy | nginx | Port 80 → 8501, WebSocket support |
 | Process manager | systemd | Auto-restarts on crash/reboot |
 
@@ -33,7 +33,7 @@ A **Retrieval-Augmented Generation (RAG)** knowledge base for competitive intell
 | Environment | URL |
 |---|---|
 | Local dev | http://localhost:8501 |
-| Production (cloud) | http://168.144.26.72 |
+| Production (cloud) | <production-url> |
 
 ---
 
@@ -198,12 +198,12 @@ C:\EVMarketResearch\
 - Size: s-1vcpu-2gb ($12/mo)
 - Region: blr1 (Bangalore)
 - OS: Ubuntu 22.04 LTS
-- IP: 168.144.26.72
-- Droplet ID: 575812108
+- IP: <production-ip>
+- Droplet ID: <redacted>
 
 **SSH key:**
-- Generated: `C:\Users\Admin\.ssh\ev_research_do` (ed25519)
-- Public key ID on DO: 56921441
+- Generated: `<path-to-ssh-key>` (ed25519)
+- Public key ID on DO: <redacted>
 - Added to droplet at creation
 
 **Server setup steps completed:**
@@ -223,7 +223,7 @@ C:\EVMarketResearch\
 **Server management commands:**
 ```bash
 # SSH into server
-ssh -i "C:\Users\Admin\.ssh\ev_research_do" root@168.144.26.72
+ssh -i "<path-to-ssh-key>" root@<production-ip>
 
 # View app logs
 journalctl -u ev-research -n 50 -f
@@ -236,7 +236,7 @@ systemctl status ev-research
 systemctl status nginx
 
 # Upload a changed file
-scp -i "C:\Users\Admin\.ssh\ev_research_do" rag/chat_ui/app.py root@168.144.26.72:/opt/ev-research/rag/chat_ui/app.py
+scp -i "<path-to-ssh-key>" rag/chat_ui/app.py root@<production-ip>:/opt/ev-research/rag/chat_ui/app.py
 ```
 
 ---
@@ -251,7 +251,7 @@ scp -i "C:\Users\Admin\.ssh\ev_research_do" rag/chat_ui/app.py root@168.144.26.7
 | YOUTUBE_API_KEY | config/.env | YouTube Data API v3 |
 | FIRECRAWL_API_KEY | config/.env | Free tier, ~450 credits remaining |
 | DO_TOKEN | config/.env | DigitalOcean API token |
-| SSH private key | C:\Users\Admin\.ssh\ev_research_do | ed25519, DO key ID 56921441 |
+| SSH private key | <path-to-ssh-key> | ed25519, DO key ID <redacted> |
 | App passwords | config/users.yaml | bcrypt hashed |
 
 ---

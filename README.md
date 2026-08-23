@@ -2,8 +2,6 @@
 
 Competitive intelligence platform for **EV charging** and **prosumer/home energy** apps in the North American market. Ask questions in plain English; get answers grounded in 17,000+ chunks of real app reviews, news articles, YouTube transcripts, and web pages.
 
-**Live:** http://168.144.26.72
-
 ---
 
 ## What it does
@@ -213,14 +211,7 @@ python pipeline/run_pipeline.py --source youtube
 
 ## Production deployment
 
-| Item | Value |
-|---|---|
-| Host | DigitalOcean Droplet (s-1vcpu-2gb, Ubuntu 22.04, blr1) |
-| IP | 168.144.26.72 |
-| Port | 80 → nginx → 8501 (Streamlit) |
-| Service | `systemctl restart ev-research` |
-| Logs | `journalctl -u ev-research -n 50` |
-| SSH | `ssh -i "~/.ssh/ev_research_do" root@168.144.26.72` |
+Deployed on a DigitalOcean Droplet behind nginx, running the Streamlit app as a systemd service (`ev-research.service`, port 8501 → nginx :80). Deployment details (host, SSH access) are kept out of this public repo — see internal ops notes.
 
 ---
 
