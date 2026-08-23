@@ -60,7 +60,6 @@ Streamlit chat UI
 
 Visit the app URL. You land on a centred login card — enter your username and password to proceed. Wrong credentials show an inline error.
 
-> **Screenshot placeholder:** `docs/screenshots/01_login.png`
 
 ---
 
@@ -68,7 +67,7 @@ Visit the app URL. You land on a centred login card — enter your username and 
 
 After login, a fresh session shows four example question pills. Clicking one pre-fills the chat input and fires the query immediately.
 
-> **Screenshot placeholder:** `docs/screenshots/02_empty_state.png`
+![Landing page — empty state with example questions](docs/Screenshots/LandingPage.JPG)
 
 ---
 
@@ -85,7 +84,7 @@ The sidebar filter state determines retrieval:
 
 A status widget shows retrieval progress. The answer streams in once chunks are found.
 
-> **Screenshot placeholder:** `docs/screenshots/03_chat_answer.png`
+![Sidebar search settings — app, source, and chunk controls](docs/Screenshots/CustomSelections.JPG)
 
 ---
 
@@ -96,7 +95,7 @@ Below every AI answer, an expandable **"View N source chunks"** panel lists each
 - Source badge (Google Play / App Store / News / Website / YouTube)
 - Similarity score
 
-> **Screenshot placeholder:** `docs/screenshots/04_source_chunks.png`
+![Source citations and feedback row](docs/Screenshots/Feedback.JPG)
 
 ---
 
@@ -113,15 +112,12 @@ Below every assistant message a one-line row shows token usage (input · output 
 
 Clicking an active icon again deselects it. Feedback is persisted to Postgres.
 
-> **Screenshot placeholder:** `docs/screenshots/05_feedback_row.png`
-
 ---
 
 ### 6. Comparison mode
 
 Toggle **"Comparison mode"** in the sidebar Search Settings section. The slider switches to **"Chunks per app"** (2–5). On submit, the retriever pulls the top N chunks from every app in the selected category and sends them all to Claude — ideal for cross-app questions like _"How does Enphase compare to SolarEdge on battery UX?"_
 
-> **Screenshot placeholder:** `docs/screenshots/06_comparison_mode.png`
 
 ---
 
@@ -132,7 +128,6 @@ Toggle **"Comparison mode"** in the sidebar Search Settings section. The slider 
 - Click any session to switch to it; the active one is highlighted
 - The **×** button next to a session deletes it (with its messages)
 
-> **Screenshot placeholder:** `docs/screenshots/07_session_list.png`
 
 ---
 
@@ -166,8 +161,9 @@ Full user management:
 - **Delete user** — removes the account (irreversible)
 - **Shareable credentials block** — copy-paste-ready block for onboarding new users
 
-> **Screenshot placeholder:** `docs/screenshots/08_admin_overview.png`
-> **Screenshot placeholder:** `docs/screenshots/09_admin_users.png`
+![Admin Portal — Data Sources tab showing pipeline status per source](docs/Screenshots/KnowledgeBase.JPG)
+
+![Admin Portal — Automation tab with weekly schedule and Run now controls](docs/Screenshots/PipelineRuns.JPG)
 
 ---
 
@@ -184,7 +180,6 @@ Accessible via **📊 Observability** in the sidebar Tools section.
 - **Recent errors** — any failed queries
 - **RAGAS evaluation** — faithfulness, answer relevance, context precision scores; run a batch eval on demand
 
-> **Screenshot placeholder:** `docs/screenshots/10_observability.png`
 
 ---
 
