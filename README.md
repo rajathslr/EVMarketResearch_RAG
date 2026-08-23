@@ -205,16 +205,6 @@ python pipeline/run_pipeline.py --source web_pages
 python pipeline/run_pipeline.py --source youtube
 ```
 
-> **Note:** YouTube scraping is IP-rate-limited. Transcripts should be added manually via `pipeline/scrapers/parse_transcripts.py`.
-
----
-
-## Production deployment
-
-Deployed on a DigitalOcean Droplet behind nginx, running the Streamlit app as a systemd service (`ev-research.service`, port 8501 → nginx :80). Deployment details (host, SSH access) are kept out of this public repo — see internal ops notes.
-
----
-
 ## File structure
 
 ```
