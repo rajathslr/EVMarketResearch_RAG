@@ -40,6 +40,7 @@ from rag.chat_ui.pipeline_db import (
     get_schedules,
     update_schedule,
     mark_schedule_ran,
+    mark_schedule_failed,
     get_overdue_sources,
     log_run_start,
     log_run_finish,
@@ -138,11 +139,18 @@ def _run_pipeline_bg(source: str):
             log_run_finish(run_id, status, chunks_after, log_output)
             if status == "done":
                 mark_schedule_ran(source)
-        except subprocess.TimeoutExpired:
-            log_run_finish(run_id, "error",
-                           get_source_chunk_count(source), "Timed out after 60 minutes.")
+            else:
+                mark_schedule_failed(source)
+        except subprocess.TimeoutExpired as e:
+            def _txt(x):
+                return x.decode("utf-8", "replace") if isinstance(x, bytes) else (x or "")
+            partial = (_txt(e.stdout) + "\n" + _txt(e.stderr)).strip()
+            log_run_finish(run_id, "error", get_source_chunk_count(source),
+                           "Timed out after 60 minutes.\n--- last output ---\n" + partial[-15000:])
+            mark_schedule_failed(source)
         except Exception as e:
             log_run_finish(run_id, "error", get_source_chunk_count(source), str(e))
+            mark_schedule_failed(source)
 
     threading.Thread(target=_execute, daemon=True).start()
 

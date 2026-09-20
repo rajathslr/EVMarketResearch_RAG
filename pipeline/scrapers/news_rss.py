@@ -28,6 +28,7 @@ import argparse
 import json
 import logging
 import re
+from concurrent.futures import ThreadPoolExecutor
 import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
@@ -148,6 +149,8 @@ APP_FEEDS: list[tuple[str, str, str]] = [
 SLEEP_SECS      = 1.0
 BODY_SLEEP_SECS = 0.5
 BODY_TIMEOUT    = 12
+BODY_WORKERS    = 8
+_BODY_CACHE: dict[str, str] = {}   # link -> body, shared across all passes in a run
 BASE_DIR        = Path(__file__).parents[2] / "data"
 TEXT_DIR        = BASE_DIR / "raw" / "text" / "news"
 
@@ -300,21 +303,34 @@ def fetch_all_feeds() -> dict[str, list[dict]]:
 
 
 def enrich_bodies(articles: list[dict], label: str = "") -> list[dict]:
-    """Fetch body for articles that didn't get it from the RSS content:encoded."""
+    """Fetch body for articles that didn't get it from the RSS content:encoded.
+
+    Bodies are cached per link for the whole run (the per-app tag feeds repeat
+    most of the category-feed articles) and fetched in parallel.
+    """
     if not _TRAFILATURA_AVAILABLE:
         return articles
     need = [a for a in articles if not a.get("body")]
-    if not need:
-        return articles
-    log.info("  %s Fetching bodies for %d articles...", label, len(need))
+    to_fetch = list({a["link"] for a in need if a["link"] not in _BODY_CACHE})
+    if to_fetch:
+        log.info("  %s Fetching bodies for %d articles (%d workers)...",
+                 label, len(to_fetch), BODY_WORKERS)
+
+        def _worker(link: str) -> tuple[str, str]:
+            body = _fetch_url_body(link)
+            time.sleep(BODY_SLEEP_SECS)
+            return link, body
+
+        with ThreadPoolExecutor(max_workers=BODY_WORKERS) as pool:
+            for link, body in pool.map(_worker, to_fetch):
+                _BODY_CACHE[link] = body
     fetched = 0
     for a in need:
-        body = _fetch_url_body(a["link"])
-        a["body"] = body
-        if body:
+        a["body"] = _BODY_CACHE.get(a["link"], "")
+        if a["body"]:
             fetched += 1
-        time.sleep(BODY_SLEEP_SECS)
-    log.info("  %s URL body fetch: %d/%d succeeded", label, fetched, len(need))
+    if need:
+        log.info("  %s body fetch: %d/%d have a body", label, fetched, len(need))
     return articles
 
 

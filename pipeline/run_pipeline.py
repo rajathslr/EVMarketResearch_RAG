@@ -17,7 +17,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from processing.chunker import chunk_text
 from processing.embedder import embed_texts
-from ingestion.upsert import upsert_chunks
+from ingestion.upsert import upsert_chunks, filter_new_chunks
 from ingestion.upsert_raw import upsert_raw_docs
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -314,7 +314,10 @@ def process_docs(docs: list[dict]) -> None:
                 "embedding": None,
             })
 
-    log.info("Total chunks to embed: %d", len(all_chunks))
+    total_found = len(all_chunks)
+    all_chunks = filter_new_chunks(all_chunks)
+    log.info("Chunks found: %d | already stored (skipped): %d | to embed: %d",
+             total_found, total_found - len(all_chunks), len(all_chunks))
 
     total_inserted = 0
     for i in range(0, len(all_chunks), EMBED_BATCH):

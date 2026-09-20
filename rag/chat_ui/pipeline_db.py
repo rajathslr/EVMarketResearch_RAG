@@ -271,6 +271,22 @@ def mark_schedule_ran(source: str):
         conn.close()
 
 
+def mark_schedule_failed(source: str, backoff_hours: int = 6):
+    """After a failed run, push next_run_at out so the scheduler doesn't
+    relaunch the same failing job on its next 30-minute tick."""
+    conn = _get_conn()
+    try:
+        with conn:
+            with conn.cursor() as cur:
+                cur.execute("""
+                    UPDATE pipeline_schedules
+                    SET next_run_at = now() + (%s * INTERVAL '1 hour')
+                    WHERE source = %s
+                """, (backoff_hours, source))
+    finally:
+        conn.close()
+
+
 def get_overdue_sources() -> list[str]:
     """Return enabled sources whose next_run_at has passed."""
     conn = _get_conn()

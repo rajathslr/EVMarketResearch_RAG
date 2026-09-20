@@ -33,6 +33,7 @@ from rag.chat_ui.pipeline_db import (
     log_run_finish,
     log_run_start,
     mark_schedule_ran,
+    mark_schedule_failed,
     update_schedule,
 )
 
@@ -71,15 +72,23 @@ def _run_pipeline_bg(source: str):
                 cwd=str(PROJECT_ROOT), timeout=3600,
             )
             chunks_after = get_source_chunk_count(source)
-            status = "done" if proc.returncode == 0 else "error"
-            log_output = (proc.stdout + "\n" + proc.stderr).strip()
+            status       = "done" if proc.returncode == 0 else "error"
+            log_output   = (proc.stdout + "\n" + proc.stderr).strip()
             log_run_finish(run_id, status, chunks_after, log_output)
             if status == "done":
                 mark_schedule_ran(source)
-        except subprocess.TimeoutExpired:
-            log_run_finish(run_id, "error", get_source_chunk_count(source), "Timed out after 60 minutes.")
+            else:
+                mark_schedule_failed(source)
+        except subprocess.TimeoutExpired as e:
+            def _txt(x):
+                return x.decode("utf-8", "replace") if isinstance(x, bytes) else (x or "")
+            partial = (_txt(e.stdout) + "\n" + _txt(e.stderr)).strip()
+            log_run_finish(run_id, "error", get_source_chunk_count(source),
+                           "Timed out after 60 minutes.\n--- last output ---\n" + partial[-15000:])
+            mark_schedule_failed(source)
         except Exception as e:
             log_run_finish(run_id, "error", get_source_chunk_count(source), str(e))
+            mark_schedule_failed(source)
 
     threading.Thread(target=_execute, daemon=True).start()
 
